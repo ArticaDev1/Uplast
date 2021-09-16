@@ -1,0 +1,299 @@
+.select {
+  --text-size: var(--form-el-text-size);
+  --line-height: var(--form-el-line-height);
+  --py: var(--form-el-py);
+  --px: var(--form-el-px);
+  --radius: var(--form-el-radius);
+  --pr: 44px;
+  &_small {
+    --text-size: var(--form-el-small-text-size);
+    --line-height: var(--form-el-small-line-height);
+    --py: var(--form-el-small-py);
+    --px: var(--form-el-small-px);
+    --radius: var(--form-el-small-radius);
+    --pr: 40px;
+  }
+  min-width: 120px;
+  position: relative;
+  z-index: 2;
+  select, .ss-single-selected {
+    display: block;
+    padding: var(--py) var(--pr) var(--py) var(--px);
+    border-radius: var(--radius);
+    font-size: var(--text-size);
+    line-height: var(--line-height);
+    background-color: var(--color-background-1);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .ss-main {
+    position: relative;   
+  }
+  .ss-single-selected {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    transition: background-color $trs1;
+    &[data-touch], &[data-hover], &.ss-open-below {
+      background-color: var(--color-background-2);
+    }
+  }
+
+  .ss-arrow {
+    display: block;
+    position: absolute;
+    right: var(--px);
+    top: calc(50% + 1px);
+    transform: translateY(-50%);
+    .icon {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .arrow-down, .arrow-up {
+      display: block;
+      width: 11px;
+      height: 11px;
+      transition: transform $trs1;
+    }
+    .arrow-up {
+      transform: translateY(-1px) rotate(180deg);
+    }
+  }
+  .ss-deselect, .ss-search {
+    display: none;
+  }
+  .ss-content {
+    position: absolute;
+    background-color: var(--color-background-1);
+    border-radius: var(--select-list-radius);
+    width: 260px;
+    top: calc(100% + 12px);
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity $trs1, visibility $trs1;
+    &.ss-open {
+      opacity: 1;
+      visibility: visible;
+    }
+    .scrollbar {
+      --overscroll-size: var(--select-py);
+    }
+  }
+  
+  .ss-list {
+    padding: var(--select-py) 0;
+    max-height: var(--select-max-height); 
+  }
+  
+  .ss-option {
+    cursor: pointer;
+    display: block;
+    transition: color $trs1out, background-color $trs1out;
+    padding: var(--select-item-py) var(--select-item-px);
+    line-height: var(--select-item-lh);
+    &[data-touch], &[data-hover] {
+      background-color: var(--color-background-2);
+      color: var(--color-text-3);
+    }
+    &.ss-disabled {
+      pointer-events: none;
+      &:not(.ss-option-selected) {
+        color: var(--color-text-6);
+      }
+    }
+    &-selected {
+      background-color: var(--color-background-2);
+    }
+  }
+}
+
+.catalog-label {
+  --text-size: var(--form-el-text-size);
+  --line-height: var(--form-el-line-height);
+  --py: var(--form-el-py);
+  --px: var(--form-el-px);
+  --radius: var(--form-el-radius);
+  font-size: var(--text-size);
+  line-height: var(--line-height);
+  padding: var(--py) var(--px);
+  background-color: var(--color-background-2);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  color: var(--color-text-1) !important;
+  &_small {
+    --text-size: var(--form-el-small-text-size);
+    --line-height: var(--form-el-small-line-height);
+    --py: var(--form-el-small-py);
+    --px: var(--form-el-small-px);
+    --radius: var(--form-el-small-radius);
+  }
+  .icon {
+    width: 14px;
+    height: 14px;
+    transition: color $trs1out;
+    &:last-child {
+      margin-left: 12px;
+    }
+    &:first-child {
+      margin-right: 12px;
+    }
+  }
+  &[data-touch], &[data-hover] {
+    .icon {
+      color: #fff;
+    }
+  }
+}
+
+.label-button {
+  --text-size: var(--form-el-text-size);
+  --line-height: var(--form-el-line-height);
+  --py: var(--form-el-py);
+  --px: var(--form-el-px);
+  --radius: var(--form-el-radius);
+  &_small {
+    --text-size: var(--form-el-small-text-size);
+    --line-height: var(--form-el-small-line-height);
+    --py: var(--form-el-small-py);
+    --px: var(--form-el-small-px);
+    --radius: var(--form-el-small-radius);
+  }
+  font-size: var(--text-size);
+  line-height: var(--line-height);
+  padding: var(--py) var(--px);
+  background-color: var(--color-background-2);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  transition: background-color $trs1out, color $trs1out;
+  .icon {
+    width: 14px;
+    height: 14px;
+    &:last-child {
+      margin-left: 12px;
+    }
+    &:first-child {
+      margin-right: 12px;
+    }
+  }
+  &[data-touch], &[data-hover] {
+    background-color: var(--color-background-5);
+    color: #fff;
+  }
+}
+
+.checkbox {
+  position: relative;
+  input {
+    display: none;
+    &:checked + label {
+      &::after {
+        background-color: var(--color-background-6);
+      }
+    }
+    &:disabled + label {
+      cursor: default;
+      &::after {
+        display: none;
+      }
+      &::before {
+        opacity: 0.4;
+      }
+    }
+  }
+  label {
+    display: block;
+    position: relative;
+    padding-left: 36px;
+    font-size: var(--checkbox-font-size);
+    line-height: var(--checkbox-height);
+    hyphens: auto;
+    &::before, &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      border-radius: 50%;
+    }
+    &::before {
+      width: var(--checkbox-height);
+      height: var(--checkbox-height);
+      top: 0;
+      left: 0;
+      background-color: var(--color-background-2);
+    }
+    &::after {
+      width: 10px;
+      height: 10px;
+      left: calc((var(--checkbox-height) - 10px) / 2);
+      top: calc((var(--checkbox-height) - 10px) / 2);
+      background-color: transparent;
+      transition: background-color $trs1out;
+    }
+    &[data-touch], &[data-hover] {
+      &::after {
+        background-color: var(--color-background-5);
+      }
+    }
+  }
+}
+
+.color-checkbox {
+  input {
+    display: none;
+    &:checked + label {
+      &::after {
+        border-color: var(--color-background-7);
+      }
+    }
+    &:disabled + label {
+      cursor: default;
+      &::after {
+        display: none;
+      }
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 130%;
+        height: 2px;
+        border-radius: 2px;
+        background-color: #fff;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+    }
+  }
+  label {
+    display: block;
+    position: relative;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      transition: border-color $trs1out;
+    }
+    &[data-touch], &[data-hover] {
+      &::after {
+        border-color: var(--color-background-2);
+      }
+    }
+  }
+  &_transparent {
+    label {
+      background: linear-gradient(220.55deg, rgba(196, 196, 196, 0) 9.19%, rgba(196, 196, 196, 0.83) 38.13%, rgba(196, 196, 196, 0) 90.21%);
+    }
+  }
+}

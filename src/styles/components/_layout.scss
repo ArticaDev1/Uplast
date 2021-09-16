@@ -1,0 +1,74 @@
+.row {
+  --bs-gutter-x: var(--grid-gutter-x);
+}
+
+.container {
+  padding-right: var(--container-gutter-x);
+  padding-left: var(--container-gutter-x);
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+
+.main {
+  flex: 1 1 100%;
+}
+
+.section {
+  margin-bottom: var(--indent-1);
+  &:first-child {
+    margin-top: 170px;
+  }
+  &:last-child {
+    margin-bottom: var(--indent-3);
+  }
+  &__head {
+    margin-bottom: var(--indent-3);
+  }
+}
+
+.container {
+  position: relative;
+}
+
+.scrollbar {
+  --overscroll-size: 20px;
+  --overscroll-bg-1: var(--scroll-start-gradient-1);
+  --overscroll-bg-2: var(--scroll-end-gradient-1);
+  position: relative;
+  z-index: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  &::-webkit-scrollbar {
+    width: var(--custom-scrollbar-width);
+  }
+  &::-webkit-scrollbar-track {
+    background-color: var(--color-scrollbar);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-scrollbar-thumb);
+  }
+  &::before, &::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: var(--overscroll-size);
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    pointer-events: none;
+  }
+  &::before {
+    top: 0;
+    background: linear-gradient(0deg, var(--overscroll-bg-2) 0%, var(--overscroll-bg-1) 100%);
+  }
+  &::after {
+    bottom: 0;
+    background: linear-gradient(0deg, var(--overscroll-bg-1) 0%, var(--overscroll-bg-2) 100%);
+  }
+}

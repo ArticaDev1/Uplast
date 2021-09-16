@@ -1,0 +1,73 @@
+.button {
+  --height: 48px;
+  --font-size: 16px;
+  --padding-x: 26px;
+  --font-size: 16px;
+  --font-weight: 700;
+  --icon-size: 16px;
+  --gap: 12px;
+
+  --background-color-hover: var(--color-btn-1-bg-hover);
+  --color-hover: var(--color);
+
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: color $trs1, background-color $trs1;
+  line-height: var(--height);
+  padding: 0 var(--padding-x);
+  font-size: var(--font-size);
+  border-radius: calc(var(--height) / 2);
+  font-weight: var(--font-weight);
+  column-gap: var(--gap);
+  background-color: var(--background-color);
+  color: var(--color);
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  &[data-touch], &[data-hover] {
+    background-color: var(--background-color-hover);
+    color: var(--color-hover);
+  }
+  
+  .icon {
+    width: var(--icon-size);
+    height: var(--icon-size);
+  }
+
+  &_large {
+    --height: 60px;
+    --font-size: 18px;
+    --icon-size: 20px;
+  }
+
+  &_small {
+    --height: 34px;
+    --font-size: 14px;
+    --font-weight: 600;
+    --padding-x: 15px;
+  }
+
+  &_style-1 {
+    --background-color: var(--color-btn-1-bg);
+    --background-color-hover: var(--color-btn-1-bg-hover);
+    --color: var(--color-btn-1);
+  }
+
+  @include media-breakpoint-down(sm) {
+    &_small {
+      --height: 28px;
+      --font-size: 12px;
+    }
+  }
+}

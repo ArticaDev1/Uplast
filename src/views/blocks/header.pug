@@ -1,0 +1,30 @@
+// header start
+header.header
+  .container.header__container
+    button.header__open-nav(data-action="open_nav" aria-label="open nav")
+      svg.icon
+        use(xlink:href="./img/icons/icons.svg#burger")
+    
+    a(href="./").logo.header__logo 
+      svg(viewBox="0 0 213 43").icon.logo__image
+        use(xlink:href="./img/icons/icons.svg#logo")
+
+    .header__search
+    
+    .header__items 
+
+      button(data-action="open_location" aria-label="open location").header__button.header__location-button
+        svg.icon
+          use(xlink:href="./img/icons/icons.svg#placemark")
+        span Воронеж
+
+      a(href="javascript:void(0);" data-tippy-content="Заказать звонок").header__button.header__phone-button
+        svg.icon
+          use(xlink:href="./img/icons/icons.svg#phone")
+
+      a(href="#").header__button.header__cart-button
+        svg.icon
+          use(xlink:href="./img/icons/icons.svg#cart")
+        span 99
+
+// header end

@@ -1,0 +1,11 @@
+.breadcrumbs 
+  .container.breadcrumbs__container
+    ul.breadcrumbs__list
+      each val in breadcrumbs_links
+        li.breadcrumbs__item 
+          a(href='#').breadcrumbs__link
+            svg.icon
+              use(xlink:href='./img/icons/icons.svg#caret-left')
+            span #{val}
+          svg.icon
+            use(xlink:href='./img/icons/icons.svg#caret-right')

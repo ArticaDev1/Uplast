@@ -1,0 +1,94 @@
+body {
+  font-family: 'Raleway', sans-serif;
+  color: var(--color-text-1);
+  font-size: 16px;
+  line-height: 1.3;
+  font-weight: 500;
+  text-rendering: geometricPrecision;
+  font-feature-settings: 'pnum' on, 'lnum' on;
+  @include media-breakpoint-down(lg) {
+    font-size: 14px;
+  }
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  margin-top: 0;
+  color: var(--color-text-2);
+  font-weight: inherit;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+h1, .h1 {
+  font-weight: 600;
+  font-size: 2.875rem;
+  margin-bottom: 80px;
+  line-height: 1.2;
+}
+h2, .h2 {
+  font-weight: 600;
+  font-size: 2.25rem;
+  margin-bottom: 40px;
+  line-height: 1.3;
+}
+h3, .h3 {
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin-bottom: 40px;
+  line-height: 1.3;
+}
+h4, .h4 {
+  font-size: 1.5rem;
+  margin-bottom: 25px;
+  line-height: 1.3;
+}
+h5, .h5 {
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+h6, .h6 {
+  font-size: 1.125rem;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+@include media-breakpoint-down(xxl) {
+  h3, .h3 {
+    font-size: 1.25rem;
+  }
+  h4, .h4 {
+    font-size: 1.125rem;
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  h2, .h2 {
+    font-size: 30px;
+  }
+  h4, .h4 {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  h2, .h2 {
+    font-size: 26px;
+  }
+}
+
+p {
+  margin: 0 0 1rem 0;
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+a {
+  transition: color $trs1out;
+  &[data-touch], &[data-hover] {
+    color: var(--color-text-3);
+  }
+}

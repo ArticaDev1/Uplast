@@ -1,0 +1,277 @@
+extends layout/layout
+block variables
+  -var footer_type = 1
+  -var title = sitename+' - Современная упаковка для вашего бизнеса'
+
+block content
+  section.section.home-banner.screen
+    .home-banner__back-items
+      //item
+      .home-banner__back-item.image.image_cover 
+        img(data-src="./img/slider_home/1_1.jpg", alt="image").lazyload
+      //item
+      .home-banner__back-item.image.image_cover 
+        img(data-src="./img/slider_home/2_1.jpg", alt="image").lazyload
+      //item
+      .home-banner__back-item.image.image_cover 
+        img(data-src="./img/slider_home/3_1.jpg", alt="image").lazyload
+      //item
+      .home-banner__back-item.image.image_cover 
+        img(data-src="./img/slider_home/4_1.jpg", alt="image").lazyload
+
+    .home-banner__mask
+
+    .home-banner__front-items
+      //item
+      .home-banner__front-item
+        .image.image_cover 
+          img(data-src="./img/slider_home/1_2.png", alt="image").lazyload
+        .home-banner__front-item-text 
+          span Торт для съёмки  предоставлен ТМ «Тортьяна» 
+
+      //item
+      .home-banner__front-item
+        .image.image_cover 
+          img(data-src="./img/slider_home/2_2.png", alt="image").lazyload
+      //item
+      .home-banner__front-item
+        .image.image_cover 
+          img(data-src="./img/slider_home/3_2.png", alt="image").lazyload
+      //item
+      .home-banner__front-item
+        .image.image_cover 
+          img(data-src="./img/slider_home/4_2.png", alt="image").lazyload
+
+    .home-banner__content.container
+      h2.h1.home-banner__text Современная упаковка<br> для вашего бизнеса
+      h6.home-banner__text От технологии<br> до совершенного продукта
+      
+    .home-banner__pagination.container
+      button.home-banner__pagination-button
+        .home-banner__pagination-button-inner
+          .home-banner__pagination-button-loader
+      button.home-banner__pagination-button
+        .home-banner__pagination-button-inner
+          .home-banner__pagination-button-loader
+      button.home-banner__pagination-button
+        .home-banner__pagination-button-inner
+          .home-banner__pagination-button-loader
+      button.home-banner__pagination-button
+        .home-banner__pagination-button-inner
+          .home-banner__pagination-button-loader
+
+  include blocks/promotions
+
+  section.section.small-catalogue.swiper.tab-slider
+    .container 
+      .section__head.small-catalogue__head 
+        h2.small-catalogue__title Каталог
+        .toggle-head
+          button.toggle-head__button.tab-slider__button Готовые решения
+          button.toggle-head__button.tab-slider__button.active По типу товара
+          .toggle-head__slider
+          .toggle-head__bg
+
+      .small-catalogue__container.swiper-container
+        .swiper-wrapper
+          //content
+          .swiper-slide.toggle-content__block.small-catalogue__block
+            //block
+            a(href="#" data-3d="parent").small-catalogue-block.small-catalogue-block_large
+              .image.small-catalogue-block__image.small-catalogue-block__image_large(data-3d="forward")
+                img(data-src="./img/small_catalogue/xl_1.png", alt="image").lazyload
+              .small-catalogue-block__container(data-3d="back")
+                h4.small-catalogue-block__title Сетевой ритейл
+            //block
+            a(href="#" data-3d="parent").small-catalogue-block.small-catalogue-block_large
+              .image.small-catalogue-block__image.small-catalogue-block__image_large(data-3d="forward")
+                img(data-src="./img/small_catalogue/xl_2.png", alt="image").lazyload
+              .small-catalogue-block__container(data-3d="back")
+                h4.small-catalogue-block__title HoReCa
+            //block
+            a(href="#" data-3d="parent").small-catalogue-block.small-catalogue-block_large
+              .image.small-catalogue-block__image.small-catalogue-block__image_large(data-3d="forward")
+                img(data-src="./img/small_catalogue/xl_3.png", alt="image").lazyload
+              .small-catalogue-block__container(data-3d="back")
+                h4.small-catalogue-block__title Хлебобулочное и кондитерское производство
+            //block
+            a(href="#" data-3d="parent").small-catalogue-block.small-catalogue-block_large
+              .image.small-catalogue-block__image.small-catalogue-block__image_large(data-3d="forward")
+                img(data-src="./img/small_catalogue/xl_4.png", alt="image").lazyload
+              .small-catalogue-block__container(data-3d="back")
+                h4.small-catalogue-block__title Мясоперерабатывающее производство
+
+          //content
+          .swiper-slide.toggle-content__block.small-catalogue__block
+            //block
+            a(href="#" data-3d="parent").small-catalogue-block.small-catalogue-block_1.small-catalogue-block_xl
+              .image.small-catalogue-block__image.small-catalogue-block__image_1(data-3d="forward")
+                img(data-src="./img/small_catalogue/1.png", alt="image").lazyload
+              .small-catalogue-block__container(data-3d="back")
+                h4.small-catalogue-block__title Лотки под запайку
+            //block
+            a(href="#" data-3d="parent").small-catalogue-block.small-catalogue-block_2.small-catalogue-block_xl
+              .image.small-catalogue-block__image.small-catalogue-block__image_2(data-3d="forward")
+                img(data-src="./img/small_catalogue/2.png", alt="image").lazyload
+              .small-catalogue-block__container(data-3d="back")
+                h4.small-catalogue-block__title Контейнеры
+            //block
+            a(href="#" data-3d="parent").small-catalogue-block.small-catalogue-block_3
+              .image.small-catalogue-block__image.small-catalogue-block__image_3(data-3d="forward")
+                img(data-src="./img/small_catalogue/3.png", alt="image").lazyload
+              .small-catalogue-block__container(data-3d="back")
+                h4.small-catalogue-block__title Пакеты
+            //block
+            a(href="#" data-3d="parent").small-catalogue-block.small-catalogue-block_4
+              .image.small-catalogue-block__image.small-catalogue-block__image_4(data-3d="forward")
+                img(data-src="./img/small_catalogue/4.png", alt="image").lazyload
+              .small-catalogue-block__container(data-3d="back")
+                h4.small-catalogue-block__title Одноразовая посуда
+            //block
+            a(href="#" data-3d="parent").small-catalogue-block.small-catalogue-block_5
+              .image.small-catalogue-block__image.small-catalogue-block__image_5(data-3d="forward")
+                img(data-src="./img/small_catalogue/5.png", alt="image").lazyload
+              .small-catalogue-block__container(data-3d="back")
+                h4.small-catalogue-block__title Плёнка
+            //block
+            a(href="#" data-3d="parent").small-catalogue-block.small-catalogue-block_6
+              .image.small-catalogue-block__image.small-catalogue-block__image_6(data-3d="forward")
+                img(data-src="./img/small_catalogue/6.png", alt="image").lazyload
+              .small-catalogue-block__container(data-3d="back")
+                h4.small-catalogue-block__title Ёмкости из ВПС
+            //block
+            a(href="#" data-3d="parent").small-catalogue-block.small-catalogue-block_7
+              .image.small-catalogue-block__image.small-catalogue-block__image_7(data-3d="forward")
+                img(data-src="./img/small_catalogue/7.png", alt="image").lazyload
+              .small-catalogue-block__container(data-3d="back")
+                h4.small-catalogue-block__title Бумажная упаковка 
+            //block
+            a(href="#" data-3d="parent").small-catalogue-block.small-catalogue-block_8
+              .image.small-catalogue-block__image.small-catalogue-block__image_8(data-3d="forward")
+                img(data-src="./img/small_catalogue/8.png", alt="image").lazyload
+              .small-catalogue-block__container(data-3d="back")
+                h4.small-catalogue-block__title Хозяйственные товары
+
+  section.section.advantages-slider
+    .section__head.advantages-slider__head 
+      .container 
+        h2 Наши преимущества
+    .advantages-slider__container
+      .advantages-slider__slider
+        .swiper-container
+          .swiper-wrapper
+            mixin slide(index)
+              .swiper-slide.advantages-slider__slide
+                .image.image_cover
+                  img(data-src=`./img/advantages_slider/${index}.jpg`, alt="image").lazyload
+            +slide(1)
+            +slide(2)
+            +slide(3)
+            +slide(4)
+            +slide(5)
+            +slide(6)
+            +slide(7)
+            +slide(8)
+            +slide(9)
+      .advantages-slider__text.container
+        //item
+        .advantages-slider__item
+          .advantages-slider__item-container
+            svg.icon 
+              use(xlink:href="./img/icons/icons.svg#schedule")
+            p Постоянные инвестиции в новейшее оборудование, гарантирующее качество продукции и инновационный подход в процессе производства.
+        //item
+        .advantages-slider__item
+          .advantages-slider__item-container
+            svg.icon 
+              use(xlink:href="./img/icons/icons.svg#mountains")
+            p Сырьё от ведущих мировых производителей Sibur, Sabic, Borealis, Нижнекамскнефтехим.
+        //item
+        .advantages-slider__item
+          .advantages-slider__item-container
+            svg.icon 
+              use(xlink:href="./img/icons/icons.svg#loupe")
+            p Контроль качества на всех этапах производства.
+        //item
+        .advantages-slider__item
+          .advantages-slider__item-container
+            svg.icon 
+              use(xlink:href="./img/icons/icons.svg#earth")
+            p Оборудование лучших мировых производителей: современные высокопроизводительные термоформовочные машины ILLIG, Gabler; высокотехнологичные экструзионные линий KUHNE, Reifenhauser, SML, Erema.
+        //item
+        .advantages-slider__item
+          .advantages-slider__item-container
+            svg.icon 
+              use(xlink:href="./img/icons/icons.svg#roll")
+            p Уникальное производство из высокобарьерных материалов.
+        //item
+        .advantages-slider__item
+          .advantages-slider__item-container
+            svg.icon 
+              use(xlink:href="./img/icons/icons.svg#star")
+            p Запатентованные конструктивно-технологические решения, воплощённые в индивидуальном дизайне и геометрии изделий.
+        //item
+        .advantages-slider__item
+          .advantages-slider__item-container
+            svg.icon 
+              use(xlink:href="./img/icons/icons.svg#recycling")
+            p Технология рециклинга.
+        //item
+        .advantages-slider__item
+          .advantages-slider__item-container
+            svg.icon 
+              use(xlink:href="./img/icons/icons.svg#handshake")
+            p Ответственность. Гибкость. Прозрачность.
+        //item
+        .advantages-slider__item
+          .advantages-slider__item-container
+            svg.icon 
+              use(xlink:href="./img/icons/icons.svg#boxes")
+            p Широкий ассортимент, комплексные поставки, более 3000 наименований всегда в наличии.
+
+
+  section.section.section-partners
+
+    mixin slide(index)
+      .swiper-slide.partner-item(class=`partner-item_${index}`)
+        .partner-item__image.image.image_contain
+          img(data-src=`./img/partners/${index}.png`, alt="image").swiper-lazy
+
+    .container 
+      .section__head
+        h2 Наши партнеры
+      .section-partners__container
+        .section-partners__slider
+          .swiper-container
+            .swiper-wrapper 
+              +slide(1)
+              +slide(2)
+              +slide(3)
+              +slide(4)
+              +slide(5)
+              +slide(6)
+              +slide(7)
+              +slide(8)
+        .section-partners__slider
+          .swiper-container
+            .swiper-wrapper 
+              +slide(9)
+              +slide(10)
+              +slide(11)
+              +slide(12)
+              +slide(13)
+              +slide(14)
+              +slide(15)
+              +slide(16)
+        .section-partners__slider
+          .swiper-container
+            .swiper-wrapper 
+              +slide(17)
+              +slide(18)
+              +slide(19)
+              +slide(20)
+              +slide(21)
+              +slide(22)
+              +slide(23)
+
+  include blocks/contacts        

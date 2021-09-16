@@ -1,0 +1,97 @@
+//layout
+:root {
+  --content-gutter: ((100vw - var(--content-width) + var(--container-gutter-x) * 2) / 2);
+  --container-gutter-x: 24px;
+  --grid-gutter-x: 24px;
+  --content-px-1: 20px;
+
+  @include media-breakpoint-up(xxl) {
+    --content-width: #{map-get($container-max-widths, xxl)};
+  }
+  @include media-breakpoint-down(xxl) {
+    --content-width: #{map-get($container-max-widths, xl)};
+  }
+  @include media-breakpoint-down(xl) {
+    --content-width: #{map-get($container-max-widths, lg)};
+  }
+  @include media-breakpoint-down(lg) {
+    --content-width: #{map-get($container-max-widths, md)};
+  }
+  @include media-breakpoint-down(md) {
+    --content-width: #{map-get($container-max-widths, sm)};
+    --container-gutter-x: 16px;
+    --grid-gutter-x: 16px;
+  }
+  @include media-breakpoint-down(sm) {
+    --content-width: 100vw; 
+  }
+}
+
+//indets
+:root {
+  --indent-1: 220px;
+  --indent-3: 70px;
+  @include media-breakpoint-down(lg) {
+    --indent-3: 50px;
+  }
+  @include media-breakpoint-down(md) {
+    --indent-3: 40px;
+  }
+}
+
+//
+:root {
+  --page-head-bottom-margin: 25px;
+}
+
+//select dropdown
+:root {
+  --select-py: 14px;
+  --select-item-lh: 20px;
+  --select-item-py: 6px;
+  --select-item-px: 20px;
+  --select-list-radius: 5px;
+  --select-max-height: calc( var(--select-py) * 2 + ( var(--select-item-lh) + var(--select-item-py) * 2) * 12 );
+}
+
+//form elements sizing
+:root {
+  --form-el-py: 17px;
+  --form-el-px: 20px;
+  --form-el-line-height: 20px;
+  --form-el-text-size: 16px;
+  --form-el-radius: 10px;
+  //small
+  --form-el-small-py: 8px;
+  --form-el-small-px: 18px;
+  --form-el-small-line-height: 20px;
+  --form-el-small-text-size: 16px;
+  --form-el-small-radius: calc((var(--form-el-small-line-height) + var(--form-el-small-py) * 2) / 2);
+  @include media-breakpoint-down(sm) {
+    --form-el-small-py: 6px;
+    --form-el-small-px: 16px;
+  }
+}
+
+//checkbox
+:root {
+  --checkbox-height: 22px;
+  --checkbox-font-size: 16px;
+}
+
+//close-button
+:root {
+  --close-btn-right: 10px; 
+  --close-btn-top: 20px;
+}
+
+//line links
+:root {
+  --line-links-py: 12px;
+  --line-links-font-size: 18px;
+}
+
+//scrollbar
+:root {
+  --custom-scrollbar-width: 5px;
+}

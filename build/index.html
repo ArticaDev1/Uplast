@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>Юпласт — Современная упаковка для вашего бизнеса</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <!--color-->
+    <meta name="theme-color" content="#3F434B">
+    <!--favicons-->
+    <link rel="shortcut icon" href="img/favicons/favicon.ico" type="image/x-icon">
+    <link rel="icon" sizes="16x16" href="img/favicons/favicon-16x16.png" type="image/png">
+    <link rel="icon" sizes="32x32" href="img/favicons/favicon-32x32.png" type="image/png">
+    <link rel="apple-touch-icon-precomposed" href="img/favicons/apple-touch-icon-precomposed.png">
+    <link rel="apple-touch-icon" href="img/favicons/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="img/favicons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="img/favicons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="img/favicons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/favicons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="img/favicons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="img/favicons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/favicons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/favicons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="img/favicons/apple-touch-icon-167x167.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="1024x1024" href="img/favicons/apple-touch-icon-1024x1024.png">
+    <!--open graph-->
+    <meta property="og:title" content="От технологии до совершенного продукта">
+    <meta property="og:site_name" content="Юпласт">
+    <meta property="og:url" content="https://articadev1.github.io/Uplast/build/">
+    <meta property="og:description" content="Современная упаковка для вашего бизнеса">
+    <meta property="og:image" content="https://articadev1.github.io/Uplast/build/img/favicons/apple-touch-icon-1024x1024.png">
+    <!--fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <!--styles-->
+    <link rel="stylesheet" href="./styles/theme.css">
+    <link rel="stylesheet" href="./styles/common.css">
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- header start-->
+      <header class="header">
+        <div class="container header__container">
+          <button class="header__open-nav" data-action="open_nav" aria-label="open nav">
+            <svg class="icon">
+              <use xlink:href="./img/icons/icons.svg#burger"></use>
+            </svg>
+          </button><a class="logo header__logo" href="./">
+            <svg class="icon logo__image" viewBox="0 0 213 43">
+              <use xlink:href="./img/icons/icons.svg#logo"></use>
+            </svg></a>
+          <div class="header__search"></div>
+          <div class="header__items">
+            <button class="header__button header__location-button" data-action="open_location" aria-label="open location">
+              <svg class="icon">
+                <use xlink:href="./img/icons/icons.svg#placemark"></use>
+              </svg><span>Воронеж</span>
+            </button><a class="header__button header__phone-button" href="javascript:void(0);" data-tippy-content="Заказать звонок">
+              <svg class="icon">
+                <use xlink:href="./img/icons/icons.svg#phone"></use>
+              </svg></a><a class="header__button header__cart-button" href="#">
+              <svg class="icon">
+                <use xlink:href="./img/icons/icons.svg#cart"></use>
+              </svg><span>99</span></a>
+          </div>
+        </div>
+      </header>
+      <!-- header end-->
+      <!--nav start-->
+      <nav class="mobile-nav">
+        <div class="mobile-nav__container">
+          <div class="mobile-nav__head">
+            <button class="close-button mobile-nav__close-button" data-action="close_nav" aria-label="close nav">
+              <svg class="icon">
+                <use xlink:href="./img/icons/icons.svg#close-button"></use>
+              </svg>
+            </button>
+          </div>
+          <div class="mobile-nav__scrollbar scrollbar">
+            <div class="mobile-nav__content scrollbar__container">
+              <ul class="mobile-nav__list">
+                <li class="mobile-nav__item"> <a class="mobile-nav__link" href="katalog.html">Каталог товаров</a></li>
+                <li class="mobile-nav__item">
+                  <ul class="mobile-nav__categories-list">
+                    <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
+                        <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_1">
+                          <use xlink:href="./img/icons/icons.svg#lotok-pod-zapajku"></use>
+                        </svg><span>Лоток под запайку</span></a></li>
+                    <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
+                        <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_2">
+                          <use xlink:href="./img/icons/icons.svg#kontejnery"></use>
+                        </svg><span>Контейнеры</span></a></li>
+                    <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
+                        <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_3">
+                          <use xlink:href="./img/icons/icons.svg#tortniczy"></use>
+                        </svg><span>Тортницы</span></a></li>
+                    <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
+                        <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_4">
+                          <use xlink:href="./img/icons/icons.svg#pakety"></use>
+                        </svg><span>Пакеты</span></a></li>
+                    <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
+                        <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_5">
+                          <use xlink:href="./img/icons/icons.svg#odnorazovaya-posuda"></use>
+                        </svg><span>Одноразовая посуда</span></a></li>
+                    <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
+                        <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_6">
+                          <use xlink:href="./img/icons/icons.svg#plyonka"></use>
+                        </svg><span>Плёнка</span></a></li>
+                    <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
+                        <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_7">
+                          <use xlink:href="./img/icons/icons.svg#yomkosti-iz-vps"></use>
+                        </svg><span>Ёмкости из ВПС</span></a></li>
+                    <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
+                        <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_8">
+                          <use xlink:href="./img/icons/icons.svg#bumazhnaya-upakovka"></use>
+                        </svg><span>Бумажная упаковка</span></a></li>
+                    <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
+                        <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_9">
+                          <use xlink:href="./img/icons/icons.svg#vyodra-banki-yomkosti"></use>
+                        </svg><span>Вёдра, банки, ёмкости</span></a></li>
+                    <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
+                        <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_10">
+                          <use xlink:href="./img/icons/icons.svg#khozyajstvennye-tovary"></use>
+                        </svg><span>Хозяйственные товары</span></a></li>
+                  </ul>
+                </li>
+                <li class="mobile-nav__item"> <a class="mobile-nav__link" href="#">О компании</a></li>
+                <li class="mobile-nav__item"> <a class="mobile-nav__link" href="#">Карьера</a></li>
+                <li class="mobile-nav__item"> <a class="mobile-nav__link" href="#">Поставщикам</a></li>
+                <li class="mobile-nav__item"> <a class="mobile-nav__link" href="#">Клиентам</a></li>
+                <li class="mobile-nav__item"> <a class="mobile-nav__link" href="#">Контакты</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <!--nav end-->
+      <!--search start-->
+      <div class="search-element">
+        <div class="search-element__input" data-custom-interaction>
+          <input class="search-element__input-element" type="text" placeholder="Поиск">
+          <svg class="icon">
+            <use xlink:href="./img/icons/icons.svg#magnifier"></use>
+          </svg>
+        </div>
+      </div>
+      <!--search end-->
+      <!--location start-->
+      <div class="location-element">
+        <div class="location-element__scrollbar scrollbar">
+          <div class="location-element__container scrollbar__container">
+            <ul class="location-element__list">
+              <li class="location-element__item"> <a class="location-element__link" href="#">Москва </a></li>
+              <li class="location-element__item"> <a class="location-element__link" href="#">Санкт-Петербург</a></li>
+              <li class="location-element__item"> <a class="location-element__link" href="#">Абакан</a></li>
+              <li class="location-element__item"> <a class="location-element__link" href="#">Азов</a></li>
+              <li class="location-element__item"> <a class="location-element__link" href="#">Александров</a></li>
+              <li class="location-element__item"> <a class="location-element__link" href="#">Алексин</a></li>
+              <li class="location-element__item"> <a class="location-element__link" href="#">Альметьевск</a></li>
+              <li class="location-element__item"> <a class="location-element__link" href="#">Анапа</a></li>
+              <li class="location-element__item"> <a class="location-element__link" href="#">Ангарск</a></li>
+              <li class="location-element__item"> <a class="location-element__link" href="#">Анжеро-Судженск</a></li>
+              <li class="location-element__item"> <a class="location-element__link" href="#">Апатиты</a></li>
+              <li class="location-element__item"> <a class="location-element__link" href="#">Арзамас</a></li>
+              <li class="location-element__item"> <a class="location-element__link" href="#">Армавир</a></li>
+              <li class="location-element__item"> <a class="location-element__link" href="#">Анапа</a></li>
+              <li class="location-element__item"> <a class="location-element__link" href="#">Ангарск</a></li>
+              <li class="location-element__item"> <a class="location-element__link" href="#">Анжеро-Судженск</a></li>
+              <li class="location-element__item"> <a class="location-element__link" href="#">Апатиты</a></li>
+              <li class="location-element__item"> <a class="location-element__link" href="#">Арзамас</a></li>
+              <li class="location-element__item"> <a class="location-element__link" href="#">Армавир</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!--location end-->
+      <main class="main">
+        <section class="section home-banner screen">
+          <div class="home-banner__back-items">
+            <!--item-->
+            <div class="home-banner__back-item image image_cover"> <img class="lazyload" data-src="./img/slider_home/1_1.jpg" alt="image"></div>
+            <!--item-->
+            <div class="home-banner__back-item image image_cover"> <img class="lazyload" data-src="./img/slider_home/2_1.jpg" alt="image"></div>
+            <!--item-->
+            <div class="home-banner__back-item image image_cover"> <img class="lazyload" data-src="./img/slider_home/3_1.jpg" alt="image"></div>
+            <!--item-->
+            <div class="home-banner__back-item image image_cover"> <img class="lazyload" data-src="./img/slider_home/4_1.jpg" alt="image"></div>
+          </div>
+          <div class="home-banner__mask"></div>
+          <div class="home-banner__front-items">
+            <!--item-->
+            <div class="home-banner__front-item">
+              <div class="image image_cover"> <img class="lazyload" data-src="./img/slider_home/1_2.png" alt="image"></div>
+              <div class="home-banner__front-item-text"> <span>Торт для съёмки предоставлен ТМ «Тортьяна» </span></div>
+            </div>
+            <!--item-->
+            <div class="home-banner__front-item">
+              <div class="image image_cover"> <img class="lazyload" data-src="./img/slider_home/2_2.png" alt="image"></div>
+            </div>
+            <!--item-->
+            <div class="home-banner__front-item">
+              <div class="image image_cover"> <img class="lazyload" data-src="./img/slider_home/3_2.png" alt="image"></div>
+            </div>
+            <!--item-->
+            <div class="home-banner__front-item">
+              <div class="image image_cover"> <img class="lazyload" data-src="./img/slider_home/4_2.png" alt="image"></div>
+            </div>
+          </div>
+          <div class="home-banner__content container">
+            <h2 class="h1 home-banner__text">Современная упаковка<br> для вашего бизнеса</h2>
+            <h6 class="home-banner__text">От технологии<br> до совершенного продукта</h6>
+          </div>
+          <div class="home-banner__pagination container">
+            <button class="home-banner__pagination-button">
+              <div class="home-banner__pagination-button-inner">
+                <div class="home-banner__pagination-button-loader"></div>
+              </div>
+            </button>
+            <button class="home-banner__pagination-button">
+              <div class="home-banner__pagination-button-inner">
+                <div class="home-banner__pagination-button-loader"></div>
+              </div>
+            </button>
+            <button class="home-banner__pagination-button">
+              <div class="home-banner__pagination-button-inner">
+                <div class="home-banner__pagination-button-loader"></div>
+              </div>
+            </button>
+            <button class="home-banner__pagination-button">
+              <div class="home-banner__pagination-button-inner">
+                <div class="home-banner__pagination-button-loader"></div>
+              </div>
+            </button>
+          </div>
+        </section>
+        <section class="section promotions-section">
+          <div class="container promotions-section__container">
+            <!--block--><a class="promotions-block" href="#" data-3d="parent">
+              <div class="promotions-block__back promotions-block__back_style-1" data-3d="back"></div>
+              <div class="promotions-block__container" data-3d="back">
+                <svg class="icon promotions-block__small-icon">
+                  <use xlink:href="./img/icons/icons.svg#percent"></use>
+                </svg>
+                <h3 class="promotions-block__title">Акции</h3>
+              </div>
+              <div class="promotions-block__large-icon" data-3d="forward"><img class="icon" src="./img/icons/package1.svg" alt="icon"><img class="icon" src="./img/icons/package1_2.svg" alt="icon"></div></a>
+            <!--block--><a class="promotions-block" href="#" data-3d="parent">
+              <div class="promotions-block__back promotions-block__back_style-2" data-3d="back"></div>
+              <div class="promotions-block__container" data-3d="back">
+                <svg class="icon promotions-block__small-icon">
+                  <use xlink:href="./img/icons/icons.svg#plus"></use>
+                </svg>
+                <h3 class="promotions-block__title">Новинки</h3>
+              </div>
+              <div class="promotions-block__large-icon" data-3d="forward"><img class="icon" src="./img/icons/package2.svg" alt="icon"><img class="icon" src="./img/icons/package2_2.svg" alt="icon"></div></a>
+            <!--block--><a class="promotions-block" href="#" data-3d="parent">
+              <div class="promotions-block__back promotions-block__back_style-3" data-3d="back"></div>
+              <div class="promotions-block__container" data-3d="back">
+                <svg class="icon promotions-block__small-icon">
+                  <use xlink:href="./img/icons/icons.svg#fire"></use>
+                </svg>
+                <h3 class="promotions-block__title">Популярное</h3>
+              </div>
+              <div class="promotions-block__large-icon" data-3d="forward"><img class="icon" src="./img/icons/package3.svg" alt="icon"><img class="icon" src="./img/icons/package3_2.svg" alt="icon"></div></a>
+            <!--block--><a class="promotions-block" href="#" data-3d="parent">
+              <div class="promotions-block__back promotions-block__back_style-4" data-3d="back"></div>
+              <div class="promotions-block__container" data-3d="back">
+                <svg class="icon promotions-block__small-icon">
+                  <use xlink:href="./img/icons/icons.svg#clock"></use>
+                </svg>
+                <h3 class="promotions-block__title">Распродажа</h3>
+              </div>
+              <div class="promotions-block__large-icon" data-3d="forward"><img class="icon" src="./img/icons/package4.svg" alt="icon"><img class="icon" src="./img/icons/package4_2.svg" alt="icon"></div></a>
+          </div>
+        </section>
+        <section class="section small-catalogue swiper tab-slider">
+          <div class="container">
+            <div class="section__head small-catalogue__head">
+              <h2 class="small-catalogue__title">Каталог</h2>
+              <div class="toggle-head">
+                <button class="toggle-head__button tab-slider__button">Готовые решения</button>
+                <button class="toggle-head__button tab-slider__button active">По типу товара</button>
+                <div class="toggle-head__slider"></div>
+                <div class="toggle-head__bg"></div>
+              </div>
+            </div>
+            <div class="small-catalogue__container swiper-container">
+              <div class="swiper-wrapper">
+                <!--content-->
+                <div class="swiper-slide toggle-content__block small-catalogue__block">
+                  <!--block--><a class="small-catalogue-block small-catalogue-block_large" href="#" data-3d="parent">
+                    <div class="image small-catalogue-block__image small-catalogue-block__image_large" data-3d="forward"><img class="lazyload" data-src="./img/small_catalogue/xl_1.png" alt="image"></div>
+                    <div class="small-catalogue-block__container" data-3d="back">
+                      <h4 class="small-catalogue-block__title">Сетевой ритейл</h4>
+                    </div></a>
+                  <!--block--><a class="small-catalogue-block small-catalogue-block_large" href="#" data-3d="parent">
+                    <div class="image small-catalogue-block__image small-catalogue-block__image_large" data-3d="forward"><img class="lazyload" data-src="./img/small_catalogue/xl_2.png" alt="image"></div>
+                    <div class="small-catalogue-block__container" data-3d="back">
+                      <h4 class="small-catalogue-block__title">HoReCa</h4>
+                    </div></a>
+                  <!--block--><a class="small-catalogue-block small-catalogue-block_large" href="#" data-3d="parent">
+                    <div class="image small-catalogue-block__image small-catalogue-block__image_large" data-3d="forward"><img class="lazyload" data-src="./img/small_catalogue/xl_3.png" alt="image"></div>
+                    <div class="small-catalogue-block__container" data-3d="back">
+                      <h4 class="small-catalogue-block__title">Хлебобулочное и кондитерское производство</h4>
+                    </div></a>
+                  <!--block--><a class="small-catalogue-block small-catalogue-block_large" href="#" data-3d="parent">
+                    <div class="image small-catalogue-block__image small-catalogue-block__image_large" data-3d="forward"><img class="lazyload" data-src="./img/small_catalogue/xl_4.png" alt="image"></div>
+                    <div class="small-catalogue-block__container" data-3d="back">
+                      <h4 class="small-catalogue-block__title">Мясоперерабатывающее производство</h4>
+                    </div></a>
+                </div>
+                <!--content-->
+                <div class="swiper-slide toggle-content__block small-catalogue__block">
+                  <!--block--><a class="small-catalogue-block small-catalogue-block_1 small-catalogue-block_xl" href="#" data-3d="parent">
+                    <div class="image small-catalogue-block__image small-catalogue-block__image_1" data-3d="forward"><img class="lazyload" data-src="./img/small_catalogue/1.png" alt="image"></div>
+                    <div class="small-catalogue-block__container" data-3d="back">
+                      <h4 class="small-catalogue-block__title">Лотки под запайку</h4>
+                    </div></a>
+                  <!--block--><a class="small-catalogue-block small-catalogue-block_2 small-catalogue-block_xl" href="#" data-3d="parent">
+                    <div class="image small-catalogue-block__image small-catalogue-block__image_2" data-3d="forward"><img class="lazyload" data-src="./img/small_catalogue/2.png" alt="image"></div>
+                    <div class="small-catalogue-block__container" data-3d="back">
+                      <h4 class="small-catalogue-block__title">Контейнеры</h4>
+                    </div></a>
+                  <!--block--><a class="small-catalogue-block small-catalogue-block_3" href="#" data-3d="parent">
+                    <div class="image small-catalogue-block__image small-catalogue-block__image_3" data-3d="forward"><img class="lazyload" data-src="./img/small_catalogue/3.png" alt="image"></div>
+                    <div class="small-catalogue-block__container" data-3d="back">
+                      <h4 class="small-catalogue-block__title">Пакеты</h4>
+                    </div></a>
+                  <!--block--><a class="small-catalogue-block small-catalogue-block_4" href="#" data-3d="parent">
+                    <div class="image small-catalogue-block__image small-catalogue-block__image_4" data-3d="forward"><img class="lazyload" data-src="./img/small_catalogue/4.png" alt="image"></div>
+                    <div class="small-catalogue-block__container" data-3d="back">
+                      <h4 class="small-catalogue-block__title">Одноразовая посуда</h4>
+                    </div></a>
+                  <!--block--><a class="small-catalogue-block small-catalogue-block_5" href="#" data-3d="parent">
+                    <div class="image small-catalogue-block__image small-catalogue-block__image_5" data-3d="forward"><img class="lazyload" data-src="./img/small_catalogue/5.png" alt="image"></div>
+                    <div class="small-catalogue-block__container" data-3d="back">
+                      <h4 class="small-catalogue-block__title">Плёнка</h4>
+                    </div></a>
+                  <!--block--><a class="small-catalogue-block small-catalogue-block_6" href="#" data-3d="parent">
+                    <div class="image small-catalogue-block__image small-catalogue-block__image_6" data-3d="forward"><img class="lazyload" data-src="./img/small_catalogue/6.png" alt="image"></div>
+                    <div class="small-catalogue-block__container" data-3d="back">
+                      <h4 class="small-catalogue-block__title">Ёмкости из ВПС</h4>
+                    </div></a>
+                  <!--block--><a class="small-catalogue-block small-catalogue-block_7" href="#" data-3d="parent">
+                    <div class="image small-catalogue-block__image small-catalogue-block__image_7" data-3d="forward"><img class="lazyload" data-src="./img/small_catalogue/7.png" alt="image"></div>
+                    <div class="small-catalogue-block__container" data-3d="back">
+                      <h4 class="small-catalogue-block__title">Бумажная упаковка </h4>
+                    </div></a>
+                  <!--block--><a class="small-catalogue-block small-catalogue-block_8" href="#" data-3d="parent">
+                    <div class="image small-catalogue-block__image small-catalogue-block__image_8" data-3d="forward"><img class="lazyload" data-src="./img/small_catalogue/8.png" alt="image"></div>
+                    <div class="small-catalogue-block__container" data-3d="back">
+                      <h4 class="small-catalogue-block__title">Хозяйственные товары</h4>
+                    </div></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section advantages-slider">
+          <div class="section__head advantages-slider__head">
+            <div class="container">
+              <h2>Наши преимущества</h2>
+            </div>
+          </div>
+          <div class="advantages-slider__container">
+            <div class="advantages-slider__slider">
+              <div class="swiper-container">
+                <div class="swiper-wrapper">
+                                    <div class="swiper-slide advantages-slider__slide">
+                                      <div class="image image_cover"><img class="lazyload" data-src="./img/advantages_slider/1.jpg" alt="image"></div>
+                                    </div>
+                                    <div class="swiper-slide advantages-slider__slide">
+                                      <div class="image image_cover"><img class="lazyload" data-src="./img/advantages_slider/2.jpg" alt="image"></div>
+                                    </div>
+                                    <div class="swiper-slide advantages-slider__slide">
+                                      <div class="image image_cover"><img class="lazyload" data-src="./img/advantages_slider/3.jpg" alt="image"></div>
+                                    </div>
+                                    <div class="swiper-slide advantages-slider__slide">
+                                      <div class="image image_cover"><img class="lazyload" data-src="./img/advantages_slider/4.jpg" alt="image"></div>
+                                    </div>
+                                    <div class="swiper-slide advantages-slider__slide">
+                                      <div class="image image_cover"><img class="lazyload" data-src="./img/advantages_slider/5.jpg" alt="image"></div>
+                                    </div>
+                                    <div class="swiper-slide advantages-slider__slide">
+                                      <div class="image image_cover"><img class="lazyload" data-src="./img/advantages_slider/6.jpg" alt="image"></div>
+                                    </div>
+                                    <div class="swiper-slide advantages-slider__slide">
+                                      <div class="image image_cover"><img class="lazyload" data-src="./img/advantages_slider/7.jpg" alt="image"></div>
+                                    </div>
+                                    <div class="swiper-slide advantages-slider__slide">
+                                      <div class="image image_cover"><img class="lazyload" data-src="./img/advantages_slider/8.jpg" alt="image"></div>
+                                    </div>
+                                    <div class="swiper-slide advantages-slider__slide">
+                                      <div class="image image_cover"><img class="lazyload" data-src="./img/advantages_slider/9.jpg" alt="image"></div>
+                                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="advantages-slider__text container">
+              <!--item-->
+              <div class="advantages-slider__item">
+                <div class="advantages-slider__item-container">
+                  <svg class="icon">
+                    <use xlink:href="./img/icons/icons.svg#schedule"></use>
+                  </svg>
+                  <p>Постоянные инвестиции в новейшее оборудование, гарантирующее качество продукции и инновационный подход в процессе производства.</p>
+                </div>
+              </div>
+              <!--item-->
+              <div class="advantages-slider__item">
+                <div class="advantages-slider__item-container">
+                  <svg class="icon">
+                    <use xlink:href="./img/icons/icons.svg#mountains"></use>
+                  </svg>
+                  <p>Сырьё от ведущих мировых производителей Sibur, Sabic, Borealis, Нижнекамскнефтехим.</p>
+                </div>
+              </div>
+              <!--item-->
+              <div class="advantages-slider__item">
+                <div class="advantages-slider__item-container">
+                  <svg class="icon">
+                    <use xlink:href="./img/icons/icons.svg#loupe"></use>
+                  </svg>
+                  <p>Контроль качества на всех этапах производства.</p>
+                </div>
+              </div>
+              <!--item-->
+              <div class="advantages-slider__item">
+                <div class="advantages-slider__item-container">
+                  <svg class="icon">
+                    <use xlink:href="./img/icons/icons.svg#earth"></use>
+                  </svg>
+                  <p>Оборудование лучших мировых производителей: современные высокопроизводительные термоформовочные машины ILLIG, Gabler; высокотехнологичные экструзионные линий KUHNE, Reifenhauser, SML, Erema.</p>
+                </div>
+              </div>
+              <!--item-->
+              <div class="advantages-slider__item">
+                <div class="advantages-slider__item-container">
+                  <svg class="icon">
+                    <use xlink:href="./img/icons/icons.svg#roll"></use>
+                  </svg>
+                  <p>Уникальное производство из высокобарьерных материалов.</p>
+                </div>
+              </div>
+              <!--item-->
+              <div class="advantages-slider__item">
+                <div class="advantages-slider__item-container">
+                  <svg class="icon">
+                    <use xlink:href="./img/icons/icons.svg#star"></use>
+                  </svg>
+                  <p>Запатентованные конструктивно-технологические решения, воплощённые в индивидуальном дизайне и геометрии изделий.</p>
+                </div>
+              </div>
+              <!--item-->
+              <div class="advantages-slider__item">
+                <div class="advantages-slider__item-container">
+                  <svg class="icon">
+                    <use xlink:href="./img/icons/icons.svg#recycling"></use>
+                  </svg>
+                  <p>Технология рециклинга.</p>
+                </div>
+              </div>
+              <!--item-->
+              <div class="advantages-slider__item">
+                <div class="advantages-slider__item-container">
+                  <svg class="icon">
+                    <use xlink:href="./img/icons/icons.svg#handshake"></use>
+                  </svg>
+                  <p>Ответственность. Гибкость. Прозрачность.</p>
+                </div>
+              </div>
+              <!--item-->
+              <div class="advantages-slider__item">
+                <div class="advantages-slider__item-container">
+                  <svg class="icon">
+                    <use xlink:href="./img/icons/icons.svg#boxes"></use>
+                  </svg>
+                  <p>Широкий ассортимент, комплексные поставки, более 3000 наименований всегда в наличии.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section section-partners">
+          <div class="container">
+            <div class="section__head">
+              <h2>Наши партнеры</h2>
+            </div>
+            <div class="section-partners__container">
+              <div class="section-partners__slider">
+                <div class="swiper-container">
+                  <div class="swiper-wrapper">
+                              <div class="swiper-slide partner-item partner-item_1">
+                                <div class="partner-item__image image image_contain"><img class="swiper-lazy" data-src="./img/partners/1.png" alt="image"></div>
+                              </div>
+                              <div class="swiper-slide partner-item partner-item_2">
+                                <div class="partner-item__image image image_contain"><img class="swiper-lazy" data-src="./img/partners/2.png" alt="image"></div>
+                              </div>
+                              <div class="swiper-slide partner-item partner-item_3">
+                                <div class="partner-item__image image image_contain"><img class="swiper-lazy" data-src="./img/partners/3.png" alt="image"></div>
+                              </div>
+                              <div class="swiper-slide partner-item partner-item_4">
+                                <div class="partner-item__image image image_contain"><img class="swiper-lazy" data-src="./img/partners/4.png" alt="image"></div>
+                              </div>
+                              <div class="swiper-slide partner-item partner-item_5">
+                                <div class="partner-item__image image image_contain"><img class="swiper-lazy" data-src="./img/partners/5.png" alt="image"></div>
+                              </div>
+                              <div class="swiper-slide partner-item partner-item_6">
+                                <div class="partner-item__image image image_contain"><img class="swiper-lazy" data-src="./img/partners/6.png" alt="image"></div>
+                              </div>
+                              <div class="swiper-slide partner-item partner-item_7">
+                                <div class="partner-item__image image image_contain"><img class="swiper-lazy" data-src="./img/partners/7.png" alt="image"></div>
+                              </div>
+                              <div class="swiper-slide partner-item partner-item_8">
+                                <div class="partner-item__image image image_contain"><img class="swiper-lazy" data-src="./img/partners/8.png" alt="image"></div>
+                              </div>
+                  </div>
+                </div>
+              </div>
+              <div class="section-partners__slider">
+                <div class="swiper-container">
+                  <div class="swiper-wrapper">
+                              <div class="swiper-slide partner-item partner-item_9">
+                                <div class="partner-item__image image image_contain"><img class="swiper-lazy" data-src="./img/partners/9.png" alt="image"></div>
+                              </div>
+                              <div class="swiper-slide partner-item partner-item_10">
+                                <div class="partner-item__image image image_contain"><img class="swiper-lazy" data-src="./img/partners/10.png" alt="image"></div>
+                              </div>
+                              <div class="swiper-slide partner-item partner-item_11">
+                                <div class="partner-item__image image image_contain"><img class="swiper-lazy" data-src="./img/partners/11.png" alt="image"></div>
+                              </div>
+                              <div class="swiper-slide partner-item partner-item_12">
+                                <div class="partner-item__image image image_contain"><img class="swiper-lazy" data-src="./img/partners/12.png" alt="image"></div>
+                              </div>
+                              <div class="swiper-slide partner-item partner-item_13">
+                                <div class="partner-item__image image image_contain"><img class="swiper-lazy" data-src="./img/partners/13.png" alt="image"></div>
+                              </div>
+                              <div class="swiper-slide partner-item partner-item_14">
+                                <div class="partner-item__image image image_contain"><img class="swiper-lazy" data-src="./img/partners/14.png" alt="image"></div>
+                              </div>
+                              <div class="swiper-slide partner-item partner-item_15">
+                                <div class="partner-item__image image image_contain"><img class="swiper-lazy" data-src="./img/partners/15.png" alt="image"></div>
+                              </div>
+                              <div class="swiper-slide partner-item partner-item_16">
+                                <div class="partner-item__image image image_contain"><img class="swiper-lazy" data-src="./img/partners/16.png" alt="image"></div>
+                              </div>
+                  </div>
+                </div>
+              </div>
+              <div class="section-partners__slider">
+                <div class="swiper-container">
+                  <div class="swiper-wrapper">
+                              <div class="swiper-slide partner-item partner-item_17">
+                                <div class="partner-item__image image image_contain"><img class="swiper-lazy" data-src="./img/partners/17.png" alt="image"></div>
+                              </div>
+                              <div class="swiper-slide partner-item partner-item_18">
+                                <div class="partner-item__image image image_contain"><img class="swiper-lazy" data-src="./img/partners/18.png" alt="image"></div>
+                              </div>
+                              <div class="swiper-slide partner-item partner-item_19">
+                                <div class="partner-item__image image image_contain"><img class="swiper-lazy" data-src="./img/partners/19.png" alt="image"></div>
+                              </div>
+                              <div class="swiper-slide partner-item partner-item_20">
+                                <div class="partner-item__image image image_contain"><img class="swiper-lazy" data-src="./img/partners/20.png" alt="image"></div>
+                              </div>
+                              <div class="swiper-slide partner-item partner-item_21">
+                                <div class="partner-item__image image image_contain"><img class="swiper-lazy" data-src="./img/partners/21.png" alt="image"></div>
+                              </div>
+                              <div class="swiper-slide partner-item partner-item_22">
+                                <div class="partner-item__image image image_contain"><img class="swiper-lazy" data-src="./img/partners/22.png" alt="image"></div>
+                              </div>
+                              <div class="swiper-slide partner-item partner-item_23">
+                                <div class="partner-item__image image image_contain"><img class="swiper-lazy" data-src="./img/partners/23.png" alt="image"></div>
+                              </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section contacts">
+          <div class="container contacts__container">
+            <div class="section__head contacts__head">
+              <h2 class="contacts__title">Контакты</h2><a class="link-arrow contacts__head-link" href="kontakty.html"><span>Все контакты</span>
+                <svg class="icon">
+                  <use xlink:href="./img/icons/icons.svg#arrow2"></use>
+                </svg></a>
+            </div>
+            <div class="contacts__map">
+              <svg class="contacts__map-loader" viewBox="0 0 120 30" fill="currentColor">
+                <circle cx="15" cy="15" r="15">
+                  <animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite"></animate>
+                  <animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite"></animate>
+                </circle>
+                <circle cx="60" cy="15" r="9" fill-opacity="0.3">
+                  <animate attributeName="r" from="9" to="9" begin="0s" dur="0.8s" values="9;15;9" calcMode="linear" repeatCount="indefinite"></animate>
+                  <animate attributeName="fill-opacity" from="0.5" to="0.5" begin="0s" dur="0.8s" values=".5;1;.5" calcMode="linear" repeatCount="indefinite"></animate>
+                </circle>
+                <circle cx="105" cy="15" r="15">
+                  <animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite"></animate>
+                  <animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite"></animate>
+                </circle>
+              </svg>
+            </div>
+            <div class="contacts-content">
+              <div class="contacts-content__left">
+                <div class="point-text contacts-content__point">
+                  <svg class="icon">
+                    <use xlink:href="./img/icons/icons.svg#point"></use>
+                  </svg>ближайший филиал
+                </div>
+                <div class="contacts-content__select">
+                  <select class="select">
+                    <option value="Стрелица" selected>Воронеж</option>
+                    <option value="Москва">Москва</option>
+                    <option value="Санкт-Петербург">Санкт-Петербург</option>
+                    <option value="3" disabled>Абакан</option>
+                    <option value="4">Азов</option>
+                    <option value="5">Александров</option>
+                    <option value="6">Алексин</option>
+                    <option value="7">Альметьевск</option>
+                    <option value="8">Анапа</option>
+                    <option value="9">Ангарск</option>
+                    <option value="12">Анжеро-Судженск</option>
+                    <option value="23">Апатиты</option>
+                    <option value="45">Арзамас</option>
+                    <option value="35">Армавир</option>
+                    <option value="6555">Александров</option>
+                    <option value="44444">Альметьевск</option>
+                  </select>
+                </div>
+                <div class="contacts-content__adress">
+                   Адрес: г. Воронеж, ул. Текстильщиков, д. 8 «Б»<br>Телефон: <a href="tel:+7 (473) 250-20-40">+7 (47-32) 50-20-40</a><br>Email: <a href="mailto:gk@uplastgroup.ru">gk@uplastgroup.ru</a></div>
+                <div class="contacts-content__timetable">
+                  <div class="timetable-element">
+                    <div class="timetable-element__days">
+                      <div class="timetable-element__day">Пн</div>
+                      <div class="timetable-element__day"></div>
+                      <div class="timetable-element__day"></div>
+                      <div class="timetable-element__day"></div>
+                      <div class="timetable-element__day">Пт</div>
+                      <div class="timetable-element__day">Сб</div>
+                      <div class="timetable-element__day">Вс</div>
+                    </div>
+                    <div class="timetable-element__line"><span style="width:71.43%;"></span></div>
+                    <div class="timetable-element__description"><span style="width:71.43%;">09:00-18:00</span><span>Выходные</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="contacts-content__info">
+                <div class="contacts-content__info-title">
+                  <h5>Производственно-логистический комплекс ГК «Юпласт»</h5>
+                  <button class="button button_style-1 button_xl">Обратная связь</button>
+                </div>
+                <ul class="contacts-content__info-list">
+                  <li class="contacts-content__info-item">
+                    <h5>Адрес офиса:</h5>
+                    <p>пгт. Стрелица ул. Солнечная 39</p>
+                  </li>
+                  <li class="contacts-content__info-item">
+                    <h5>Производственный комплекс:</h5>
+                    <p>Телефонный номер: <a href="84732330050">8 (473) 233‑00‑50</a> доб. 2<br>Почта для обратной связи: <a href="mailto:pr-tpk@uplastgroup.ru">pr‑tpk@uplastgroup.ru</a></p>
+                  </li>
+                  <li class="contacts-content__info-item">
+                    <h5>Логистический комплекс:</h5>
+                    <p>Телефонный номер: <a href="tel:84732330050"> 8 (473) 233‑00‑50</a> доб. 3<br>Почта для обратной связи: <a href="mailto:logistika@uplastgroup.ru">logistika@uplastgroup.ru</a></p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <div class="container footer__container">
+          <div class="footer__top">
+            <ul class="footer__nav">
+              <li class="footer__nav-item"> <a class="footer__nav-link" href="#">Политика конфиденциальности </a></li>
+              <li class="footer__nav-item"> <a class="footer__nav-link" href="#">Пользовательское соглашение</a></li>
+              <li class="footer__nav-item"> <a class="footer__nav-link" href="#">Сообщить о коррупции</a></li>
+            </ul>
+            <div class="socials footer__socials">
+              <ul class="socials__list">
+                <li class="socials__item"> <a class="socials__link" href="#">Facebook
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/socials.svg#facebook"></use>
+                    </svg></a></li>
+                <li class="socials__item"> <a class="socials__link" href="#">LinkedIn
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/socials.svg#linkedin"></use>
+                    </svg></a></li>
+                <li class="socials__item"> <a class="socials__link" href="#">Instagram
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/socials.svg#instagram"></use>
+                    </svg></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="footer__bottom"><span class="footer__copyright">© 2021, ГК ЮПЛАСТ. Все права защищены.</span>
+            <div class="dev-label"><span>Разработка сайта — </span><a href="https://artica.art/" rel="noopener" target="_blank"><span>artica.art</span>
+                <svg viewBox="0 0 74 15" fill="currentColor">
+                  <path d="M42.4491 5.10225L40.8535 5.1062L40.8776 14.8511L42.4733 14.8471L42.4491 5.10225Z"></path>
+                  <path d="M50.682 5.03761C49.369 5.04084 48.1351 5.55516 47.2089 6.48638C46.2828 7.41714 45.7741 8.65304 45.7774 9.96661C45.7806 11.2797 46.2954 12.5131 47.2261 13.4397C48.1569 14.3659 49.3933 14.8741 50.7064 14.8708C52.1361 14.8673 53.4864 14.2431 54.4207 13.1563L53.2439 12.46C52.568 13.1482 51.6669 13.5284 50.703 13.5308C48.7308 13.5357 47.1227 11.935 47.1178 9.96329C47.113 7.99107 48.7131 6.38296 50.6853 6.37809C51.6492 6.37569 52.5522 6.75101 53.2315 7.43634L54.4048 6.73414C53.4652 5.65157 52.1118 5.03407 50.682 5.03761Z"></path>
+                  <path d="M55.834 14.5723L57.7509 14.5675L64.3502 3.4162L64.3897 3.34947L64.4291 3.416L71.0839 14.5345L73.0004 14.5298L64.3817 0.128906L55.834 14.5723Z"></path>
+                  <path d="M23.5886 10.4929L23.6509 10.4795C24.9142 10.2056 25.828 9.07077 25.8248 7.78085C25.8211 6.26224 24.5829 5.02971 23.0643 5.03346L16.9043 5.04871L17.7668 6.44424L23.1013 6.43103C23.8469 6.42919 24.4546 7.04476 24.4565 7.80361C24.4584 8.56245 23.8537 9.18103 23.1081 9.18287L22.8312 9.18356L21.9292 9.18578L21.9327 10.5905L21.9328 10.626L24.4161 14.775L26.1488 14.7707L23.6213 10.5476L23.5886 10.4929Z"></path>
+                  <path d="M29.002 5.01844L29.0056 6.48886L32.3811 6.4805L32.427 6.48038L32.4271 6.52621L32.4474 14.7548L34.0426 14.7509L34.0222 6.52226L34.0221 6.47643L34.0684 6.47632L37.444 6.46798L37.4403 4.99756L29.002 5.01844Z"></path>
+                  <path d="M0.46875 14.7092L2.38521 14.7045L8.98495 3.55316L9.02448 3.48643L9.06338 3.55296L15.7182 14.6715L17.6347 14.6668L9.01651 0.265869L0.46875 14.7092Z"></path>
+                </svg></a></div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <!--jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!--webpack-->
+    <script src="./scripts/common.js"></script>
+    <!--preview only-->
+    <link rel="stylesheet" href="./styles/helper.css">
+    <div class="helper"><a class="helper__trigger" href="javascript:void(0);">
+        <svg class="icon" viewBox="0 0 100 100" fill="currentColor">
+          <g transform="translate(50 50)">
+            <g>
+              <animatetransform attributeName="transform" type="rotate" values="0;51.42857142857143" keyTimes="0;1" dur="0.6s" repeatCount="indefinite"></animatetransform>
+              <path d="M31.448370387032774 -10 L46.448370387032774 -10 L46.448370387032774 10 L31.448370387032774 10 A33 33 0 0 1 27.42605304607143 18.352428022310185 L27.42605304607143 18.352428022310185 L36.77840007395243 30.079900259330632 L21.141770424591833 42.5496962965053 L11.789423396710829 30.82222405948486 A33 33 0 0 1 2.7513583718916075 32.885103422513694 L2.7513583718916075 32.885103422513694 L-0.5864556374531071 47.509022105241044 L-20.085013881089584 43.05860342611476 L-16.74719987174487 28.434684743387407 A33 33 0 0 1 -23.995165273805295 22.654625211703866 L-23.995165273805295 22.654625211703866 L-37.50969829234158 29.16288129846724 L-46.18737307469275 11.143503940418853 L-32.67284005615647 4.635247853655478 A33 33 0 0 1 -32.67284005615647 -4.63524785365547 L-32.67284005615647 -4.63524785365547 L-46.18737307469276 -11.143503940418839 L-37.50969829234159 -29.162881298467227 L-23.995165273805302 -22.654625211703856 A33 33 0 0 1 -16.747199871744876 -28.434684743387404 L-16.747199871744876 -28.434684743387404 L-20.085013881089594 -43.05860342611476 L-0.5864556374531196 -47.509022105241044 L2.751358371891599 -32.885103422513694 A33 33 0 0 1 11.78942339671082 -30.82222405948486 L11.78942339671082 -30.82222405948486 L21.141770424591822 -42.54969629650531 L36.778400073952426 -30.079900259330635 L27.426053046071427 -18.35242802231019 A33 33 0 0 1 31.448370387032774 -10.000000000000009 M0 -20A20 20 0 1 0 0 20 A20 20 0 1 0 0 -20"></path>
+            </g>
+          </g>
+        </svg></a>
+      <div class="helper__container">
+        <!--section-->
+        <div class="helper__section"><span class="helper__section-title">Страницы:</span>
+          <div class="helper__section-content"><a class="helper__section-button" href="index.html">Главная</a><a class="helper__section-button" href="katalog.html">Каталог</a><a class="helper__section-button" href="katalog-vydacha.html">Каталог-выдача</a><a class="helper__section-button" href="kontakty.html">Контакты</a></div>
+        </div>
+      </div>
+    </div>
+    <script src="./scripts/helper.js"></script>
+  </body>
+</html>

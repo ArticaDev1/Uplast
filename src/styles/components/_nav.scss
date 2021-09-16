@@ -1,0 +1,118 @@
+.mobile-nav {
+  --font-size: 20px;
+  --line-height: 24px;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1001;
+  background-color: var(--color-overlay);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity $trs1, visibility $trs1;
+  &_visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    .mobile-nav__container {
+      transform: translate(0);
+    }
+  }
+
+
+  &__container {
+    width: 400px;
+    height: 100%;
+    background-color: var(--color-background-1);
+    position: relative;
+    z-index: 2;
+    transform: translateX(-20px);
+    transition: transform $trs1out;
+  }
+  &__scrollbar {
+    height: 100%;
+  }
+  &__content {
+    padding: 70px 0;
+    max-height: 100%;
+  }
+
+  &__close-button {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    z-index: 2;
+  }
+
+  &__item {
+    &:not(:last-child) {
+      margin-bottom: 22px;
+    }
+  }
+  &__link {
+    display: block;
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+    color: var(--color-text-2);
+    font-weight: 700;
+    padding: 0 50px;
+  }
+  &__categories-list {
+    padding-bottom: 12px;
+  }
+  &__categories-link {
+    display: block;
+    position: relative;
+    padding-left: 50px;
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+    padding: 10px 50px 10px 100px;
+    transition: background-color $trs1out, color $trs1out;
+    &[data-touch], &[data-hover] {
+      background-color: var(--color-background-2);
+    }
+  }
+  &__categories-link-icon {
+    display: block;
+    position: absolute;
+    left: 50px;
+    top: calc(10px + ((var(--line-height) - var(--height)) / 2));
+    width: 40px;
+    height: var(--height);
+    &_1 {
+      --height: 14px;
+    }
+    &_2 {
+      --height: 20px;
+    }
+    &_3 {
+      --height: 14px;
+    }
+    &_4 {
+      --height: 32px;
+    }
+    &_5 {
+      --height: 24px;
+    }
+    &_6 {
+      --height: 30px;
+    }
+    &_7 {
+      --height: 7px;
+    }
+    &_8 {
+      --height: 26px;
+    }
+    &_9 {
+      --height: 19px;
+    }
+    &_10 {
+      --height: 35px;
+    }
+  }
+  @include media-breakpoint-down(xxl) {
+    
+  }
+}

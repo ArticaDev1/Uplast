@@ -1,0 +1,77 @@
+.footer {
+  --py: 25px;
+  flex-shrink: 0;
+  position: relative;
+  padding-top: calc(var(--indent-1) - var(--py));
+  &:before, &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    background-color: var(--color-background-3);
+  }
+  &:before {
+    height: calc(var(--indent-1) - var(--py));
+    clip-path: polygon(0 0, 0% 100%, 100% 100%);
+    top: 0;
+  }
+  &::after {
+    top: calc(var(--indent-1) - var(--py));
+    height: calc(100% - (var(--indent-1) - var(--py)));
+  }
+  &__container {
+    padding-top: var(--py);
+    padding-bottom: var(--py);
+    position: relative;
+    z-index: 2;
+  }
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__socials {
+    flex: 1 0 auto;
+    display: flex;
+    justify-content: flex-end;
+  }
+  &__nav {
+    display: flex;
+    flex: 1 0 auto;
+  }
+  &__nav-item {
+    display: block;
+    &:not(:last-child) {
+      margin-right: 100px;
+    }
+  }
+  &__nav-link {
+    display: flex;
+    align-items: center;
+    .icon {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      margin-right: 0.65em;
+    }
+  }
+  &__bottom {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__copyright {
+    color: var(--color-text-6);
+  }
+  @include media-breakpoint-down(xxl) {
+    &__nav-item {
+      &:not(:last-child) {
+        margin-right: 80px;
+      }
+    }
+  }
+  @include media-breakpoint-down(xl) {
+    display: none;
+  }
+}

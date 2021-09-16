@@ -1,0 +1,48 @@
+extends layout/layout
+block variables
+  -var footer_type = 2
+  -var title = sitename+' - Каталог'
+
+block content
+
+  section.section.catalog-categories-section
+    .container 
+      .section__head
+        h2 Каталог
+      .catalog-categories-section__container 
+        mixin block(index, title, items)
+          //block
+          .catalog-box.catalog-categories-section__block
+            .image.image_contain.catalog-box__image 
+              img(data-src=`./img/categories/${index}.png`, alt="image").lazyload
+            h4.catalog-box__title
+              a(href="#") #{title}
+            ul.catalog-box__list
+              each item in items
+                li.catalog-box__item 
+                  a(href="#").catalog-box__link #{item}
+
+        +block(1, 'Лотки под запайку',     ['Серия 187', 'Серия 190', 'Серия 197', 'Серия 210'])
+        +block(2, 'Контейнеры',            ['Контейнеры ПЭТ', 'Контейнеры  ПП', 'Контейнеры БОПС'])
+        +block(3, 'Тортницы',              ['Тортницы круглые', 'Тортницы квадратные', 'Тортницы-ракушки', 'Комплекты'])
+        +block(4, 'Пакеты',                ['Пакеты типа «майка»', 'Пакеты фасовочные', 'Пакеты для мусора', 'Пакет-вкладыш', 'Сумки', 'Зиплок'])
+        +block(5, 'Одноразовая посуда',    ['Стаканы', 'Тарелки', 'Столовые приборы', 'Крышки для стаканов', 'Чашки кофейные', 'Наборы'])
+        +block(6, 'Плёнка',                ['Стрейч-плёнка паллетная', 'Плёнка ПВХ', 'Стрейч-плёнка пищевая'])
+        +block(7, 'Ёмкости из ВПС',        ['Стаканы', 'Тарелки и пиалы', 'Лоток', 'Ланч-бокс', 'Упаковка для яиц'])
+        +block(8, 'Бумажная упаковка ',    ['Короб и уголок для пиццы', 'Пакеты', 'Контейнеры и ёмкости', 'Контейнеры для лапши', 'Супницы', 'Упаковка для картофеля', 'Упаковка для гамбургера'])
+        +block(9, 'Вёдра, банки, ёмкости', ['Вёдра', 'Соусники', 'Банки', 'Упаковка для яиц ', 'Контейнеры для сэндвичей', 'Коррексы'])
+        +block(10, 'Хозяйственные товары', ['Средства индивидуальной защиты', 'Товары для хранения и выпекания', 'Профессиональная и бытовая химия', 'Губки, салфетки, тряпки', 'Сопутствующие товары', 'Санитарно-гигиенические товары', 'Упаковочные материалы', 'Товары для сервировки', 'Сезонная продукция', 'Сетка для овощей'])
+
+        .catalog-download.catalog-categories-section__catalog-download(data-custom-interaction)
+          .catalog-download__image 
+            .image.image_contain
+              img(data-src="./img/magazine.png", alt="image").lazyload
+            .image.image_contain
+              img(data-src="./img/magazine2.png", alt="image").lazyload
+          h4.catalog-download__title Посмотрите наш печатный каталог!
+          a(href="#").button.button_style-1.button_large
+            span Скачать каталог
+            svg.icon 
+              use(xlink:href="./img/icons/icons.svg#download") 
+
+  include blocks/promotions

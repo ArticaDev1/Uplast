@@ -1,0 +1,175 @@
+extends layout/layout
+block variables
+  -var footer_type = 2
+  -var title = sitename+' - Каталог-выдача'
+  -var breadcrumbs_links = ['Каталог', 'Контейнеры']
+
+block content
+  include blocks/breadcrumbs
+  
+  section.section.catalog
+    .container
+      .catalog-head
+        .catalog-head__text 
+          h1.h2.catalog-head__title Контейнеры
+          span.catalog-head__items-count 452 товара
+        //filter trigger
+        a(href="#filter-modal" data-action='open_modal').catalog__filter-button.d-block.d-lg-none
+          svg.icon 
+            use(xlink:href="./img/icons/icons.svg#filter")
+
+      .catalog-controls
+        .catalog-controls__items
+          .select.select_small
+            select
+              option(value='По умолчанию' selected) По умолчанию
+              option(value='Сортировка 1') Сортировка 1
+              option(value='Сортировка 2') Сортировка 2
+        
+        .catalog-controls__labels
+          .d-block.d-lg-none
+            a(href="#categories-modal" data-action='open_modal').label-button.label-button_small
+              span Подкатегории
+              svg.icon 
+                use(xlink:href="./img/icons/icons.svg#catalog")
+          a(href="javascript:void(0);").catalog-label.catalog-label_small 
+            span РМ Пак
+            svg.icon 
+              use(xlink:href="./img/icons/icons.svg#close-button")
+          a(href="javascript:void(0);").catalog-label.catalog-label_small 
+            span Позитрон
+            svg.icon 
+              use(xlink:href="./img/icons/icons.svg#close-button") 
+          a(href="javascript:void(0);").catalog-label.catalog-label_small 
+            span Цвет: прозрачный
+            svg.icon 
+              use(xlink:href="./img/icons/icons.svg#close-button") 
+
+      .catalog__container
+        .catalog__filter 
+
+          #categories-modal.modal.catalog-modal.catalog__filter-element
+            button.close-button.catalog-modal__close(data-action='close_modal' aria-label="Закрыть модальное окно")
+              svg.icon
+                use(xlink:href="./img/icons/icons.svg#close-button")
+            .catalog-modal__wrapper.scrollbar(data-scroll-lock-scrollable)
+              .catalog-modal__inner
+                .container.catalog-modal__container
+                  .catalog-modal__content 
+                    h6.catalog__filter-title Контейнеры
+
+                    ul.catalog-categories-list
+                      li.catalog-categories-list__item
+                        a(href="#").catalog-categories-list__link Контейнеры ПЭТ
+                      li.catalog-categories-list__item
+                        a(href="#").catalog-categories-list__link Контейнеры ПП
+                      li.catalog-categories-list__item 
+                        a(href="#").catalog-categories-list__link Контейнеры БОПС 
+
+
+          #filter-modal.filter.catalog-modal.catalog__filter-element
+            button.close-button.catalog-modal__close(data-action='close_modal' aria-label="Закрыть модальное окно")
+              svg.icon
+                use(xlink:href="./img/icons/icons.svg#close-button")
+            .catalog-modal__wrapper.scrollbar(data-scroll-lock-scrollable) 
+              .catalog-modal__inner
+                .container.catalog-modal__container
+                  h6.catalog__filter-title.filter__title Фильтры
+                  .filter__container
+                    //
+                    .filter__box 
+                      h5.filter__box-title Производитель
+                      .filter__box-items.scrollbar
+                        .filter__box-item 
+                          +checkbox('Комус')
+                        .filter__box-item 
+                          +checkbox('РМ Пак', 'checked')
+                        .filter__box-item 
+                          +checkbox('Позитрон', 'checked')
+                        .filter__box-item 
+                          +checkbox('Покров пласт')
+                        .filter__box-item 
+                          +checkbox('DoEco')
+                        .filter__box-item 
+                          +checkbox('Продлайн', 'disabled')
+                    //
+                    .filter__box 
+                      h5.filter__box-title Цвет
+                      .filter__box-color-items
+                        .filter__box-color-item 
+                          +color-checkbox('transparent', 'checked')
+                        .filter__box-color-item 
+                          +color-checkbox('#fff')
+                        .filter__box-color-item 
+                          +color-checkbox('#000', 'disabled')
+                    
+                    //
+                    .filter__box 
+                      h5.filter__box-title Материал
+                      .filter__box-items.scrollbar
+                        .filter__box-item 
+                          +checkbox('Комус')
+                        .filter__box-item 
+                          +checkbox('РМ Пак')
+                        .filter__box-item 
+                          +checkbox('Позитрон')
+                        .filter__box-item 
+                          +checkbox('Покров пласт')
+                        .filter__box-item 
+                          +checkbox('DoEco')
+                        .filter__box-item 
+                          +checkbox('Продлайн')
+
+                    //
+                    .filter__box 
+                      h5.filter__box-title Готовые решения
+                      .filter__box-items.scrollbar
+                        .filter__box-item 
+                          +checkbox('Сетевой ритейл')
+                        .filter__box-item 
+                          +checkbox('HoReCa')
+                        .filter__box-item 
+                          +checkbox('Хлебобулочное и кондитерское производство')
+                        .filter__box-item 
+                          +checkbox('Мясоперерабатывающее производство')
+                        .filter__box-item 
+                          +checkbox('Сетевой ритейл')
+
+                    //
+                    .filter__box 
+                      h5.filter__box-title Предложения
+                      .filter__box-items.scrollbar
+                        .filter__box-item 
+                          +checkbox('Акции')
+                        .filter__box-item 
+                          +checkbox('Популярное')
+                        .filter__box-item 
+                          +checkbox('Новинки')
+                        .filter__box-item 
+                          +checkbox('Распродажа')
+                        
+                .catalog-modal__buttons
+                  .container 
+                    button.button.button_large.button_style-1(data-action='close_modal' aria-label="Закрыть модальное окно")
+                      span.button__inner
+                        span Показать 89 товаров
+        
+        .catalog__items 
+          +product-card(1)
+          +product-card(2)
+          +product-card(3)
+          +product-card(4)
+          +product-card(5)
+          +product-card(1)
+          +product-card(2)
+          +product-card(5)
+          +product-card(1)
+          +product-card(2)
+          +product-card(3)
+          +product-card(4)
+          +product-card(3)
+          +product-card(4)
+          +product-card(5)
+
+        .catalog__pagination
+          include blocks/pagination

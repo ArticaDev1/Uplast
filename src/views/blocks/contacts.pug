@@ -1,0 +1,106 @@
+section.section.contacts
+  .container.contacts__container
+    .section__head.contacts__head
+      h2.contacts__title Контакты
+      a(href="kontakty.html").link-arrow.contacts__head-link
+        span Все контакты
+        svg.icon 
+          use(xlink:href="./img/icons/icons.svg#arrow2")
+
+
+    .contacts__map
+      svg.contacts__map-loader(viewBox='0 0 120 30' fill='currentColor')
+        circle(cx='15' cy='15' r='15')
+          animate(attributeName='r' from='15' to='15' begin='0s' dur='0.8s' values='15;9;15' calcMode='linear' repeatCount='indefinite')
+          animate(attributeName='fill-opacity' from='1' to='1' begin='0s' dur='0.8s' values='1;.5;1' calcMode='linear' repeatCount='indefinite')
+        circle(cx='60' cy='15' r='9' fill-opacity='0.3')
+          animate(attributeName='r' from='9' to='9' begin='0s' dur='0.8s' values='9;15;9' calcMode='linear' repeatCount='indefinite')
+          animate(attributeName='fill-opacity' from='0.5' to='0.5' begin='0s' dur='0.8s' values='.5;1;.5' calcMode='linear' repeatCount='indefinite')
+        circle(cx='105' cy='15' r='15')
+          animate(attributeName='r' from='15' to='15' begin='0s' dur='0.8s' values='15;9;15' calcMode='linear' repeatCount='indefinite')
+          animate(attributeName='fill-opacity' from='1' to='1' begin='0s' dur='0.8s' values='1;.5;1' calcMode='linear' repeatCount='indefinite')
+
+    .contacts-content 
+    
+      .contacts-content__left
+        .point-text.contacts-content__point
+          svg.icon 
+            use(xlink:href="./img/icons/icons.svg#point")
+          | ближайший филиал
+
+        .contacts-content__select
+          select.select
+            option(value='Стрелица' selected) Воронеж
+            option(value='Москва') Москва
+            option(value='Санкт-Петербург') Санкт-Петербург
+            option(value='3' disabled) Абакан
+            option(value='4') Азов
+            option(value='5') Александров
+            option(value='6') Алексин
+            option(value='7') Альметьевск
+            option(value='8') Анапа
+            option(value='9') Ангарск
+            option(value='12') Анжеро-Судженск
+            option(value='23') Апатиты
+            option(value='45') Арзамас
+            option(value='35') Армавир
+            option(value='6555') Александров
+            option(value='44444') Альметьевск
+        
+        .contacts-content__adress 
+          | Адрес: г. Воронеж, ул. Текстильщиков, д. 8 «Б»
+          br
+          | Телефон: 
+          a(href="tel:+7 (473) 250-20-40") +7 (473) 250-20-40
+          br
+          | Email: 
+          a(href="mailto:gk@uplastgroup.ru") gk@uplastgroup.ru
+
+        .contacts-content__timetable
+
+          .timetable-element
+            .timetable-element__days
+              .timetable-element__day Пн
+              .timetable-element__day
+              .timetable-element__day
+              .timetable-element__day
+              .timetable-element__day Пт
+              .timetable-element__day Сб
+              .timetable-element__day Вс
+              
+            .timetable-element__line
+              span(style='width:71.43%;')
+            
+            .timetable-element__description
+              span(style='width:71.43%;') 09:00-18:00
+              span Выходные
+
+          
+
+      .contacts-content__info
+        .contacts-content__info-title 
+          h5 Производственно-логистический комплекс ГК «Юпласт»
+
+          button.button.button_style-1.button_xl Обратная связь
+          
+        ul.contacts-content__info-list
+          li.contacts-content__info-item 
+            h5 Адрес офиса:
+            p пгт. Стрелица ул. Солнечная 39
+          li.contacts-content__info-item 
+            h5 Производственный комплекс:
+            p Телефонный номер: 
+              a(href="84732330050") 8&nbsp;(473)&nbsp;233&#8209;00&#8209;50
+              |  доб.&nbsp;2
+              br
+              | Почта для обратной связи: 
+              a(href="mailto:pr-tpk@uplastgroup.ru") pr&#8209;tpk@uplastgroup.ru
+          li.contacts-content__info-item 
+            h5 Логистический комплекс:
+            p Телефонный номер: 
+              a(href="tel:84732330050")  8&nbsp;(473)&nbsp;233&#8209;00&#8209;50
+              |  доб.&nbsp;3
+              br
+              | Почта для обратной связи: 
+              a(href="mailto:logistika@uplastgroup.ru") logistika@uplastgroup.ru
+        

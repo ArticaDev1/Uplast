@@ -1,0 +1,81 @@
+body {
+  background-color: var(--color-background-4);
+  min-width: 375px;
+  &::-webkit-scrollbar {
+    width: var(--custom-scrollbar-width);
+  }
+  &::-webkit-scrollbar-track {
+    background-color: var(--color-body-scrollbar);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--color-scrollbar-thumb);
+  }
+}
+
+* {
+  box-sizing: border-box;
+  min-height: 0px;
+  min-width: 0px;
+  -webkit-touch-callout: none;
+  -webkit-user-drag: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  outline: none;
+  &:before, &:after {
+    box-sizing: border-box;
+  }
+}
+button, input, textarea, select {
+  outline: none;
+  display: block;
+  background-color: transparent;
+  box-shadow: none;
+  border: 0;
+  appearance: none;
+  padding: 0;
+  border-radius: 0;
+  color: inherit;
+  font-weight: inherit;
+  text-rendering: inherit;
+  line-height: inherit;
+}
+a, button, label, [data-touch-hover] {
+  user-select: none;
+  -webkit-user-drag: none;
+  cursor: pointer;
+  * {
+    user-select: none;
+  }
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+input {
+  &:-webkit-autofill {
+    box-shadow: 0 0 0px 1000px transparent inset;
+    transition: background-color 5000s;
+  }
+}
+textarea {
+  resize: none;
+}
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+table {
+  border-collapse: collapse;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+@include media-breakpoint-up(xl) {
+  
+}
