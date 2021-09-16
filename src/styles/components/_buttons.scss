@@ -64,10 +64,4 @@
     --color: var(--color-btn-1);
   }
 
-  @include media-breakpoint-down(sm) {
-    &_small {
-      --height: 28px;
-      --font-size: 12px;
-    }
-  }
 }

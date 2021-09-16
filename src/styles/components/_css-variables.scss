@@ -32,9 +32,11 @@
   --indent-1: 220px;
   --indent-3: 70px;
   @include media-breakpoint-down(lg) {
+    --indent-1: 200px;
     --indent-3: 50px;
   }
   @include media-breakpoint-down(md) {
+    --indent-1: 160px;
     --indent-3: 40px;
   }
 }

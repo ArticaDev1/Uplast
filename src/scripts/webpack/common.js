@@ -712,7 +712,7 @@ class Card3d {
     this.$forward = this.$block.querySelectorAll('[data-3d="forward"]');
 
     this.event = (event)=> {
-      if(CustomInteractionEvents.touched) return;
+      if(CustomInteractionEvents.touched || window.innerWidth < breakpoints.lg) return;
       
       if(event.type=='mousemove') {
         if(this.backanimation) this.backanimation.pause();
@@ -764,7 +764,7 @@ const Modal = {
       if ($target == this.$active) return;
 
       this.animation = gsap.timeline()
-        .fadeIn($target, {duration:0.15})
+        .fadeIn($target, {duration:animation_duration_1})
         .eventCallback('onStart', () => {
           disablePageScroll();
         });;
