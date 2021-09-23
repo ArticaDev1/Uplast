@@ -1,0 +1,106 @@
+extends layout/layout
+block variables
+  -var footer_type = 2
+  -var title = sitename+' - Каталог-выдача'
+  -var breadcrumbs_links = ['Каталог', 'Контейнеры', 'Соусники ПП']
+
+block content
+  include blocks/breadcrumbs
+
+  section.section.product
+    .container
+      .section__head
+        h1.h2 Соусник с крышкой 80 мл прозрачный пп 960/80
+      .product__container 
+        .product-slider 
+
+        .product__content 
+          //скидка
+          .product-stock.product__stock
+            .product-stock__label Акция
+            .product-stock__text Покупая пластиковые тарелки, соусники даём в подарок!
+          //текст описание
+          .product__description 
+            p Прямоугольные контейнеры для упаковки полуфабрикатов и готовых изделий,  удобны для транспортировки и хранения широкого ассортимента продукции.  Ровная поверхность крышки идеально подходит для наклеивания этикетки.
+          //характеристики
+          .product__specifications
+            span.product__article Артикул: ЮУПМ2595
+
+            table.info-table 
+              tr 
+                td 
+                  span Цвет
+                td 
+                  span Стандартное исполнение, прозрачный 
+              tr 
+                td 
+                  span Объем
+                td 
+                  span 80 мл
+              tr 
+                td 
+                  span Высота
+                td 
+                  span 34 мм
+              tr 
+                td 
+                  span Диаметр по крышке
+                td 
+                  span 71 мм
+              tr 
+                td 
+                  span Область применения
+                td 
+                  span Упаковка, хранение, транспортировка пищевых продуктов
+              tr 
+                td 
+                  span Минимальная партия
+                td 
+                  span 80 шт
+              tr 
+                td 
+                  span Упаковка
+                td 
+                  span 1040 шт
+                 
+
+          .product-detail-box
+            .product-detail-box__section 
+              .product-detail-box__section-title Цвет: 
+                span прозрачный
+              .product-detail-box__section-items
+                .product-detail-box__section-item 
+                  +color-link('transparent', 'checked', 'Прозрачный')
+                .product-detail-box__section-item 
+                  +color-link('#fff', '', 'Белый')
+                .product-detail-box__section-item 
+                  +color-link('#000', 'disabled', 'Нет в наличии')
+            .product-detail-box__section 
+              .product-detail-box__section-title Вместимость
+              .product-detail-box__section-items
+                .product-detail-box__section-item
+                  +detail-link('80 мл.', 'checked')
+                .product-detail-box__section-item
+                  +detail-link('100 мл.')
+                .product-detail-box__section-item
+                  +detail-link('1000 мл.', 'disabled', 'Нет в наличии')
+            .product-detail-box__section 
+              .product-detail-box__section-title Количество
+              .product-calculator 
+                button.product-calculator__button.product-calculator__button_minus
+                  svg.icon 
+                    use(xlink:href="./img/icons/icons.svg#minus")
+                input(type="text" value='1').product-calculator__input
+                button.product-calculator__button.product-calculator__button_plus
+                  svg.icon 
+                    use(xlink:href="./img/icons/icons.svg#plus")
+            
+            .product-detail-box__button
+              button.button.button_large.button_style-1 
+                span.button__inner 
+                  span В корзину
+                  svg.icon 
+                    use(xlink:href="./img/icons/icons.svg#cart")
+
+
+

@@ -1,4 +1,4 @@
-const Dev = false;
+const Dev = true;
 
 const breakpoints = {
   sm: 576,

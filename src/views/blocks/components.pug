@@ -1,15 +1,24 @@
 mixin checkbox(title, state)
-  -let index = Math.round(Math.random() * 1000000)
-  .checkbox
-    input(type="checkbox" id=index checked=state=='checked'?true:false disabled=state=='disabled'?true:false)
-    label(for=index) 
-      span !{title}
+  label.checkbox
+    input(type="checkbox" checked=state=='checked'?true:false disabled=state=='disabled'?true:false)
+    span !{title}
 
-mixin color-checkbox(color, state)
-  -let index = Math.round(Math.random() * 1000000)
-  .color-checkbox(class=color=='transparent'?'color-checkbox_transparent':'')
-    input(type="checkbox" id=index checked=state=='checked'?true:false disabled=state=='disabled'?true:false)
-    label(for=index style=color!=='transparent'?`background-color:${color};`:'') 
+mixin color-checkbox(color, state, tippy)
+  label.color-checkbox(class=color=='transparent'?'color-checkbox_transparent':'')
+    input(type="checkbox" checked=state=='checked'?true:false disabled=state=='disabled'?true:false)
+    span(style=color!=='transparent'?`background-color:${color};`:'' data-tippy-content=tippy?tippy:false)
+
+mixin color-link(color, state, tippy)
+  a(href=state?'javascript:void(0);':'#' class=color=='transparent'?'color-link_transparent':'' class=state style=color!=='transparent'?`background-color:${color};`:'' data-tippy-content=tippy?tippy:false).color-link
+
+mixin detail-checkbox(title, state)
+  label.detail-checkbox
+    input(type="checkbox" checked=state=='checked'?true:false disabled=state=='disabled'?true:false)
+    span(data-tippy-content=state=='disabled'?'Нет в наличии':false) !{title}
+
+mixin detail-link(title, state)
+  a(href=state?'javascript:void(0);':'#' class=state data-tippy-content=state=='disabled'?'Нет в наличии':false).detail-link #{title}
+
   
 mixin product-card(type)
   .product-card(data-custom-interaction)

@@ -9,7 +9,7 @@ block content
   
   section.section.catalog
     .container
-      .catalog-head
+      .catalog-head.section__head
         .catalog-head__text 
           h1.h2.catalog-head__title Контейнеры
           span.catalog-head__items-count 452 товара
@@ -97,11 +97,11 @@ block content
                       h5.filter__box-title Цвет
                       .filter__box-color-items
                         .filter__box-color-item 
-                          +color-checkbox('transparent', 'checked')
+                          +color-checkbox('transparent', 'checked', 'Прозрачный')
                         .filter__box-color-item 
-                          +color-checkbox('#fff')
+                          +color-checkbox('#fff', '', 'Белый')
                         .filter__box-color-item 
-                          +color-checkbox('#000', 'disabled')
+                          +color-checkbox('#000', 'disabled', 'Нет в наличии')
                     
                     //
                     .filter__box 

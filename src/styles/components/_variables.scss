@@ -15,6 +15,14 @@ $container-max-widths: (
   xxl: 1440px
 );
 
+$spacers: (
+  0: 0px,
+  1: 20px,
+  2: 25px,
+  3: 35px,
+  4: 40px
+) !default;
+
 $trs1: .15s ease-in-out;
 $trs2: .3s ease-in-out;
 $trs3: .5s ease-in-out;

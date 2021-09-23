@@ -188,15 +188,17 @@
 }
 
 .checkbox {
+  display: block;
+  cursor: default;
   position: relative;
   input {
     display: none;
-    &:checked + label {
+    &:checked + span {
       &::after {
         background-color: var(--color-background-6);
       }
     }
-    &:disabled + label {
+    &:disabled + span {
       cursor: default;
       &::after {
         display: none;
@@ -206,13 +208,14 @@
       }
     }
   }
-  label {
+  span {
     display: block;
     position: relative;
     padding-left: 36px;
     font-size: var(--checkbox-font-size);
     line-height: var(--checkbox-height);
     hyphens: auto;
+    cursor: pointer;
     &::before, &::after {
       content: '';
       display: block;
@@ -234,7 +237,9 @@
       background-color: transparent;
       transition: background-color $trs1out;
     }
-    &[data-touch], &[data-hover] {
+  }
+  &[data-touch], &[data-hover] {
+    span {
       &::after {
         background-color: var(--color-background-5);
       }
@@ -243,14 +248,18 @@
 }
 
 .color-checkbox {
+  display: block;
+  cursor: default;
+  position: relative;
+  --size: 30px;
   input {
     display: none;
-    &:checked + label {
+    &:checked + span {
       &::after {
         border-color: var(--color-background-7);
       }
     }
-    &:disabled + label {
+    &:disabled + span {
       cursor: default;
       &::after {
         display: none;
@@ -269,12 +278,13 @@
       }
     }
   }
-  label {
+  span {
     display: block;
     position: relative;
-    width: 30px;
-    height: 30px;
+    width: var(--size);
+    height: var(--size);
     border-radius: 50%;
+    cursor: pointer;
     &::after {
       content: '';
       display: block;
@@ -285,15 +295,167 @@
       border: 3px solid transparent;
       transition: border-color $trs1out;
     }
-    &[data-touch], &[data-hover] {
+  }
+  &_transparent {
+    span {
+      background: linear-gradient(220.55deg, rgba(196, 196, 196, 0) 9.19%, rgba(196, 196, 196, 0.83) 38.13%, rgba(196, 196, 196, 0) 90.21%);
+    }
+  }
+  &[data-touch], &[data-hover] {
+    span {
       &::after {
         border-color: var(--color-background-2);
       }
     }
   }
+}
+
+.color-link {
+  display: block;
+  position: relative;
+  --size: 30px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    transition: border-color $trs1out;
+  }
   &_transparent {
-    label {
-      background: linear-gradient(220.55deg, rgba(196, 196, 196, 0) 9.19%, rgba(196, 196, 196, 0.83) 38.13%, rgba(196, 196, 196, 0) 90.21%);
+    background: linear-gradient(220.55deg, rgba(196, 196, 196, 0) 9.19%, rgba(196, 196, 196, 0.83) 38.13%, rgba(196, 196, 196, 0) 90.21%);
+  }
+  &.checked {
+    cursor: default;
+    &::after {
+      border-color: var(--color-background-7);
+    }
+  }
+  &.disabled {
+    cursor: default;
+    &::after {
+      display: none;
+    }
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 130%;
+      height: 2px;
+      border-radius: 2px;
+      background-color: #fff;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+  }
+  &[data-touch], &[data-hover] {
+    &:not(.checked) {
+      &::after {
+        border-color: var(--color-background-2);
+      }
+    }
+  }
+}
+
+.detail-checkbox {
+  display: block;
+  cursor: default;
+  position: relative;
+  input {
+    display: none;
+    &:checked + span {
+      background-color: var(--color-background-8);
+    }
+    &:disabled + span {
+      cursor: default;
+      color: var(--color-text-4);
+      background-color: var(--color-background-2);
+    }
+  }
+  span {
+    display: block;
+    font-size: 14px;
+    line-height: 34px;
+    border-radius: 17px;
+    padding: 0 14px;
+    cursor: pointer;
+    background-color: var(--color-background-2);
+    color: #fff;
+    transition: background-color $trs1out;
+  }
+  &[data-touch], &[data-hover] {
+    span {
+      background-color: var(--color-background-5);
+    }
+  }
+}
+
+.detail-link {
+  display: block;
+  display: block;
+  font-size: 14px;
+  line-height: 34px;
+  border-radius: 17px;
+  padding: 0 14px;
+  cursor: pointer;
+  background-color: var(--color-background-2);
+  color: #fff !important;
+  transition: background-color $trs1out;
+  &.checked {
+    cursor: default;
+    background-color: var(--color-background-8);
+  }
+  &.disabled {
+    cursor: default;
+    color: var(--color-text-4) !important;
+  }
+  
+  &[data-touch], &[data-hover] {
+    &:not(.checked):not(.disabled) {
+      background-color: var(--color-background-5);
+    }
+  }
+}
+
+.product-calculator {
+  --size: 40px;
+  --px: 5px;
+  height: var(--size);
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--color-background-2);
+  border-radius: calc(var(--size) / 2);
+  &__input {
+    flex: 1 1 auto;
+    text-align: center;
+    color: var(--color-text-2);
+  }
+  &__button {
+    height: var(--size);
+    width: calc(var(--size) + var(--px));
+    display: flex;
+    flex: 0 0 auto;
+    color: var(--color-text-1);
+    transition: color $trs1;
+    .icon {
+      margin: auto;
+      width: 16px;
+      height: 16px;
+    }
+    &_minus {
+      padding-left: var(--px);
+    }
+    &_plus {
+      padding-right: var(--px);
+    }
+    &[data-touch], &[data-hover] {
+      color: var(--color-text-2);
     }
   }
 }

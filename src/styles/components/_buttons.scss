@@ -28,6 +28,7 @@
   &__inner {
     display: flex;
     align-items: center;
+    column-gap: var(--gap);
     span {
       overflow: hidden;
       text-overflow: ellipsis;

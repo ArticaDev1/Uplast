@@ -15,7 +15,7 @@
 @import "../../node_modules/bootstrap/scss/containers";
 @import "../../node_modules/bootstrap/scss/grid";
 @import "../../node_modules/bootstrap/scss/utilities";
-$utilities: map-get-multiple($utilities, ("display", "order", "flex-direction", "justify-content", "align-items", "text-align"));
+$utilities: map-get-multiple($utilities, ("display", "order", "flex-direction", "justify-content", "align-items", "text-align", "margin-top", "margin-bottom"));
 @import "../../node_modules/bootstrap/scss/utilities/api";
 
 

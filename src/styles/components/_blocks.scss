@@ -1228,7 +1228,6 @@
 }
 
 .catalog-head {
-  margin-bottom: var(--page-head-bottom-margin);
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -1716,6 +1715,134 @@
       &:nth-child(5) {
         display: none;
       }
+    }
+  }
+}
+
+.product {
+  color: var(--color-text-2);
+  &__container {
+    display: grid;
+    grid-template-columns: 520px 1fr;
+    column-gap: 70px;
+  }
+  &__content {
+    display: grid;
+    column-gap: var(--grid-gutter-x);
+    grid-template-columns: repeat(7, 1fr);
+  }
+  &__description, &__stock {
+    grid-column: span 7;
+  }
+  &__stock {
+    margin-bottom: 20px;
+  }
+  &__description {
+    margin-bottom: 30px;
+  }
+  &__article {
+    display: block;
+    color: var(--color-text-4);
+    margin-bottom: 40px;
+  }
+  &__specifications {
+    grid-column: span 4;
+  }
+}
+
+.product-detail-box {
+  grid-column: span 3;
+  background-color: var(--color-background-1);
+  border-radius: 20px;
+  padding: 20px 30px 30px 30px;
+  &__section {
+    margin-bottom: 14px;
+  }
+  &__section-title {
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: var(--color-text-4);
+  }
+  &__section-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  &__section-item {
+    .color-checkbox, .color-link {
+      --size: 34px;
+    }
+  }
+  &__button {
+    margin-top: 30px;
+    .button {
+      width: 100%;
+    }
+  }
+}
+
+.product-stock {
+  display: flex;
+  align-items: center;
+  color: #000;
+  &__label {
+    font-size: 16px;
+    line-height: 20px;
+    padding: 7px 24px;
+    border-radius: 17px;
+    background: var(--gradient-label-stock);
+    color: #fff;
+    font-weight: 600;
+    margin-right: 22px;
+  }
+  &__text {
+    color: var(--color-text-stock);
+    background: var(--gradient-text-stock);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.info-table {
+  width: 100%;
+  tr {
+    &:not(:last-child) {
+      td {
+        padding-bottom: 10px;
+      }
+    }
+  }
+  td {
+    padding: 0;
+    width: 50%;
+    span {
+      display: inline;
+      background-color: var(--color-background-4);
+      position: relative;
+      z-index: 2;
+    }
+    &:first-child {
+      vertical-align: top;
+      padding-right: 8px;
+      overflow: hidden;
+      color: var(--color-text-4);
+      span {
+        padding-right: 8px;
+        position: relative;
+        &::after {
+          content: '';
+          display: block;
+          border-bottom: 1px solid var(--color-background-2);
+          position: absolute;
+          left: 100%;
+          bottom: 0.25em;
+          width: 100vw;
+        }
+      }
+    }
+    &:last-child {
+      vertical-align: bottom;
+      padding-left: 8px;
     }
   }
 }
