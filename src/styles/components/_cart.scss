@@ -1,0 +1,220 @@
+.cart {
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: var(--grid-gutter-x);
+  }
+  &__content {
+    grid-column: span 8;
+  }
+  &__aside {
+    grid-column: span 4;
+  }
+  @include media-breakpoint-down(xl) {
+    &__container {
+
+    }
+    &__aside {
+      grid-column: span 12;
+      margin-bottom: 25px;
+    }
+    &__content {
+      order: 2;
+      grid-column: span 12;
+    }
+  }
+}
+
+.cart-total {
+  background: var(--color-background-1);
+  border-radius: 10px;
+  &__title {
+    margin-bottom: 75px;
+  }
+  &__top {
+    padding: 20px 30px;
+    border-width: 0 0 2px 0;
+    border-style: solid;
+    border-color: var(--color-background-2);
+  }
+  &__bottom {
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 200px;
+  }
+  &__button {
+    width: 100%;
+    &:not(:last-child) {
+      margin-bottom: 15px;
+    }
+  }
+  &__count {
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+  @include media-breakpoint-between(md, xl) {
+    display: flex;
+    &__top {
+      flex: 0 0 208px;
+      border-width: 0 2px 0 0;
+      padding: 20px 30px 30px 30px;
+      display: flex;
+      flex-direction: column;
+    }
+    &__title {
+      margin-bottom: 25px;
+      flex: 1 1 auto;
+    }
+    &__bottom {
+      flex: 1 1 auto;
+      min-height: initial;
+      padding: 35px 30px 30px 30px;
+      align-items: flex-start;
+    }
+    &__button {
+      width: initial;
+    }
+  }
+  @include media-breakpoint-down(xl) {
+    &__bottom {
+      padding-left: 50px;
+    }
+  }
+  @include media-breakpoint-down(lg) {
+    &__bottom {
+      padding-left: 30px;
+    }
+  }
+  @include media-breakpoint-down(lg) {
+    &__top {
+      padding: 20px 30px 25px 30px;
+    }
+    &__bottom {
+      padding: 25px 20px 30px 25px;
+      min-height: initial;
+    }
+    &__title {
+      margin-bottom: 25px;
+    }
+    &__count {
+      .h2 {
+        font-size: 30px;
+      }
+    }
+  }
+}
+
+.cart-item {
+  &:not(:last-child) {
+    margin-bottom: 25px;
+  }
+  &__container {
+    display: grid;
+    grid-template-columns: 200px 1fr 1fr;
+    background-color: var(--color-background-1);
+    border-radius: 10px;
+    column-gap: 70px;
+    position: relative;
+  }
+  &__image {
+    display: block;
+    grid-row: 1/3;
+    height: 200px;
+    background-color: #fff;
+    border-radius: 10px 0 0 10px;
+    overflow: hidden;
+    .image {
+      height: 100%;
+      width: 100%;
+    }
+  }
+  &__title {
+    grid-column: 2/4;
+    padding: 20px 120px 20px 0;
+    align-self: flex-start;
+  }
+  &__info {
+    grid-column: 2/3;
+    padding-bottom: 30px;
+    align-self: flex-end;
+  }
+  &__count {
+    padding: 0 30px 30px calc(100% - 200px);
+    align-self: flex-end;
+    &-title {
+      display: block;
+      margin-bottom: 6px;
+    }
+  }
+  &__remove {
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    color: var(--color-text-4);
+    transition: color var(--trs-1);
+    .icon {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    &[data-touch], &[data-hover] {
+      color: var(--color-1);
+    }
+  }
+  @include media-breakpoint-down(xxl) {
+    &__container {
+      column-gap: 50px;
+    }
+  }
+  @include media-breakpoint-down(xl) {
+    &__container {
+      grid-template-columns: 208px 1fr 1fr;
+    }
+  }
+  @include media-breakpoint-down(lg) {
+    &__container {
+      column-gap: 30px;
+    }
+    &__title {
+      padding-right: 50px;
+    }
+  }
+  @include media-breakpoint-down(md) {
+    &__container {
+      grid-template-columns: 104px 1fr;
+      gap: 25px 20px;
+    }
+    &__image {
+      grid-row: 1/2;
+      height: 104px;
+      border-radius: 10px;
+    }
+    &__title {
+      grid-column: 2/3;
+      padding: 20px 20px 20px 0;
+      align-self: center;
+    }
+    &__info {
+      grid-column: 1/3;
+      padding: 0 30px;
+    }
+    &__count {
+      grid-column: 1/3;
+      padding: 0 calc((100% - 150px) / 2) 30px calc((100% - 150px) / 2);
+    }
+    &__count-title {
+      text-align: center;
+    }
+    &__remove {
+      bottom: 30px;
+      right: 30px;
+      top: initial;
+    }
+  }
+}

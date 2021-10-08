@@ -9,7 +9,7 @@ img {
   &.lazyloaded {
     opacity: 1;
     visibility: visible;
-    transition: opacity $trs3, visibility $trs3;
+    transition: opacity var(--trs-3), visibility var(--trs-3);
   }
 }
 
@@ -48,7 +48,7 @@ img {
   &-lazy {
     opacity: 0;
     visibility: hidden;
-    transition: opacity $trs3, visibility $trs3;
+    transition: opacity var(--trs-3), visibility var(--trs-3);
     &-loaded {
       opacity: 1;
       visibility: visible;
@@ -58,37 +58,27 @@ img {
     transition-timing-function: ease;
   }
   &-pagination {
+    --color: var(--color-background-2);
+    --color-hover: var(--color-background-5);
+    --color-active: #FFFFFF;
     position: relative;
     display: flex;
-    height: 3px;
+    justify-content: center;
     &-bullet {
-      margin-bottom: -14px;
-      margin-top: -13px;
-      padding-top: 13px;
-      padding-bottom: 14px;
-      width: 20px;
-      height: 30px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--color);
+      transition: background-color var(--trs-1);
       &:not(:last-child) {
-        margin-right: 5px;
-      }
-      &::before {
-        content: '';
-        display: block;
-        width: 100%;
-        height: 3px;
-        background-color: var(--color-pagination-bg);
-        transition: background-color $trs1;
+        margin-right: 20px;
       }
       &[data-touch], &[data-hover] {
-        &::before {
-          background-color: var(--color-pagination-bg-hover);
-        }
+        background-color: var(--color-hover);
       }
       &-active {
-        pointer-events: none;
-        &::before {
-          background-color: var(--color-pagination-bg-active);
-        }
+        cursor: default;
+        background-color: var(--color-active);
       }
     }
   }
@@ -100,7 +90,7 @@ img {
     border-radius: 64px;
     color: var(--color-slider-control);
     background-color: var(--color-slider-control-bg);
-    transition: opacity $trs1, visibility $trs1, background-color $trs1, color $trs1;
+    transition: opacity var(--trs-1), visibility var(--trs-1), background-color var(--trs-1), color var(--trs-1);
     display: flex;
     position: absolute;
     top: 50%;
@@ -144,7 +134,7 @@ img {
   padding: 9px;
   margin: -9px;
   color: var(--color-close);
-  transition: color $trs1;
+  transition: color var(--trs-1);
   position: relative;
   z-index: 2;
   .icon {

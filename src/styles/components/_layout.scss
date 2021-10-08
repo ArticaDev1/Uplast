@@ -29,6 +29,16 @@
   &__head {
     margin-bottom: 40px;
   }
+  @include media-breakpoint-down(lg) {
+    &__head {
+      margin-bottom: 35px;
+    }
+  }
+  @include media-breakpoint-down(sm) {
+    &__head {
+      margin-bottom: 30px;
+    }
+  }
 }
 
 .container {

@@ -8,7 +8,7 @@
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity $trs1, visibility $trs1;
+  transition: opacity var(--trs-1), visibility var(--trs-1);
   &_visible {
     opacity: 1;
     visibility: visible;
@@ -25,7 +25,7 @@
   }
   &__link {
     display: block;
-    transition: color $trs1out, background-color $trs1out;
+    transition: color var(--trs-1), background-color var(--trs-1);
     padding: var(--select-item-py) var(--select-item-px);
     line-height: var(--select-item-lh);
     &[data-touch], &[data-hover] {

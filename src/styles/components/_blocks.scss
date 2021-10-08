@@ -220,7 +220,7 @@
         border-radius: 3px;
         bottom: 14px;
         background-color: var(--color-pagination-bg);
-        transition: background-color $trs2;
+        transition: background-color var(--trs-2);
       }
       &-loader {
         width: 100%;
@@ -229,7 +229,7 @@
         border-radius: inherit;
         background-color: var(--color-pagination-bg-active);
         opacity: 0;
-        transition: opacity $trs2;
+        transition: opacity var(--trs-2);
       }
       &[data-touch], &[data-hover] {
         .home-banner__pagination-button-inner {
@@ -307,7 +307,7 @@
       border-radius: 20px;
       z-index: 1;
       opacity: 0;
-      transition: opacity $trs1;
+      transition: opacity var(--trs-1);
       &_style-1 {
         background: var(--gradient-label-stock);
       }
@@ -332,9 +332,9 @@
       height: 70px;
       width: 120px;
       top: 45px;
-      transition: color $trs1;
+      transition: color var(--trs-1);
       .icon {
-        transition: opacity $trs1;
+        transition: opacity var(--trs-1);
         &:last-child {
           opacity: 0;
         }
@@ -344,7 +344,7 @@
       bottom: 20px;
       left: 0;
       color: inherit;
-      transition: transform $trs1;
+      transition: transform var(--trs-1);
       z-index: 2;
       will-change: transform;
       min-width: 190px;
@@ -357,7 +357,7 @@
       width: 30px;
       height: 30px;
       color: inherit;
-      transition: transform $trs1;
+      transition: transform var(--trs-1);
       will-change: transform;
     }
     &[data-touch], &[data-hover] {
@@ -411,7 +411,7 @@
   @include media-breakpoint-down(lg) {
     border-radius: 20px;
     background-color: var(--color-background-1);
-    transition: background-color $trs1;
+    transition: background-color var(--trs-1);
     &[data-touch], &[data-hover] {
       background-color: var(--color-background-2);
     }
@@ -482,7 +482,7 @@
     text-align: center;
     font-size: 1.125rem;
     color: var(--color-text-6);
-    transition: color $trs1, background-color $trs1;
+    transition: color var(--trs-1), background-color var(--trs-1);
     position: relative;
     z-index: 3;
     &[data-touch], &[data-hover] {
@@ -503,7 +503,7 @@
     height: 100%;
     top: 0;
     left: 0;
-    transition: background-color $trs1;
+    transition: background-color var(--trs-1);
     z-index: 1;
   }
   &__slider {
@@ -572,7 +572,7 @@
     height: 262px;
     position: relative;
     background-color: var(--color-background-3);
-    transition: background-color $trs1;
+    transition: background-color var(--trs-1);
     border-radius: inherit;
   }
   &_xl {
@@ -725,7 +725,7 @@
     transform: translateY(-50%);
     opacity: 0;
     visibility: hidden;
-    transition: opacity $trs2, visibility $trs2;
+    transition: opacity var(--trs-2), visibility var(--trs-2);
     &.active {
       opacity: 1;
       visibility: visible;
@@ -748,7 +748,7 @@
     &__slide {
       width: initial;
       flex: 1 1 auto;
-      transition: width $trs2, opacity $trs2;
+      transition: width var(--trs-2), opacity var(--trs-2);
       width: 10%;
       &.hidden {
         opacity: 0.35;
@@ -1120,7 +1120,7 @@
       height: 100%;
       top: 0;
       left: 0;
-      transition: opacity $trs1, visibility $trs1, transform $trs1;
+      transition: opacity var(--trs-1), visibility var(--trs-1), transform var(--trs-1);
       will-change: transform, opacity;
       &:first-child {
         opacity: 1;
@@ -1243,7 +1243,7 @@
   }
   &__items-count {
     color: var(--color-text-4);
-    padding-bottom: 5px;
+    padding-bottom: 4px;
     white-space: nowrap;
   }
   @include media-breakpoint-down(sm) {
@@ -1269,6 +1269,7 @@
     grid-template-columns: repeat(var(--items-columns), 1fr);
     column-gap: var(--grid-gutter-x);
     row-gap: 75px;
+    transition: opacity var(--trs-1);
     .product-card {
       &::after {
         content: '';
@@ -1297,7 +1298,7 @@
   &__filter-button {
     width: 40px;
     height: 40px;
-    transition: color $trs1;
+    transition: color var(--trs-1);
     padding: 4px;
     flex-shrink: 0;
     margin: 2px -4px 0 -4px;
@@ -1308,6 +1309,13 @@
     }
     &[data-touch], &[data-hover] {
       color: #fff;
+    }
+  }
+
+
+  &.loading {
+    .catalog__items {
+      opacity: 0.5;
     }
   }
   @include media-breakpoint-up(xxl) {
@@ -1417,7 +1425,13 @@
     max-height: calc(var(--checkbox-height) * 6 + var(--items-gap) * 5 + var(--overscroll-size) * 2);
     margin: calc(var(--overscroll-size) * -1) 0;
   }
+  &__show-button {
+    display: none;
+  }
   @include media-breakpoint-up(lg) {
+    &__show-button {
+      display: none !important;
+    }
     &__title {
       display: none;
     }
@@ -1463,9 +1477,6 @@
 }
 
 .catalog-modal {
-  &__buttons {
-    display: none !important;
-  }
   @include media-breakpoint-up(lg) {
     &__close {
       display: none;
@@ -1491,8 +1502,12 @@
     background-color: var(--color-background-1);
     &__inner {
       max-width: calc(100vw - var(--scrollbar-width));
+      min-height: calc(100% - var(--overscroll-size) * 2);
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
     }
-    &__buttons {
+    &__button {
       --py: 15px;
       background-color: var(--color-background-1);
       width: 100%;
@@ -1503,6 +1518,7 @@
       text-align: center;
       margin-bottom: calc(var(--indent-3) - var(--overscroll-size) - var(--py));
       margin-top: calc(var(--indent-3) - var(--pt) - var(--py));
+      flex: 0 0 auto;
       &::before {
         content: '';
         display: block;
@@ -1522,6 +1538,7 @@
     &__container {
       padding-top: var(--pt);
       padding-bottom: var(--pt);
+      flex: 1 0 auto;
     }
     .close-button {
       position: absolute;
@@ -1530,7 +1547,7 @@
     }
   }
   @include media-breakpoint-down(sm) {
-    &__buttons {
+    &__button {
       .button {
         width: 100%;
       }
@@ -1559,7 +1576,7 @@
     background-color: var(--color-background-1);
     opacity: 0;
     pointer-events: none;
-    transition: opacity $trs1out;
+    transition: opacity var(--trs-1);
   }
   &[data-touch], &[data-hover] {
     &::before {
@@ -1698,6 +1715,9 @@
     --color-hover: #fff;
     --background-color: var(--color-pagination-control-bg);
     --background-color-hover: var(--color-pagination-control-bg-hover);
+    &.disabled {
+      display: none;
+    }
   }
   @include media-breakpoint-down(md) {
     &__item {
@@ -1723,16 +1743,39 @@
   color: var(--color-text-2);
   &__container {
     display: grid;
-    grid-template-columns: 520px 1fr;
-    column-gap: 70px;
+    align-items: flex-start;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: var(--grid-gutter-x);
+  }
+  &__head {
+    grid-column: span 12;
   }
   &__content {
-    display: grid;
-    column-gap: var(--grid-gutter-x);
-    grid-template-columns: repeat(7, 1fr);
-  }
-  &__description, &__stock {
     grid-column: span 7;
+  }
+  &__slider {
+    grid-column: span 5;
+    padding-right: 46px;
+  }
+  &__content-grid {
+    display: grid;
+    grid-auto-flow: dense;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: auto 1fr;
+    column-gap: var(--grid-gutter-x);
+  }
+  &__detail-box {
+    grid-column: span 3;
+    grid-row: span 2;
+  }
+  &__article {
+    display: block;
+    color: var(--color-text-4);
+    margin-bottom: 30px;
+    grid-column: span 4;
+  }
+  &__specifications {
+    grid-column: span 4;
   }
   &__stock {
     margin-bottom: 20px;
@@ -1740,18 +1783,78 @@
   &__description {
     margin-bottom: 30px;
   }
-  &__article {
-    display: block;
-    color: var(--color-text-4);
-    margin-bottom: 40px;
+  @include media-breakpoint-down(xxl) {
+    &__slider {
+      padding-right: 20px;
+    }
   }
-  &__specifications {
-    grid-column: span 4;
+  @include media-breakpoint-down(xl) {
+    &__slider {
+      padding-right: 0;
+    }
+    &__detail-box, &__specifications, &__article {
+      grid-column: span 7;
+    }
+    &__detail-box {
+      margin-bottom: 30px;
+      order: 2;
+    }
+    &__specifications {
+      order: 3;
+    }
+  }
+  @include media-breakpoint-down(lg) {
+    margin-top: 25px;
+    &__slider {
+      grid-column: span 12;
+      width: calc(100vw - var(--scrollbar-width));
+      min-width: var(--page-min-width);
+      margin-left: calc(var(--content-gutter) * -1);
+      margin-bottom: 50px;
+    }
+    &__stock {
+      margin-bottom: 25px;
+    }
+    &__description {
+      margin-bottom: 25px;
+    }
+    &__content {
+      order: 3;
+      grid-column: span 12;
+    }
+    &__head {
+      order: 2;
+    }
+    &__content-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    &__article {
+      margin-bottom: 25px;
+      grid-column: span 2;
+      order: 1;
+    }
+    &__detail-box {
+      grid-column: span 1;
+      margin: 0;
+    }
+    &__specifications {
+      grid-column: span 1;
+    }
+  }
+  @include media-breakpoint-down(md) {
+    &__detail-box, &__specifications {
+      grid-column: span 2;
+    }
+    &__detail-box {
+      margin-bottom: 25px;
+    }
+    &__slider {
+      margin-bottom: 40px;
+    }
   }
 }
 
 .product-detail-box {
-  grid-column: span 3;
   background-color: var(--color-background-1);
   border-radius: 20px;
   padding: 20px 30px 30px 30px;
@@ -1794,6 +1897,7 @@
     color: #fff;
     font-weight: 600;
     margin-right: 22px;
+    flex-shrink: 0;
   }
   &__text {
     color: var(--color-text-stock);
@@ -1817,24 +1921,22 @@
     width: 50%;
     span {
       display: inline;
-      background-color: var(--color-background-4);
       position: relative;
       z-index: 2;
     }
     &:first-child {
       vertical-align: top;
-      padding-right: 8px;
+      padding-right: 16px;
       overflow: hidden;
       color: var(--color-text-4);
       span {
-        padding-right: 8px;
         position: relative;
         &::after {
           content: '';
           display: block;
           border-bottom: 1px solid var(--color-background-2);
           position: absolute;
-          left: 100%;
+          left: calc(100% + 8px);
           bottom: 0.25em;
           width: 100vw;
         }
@@ -1843,6 +1945,93 @@
     &:last-child {
       vertical-align: bottom;
       padding-left: 8px;
+    }
+  }
+}
+
+
+.product-slider {
+  position: relative;
+  .swiper-container {
+    background-color: #fff;
+    border-radius: 10px;
+  }
+  .swiper-slide {
+    padding-top: 100%;
+    .image {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+  }
+  &__miniatures {
+    position: absolute;
+    z-index: 2;
+    left: 10px;
+    bottom: 10px;
+    display: none;
+  }
+  &__miniatures-items {
+    display: flex;
+    gap: 8px;
+  }
+  &__miniature {
+    position: relative;
+    width: 54px;
+    border: 2px solid var(--color-background-6);
+    border-radius: 10px;
+    transition: border-color var(--trs-1);
+    overflow: hidden;
+    background-color: #fff;
+    &::before {
+      content: '';
+      display: block;
+      padding-top: 100%;
+    }
+    .image {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+    &.is-active {
+      border-color: var(--color-background-7);
+    }
+  }
+  @include media-breakpoint-up(lg) {
+    &__pagination {
+      display: none !important;
+    }
+  }
+  
+  @include media-breakpoint-down(lg) {
+    .swiper-slide {
+      padding-top: 0;
+      height: 740px;
+    }
+    .swiper-container {
+      border-radius: 0;
+    }
+    &__miniatures {
+      display: none !important;
+    }
+    &__pagination {
+      margin-top: 25px;
+      display: none;
+    }
+  }
+  @include media-breakpoint-down(md) {
+    .swiper-slide {
+      height: 500px;
+    }
+  }
+  @include media-breakpoint-down(sm) {
+    .swiper-slide {
+      height: auto;
+      padding-top: 100%;
     }
   }
 }

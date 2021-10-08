@@ -11,10 +11,31 @@ const $body = document.body;
 const $wrapper = document.querySelector('.wrapper');
 const $header = document.querySelector('.header');
 
-const animation_duration_1 = 0.15;
+const animation_duration_1 = +getComputedStyle(document.documentElement).getPropertyValue('--animation-duration-1').replace(/[^\d.-]/g, '');
+const animation_duration_2 = +getComputedStyle(document.documentElement).getPropertyValue('--animation-duration-2').replace(/[^\d.-]/g, '');
+const animation_duration_3 = +getComputedStyle(document.documentElement).getPropertyValue('--animation-duration-3').replace(/[^\d.-]/g, '');
+
+const LoaderSVG = `
+  <svg class="loader" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 30" fill="currentColor">
+    <circle cx="15" cy="15" r="15">
+        <animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite"/>
+        <animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="60" cy="15" r="9" fill-opacity="0.3">
+        <animate attributeName="r" from="9" to="9" begin="0s" dur="0.8s" values="9;15;9" calcMode="linear" repeatCount="indefinite"/>
+        <animate attributeName="fill-opacity" from="0.5" to="0.5" begin="0s" dur="0.8s" values=".5;1;.5" calcMode="linear" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="105" cy="15" r="15">
+        <animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite"/>
+        <animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite"/>
+    </circle>
+  </svg>`
+
 
 import 'lazysizes';
 import {gsap} from "gsap";
+import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+gsap.registerPlugin(ScrollToPlugin);
 gsap.defaults({
   ease: "power2.inOut", 
   duration: 1
@@ -31,7 +52,7 @@ import tippy, {followCursor} from 'tippy.js';
 gsap.registerEffect({
   name: "fadeIn",
   effect: ($element, config) => {
-    return gsap.fromTo($element, {autoAlpha: 0}, {immediateRender: false, autoAlpha: 1, duration: config.duration,
+    return gsap.fromTo($element, {autoAlpha: 0}, {immediateRender: false, autoAlpha: 1, duration: config.duration || animation_duration_1 / 1000,
       onStart: () => {
         $element.forEach($this => {
           $this.classList.add('d-block');
@@ -70,24 +91,25 @@ document.addEventListener("DOMContentLoaded", function () {
   Location.init();
   Search.init();
   Modal.init();
+
   //
   tippy('[data-tippy-content]', {
     followCursor: true,
+    touch: false,
     plugins: [followCursor],
     duration: 150,
     placement: 'bottom'
   });
 
-  const activeFunctions = new ActiveFunctions();
-  activeFunctions.create();
-  activeFunctions.add(HomeBanner, '.home-banner');
-  activeFunctions.add(TabSlider, '.tab-slider');
-  activeFunctions.add(AdvantagesSlider, '.advantages-slider');
-  activeFunctions.add(Partners, '.section-partners');
-  activeFunctions.add(Map, '.contacts__map');
-  activeFunctions.add(Select, '.select select');
-  activeFunctions.add(Card3d, '[data-3d="parent"]');
-  activeFunctions.init();
+  InstancesManager.add(HomeBanner, '.home-banner');
+  InstancesManager.add(TabSlider, '.tab-slider');
+  InstancesManager.add(AdvantagesSlider, '.advantages-slider');
+  InstancesManager.add(Partners, '.section-partners');
+  InstancesManager.add(Map, '.contacts__map');
+  InstancesManager.add(Select, '.select select');
+  InstancesManager.add(Card3d, '[data-3d="parent"]');
+  InstancesManager.add(ProductSlider, '.product-slider');
+  InstancesManager.init();
 });
 
 
@@ -282,28 +304,22 @@ const Location = {
   }
 }
 
-class ActiveFunctions {
-  create() {
-    this.functions = [];
-  }
-  add(clss, blocks) {
+const InstancesManager = {
+  instances: [],
+
+  add: function(clss, blocks) {
     let $blocks = document.querySelectorAll(blocks);
     if($blocks.length) {
       $blocks.forEach($block => {
-        this.functions.push(new clss($block));
+        this.instances.push(new clss($block));
       });
     }
-  }
-  init() {
-    this.functions.forEach(func => {
+  },
+
+  init: function() {
+    this.instances.forEach(func => {
       func.init();
     })
-  }
-  destroy() {
-    this.functions.forEach(func => {
-      func.destroy();
-    })
-    this.functions = [];
   }
 }
 
@@ -745,6 +761,59 @@ class Card3d {
   }
 }
 
+class ProductSlider {
+  constructor($parent) {
+    this.$parent = $parent;
+  }
+
+  init() {
+    this.$slider = this.$parent.querySelector('.swiper-container');
+    this.$pagination = this.$parent.querySelector('.product-slider__pagination');
+    this.$pagination_element = this.$parent.querySelector('.swiper-pagination');
+
+    this.$miniatures = this.$parent.querySelector('.product-slider__miniatures');
+    this.$miniature = this.$parent.querySelectorAll('.product-slider__miniature');
+
+    this.slider = new Swiper(this.$slider, {
+      touchStartPreventDefault: false,
+      speed: animation_duration_3,
+      lazy: {
+        loadOnTransitionStart: true,
+        loadPrevNext: true
+      },
+      pagination: {
+        el: this.$pagination_element,
+        clickable: true,
+        bulletElement: 'button'
+      },
+    });
+
+    if(this.$miniature.length>1) {
+
+      this.$miniature[0].classList.add('is-active');
+      this.slider.on('slideChange', (event)=> {
+        this.$miniature.forEach($this => {
+          $this.classList.remove('is-active')
+        })
+        this.$miniature[event.realIndex].classList.add('is-active');
+      })
+
+      this.$miniature.forEach(($this, index) => {
+        $this.addEventListener('mouseenter', ()=> {
+          this.slider.slideTo(index);
+        })
+        $this.addEventListener('click', ()=> {
+          this.slider.slideTo(index);
+        })
+      })
+
+      gsap.effects.fadeIn([this.$miniatures, this.$pagination]);
+      
+    }
+
+  }
+}
+
 const Modal = {
   init: function() {
 
@@ -763,11 +832,15 @@ const Modal = {
     this.open = ($target) => {
       if ($target == this.$active) return;
 
+      document.dispatchEvent(new CustomEvent("modal_open", {
+        detail:{ target: $target}
+      }));
+
       this.animation = gsap.timeline()
-        .fadeIn($target, {duration:animation_duration_1})
+        .fadeIn($target)
         .eventCallback('onStart', () => {
           disablePageScroll();
-        });;
+        });
 
       this.$active = $target;
     }
@@ -784,3 +857,85 @@ const Modal = {
     }
   }
 }
+
+const ButtonLoader = {
+  add: function($button) {
+    if($button.classList.contains('button_disabled')) return;
+
+    $button.classList.add('button_disabled');
+
+    $button.insertAdjacentHTML('beforeend', LoaderSVG);
+    setTimeout(() => {
+      $button.classList.add('button_in-load');
+    }, 0);
+    
+  },
+
+  remove: function($button) {
+    $button.classList.remove('button_in-load');
+    setTimeout(() => {
+      let $loader = $button.querySelector('.loader');
+      if($loader) $loader.remove();
+      $button.classList.remove('button_disabled');
+    }, animation_duration_1);
+  }
+}
+
+//cart buttons
+if(typeof(miniShop2) != 'undefined') {
+
+  miniShop2.Callbacks.Cart.add.before = function() {
+    let $button = miniShop2.sendData.$form[0].querySelector('.cart-button');
+    if($button) {
+      ButtonLoader.add($button);
+    }
+  };
+  
+  miniShop2.Callbacks.Cart.add.response.success = function() {
+    let $button = miniShop2.sendData.$form[0].querySelector('.cart-button');
+
+    if($button) {
+      ButtonLoader.remove($button);
+      $button.classList.add('cart-button_in-cart');
+    }
+  };
+
+}
+
+document.addEventListener('mse2_load_pagination', function() {
+  let py = +getComputedStyle(document.documentElement).getPropertyValue('--grid-gutter-x').replace(/[^\d.-]/g, ''),
+      $top = document.querySelector('.breadcrumbs') ? document.querySelector('.breadcrumbs') : document.querySelector('.catalog'),
+      y = $top.getBoundingClientRect().y + window.pageYOffset;
+
+  gsap.to(window, {scrollTo: y - py, duration: animation_duration_3 / 1000});
+})
+
+document.addEventListener('mse2_before_load', function() {
+  let $filter_button = document.querySelector('.filter__show-button .button');
+
+  if($filter_button) {
+    ButtonLoader.add($filter_button);
+  }
+})
+
+document.addEventListener('mse2_after_load', function() {
+  let $filter_button_inner = document.querySelector('.filter__show-button'),
+      $filter_button = document.querySelector('.filter__show-button .button');
+
+  if($filter_button_inner && !$filter_button_inner.classList.contains('d-block')) {
+    gsap.effects.fadeIn($filter_button_inner);
+  }
+
+  if($filter_button) {
+    ButtonLoader.remove($filter_button);
+  }
+})
+
+document.addEventListener('modal_open', function(event) {
+  let $filter_button_inner = event.detail.target.querySelector('.filter__show-button');
+
+  if($filter_button_inner) {
+    $filter_button_inner.classList.remove('d-block');
+  }
+})
+

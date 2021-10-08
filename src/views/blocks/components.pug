@@ -52,6 +52,8 @@ mixin product-card(type)
             | Банка 0,5л D-122 прозрачная ПП
         span.product-card__info Минимальный заказ: 100 шт.
 
-      button.button.button_style-1 
+      button.button.button_style-1.cart-button(class=type==2?'cart-button_in-cart':'')
         span.button__inner 
           span В корзину
+        span.button__inner
+          span В корзинe

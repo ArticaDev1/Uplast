@@ -15,7 +15,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  transition: color $trs1, background-color $trs1;
+  transition: color var(--trs-1), background-color var(--trs-1);
   line-height: var(--height);
   padding: 0 var(--padding-x);
   font-size: var(--font-size);
@@ -25,10 +25,22 @@
   background-color: var(--background-color);
   color: var(--color);
 
+  .loader {
+    position: absolute;
+    height: 10px;
+    width: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity var(--trs-1);
+  }
+
   &__inner {
     display: flex;
     align-items: center;
     column-gap: var(--gap);
+    transition: opacity var(--trs-1);
     span {
       overflow: hidden;
       text-overflow: ellipsis;
@@ -65,4 +77,32 @@
     --color: var(--color-btn-1);
   }
 
+  &_in-load {
+    .button__inner {
+      opacity: 0;
+    }
+    .loader {
+      opacity: 1;
+    }
+  }
+
+  &_disabled {
+    cursor: default;
+  }
+
+}
+
+.cart-button {
+  &:not(.cart-button_in-cart) {
+    .button__inner:nth-child(2) {
+      display: none;
+    }
+  }
+  &_in-cart {
+    --background-color: var(--color-btn-in-cart-bg);
+    --background-color-hover: var(--color-btn-in-cart-bg-hover);
+    .button__inner:not(:nth-child(2)) {
+      display: none;
+    }
+  }
 }

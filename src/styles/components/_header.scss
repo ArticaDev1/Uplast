@@ -24,7 +24,7 @@
     height: 40px;
     padding: 5px;
     color: var(--color-text-1);
-    transition: color $trs1out;
+    transition: color var(--trs-1);
     &[data-touch], &[data-hover] {
       color: var(--color-text-5);
     }
@@ -55,7 +55,7 @@
     align-items: center;
     justify-content: center;
     color: var(--color-text-1);
-    transition: color $trs1out;
+    transition: color var(--trs-1);
     &:not(:last-child) {
       margin-right: 50px;
     }
@@ -81,6 +81,17 @@
       left: 25px;
       top: 0;
       font-weight: 500;
+      text-align: center;
+      opacity: 0;
+      visibility: hidden;
+      color: #fff;
+      transition: opacity var(--trs-1), visibility var(--trs-1);
+    }
+    &_full {
+      span {
+        opacity: 1;
+        visibility: visible;
+      }
     }
   }
   &__phone-button {

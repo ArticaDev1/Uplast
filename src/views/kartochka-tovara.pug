@@ -8,24 +8,62 @@ block content
   include blocks/breadcrumbs
 
   section.section.product
-    .container
-      .section__head
+    .container.product__container
+      .section__head.product__head
         h1.h2 Соусник с крышкой 80 мл прозрачный пп 960/80
-      .product__container 
-        .product-slider 
+      
+      //картинки
+      .product-slider.product__slider
+        .swiper-container 
+          .swiper-wrapper
+            //large
+            .swiper-slide
+              .image.image_contain 
+                img(data-src="./img/78f88893213e19bf8649cec8eba83be1 1.jpg", alt="image").swiper-lazy
+            //large
+            .swiper-slide
+              .image.image_contain 
+                img(data-src="./img/konteyner_108kh82_500ml_prozrachnyy_pp_1000_100_ 7.jpg", alt="image").swiper-lazy
+            //large
+            .swiper-slide
+              .image.image_contain 
+                img(data-src="./img/78f88893213e19bf8649cec8eba83be1 1.jpg", alt="image").swiper-lazy
 
-        .product__content 
-          //скидка
-          .product-stock.product__stock
-            .product-stock__label Акция
-            .product-stock__text Покупая пластиковые тарелки, соусники даём в подарок!
-          //текст описание
-          .product__description 
-            p Прямоугольные контейнеры для упаковки полуфабрикатов и готовых изделий,  удобны для транспортировки и хранения широкого ассортимента продукции.  Ровная поверхность крышки идеально подходит для наклеивания этикетки.
+        .product-slider__miniatures
+          .product-slider__miniatures-items
+            //small
+            .product-slider__miniature
+              .image.image_contain 
+                img(data-src="./img/78f88893213e19bf8649cec8eba83be1 1.jpg", alt="image").lazyload
+            //small
+            .product-slider__miniature
+              .image.image_contain 
+                img(data-src="./img/konteyner_108kh82_500ml_prozrachnyy_pp_1000_100_ 7.jpg", alt="image").lazyload
+            //small
+            .product-slider__miniature
+              .image.image_contain 
+                img(data-src="./img/78f88893213e19bf8649cec8eba83be1 1.jpg", alt="image").lazyload
+
+        .product-slider__pagination 
+          .swiper-pagination
+
+      .product__content
+
+        //скидка
+        .product-stock.product__stock
+          .product-stock__label Акция
+          .product-stock__text Покупая пластиковые тарелки, соусники даём в подарок!
+
+        //текст описание
+        .product__description 
+          p Прямоугольные контейнеры для упаковки полуфабрикатов и готовых изделий,  удобны для транспортировки и хранения широкого ассортимента продукции.  Ровная поверхность крышки идеально подходит для наклеивания этикетки.
+
+        .product__content-grid
+          //артикул
+          span.product__article Артикул: ЮУПМ2595
+
           //характеристики
           .product__specifications
-            span.product__article Артикул: ЮУПМ2595
-
             table.info-table 
               tr 
                 td 
@@ -62,9 +100,9 @@ block content
                   span Упаковка
                 td 
                   span 1040 шт
-                 
-
-          .product-detail-box
+                  
+          //детальные
+          .product-detail-box.product__detail-box
             .product-detail-box__section 
               .product-detail-box__section-title Цвет: 
                 span прозрачный
@@ -96,11 +134,15 @@ block content
                     use(xlink:href="./img/icons/icons.svg#plus")
             
             .product-detail-box__button
-              button.button.button_large.button_style-1 
+              button.button.button_large.button_style-1.cart-button_in-cart 
                 span.button__inner 
                   span В корзину
                   svg.icon 
-                    use(xlink:href="./img/icons/icons.svg#cart")
+                    use(xlink:href="./img/icons/icons.svg#cart2")
+                span.button__inner 
+                  span В корзине
+                  svg.icon 
+                    use(xlink:href="./img/icons/icons.svg#check")
 
 
 

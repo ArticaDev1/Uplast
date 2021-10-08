@@ -4,6 +4,7 @@
   --container-gutter-x: 24px;
   --grid-gutter-x: 24px;
   --content-px-1: 20px;
+  --scrollbar-width: 0px;
 
   @include media-breakpoint-up(xxl) {
     --content-width: #{map-get($container-max-widths, xxl)};
@@ -25,6 +26,17 @@
   @include media-breakpoint-down(sm) {
     --content-width: 100vw; 
   }
+}
+
+//animations
+:root {
+  --animation-duration-1: 150ms;
+  --animation-duration-2: 300ms;
+  --animation-duration-3: 500ms;
+  
+  --trs-1: var(--animation-duration-1) ease-out;
+  --trs-2: var(--animation-duration-2) ease-out;
+  --trs-3: var(--animation-duration-3) ease-out;
 }
 
 //indets

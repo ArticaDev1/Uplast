@@ -1,0 +1,18 @@
+extends layout/layout
+block variables
+  -var footer_type = 2
+  -var title = sitename+' - Оформление заказа'
+  -var breadcrumbs_links = ['Вернуться в корзину']
+
+block content
+  include blocks/breadcrumbs
+
+  section.section.cart 
+    .container
+      .section__head
+        h1.h2 Оформление заказа
+      .cart__container 
+        .cart__content 
+
+        .cart__aside
+

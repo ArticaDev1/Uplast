@@ -6,7 +6,7 @@
     position: relative;
     border-radius: 25px;
     background-color: var(--color-search-bg);
-    transition: background-color $trs1out;
+    transition: background-color var(--trs-1);
     .icon {
       position: absolute;
       width: 18px;
@@ -15,7 +15,7 @@
       top: 50%;
       transform: translateY(-50%);
       color: var(--color-text-4);
-      transition: color $trs1out;
+      transition: color var(--trs-1);
       pointer-events: none;
     }
     &[data-touch], &[data-hover] {
@@ -43,7 +43,7 @@
     }
     &::placeholder {
       color: var(--color-text-4);
-      transition: opacity $trs1;
+      transition: opacity var(--trs-1);
     }
     &:focus {
       &::placeholder {

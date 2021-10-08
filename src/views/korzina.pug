@@ -1,0 +1,69 @@
+extends layout/layout
+block variables
+  -var footer_type = 2
+  -var title = sitename+' - Корзина'
+
+block content
+  section.section.cart 
+    .container
+      .section__head
+        h1.h2 Корзина
+      .cart__container 
+        .cart__content 
+
+          .cart-item
+            .cart-item__container
+              a(href="#").cart-item__image 
+                .image.image_contain
+                  img(data-src="./img/konteyner_108kh82_500ml_prozrachnyy_pp_1000_100_ 7.jpg", alt="image").lazyload
+              .cart-item__title
+                a(href="#").h5 Соусник с крышкой 80 мл прозрачный пп 960/80
+              .cart-item__info 
+                table.info-table 
+                  tr 
+                    td 
+                      span Артикул
+                    td 
+                      span ЮУПМ3315
+                  tr 
+                    td 
+                      span Вес упаковки
+                    td 
+                      span 20 кг.
+              
+              .cart-item__count 
+                span.cart-item__count-title.text-muted Количество
+                .product-calculator 
+                  button.product-calculator__button.product-calculator__button_minus
+                    svg.icon 
+                      use(xlink:href="./img/icons/icons.svg#minus")
+                  input(type="text" value='1').product-calculator__input
+                  button.product-calculator__button.product-calculator__button_plus
+                    svg.icon 
+                      use(xlink:href="./img/icons/icons.svg#plus")
+              
+              button.cart-item__remove 
+                svg.icon 
+                  use(xlink:href="./img/icons/icons.svg#remove")
+
+
+
+        .cart__aside
+
+          .cart-total
+            .cart-total__top 
+              .cart-total__title.text-muted Итог
+              .cart-total__count 
+                span.h2 3 
+                span.text-muted позиции
+              .cart-total__weight 
+                | Общий вес: 
+                span 40 кг
+            .cart-total__bottom 
+              a(href="oformlenie-zakaza.html").button.button_style-1.button_large.cart-total__button 
+                span.button__inner
+                  span Перейти к оформлению
+              span.text-muted.text-small.text-center.text-md-start Доступные способы оплаты и доставки можно выбрать при оформлении заказа 
+
+
+

@@ -148,13 +148,13 @@ block content
                         .filter__box-item 
                           +checkbox('Распродажа')
                         
-                .catalog-modal__buttons
+                .catalog-modal__button.filter__show-button
                   .container 
                     button.button.button_large.button_style-1(data-action='close_modal' aria-label="Закрыть модальное окно")
                       span.button__inner
                         span Показать 89 товаров
         
-        .catalog__items 
+        .catalog__items#mse2_results
           +product-card(1)
           +product-card(2)
           +product-card(3)

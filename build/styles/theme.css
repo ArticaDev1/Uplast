@@ -15,6 +15,7 @@
   --color-background-6: #DCDCDC;
   --color-background-7: #077BE7;
   --color-background-8: #3BADFF;
+  --color-1: #FF4A4A;
   --scroll-start-gradient-1: rgba(82, 84, 89, 1);
   --scroll-end-gradient-1: rgba(82, 84, 89, 0);
   --scroll-start-gradient-4: rgba(66, 67, 70, 1);
@@ -53,6 +54,8 @@
   --color-btn-1: #fff;
   --color-btn-1-bg: #077BE7;
   --color-btn-1-bg-hover: #3BADFF;
+  --color-btn-in-cart-bg: #3CBA92;
+  --color-btn-in-cart-bg-hover: #0BA360;
   --color-pagination-control: #3BADFF;
   --color-pagination-control-bg: #294F69;
   --color-pagination-control-bg-hover: #077BE7;
