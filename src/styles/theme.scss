@@ -35,9 +35,14 @@
   --color-body-scrollbar: #525459; 
   --color-scrollbar: #696C73;
   --color-scrollbar-thumb: #9FA1AA;
+
+  //shadow
+  --modal-shadow: 0px 10px 20px rgba(25, 28, 35, 0.15);
   
   //
-  --gradient-home-screen: linear-gradient(180deg, rgba(66, 67, 70, 0) 0%, #424346 85.42%);
+  --home-screen-image-mask: rgba(66, 67, 70, 0.6);
+  --home-screen-mask: rgba(34, 34, 34, 0.44);
+  --home-screen-gradient: linear-gradient(180deg, rgba(66, 67, 70, 0) 0%, #424346 100%);
 
   --color-button-1: #fff;
   --color-button-1-bg: #077BE7;
@@ -73,7 +78,6 @@
   --color-tippy-background: #696C73;
 
   //close
-  --color-close: #DCDCDC;
   --color-close-hover: #fff;
 
   //buttons
@@ -93,6 +97,10 @@
   --color-pagination-link-active: #fff;
   --color-pagination-link-bg-active: #077BE7;
   
+  //inputs
+  --color-input-bg-error: #C44748;
+  --color-input-bg-succes: #0BA360;
+  --color-input-message: #FF4A4A;
 
 
   //labels

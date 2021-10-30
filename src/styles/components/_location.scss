@@ -5,6 +5,7 @@
   border-radius: var(--select-list-radius);
   overflow: hidden;
   width: 220px;
+  box-shadow: var(--modal-shadow);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -14,14 +15,10 @@
     visibility: visible;
     pointer-events: all;
   }
-  &__scrollbar {
-    --overscroll-size: var(--select-py);
-  }
   &__container {
-    max-height: var(--select-max-height);    
-  }
-  &__list {
-    padding: var(--select-py) 0;
+    --overscroll-size: var(--select-py);
+    max-height: var(--select-max-height);
+    overflow: auto;
   }
   &__link {
     display: block;
@@ -31,5 +28,9 @@
     &[data-touch], &[data-hover] {
       background-color: var(--color-background-2);
     }
+  }
+
+  @include media-breakpoint-down(lg) {
+    display: none;
   }
 }

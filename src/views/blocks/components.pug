@@ -4,22 +4,32 @@ mixin checkbox(title, state)
     span !{title}
 
 mixin color-checkbox(color, state, tippy)
-  label.color-checkbox(class=color=='transparent'?'color-checkbox_transparent':'')
+  label.color-checkbox
     input(type="checkbox" checked=state=='checked'?true:false disabled=state=='disabled'?true:false)
-    span(style=color!=='transparent'?`background-color:${color};`:'' data-tippy-content=tippy?tippy:false)
+    span(style=`background:${color};` data-tippy-content=tippy?tippy:false)
 
 mixin color-link(color, state, tippy)
-  a(href=state?'javascript:void(0);':'#' class=color=='transparent'?'color-link_transparent':'' class=state style=color!=='transparent'?`background-color:${color};`:'' data-tippy-content=tippy?tippy:false).color-link
+  a(href=state?'javascript:void(0);':'#' class=state style=`background:${color};` data-tippy-content=tippy?tippy:false).color-link
 
-mixin detail-checkbox(title, state)
+mixin detail-checkbox(title, state, tippy)
   label.detail-checkbox
     input(type="checkbox" checked=state=='checked'?true:false disabled=state=='disabled'?true:false)
-    span(data-tippy-content=state=='disabled'?'Нет в наличии':false) !{title}
+    span(data-tippy-content=tippy?tippy:false) 
+      | !{title}
 
-mixin detail-link(title, state)
-  a(href=state?'javascript:void(0);':'#' class=state data-tippy-content=state=='disabled'?'Нет в наличии':false).detail-link #{title}
+mixin detail-link(title, state, tippy)
+  a(href=state?'javascript:void(0);':'#' class=state data-tippy-content=tippy?tippy:false).detail-link 
+    | #{title}
 
-  
+mixin tab-check-element(title, params = {})
+  label.tab-check-element(class=params.size=='small'?'tab-check-element_small':'' data-tippy-content=params.tippy?params.tippy:false)
+    input(type="radio" 
+      checked=params.state=='checked'?true:false 
+      disabled=params.state=='disabled'?true:false)
+    span=title
+
+
+
 mixin product-card(type)
   .product-card(data-custom-interaction)
     .product-card__image
@@ -36,11 +46,11 @@ mixin product-card(type)
 
         
 
-      a(href="#").image.image_cover 
-        if type == 2 
-          img(data-src="./img/placeholder.svg", alt="image").lazyload
-        else 
+      a(href="#").product-card__image-cover
+        picture.image.image_cover 
+          source(type="image/webp" data-srcset="./img/bvrly8qknw2xhq.webp")
           img(data-src="./img/konteyner_108kh82_500ml_prozrachnyy_pp_1000_100_ 7.jpg", alt="image").lazyload
+    
     .product-card__content 
       .product-card__content-top 
         a(href="#" title='тест').product-card__title 

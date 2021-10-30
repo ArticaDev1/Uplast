@@ -15,12 +15,62 @@
 @import "../../node_modules/bootstrap/scss/containers";
 @import "../../node_modules/bootstrap/scss/grid";
 @import "../../node_modules/bootstrap/scss/utilities";
-$utilities: map-get-multiple($utilities, ("display", "order", "flex", "flex-direction", "flex-grow", "flex-shrink", "flex-wrap", "justify-content", "align-items", "align-content", "align-self", "margin-top", "margin-bottom", "margin-start", "margin-end", "padding-top", "padding-bottom", "padding-start", "padding-end", "font-weight", "text-align"));
+
+$utilities: map-merge(
+  $utilities,
+  (
+    "image-size": (
+      property: width,
+      class: image-size,
+      responsive: true,
+      values: (
+        normal: 100%,
+        side: calc(100% + var(--content-gutter)),
+        wide: calc(100% + var(--content-gutter) * 2)
+      )
+    ),
+    "image-align": (
+      property: margin-left,
+      class: image-align,
+      responsive: true,
+      values: (
+        normal: 0,
+        screen: calc(var(--content-gutter) * -1),
+      )
+    ),
+    "column-gap": (
+      property: column-gap,
+      class: column-gap,
+      responsive: true,
+      values: $spacers
+    ),
+    "row-gap": (
+      property: row-gap,
+      class: row-gap,
+      responsive: true,
+      values: $spacers
+    ),
+    "grid-columns": (
+      property: grid-template-columns,
+      class: grid-columns,
+      responsive: true,
+      values: (
+        1: repeat(1, 1fr),
+        2: repeat(2, 1fr),
+        3: repeat(3, 1fr),
+        4: repeat(4, 1fr),
+        5: repeat(5, 1fr),
+        6: repeat(6, 1fr)
+      )
+    ),
+  )
+);
+
+$utilities: map-get-multiple($utilities, ("display", "order", "flex", "flex-direction", "flex-wrap", "justify-content", "align-items", "margin-top", "margin-bottom", "margin-start", "margin-end", "padding-top", "padding-bottom", "padding-start", "padding-end", "font-weight", "text-align", "gap", "column-gap", "row-gap", "grid-columns", "image-size", "image-align"));
+
+
+
 @import "../../node_modules/bootstrap/scss/utilities/api";
-
-
-//libs
-@import "../../node_modules/swiper/swiper.scss";
 
 /*========== Basic ==========*/
 @import "./components/basic";

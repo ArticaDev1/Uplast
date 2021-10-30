@@ -1,10 +1,9 @@
 .search-element {
-  position: absolute;
-  z-index: 1000;
-  display: none;
-  &__input {
+  --search-height: 50px;
+  &__form {
     position: relative;
-    border-radius: 25px;
+    z-index: 2;
+    border-radius: calc(var(--search-height) / 2);
     background-color: var(--color-search-bg);
     transition: background-color var(--trs-1);
     .icon {
@@ -21,17 +20,11 @@
     &[data-touch], &[data-hover] {
       background-color: var(--color-search-bg-hover);
     }
-    &_focus {
-      background-color: var(--color-background-1) !important;
-      .icon {
-        color: var(--color-text-1);
-      }
-    }
   }
-  &__input-element {
+  &__input {
     font-size: 16px;
-    line-height: 22px;
-    padding: 14px 50px 14px 30px;
+    line-height: 20px;
+    padding: calc((var(--search-height) - 20px) / 2) 50px calc((var(--search-height) - 20px) / 2) 20px;
     width: 100%;
     border-radius: inherit;
     white-space: nowrap;
@@ -49,6 +42,145 @@
       &::placeholder {
         opacity: 0;
       }
+    }
+  }
+  &__resault-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .icon {
+      width: 10px;
+      height: 10px;
+      margin-left: 10px;
+      flex: 0 0 auto;
+    }
+  }
+
+  &__no-resaults {
+    color: var(--color-text-4);
+  }
+
+  @include media-breakpoint-up(lg) {
+    .container {
+      padding: 0;
+    }
+    &__container {
+      position: relative;
+    }
+    &__close {
+      display: none;
+    }
+    &__form {
+      &_has-resaults {
+        background-color: transparent;
+        .icon {
+          color: var(--color-text-1);
+        }
+      }
+    }
+    &__resaults {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--color-background-1);
+      border-radius: calc(var(--search-height) / 2);
+      padding: calc(var(--search-height) + 8px) 20px 14px 20px;
+      box-shadow: var(--modal-shadow);
+      &.d-block {
+        display: flex !important;
+      }
+    }
+    &__no-resaults {
+      padding: 6px 0;
+    }
+    &__resault-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 0;
+      .icon {
+        width: 9px;
+        height: 9px;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(lg) {
+    display: none;
+    background-color: var(--color-background-1);
+    position: fixed;
+    width: var(--screen-width);
+    height: 100%;
+    z-index: 1001;
+    overflow: scroll;
+    &::before {
+      top: calc(var(--search-height) - var(--overscroll-size) + var(--indent-3) * 2);
+    }
+    &__resaults {
+      font-size: var(--line-links-font-size);
+    }
+    &__resault-link {
+      padding: var(--line-links-py) 0;
+      &:first-child {
+        margin-top: calc(var(--line-links-py) * -1);
+      }
+      &:last-child {
+        margin-bottom: calc(var(--line-links-py) * -1);
+      }
+      &:not(:last-child) {
+        border-bottom: 1px solid var(--color-background-2);
+      }
+    }
+    &__input-inner {
+      display: flex;
+      align-items: center;
+      flex: 0 0 auto;
+      padding: var(--indent-3) 0 calc(var(--indent-3) - var(--overscroll-size)) 0;
+      position: sticky;
+      top: 0;
+      margin-top: calc(var(--overscroll-size) * -1);
+      background-color: var(--color-background-1);
+    }
+    &__resaults {
+      padding-top: var(--overscroll-size);
+      padding-bottom: calc(var(--indent-3) - var(--overscroll-size));
+    }
+    &__close {
+      flex: 0 0 auto;
+      margin-left: 20px;
+      font-size: 16px;
+      line-height: var(--search-height);
+      transition: color var(--trs-1);
+      &[data-touch], &[data-hover] {
+        color: var(--color-close-hover);
+      }
+    }
+    &__form {
+      flex: 1 1 auto;
+      .icon {
+        left: 20px;
+        right: initial;
+      }
+    }
+    &__input {
+      padding: calc((var(--search-height) - 20px) / 2) 20px calc((var(--search-height) - 20px) / 2) 50px;
+    }
+  }
+  @include media-breakpoint-down(sm) {
+    --search-height: 40px;
+    &__form {
+      .icon {
+        left: 15px;
+      }
+    }
+    &__input {
+      padding: calc((var(--search-height) - 20px) / 2) 15px calc((var(--search-height) - 20px) / 2) 42px;
+    }
+    &__close {
+      margin-left: var(--container-gutter-x);
     }
   }
 }

@@ -1,6 +1,6 @@
 .header {
   position: absolute;
-  width: 100%;
+  width: var(--content-width);
   top: 0;
   left: 0;
   z-index: 1000;
@@ -35,13 +35,8 @@
   }
   &__search {
     flex: 1 1 auto;
-    height: 50px;
     margin-right: 80px;
-    border-radius: 25px;
-    background-color: var(--color-search-bg);
-    &_disabled {
-      background-color: transparent;
-    }
+    height: 50px;
   }
   &__items {
     display: flex;
@@ -69,6 +64,7 @@
     }
   }
   &__cart-button {
+    cursor: default;
     span {
       display: block;
       line-height: 18px;
@@ -88,6 +84,7 @@
       transition: opacity var(--trs-1), visibility var(--trs-1);
     }
     &_full {
+      cursor: pointer;
       span {
         opacity: 1;
         visibility: visible;
@@ -124,7 +121,54 @@
     }
   }
   @include media-breakpoint-down(xl) {
-    display: none;
+    &__button {
+      &:not(:last-child) {
+        margin-right: 20px;
+      }
+    }
+    &__logo {
+      margin-right: 40px;
+    }
+    &__search {
+      margin-right: 40px;
+    }
+    &__open-nav {
+      margin-right: 40px;
+    }
+  }
+  @include media-breakpoint-down(lg) {
+    height: 80px;
+    &__search {
+      display: none;
+    }
+    &__open-nav {
+      margin-right: 45px;
+    }
+    &__logo {
+      width: 140px;
+    }
+    &__items {
+      flex: 1 0 auto;
+      justify-content: flex-end;
+    }
+    &__location-button {
+      span {
+        display: none;
+      }
+    }
+  }
+  @include media-breakpoint-down(sm) {
+    &__logo {
+      display: none !important;
+    }
+    &__open-nav {
+      margin: 0;
+    }
+    &__button {
+      &:not(:last-child) {
+        margin-right: 15px;
+      }
+    }
   }
 }
 

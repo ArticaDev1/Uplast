@@ -1,0 +1,55 @@
+extends layout/layout
+block variables
+  -var footer_type = 2
+  -var title = sitename+' - Конкурсные закупки'
+  -var breadcrumbs_links = ['Поставщикам']
+
+block content
+  include blocks/breadcrumbs
+
+  section.section
+    .container
+      .section__head
+        h1.h2 Конкурсные закупки
+
+      .d-flex.flex-wrap.column-gap-10.row-gap-15.mb-30.mb-lg-50
+        +tab-check-element('Все', {
+          state: 'checked',
+          size: 'small'
+        })
+        +tab-check-element('Добавки к полимерам', {
+          size: 'small'
+        })
+        +tab-check-element('Полимеры', {
+          state: 'disabled',
+          tippy: 'Не активно',
+          size: 'small'
+        })
+
+      
+      .d-grid.row-gap-20.row-gap-xl-grid.column-gap-grid.grid-columns-1.grid-columns-xl-2
+        mixin card()
+          //карточка старт
+          .purchase-box 
+            h5.purchase-box__title Полипропилены: гомополимеры ПТР 1,5-4
+            .purchase-box__bottom 
+              ul.purchase-box__list
+                li 
+                  // Это значение соответствует значению фильтра
+                  span Полимеры 
+                li 
+                  span Период закупок
+                  span 01.06.2021 - 31.12.2021
+              //по клику на кнопку будет октрываться модалка с формой.
+              //В форме будет заполняться одно из полей в зависимости от того с какого блока мы его открыли.
+              //Данные для передачи в форму вносить в атрибут data-values через '|' name поля ввода и значение. 
+              //Пока приравниваем передаваемое значение к заголовку карточки
+              //Эти коменты вырезай из шаблона после того как ознакомишься
+              a(href="#kommercheskoe-predlozhenie" data-action="open_modal" data-values='input_name|Полипропилены: гомополимеры ПТР 1,5-4').button.button_style-1.purchase-box__button
+                span.button__inner
+                  span Отправить КП
+          //карточка конец
+        
+        +card()
+        +card()
+        +card()

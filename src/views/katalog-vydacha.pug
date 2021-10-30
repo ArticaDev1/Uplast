@@ -49,10 +49,11 @@ block content
         .catalog__filter 
 
           #categories-modal.modal.catalog-modal.catalog__filter-element
-            button.close-button.catalog-modal__close(data-action='close_modal' aria-label="Закрыть модальное окно")
-              svg.icon
-                use(xlink:href="./img/icons/icons.svg#close-button")
             .catalog-modal__wrapper.scrollbar(data-scroll-lock-scrollable)
+              .catalog-modal__close
+                button.close-button(data-action='close_modal' aria-label="Закрыть модальное окно")
+                  svg.icon
+                    use(xlink:href="./img/icons/icons.svg#close-button")
               .catalog-modal__inner
                 .container.catalog-modal__container
                   .catalog-modal__content 
@@ -68,10 +69,11 @@ block content
 
 
           #filter-modal.filter.catalog-modal.catalog__filter-element
-            button.close-button.catalog-modal__close(data-action='close_modal' aria-label="Закрыть модальное окно")
-              svg.icon
-                use(xlink:href="./img/icons/icons.svg#close-button")
             .catalog-modal__wrapper.scrollbar(data-scroll-lock-scrollable) 
+              .catalog-modal__close
+                button.close-button(data-action='close_modal' aria-label="Закрыть модальное окно")
+                  svg.icon
+                    use(xlink:href="./img/icons/icons.svg#close-button")
               .catalog-modal__inner
                 .container.catalog-modal__container
                   h6.catalog__filter-title.filter__title Фильтры

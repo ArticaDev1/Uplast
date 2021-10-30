@@ -1,0 +1,15 @@
+extends layout/layout
+block variables
+  -var footer_type = 2
+  -var title = sitename+' - Оформление заказа'
+
+block content
+
+  section.section.cart 
+    .container
+      
+      .cart__final
+        .cart__final-container
+          img(src="./img/congratulations.svg", alt="icon").cart__final-icon
+          h1.cart__final-title Спасибо за заказ!
+          p В ближайшее время с вами свяжется наш специалист и согласует детали

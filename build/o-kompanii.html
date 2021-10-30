@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>Юпласт — О компании</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <!--color-->
+    <meta name="theme-color" content="#424346">
+    <!--favicons-->
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/favicons/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicons/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./img/favicons/apple-touch-icon.png">
+    <!--open graph-->
+    <meta property="og:title" content="От технологии до совершенного продукта">
+    <meta property="og:site_name" content="Юпласт">
+    <meta property="og:url" content="https://articadev1.github.io/Uplast/build/">
+    <meta property="og:description" content="Современная упаковка для вашего бизнеса">
+    <meta property="og:image" content="https://articadev1.github.io/Uplast/build/img/favicons/apple-touch-icon-1024x1024.png">
+    <!--fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <!--styles-->
+    <link rel="stylesheet" href="./styles/theme.css">
+    <link rel="stylesheet" href="./styles/common.css">
+  </head>
+  <body>
+    <script src="./scripts/test-device.js"></script>
+    <div class="wrapper">
+      <!-- header start-->
+      <header class="header">
+        <div class="container header__container"><a class="header__open-nav" href="#mobile-nav" data-action="open_modal">
+            <svg class="icon">
+              <use xlink:href="./img/icons/icons.svg#burger"></use>
+            </svg></a><a class="logo header__logo" href="./">
+            <svg class="icon logo__image" viewBox="0 0 213 43">
+              <use xlink:href="./img/icons/icons.svg#logo"></use>
+            </svg></a>
+          <div class="header__search">
+            <div class="search-element" id="search" data-custom-interaction>
+              <div class="search-element__container">
+                <div class="container">
+                  <div class="search-element__input-inner">
+                    <div class="search-element__form" data-custom-interaction>
+                      <input class="search-element__input" type="text" placeholder="Поиск">
+                      <svg class="icon">
+                        <use xlink:href="./img/icons/icons.svg#magnifier"></use>
+                      </svg>
+                    </div>
+                    <button class="search-element__close" data-action="close_modal" aria-label="Закрыть поиск">Отмена</button>
+                  </div>
+                  <div class="search-element__resaults"> <a class="search-element__resault-link" href="#"> <span>Лотки под запайку </span>
+                      <svg class="icon">
+                        <use xlink:href="./img/icons/icons.svg#arrow"></use>
+                      </svg></a><a class="search-element__resault-link" href="#"> <span>Лотки под запайку </span>
+                      <svg class="icon">
+                        <use xlink:href="./img/icons/icons.svg#arrow"></use>
+                      </svg></a><a class="search-element__resault-link" href="#"> <span>Лотки под запайку </span>
+                      <svg class="icon">
+                        <use xlink:href="./img/icons/icons.svg#arrow"></use>
+                      </svg></a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="header__items"> <a class="header__button d-lg-none" href="#search" data-action="open_modal">
+              <svg class="icon">
+                <use xlink:href="./img/icons/icons.svg#magnifier"></use>
+              </svg></a>
+            <button class="header__button header__location-button" data-action="open_location" aria-label="open location">
+              <svg class="icon">
+                <use xlink:href="./img/icons/icons.svg#placemark"></use>
+              </svg><span>Воронеж</span>
+            </button><a class="header__button header__phone-button" href="javascript:void(0);" data-tippy-content="Заказать звонок">
+              <svg class="icon">
+                <use xlink:href="./img/icons/icons.svg#phone"></use>
+              </svg></a><a class="header__button header__cart-button" href="#" data-tippy-content="Корзина пустая">
+              <svg class="icon">
+                <use xlink:href="./img/icons/icons.svg#cart"></use>
+              </svg><span>99</span></a>
+          </div>
+        </div>
+      </header>
+      <!-- header end-->
+      <!--nav start-->
+      <nav class="mobile-nav" id="mobile-nav">
+        <div class="mobile-nav__container scrollbar" data-scroll-lock-scrollable>
+          <div class="mobile-nav__head"> <a class="logo mobile-nav__logo" href="#">
+              <svg class="icon logo__image" viewBox="0 0 213 43">
+                <use xlink:href="./img/icons/icons.svg#logo"></use>
+              </svg></a>
+            <button class="close-button mobile-nav__close-button" data-action="close_modal" aria-label="Закрыть меню">
+              <svg class="icon">
+                <use xlink:href="./img/icons/icons.svg#close-button"></use>
+              </svg>
+            </button>
+          </div>
+          <div class="mobile-nav__content">
+            <div class="container">
+              <ul class="mobile-nav__list">
+                <li class="mobile-nav__item"> <a class="mobile-nav__link" href="katalog.html">Каталог товаров</a>
+                  <ul class="mobile-nav__categories-list">
+                    <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
+                        <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_1">
+                          <use xlink:href="./img/icons/icons.svg#lotok-pod-zapajku"></use>
+                        </svg><span>Лоток под запайку</span></a></li>
+                    <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
+                        <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_2">
+                          <use xlink:href="./img/icons/icons.svg#kontejnery"></use>
+                        </svg><span>Контейнеры</span></a></li>
+                    <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
+                        <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_3">
+                          <use xlink:href="./img/icons/icons.svg#tortniczy"></use>
+                        </svg><span>Тортницы</span></a></li>
+                    <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
+                        <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_4">
+                          <use xlink:href="./img/icons/icons.svg#pakety"></use>
+                        </svg><span>Пакеты</span></a></li>
+                    <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
+                        <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_5">
+                          <use xlink:href="./img/icons/icons.svg#odnorazovaya-posuda"></use>
+                        </svg><span>Одноразовая посуда</span></a></li>
+                    <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
+                        <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_6">
+                          <use xlink:href="./img/icons/icons.svg#plyonka"></use>
+                        </svg><span>Плёнка</span></a></li>
+                    <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
+                        <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_7">
+                          <use xlink:href="./img/icons/icons.svg#yomkosti-iz-vps"></use>
+                        </svg><span>Ёмкости из ВПС</span></a></li>
+                    <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
+                        <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_8">
+                          <use xlink:href="./img/icons/icons.svg#bumazhnaya-upakovka"></use>
+                        </svg><span>Бумажная упаковка</span></a></li>
+                    <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
+                        <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_9">
+                          <use xlink:href="./img/icons/icons.svg#vyodra-banki-yomkosti"></use>
+                        </svg><span>Вёдра, банки, ёмкости</span></a></li>
+                    <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
+                        <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_10">
+                          <use xlink:href="./img/icons/icons.svg#khozyajstvennye-tovary"></use>
+                        </svg><span>Хозяйственные товары</span></a></li>
+                  </ul>
+                </li>
+                <li class="mobile-nav__item"> <a class="mobile-nav__link" href="#">О компании</a></li>
+                <li class="mobile-nav__item"> <a class="mobile-nav__link" href="#">Карьера</a></li>
+                <li class="mobile-nav__item"> <a class="mobile-nav__link" href="#">Поставщикам</a></li>
+                <li class="mobile-nav__item"> <a class="mobile-nav__link" href="#">Клиентам</a></li>
+                <li class="mobile-nav__item"> <a class="mobile-nav__link" href="#">Контакты</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="mobile-nav__overlay" data-action="close_modal"></div>
+      </nav>
+      <!--nav end-->
+      <!--location start-->
+      <div class="location-element">
+        <div class="location-element__container scrollbar">
+          <ul class="location-element__list">
+            <li class="location-element__item"> <a class="location-element__link" href="#">Москва </a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Санкт-Петербург</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Абакан</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Азов</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Александров</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Алексин</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Альметьевск</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Анапа</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Ангарск</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Анжеро-Судженск</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Апатиты</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Арзамас</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Армавир</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Анапа</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Ангарск</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Анжеро-Судженск</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Апатиты</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Арзамас</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Армавир</a></li>
+          </ul>
+        </div>
+      </div>
+      <!--location end-->
+      <main class="main">
+        <section class="section screen-section about-company-head">
+          <div class="screen-section__background image image_cover"> <img class="lazyload" src="./img/o-kompanii/NY5A3446 1.jpg" alt="image"><img class="lazyload" src="./img/o-kompanii/NY5A3446 2.png" alt="image"></div>
+          <div class="container about-company-head__container">
+            <h1 class="about-company-head__title">О компании</h1>
+            <div class="screen-section__description about-company-head__description">
+              <p class="h6">Мы специализируемся на производстве упаковки из пищевого полипропилена и ПЭТ, различных видов пакетов из полиэтилена низкого и высокого давления, а также на комплексном снабжении упаковочными материалами розничных торговых сетей, предприятий пищевой промышленности и HoReCa.</p>
+            </div>
+          </div>
+        </section>
+        <section class="section d-sm-none">
+          <div class="container">
+            <div class="row">
+              <div class="col-10 offset-1">
+                <p class="h6">Мы специализируемся на производстве упаковки из пищевого полипропилена и ПЭТ, различных видов пакетов из полиэтилена низкого и высокого давления, а также на комплексном снабжении упаковочными материалами розничных торговых сетей, предприятий пищевой промышленности и HoReCa.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-11 col-lg-5">
+                <div class="image image_cover image-content image-size-side image-align-screen" style="--image-size:66%;"><img class="lazyload" data-src="./img/o-kompanii/kdnnce.jpg" alt="image"></div>
+              </div>
+              <div class="col-11 offset-1 col-sm-7 offset-sm-5 col-lg-5 offset-lg-1 mt-40 mt-md-50 mt-lg-0">
+                <h5 class="color-normal">Производственный комплекс Юпласт — это современное высокотехнологичное оборудование лучших европейских производителей.</h5>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-11 offset-1 col-md-10 offset-md-2 col-lg-6 offset-lg-1 order-lg-2">
+                <div class="image image_cover image-content image-size-side" style="--image-size:58%;"><img class="lazyload" data-src="./img/o-kompanii/dds.jpg" alt="image"></div>
+              </div>
+              <div class="col-11 offset-1 col-sm-7 offset-sm-5 col-lg-5 offset-lg-0 mt-40 mt-md-50 mt-lg-0">
+                <div class="h5 color-normal">15 000 м² складских площадей класса «А».<br> В совокупности с использованием собственного транспорта компания на сегодняшний день предлагает лучший сервис по оперативной доставке товара.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section">
+          <div class="container">
+            <h2 class="text-center text-md-start mb-40 mb-md-50 mb-lg-0">География поставок</h2>
+            <div class="map-vector">
+              <div class="swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide map-vector__slide">
+                    <object class="map-vector__image" type="image/svg+xml" data="./img/o-kompanii/map.svg"></object>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-scrollbar"></div>
+            </div>
+            <div class="row mt-70 mt-md-50 mt-lg-70 row-gap-60 row-gap-md-0">
+              <div class="col-12 col-md-4 text-center"> <span class="h1 d-block mb-10 mb-md-20 color-white">3 000 </span>
+                <p class="h5 color-normal">наименований<br class="d-lg-none">продукции</p>
+              </div>
+              <div class="col-12 col-md-4 text-center"><span class="h1 d-block mb-10 mb-md-20 color-white">5 000 </span>
+                <p class="h5 color-normal">организаций <br class="d-lg-none">доверяют нам</p>
+              </div>
+              <div class="col-12 col-md-4 text-center"><span class="h1 d-block mb-10 mb-md-20 color-white">6 </span>
+                <p class="h5 color-normal">региональных <br class="d-lg-none">представительств</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section">
+          <div class="container">
+            <div class="row align-items-center">
+              <div class="col-12 col-lg-5">
+                <div class="image image_cover image-content image-align-screen image-size-wide image-size-lg-side" style="--image-sm-size:45%;"><img class="lazyload" data-src="./img/o-kompanii/ld.jpg" alt="image"></div>
+              </div>
+              <div class="col-11 offset-1 mt-40 col-md-7 offset-md-5 mt-md-50 col-lg-6 offset-lg-1 mt-lg-0">
+                <h5 class="color-normal">Производственный комплекс Юпласт — это современное высокотехнологичное оборудование лучших европейских производителей.</h5>
+              </div>
+            </div>
+            <div class="row row-gap-60 row-gap-md-50 row-gap-xl-70 justify-content-center mt-70">
+              <!--item-->
+              <div class="col-12 col-md-5 col-xl-4 text-center text-md-start">
+                <div class="d-flex column-gap-15 mb-10 mb-md-20 justify-content-center align-items-center justify-content-md-start">
+                  <div class="h1 mb-0">21</div>
+                </div>
+                <div class="h5 color-normal">изделий в месяц</div>
+              </div>
+              <!--item-->
+              <div class="col-12 col-md-5 col-xl-4 text-center text-md-start">
+                <div class="d-flex column-gap-15 mb-10 mb-md-20 justify-content-center align-items-center justify-content-md-start">Более
+                  <div class="h1 mb-0">140 </div>миллионов
+                </div>
+                <div class="h5 color-normal">изделий в месяц</div>
+              </div>
+              <!--item-->
+              <div class="col-12 col-md-5 col-xl-4 text-center text-md-start">
+                <div class="d-flex column-gap-15 mb-10 mb-md-20 justify-content-center align-items-center justify-content-md-start">Более
+                  <div class="h1 mb-0">100</div>
+                </div>
+                <div class="h5 color-normal">единиц <br class="d-md-none">оборудования</div>
+              </div>
+              <!--item-->
+              <div class="col-12 col-md-5 col-xl-4 text-center text-md-start">
+                <div class="d-flex column-gap-15 mb-10 mb-md-20 justify-content-center align-items-center justify-content-md-start">Более
+                  <div class="h1 mb-0">140 </div>миллионов
+                </div>
+                <div class="h5 color-normal">изделий в месяц</div>
+              </div>
+              <!--item-->
+              <div class="col-12 col-md-5 col-xl-4 text-center text-md-start">
+                <div class="d-flex column-gap-15 mb-10 mb-md-20 justify-content-center align-items-center justify-content-md-start">
+                  <div class="h1 mb-0">7 000 м²</div>
+                </div>
+                <div class="h5 color-normal">производственных <br class="d-md-none">площадей</div>
+              </div>
+              <!--item-->
+              <div class="col-12 col-md-5 col-xl-4 text-center text-md-start">
+                <div class="d-flex column-gap-15 mb-10 mb-md-20 justify-content-center align-items-center justify-content-md-start">Более
+                  <div class="h1 mb-0">7 000 м²</div>тонн
+                </div>
+                <div class="h5 color-normal">переработанного<br class="d-md-none">сырья в год</div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section">
+          <div class="container">
+            <div class="row row-gap-40 align-items-center">
+              <div class="col-12 col-sm-10 offset-sm-1 col-md-6 offset-md-0 col-xl-4 offset-xl-1">
+                <div class="image image_cover image-content" style="--image-size:142%;"><img class="lazyload" data-src="./img/o-kompanii/sass.jpg" alt="image"></div>
+              </div>
+              <div class="col-11 offset-1 col-md-5 offset-md-1">
+                <div class="h5 color-normal">Высокое качество производимой продукции подтверждает Сертификат менеджмента пищевой безопасности ISO 22000.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section">
+          <div class="container">
+            <h2 class="mb-70">История</h2>
+            <div class="swiper history-list">
+              <div class="swiper-wrapper history-list__container">
+                <!--item-->
+                <div class="swiper-slide history-list__item">
+                  <div class="row gx-lg-0">
+                    <div class="col-10 offset-2 col-md-9 offset-md-3 col-lg-12 offset-lg-0">
+                      <h6 class="h1 history-list__item-title mb-10 mb-md-20">2000 </h6>
+                      <div class="history-list__item-description h5">
+                        <p>Основание компании </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--item-->
+                <div class="swiper-slide history-list__item">
+                  <div class="row gx-lg-0">
+                    <div class="col-10 offset-2 col-md-9 offset-md-3 col-lg-12 offset-lg-0">
+                      <h6 class="h1 history-list__item-title mb-10 mb-md-20">2006</h6>
+                      <div class="history-list__item-description h5">
+                        <p>Открыт филиал в г. Белгород</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--item-->
+                <div class="swiper-slide history-list__item">
+                  <div class="row gx-lg-0">
+                    <div class="col-10 offset-2 col-md-9 offset-md-3 col-lg-12 offset-lg-0">
+                      <h6 class="h1 history-list__item-title mb-10 mb-md-20">2007</h6>
+                      <div class="history-list__item-description h5">
+                        <p>Осуществлён запуск производства пакетов из ПНД (пакеты типа «майка», фасовочные пакеты и вкладыши, пакеты для мусора)</p>
+                        <p>Открыт филиал в г. Курск</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--item-->
+                <div class="swiper-slide history-list__item">
+                  <div class="row gx-lg-0">
+                    <div class="col-10 offset-2 col-md-9 offset-md-3 col-lg-12 offset-lg-0">
+                      <h6 class="h1 history-list__item-title mb-10 mb-md-20">2008</h6>
+                      <div class="history-list__item-description h5">
+                        <p>Открыто представительство в г. Липецк</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--item-->
+                <div class="swiper-slide history-list__item">
+                  <div class="row gx-lg-0">
+                    <div class="col-10 offset-2 col-md-9 offset-md-3 col-lg-12 offset-lg-0">
+                      <h6 class="h1 history-list__item-title mb-10 mb-md-20">2011</h6>
+                      <div class="history-list__item-description h5">
+                        <p>Сдан в эксплуатацию складской логистический комплекс класса «А» </p>
+                        <p>Открыт филиал в г. Орёл</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--item-->
+                <div class="swiper-slide history-list__item">
+                  <div class="row gx-lg-0">
+                    <div class="col-10 offset-2 col-md-9 offset-md-3 col-lg-12 offset-lg-0">
+                      <h6 class="h1 history-list__item-title mb-10 mb-md-20">2013</h6>
+                      <div class="history-list__item-description h5">
+                        <p>Осуществлён запуск производства одноразовых стаканов и контейнеров из пищевого полипропилена </p>
+                        <p>Открыт филиал в г. Волгоград</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--item-->
+                <div class="swiper-slide history-list__item">
+                  <div class="row gx-lg-0">
+                    <div class="col-10 offset-2 col-md-9 offset-md-3 col-lg-12 offset-lg-0">
+                      <h6 class="h1 history-list__item-title mb-10 mb-md-20">2015</h6>
+                      <div class="history-list__item-description h5">
+                        <p>Расширение производства ассортиментной линейки по пакетам фасовочным «Рулон на втулке»</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--item-->
+                <div class="swiper-slide history-list__item">
+                  <div class="row gx-lg-0">
+                    <div class="col-10 offset-2 col-md-9 offset-md-3 col-lg-12 offset-lg-0">
+                      <h6 class="h1 history-list__item-title mb-10 mb-md-20">2017</h6>
+                      <div class="history-list__item-description h5">
+                        <p>Расширение производства ассортиментной линейки контейнеров из пищевого полипропилена</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!--item-->
+                <div class="swiper-slide history-list__item">
+                  <div class="row gx-lg-0">
+                    <div class="col-10 offset-2 col-md-9 offset-md-3 col-lg-12 offset-lg-0">
+                      <h6 class="h1 history-list__item-title mb-10 mb-md-20">2020</h6>
+                      <div class="history-list__item-description h5">
+                        <p>Осуществлён запуск производства лотков под запайку из пищевого полипропилена</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section company-mission-text">
+          <div class="container">
+            <h2 class="company-mission-text__title">Миссия компании</h2>
+            <div class="row">
+              <div class="col-11 offset-1 col-md-9 offset-md-3 col-xl-6 offset-xl-6">
+                <h3>Предвидение и максимальное удовлетворение потребностей Клиентов на рынке современной упаковки.</h3>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <div class="container footer__container">
+          <div class="footer__top">
+            <!-- 1 - только главная-->
+            <!-- 2 - все остальные страницы кроме главной и страницы контактов-->
+            <ul class="footer__nav">
+              <li class="footer__nav-item"> <a class="footer__nav-link" href="tel:74732502040">
+                  <svg class="icon">
+                    <use xlink:href="./img/icons/icons.svg#phone"></use>
+                  </svg>+7 (47-32) 50-20-40</a></li>
+              <li class="footer__nav-item"> <a class="footer__nav-link" href="mailto:gk@uplastgroup.ru">
+                  <svg class="icon">
+                    <use xlink:href="./img/icons/icons.svg#envelope"></use>
+                  </svg>gk@uplastgroup.ru</a></li>
+            </ul>
+            <!--то что ниже - не меняется в зависимости от страницы-->
+            <div class="socials footer__socials">
+              <ul class="socials__list">
+                <li class="socials__item"> <a class="socials__link" href="#">Facebook
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/socials.svg#facebook"></use>
+                    </svg></a></li>
+                <li class="socials__item"> <a class="socials__link" href="#">LinkedIn
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/socials.svg#linkedin"></use>
+                    </svg></a></li>
+                <li class="socials__item"> <a class="socials__link" href="#">Instagram
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/socials.svg#instagram"></use>
+                    </svg></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="footer__bottom"><span class="footer__copyright">© 2021, ГК ЮПЛАСТ. Все права защищены.</span>
+            <div class="dev-label"><span>Разработка сайта — </span><a href="https://artica.art/" rel="noopener" target="_blank"><span>artica.art</span>
+                <svg viewBox="0 0 74 15" fill="currentColor">
+                  <path d="M42.4491 5.10225L40.8535 5.1062L40.8776 14.8511L42.4733 14.8471L42.4491 5.10225Z"></path>
+                  <path d="M50.682 5.03761C49.369 5.04084 48.1351 5.55516 47.2089 6.48638C46.2828 7.41714 45.7741 8.65304 45.7774 9.96661C45.7806 11.2797 46.2954 12.5131 47.2261 13.4397C48.1569 14.3659 49.3933 14.8741 50.7064 14.8708C52.1361 14.8673 53.4864 14.2431 54.4207 13.1563L53.2439 12.46C52.568 13.1482 51.6669 13.5284 50.703 13.5308C48.7308 13.5357 47.1227 11.935 47.1178 9.96329C47.113 7.99107 48.7131 6.38296 50.6853 6.37809C51.6492 6.37569 52.5522 6.75101 53.2315 7.43634L54.4048 6.73414C53.4652 5.65157 52.1118 5.03407 50.682 5.03761Z"></path>
+                  <path d="M55.834 14.5723L57.7509 14.5675L64.3502 3.4162L64.3897 3.34947L64.4291 3.416L71.0839 14.5345L73.0004 14.5298L64.3817 0.128906L55.834 14.5723Z"></path>
+                  <path d="M23.5886 10.4929L23.6509 10.4795C24.9142 10.2056 25.828 9.07077 25.8248 7.78085C25.8211 6.26224 24.5829 5.02971 23.0643 5.03346L16.9043 5.04871L17.7668 6.44424L23.1013 6.43103C23.8469 6.42919 24.4546 7.04476 24.4565 7.80361C24.4584 8.56245 23.8537 9.18103 23.1081 9.18287L22.8312 9.18356L21.9292 9.18578L21.9327 10.5905L21.9328 10.626L24.4161 14.775L26.1488 14.7707L23.6213 10.5476L23.5886 10.4929Z"></path>
+                  <path d="M29.002 5.01844L29.0056 6.48886L32.3811 6.4805L32.427 6.48038L32.4271 6.52621L32.4474 14.7548L34.0426 14.7509L34.0222 6.52226L34.0221 6.47643L34.0684 6.47632L37.444 6.46798L37.4403 4.99756L29.002 5.01844Z"></path>
+                  <path d="M0.46875 14.7092L2.38521 14.7045L8.98495 3.55316L9.02448 3.48643L9.06338 3.55296L15.7182 14.6715L17.6347 14.6668L9.01651 0.265869L0.46875 14.7092Z"></path>
+                </svg></a></div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <!--jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!--webpack-->
+    <script src="./scripts/common.js"></script>
+    <!--preview only-->
+    <link rel="stylesheet" href="./styles/helper.css">
+    <div class="helper"><a class="helper__trigger" href="javascript:void(0);">
+        <svg class="icon" viewBox="0 0 100 100" fill="currentColor">
+          <g transform="translate(50 50)">
+            <g>
+              <animatetransform attributeName="transform" type="rotate" values="0;51.42857142857143" keyTimes="0;1" dur="0.6s" repeatCount="indefinite"></animatetransform>
+              <path d="M31.448370387032774 -10 L46.448370387032774 -10 L46.448370387032774 10 L31.448370387032774 10 A33 33 0 0 1 27.42605304607143 18.352428022310185 L27.42605304607143 18.352428022310185 L36.77840007395243 30.079900259330632 L21.141770424591833 42.5496962965053 L11.789423396710829 30.82222405948486 A33 33 0 0 1 2.7513583718916075 32.885103422513694 L2.7513583718916075 32.885103422513694 L-0.5864556374531071 47.509022105241044 L-20.085013881089584 43.05860342611476 L-16.74719987174487 28.434684743387407 A33 33 0 0 1 -23.995165273805295 22.654625211703866 L-23.995165273805295 22.654625211703866 L-37.50969829234158 29.16288129846724 L-46.18737307469275 11.143503940418853 L-32.67284005615647 4.635247853655478 A33 33 0 0 1 -32.67284005615647 -4.63524785365547 L-32.67284005615647 -4.63524785365547 L-46.18737307469276 -11.143503940418839 L-37.50969829234159 -29.162881298467227 L-23.995165273805302 -22.654625211703856 A33 33 0 0 1 -16.747199871744876 -28.434684743387404 L-16.747199871744876 -28.434684743387404 L-20.085013881089594 -43.05860342611476 L-0.5864556374531196 -47.509022105241044 L2.751358371891599 -32.885103422513694 A33 33 0 0 1 11.78942339671082 -30.82222405948486 L11.78942339671082 -30.82222405948486 L21.141770424591822 -42.54969629650531 L36.778400073952426 -30.079900259330635 L27.426053046071427 -18.35242802231019 A33 33 0 0 1 31.448370387032774 -10.000000000000009 M0 -20A20 20 0 1 0 0 20 A20 20 0 1 0 0 -20"></path>
+            </g>
+          </g>
+        </svg></a>
+      <div class="helper__container">
+        <!--section-->
+        <div class="helper__section"><span class="helper__section-title">Страницы:</span>
+          <div class="helper__section-content"><a class="helper__section-button" href="index.html">Главная</a><a class="helper__section-button" href="katalog.html">Каталог</a><a class="helper__section-button" href="katalog-vydacha.html">Каталог-выдача</a><a class="helper__section-button" href="kartochka-tovara.html">Карточка товара</a><a class="helper__section-button" href="kontakty.html">Контакты</a><a class="helper__section-button" href="korzina.html">Корзина</a><a class="helper__section-button" href="korzina-empty.html">Корзина пустая</a><a class="helper__section-button" href="oformlenie-zakaza.html">Оформление заказа</a><a class="helper__section-button" href="oformlenie-zakaza-final.html">Оформление заказа финал</a><a class="helper__section-button" href="o-kompanii.html">О компании</a><a class="helper__section-button" href="postavshhikam.html">Поставщикам</a><a class="helper__section-button" href="konkursnye-zakupki.html">Конкурсные закупки</a><a class="helper__section-button" href="components.html">Компоненты</a></div>
+        </div>
+      </div>
+    </div>
+    <script src="./scripts/helper.js"></script>
+  </body>
+</html>

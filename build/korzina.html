@@ -3,27 +3,14 @@
   <head>
     <meta charset="utf-8">
     <title>Юпласт — Корзина</title>
-    <meta name="viewport" content="width=360, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
     <!--color-->
     <meta name="theme-color" content="#424346">
     <!--favicons-->
-    <link rel="shortcut icon" href="img/favicons/favicon.ico" type="image/x-icon">
-    <link rel="icon" sizes="16x16" href="img/favicons/favicon-16x16.png" type="image/png">
-    <link rel="icon" sizes="32x32" href="img/favicons/favicon-32x32.png" type="image/png">
-    <link rel="apple-touch-icon-precomposed" href="img/favicons/apple-touch-icon-precomposed.png">
-    <link rel="apple-touch-icon" href="img/favicons/apple-touch-icon.png">
-    <link rel="apple-touch-icon" sizes="57x57" href="img/favicons/apple-touch-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="img/favicons/apple-touch-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="img/favicons/apple-touch-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="img/favicons/apple-touch-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="img/favicons/apple-touch-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="img/favicons/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="img/favicons/apple-touch-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="img/favicons/apple-touch-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="167x167" href="img/favicons/apple-touch-icon-167x167.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="img/favicons/apple-touch-icon-180x180.png">
-    <link rel="apple-touch-icon" sizes="1024x1024" href="img/favicons/apple-touch-icon-1024x1024.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/favicons/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicons/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./img/favicons/apple-touch-icon.png">
     <!--open graph-->
     <meta property="og:title" content="От технологии до совершенного продукта">
     <meta property="og:site_name" content="Юпласт">
@@ -39,20 +26,48 @@
     <link rel="stylesheet" href="./styles/common.css">
   </head>
   <body>
+    <script src="./scripts/test-device.js"></script>
     <div class="wrapper">
       <!-- header start-->
       <header class="header">
-        <div class="container header__container">
-          <button class="header__open-nav" data-action="open_nav" aria-label="open nav">
+        <div class="container header__container"><a class="header__open-nav" href="#mobile-nav" data-action="open_modal">
             <svg class="icon">
               <use xlink:href="./img/icons/icons.svg#burger"></use>
-            </svg>
-          </button><a class="logo header__logo" href="./">
+            </svg></a><a class="logo header__logo" href="./">
             <svg class="icon logo__image" viewBox="0 0 213 43">
               <use xlink:href="./img/icons/icons.svg#logo"></use>
             </svg></a>
-          <div class="header__search"></div>
-          <div class="header__items">
+          <div class="header__search">
+            <div class="search-element" id="search" data-custom-interaction>
+              <div class="search-element__container">
+                <div class="container">
+                  <div class="search-element__input-inner">
+                    <div class="search-element__form" data-custom-interaction>
+                      <input class="search-element__input" type="text" placeholder="Поиск">
+                      <svg class="icon">
+                        <use xlink:href="./img/icons/icons.svg#magnifier"></use>
+                      </svg>
+                    </div>
+                    <button class="search-element__close" data-action="close_modal" aria-label="Закрыть поиск">Отмена</button>
+                  </div>
+                  <div class="search-element__resaults"> <a class="search-element__resault-link" href="#"> <span>Лотки под запайку </span>
+                      <svg class="icon">
+                        <use xlink:href="./img/icons/icons.svg#arrow"></use>
+                      </svg></a><a class="search-element__resault-link" href="#"> <span>Лотки под запайку </span>
+                      <svg class="icon">
+                        <use xlink:href="./img/icons/icons.svg#arrow"></use>
+                      </svg></a><a class="search-element__resault-link" href="#"> <span>Лотки под запайку </span>
+                      <svg class="icon">
+                        <use xlink:href="./img/icons/icons.svg#arrow"></use>
+                      </svg></a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="header__items"> <a class="header__button d-lg-none" href="#search" data-action="open_modal">
+              <svg class="icon">
+                <use xlink:href="./img/icons/icons.svg#magnifier"></use>
+              </svg></a>
             <button class="header__button header__location-button" data-action="open_location" aria-label="open location">
               <svg class="icon">
                 <use xlink:href="./img/icons/icons.svg#placemark"></use>
@@ -60,7 +75,7 @@
             </button><a class="header__button header__phone-button" href="javascript:void(0);" data-tippy-content="Заказать звонок">
               <svg class="icon">
                 <use xlink:href="./img/icons/icons.svg#phone"></use>
-              </svg></a><a class="header__button header__cart-button" href="#">
+              </svg></a><a class="header__button header__cart-button" href="#" data-tippy-content="Корзина пустая">
               <svg class="icon">
                 <use xlink:href="./img/icons/icons.svg#cart"></use>
               </svg><span>99</span></a>
@@ -69,20 +84,22 @@
       </header>
       <!-- header end-->
       <!--nav start-->
-      <nav class="mobile-nav">
-        <div class="mobile-nav__container">
-          <div class="mobile-nav__head">
-            <button class="close-button mobile-nav__close-button" data-action="close_nav" aria-label="close nav">
+      <nav class="mobile-nav" id="mobile-nav">
+        <div class="mobile-nav__container scrollbar" data-scroll-lock-scrollable>
+          <div class="mobile-nav__head"> <a class="logo mobile-nav__logo" href="#">
+              <svg class="icon logo__image" viewBox="0 0 213 43">
+                <use xlink:href="./img/icons/icons.svg#logo"></use>
+              </svg></a>
+            <button class="close-button mobile-nav__close-button" data-action="close_modal" aria-label="Закрыть меню">
               <svg class="icon">
                 <use xlink:href="./img/icons/icons.svg#close-button"></use>
               </svg>
             </button>
           </div>
-          <div class="mobile-nav__scrollbar scrollbar">
-            <div class="mobile-nav__content scrollbar__container">
+          <div class="mobile-nav__content">
+            <div class="container">
               <ul class="mobile-nav__list">
-                <li class="mobile-nav__item"> <a class="mobile-nav__link" href="katalog.html">Каталог товаров</a></li>
-                <li class="mobile-nav__item">
+                <li class="mobile-nav__item"> <a class="mobile-nav__link" href="katalog.html">Каталог товаров</a>
                   <ul class="mobile-nav__categories-list">
                     <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
                         <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_1">
@@ -135,44 +152,33 @@
             </div>
           </div>
         </div>
+        <div class="mobile-nav__overlay" data-action="close_modal"></div>
       </nav>
       <!--nav end-->
-      <!--search start-->
-      <div class="search-element">
-        <div class="search-element__input" data-custom-interaction>
-          <input class="search-element__input-element" type="text" placeholder="Поиск">
-          <svg class="icon">
-            <use xlink:href="./img/icons/icons.svg#magnifier"></use>
-          </svg>
-        </div>
-      </div>
-      <!--search end-->
       <!--location start-->
       <div class="location-element">
-        <div class="location-element__scrollbar scrollbar">
-          <div class="location-element__container scrollbar__container">
-            <ul class="location-element__list">
-              <li class="location-element__item"> <a class="location-element__link" href="#">Москва </a></li>
-              <li class="location-element__item"> <a class="location-element__link" href="#">Санкт-Петербург</a></li>
-              <li class="location-element__item"> <a class="location-element__link" href="#">Абакан</a></li>
-              <li class="location-element__item"> <a class="location-element__link" href="#">Азов</a></li>
-              <li class="location-element__item"> <a class="location-element__link" href="#">Александров</a></li>
-              <li class="location-element__item"> <a class="location-element__link" href="#">Алексин</a></li>
-              <li class="location-element__item"> <a class="location-element__link" href="#">Альметьевск</a></li>
-              <li class="location-element__item"> <a class="location-element__link" href="#">Анапа</a></li>
-              <li class="location-element__item"> <a class="location-element__link" href="#">Ангарск</a></li>
-              <li class="location-element__item"> <a class="location-element__link" href="#">Анжеро-Судженск</a></li>
-              <li class="location-element__item"> <a class="location-element__link" href="#">Апатиты</a></li>
-              <li class="location-element__item"> <a class="location-element__link" href="#">Арзамас</a></li>
-              <li class="location-element__item"> <a class="location-element__link" href="#">Армавир</a></li>
-              <li class="location-element__item"> <a class="location-element__link" href="#">Анапа</a></li>
-              <li class="location-element__item"> <a class="location-element__link" href="#">Ангарск</a></li>
-              <li class="location-element__item"> <a class="location-element__link" href="#">Анжеро-Судженск</a></li>
-              <li class="location-element__item"> <a class="location-element__link" href="#">Апатиты</a></li>
-              <li class="location-element__item"> <a class="location-element__link" href="#">Арзамас</a></li>
-              <li class="location-element__item"> <a class="location-element__link" href="#">Армавир</a></li>
-            </ul>
-          </div>
+        <div class="location-element__container scrollbar">
+          <ul class="location-element__list">
+            <li class="location-element__item"> <a class="location-element__link" href="#">Москва </a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Санкт-Петербург</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Абакан</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Азов</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Александров</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Алексин</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Альметьевск</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Анапа</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Ангарск</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Анжеро-Судженск</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Апатиты</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Арзамас</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Армавир</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Анапа</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Ангарск</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Анжеро-Судженск</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Апатиты</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Арзамас</a></li>
+            <li class="location-element__item"> <a class="location-element__link" href="#">Армавир</a></li>
+          </ul>
         </div>
       </div>
       <!--location end-->
@@ -184,12 +190,18 @@
             </div>
             <div class="cart__container">
               <div class="cart__content">
-                <div class="cart-item">
+                <div class="cart-item cart__item">
                   <div class="cart-item__container"><a class="cart-item__image" href="#">
-                      <div class="image image_contain"><img class="lazyload" data-src="./img/konteyner_108kh82_500ml_prozrachnyy_pp_1000_100_ 7.jpg" alt="image"></div></a>
+                      <picture class="image image_cover">
+                        <source type="image/webp" data-srcset="./img/bvrly8qknw2xhq.webp"><img class="lazyload" data-src="./img/konteyner_108kh82_500ml_prozrachnyy_pp_1000_100_ 7.jpg" alt="image">
+                      </picture></a>
                     <div class="cart-item__title"><a class="h5" href="#">Соусник с крышкой 80 мл прозрачный пп 960/80</a></div>
                     <div class="cart-item__info">
                       <table class="info-table">
+                        <tr>
+                          <td> <span>Количество в упаковке</span></td>
+                          <td> <span>4000 шт.</span></td>
+                        </tr>
                         <tr>
                           <td> <span>Артикул</span></td>
                           <td> <span>ЮУПМ3315</span></td>
@@ -207,7 +219,8 @@
                             <use xlink:href="./img/icons/icons.svg#minus"></use>
                           </svg>
                         </button>
-                        <input class="product-calculator__input" type="text" value="1">
+                        <input class="product-calculator__input" name="count" value="1" data-count="450" disabled>
+                        <input class="product-calculator__count-input" type="text" value="1">
                         <button class="product-calculator__button product-calculator__button_plus">
                           <svg class="icon">
                             <use xlink:href="./img/icons/icons.svg#plus"></use>
@@ -215,11 +228,13 @@
                         </button>
                       </div>
                     </div>
-                    <button class="cart-item__remove">
-                      <svg class="icon">
-                        <use xlink:href="./img/icons/icons.svg#remove"></use>
-                      </svg>
-                    </button>
+                    <div class="cart-item__remove">
+                      <button>
+                        <svg class="icon">
+                          <use xlink:href="./img/icons/icons.svg#remove"></use>
+                        </svg>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -227,7 +242,7 @@
                 <div class="cart-total">
                   <div class="cart-total__top">
                     <div class="cart-total__title text-muted">Итог</div>
-                    <div class="cart-total__count"> <span class="h2">3 </span><span class="text-muted">позиции</span></div>
+                    <div class="cart-total__count"> <span class="h2">3</span><span class="text-muted">позиции</span></div>
                     <div class="cart-total__weight">
                        Общий вес: <span>40 кг</span></div>
                   </div>
@@ -237,10 +252,153 @@
             </div>
           </div>
         </section>
+        <section class="section section-border">
+          <div class="container">
+            <div class="section-border__head">
+              <h3>Вам пригодится</h3>
+            </div>
+            <div class="swiper products-slider slider-constructor" data-slides="2" data-md-slides="3" data-lg-slides="4" data-xl-slides="5" data-xxl-slides="6">
+              <div class="swiper-button swiper-button-prev" data-custom-interaction>
+                <svg class="icon">
+                  <use xlink:href="./img/icons/icons.svg#arrow-left"></use>
+                </svg>
+              </div>
+              <div class="swiper-button swiper-button-next" data-custom-interaction>
+                <svg class="icon">
+                  <use xlink:href="./img/icons/icons.svg#arrow-right"></use>
+                </svg>
+              </div>
+              <div class="swiper-container">
+                <div class="swiper-wrapper">
+                  <!--slide-->
+                  <div class="swiper-slide">
+                    <div class="product-card" data-custom-interaction="data-custom-interaction">
+                      <div class="product-card__image">
+                        <div class="product-card__labes">
+                        </div><a class="product-card__image-cover" href="#">
+                          <picture class="image image_cover">
+                            <source type="image/webp" data-srcset="./img/bvrly8qknw2xhq.webp"/><img class="lazyload" data-src="./img/konteyner_108kh82_500ml_prozrachnyy_pp_1000_100_ 7.jpg" alt="image"/>
+                          </picture></a>
+                      </div>
+                      <div class="product-card__content">
+                        <div class="product-card__content-top"> <a class="product-card__title" href="#" title="тест"> Банка 0,5л D-122 прозрачная ПП</a><span class="product-card__info">Минимальный заказ: 100 шт.</span></div>
+                        <button class="button button_style-1 cart-button"><span class="button__inner"> <span>В корзину</span></span><span class="button__inner"><span>В корзинe</span></span></button>
+                      </div>
+                    </div>
+                  </div>
+                  <!--slide-->
+                  <div class="swiper-slide">
+                    <div class="product-card" data-custom-interaction="data-custom-interaction">
+                      <div class="product-card__image">
+                        <div class="product-card__labes">
+                          <div class="product-card__label product-card__label_type-new">Новинка</div>
+                        </div><a class="product-card__image-cover" href="#">
+                          <picture class="image image_cover">
+                            <source type="image/webp" data-srcset="./img/bvrly8qknw2xhq.webp"/><img class="lazyload" data-src="./img/konteyner_108kh82_500ml_prozrachnyy_pp_1000_100_ 7.jpg" alt="image"/>
+                          </picture></a>
+                      </div>
+                      <div class="product-card__content">
+                        <div class="product-card__content-top"> <a class="product-card__title" href="#" title="тест"> Банка 0,5л D-122 прозрачная ПП</a><span class="product-card__info">Минимальный заказ: 100 шт.</span></div>
+                        <button class="button button_style-1 cart-button cart-button_in-cart"><span class="button__inner"> <span>В корзину</span></span><span class="button__inner"><span>В корзинe</span></span></button>
+                      </div>
+                    </div>
+                  </div>
+                  <!--slide-->
+                  <div class="swiper-slide">
+                    <div class="product-card" data-custom-interaction="data-custom-interaction">
+                      <div class="product-card__image">
+                        <div class="product-card__labes">
+                          <div class="product-card__label product-card__label_type-popular">Популярное</div>
+                        </div><a class="product-card__image-cover" href="#">
+                          <picture class="image image_cover">
+                            <source type="image/webp" data-srcset="./img/bvrly8qknw2xhq.webp"/><img class="lazyload" data-src="./img/konteyner_108kh82_500ml_prozrachnyy_pp_1000_100_ 7.jpg" alt="image"/>
+                          </picture></a>
+                      </div>
+                      <div class="product-card__content">
+                        <div class="product-card__content-top"> <a class="product-card__title" href="#" title="тест"> Банка 0,5л</a><span class="product-card__info">Минимальный заказ: 100 шт.</span></div>
+                        <button class="button button_style-1 cart-button"><span class="button__inner"> <span>В корзину</span></span><span class="button__inner"><span>В корзинe</span></span></button>
+                      </div>
+                    </div>
+                  </div>
+                  <!--slide-->
+                  <div class="swiper-slide">
+                    <div class="product-card" data-custom-interaction="data-custom-interaction">
+                      <div class="product-card__image">
+                        <div class="product-card__labes">
+                          <div class="product-card__label product-card__label_type-stock">Акция</div>
+                        </div><a class="product-card__image-cover" href="#">
+                          <picture class="image image_cover">
+                            <source type="image/webp" data-srcset="./img/bvrly8qknw2xhq.webp"/><img class="lazyload" data-src="./img/konteyner_108kh82_500ml_prozrachnyy_pp_1000_100_ 7.jpg" alt="image"/>
+                          </picture></a>
+                      </div>
+                      <div class="product-card__content">
+                        <div class="product-card__content-top"> <a class="product-card__title" href="#" title="тест"> Банка 0,5л D-122 прозрачная ПП</a><span class="product-card__info">Минимальный заказ: 100 шт.</span></div>
+                        <button class="button button_style-1 cart-button"><span class="button__inner"> <span>В корзину</span></span><span class="button__inner"><span>В корзинe</span></span></button>
+                      </div>
+                    </div>
+                  </div>
+                  <!--slide-->
+                  <div class="swiper-slide">
+                    <div class="product-card" data-custom-interaction="data-custom-interaction">
+                      <div class="product-card__image">
+                        <div class="product-card__labes">
+                          <div class="product-card__label product-card__label_type-stock">Акция</div>
+                          <div class="product-card__label product-card__label_type-sale">Распродажа</div>
+                        </div><a class="product-card__image-cover" href="#">
+                          <picture class="image image_cover">
+                            <source type="image/webp" data-srcset="./img/bvrly8qknw2xhq.webp"/><img class="lazyload" data-src="./img/konteyner_108kh82_500ml_prozrachnyy_pp_1000_100_ 7.jpg" alt="image"/>
+                          </picture></a>
+                      </div>
+                      <div class="product-card__content">
+                        <div class="product-card__content-top"> <a class="product-card__title" href="#" title="тест"> Банка Оченьдлинноесловокотороенепомещается в строке по какой-то причине</a><span class="product-card__info">Минимальный заказ: 100 шт.</span></div>
+                        <button class="button button_style-1 cart-button"><span class="button__inner"> <span>В корзину</span></span><span class="button__inner"><span>В корзинe</span></span></button>
+                      </div>
+                    </div>
+                  </div>
+                  <!--slide-->
+                  <div class="swiper-slide">
+                    <div class="product-card" data-custom-interaction="data-custom-interaction">
+                      <div class="product-card__image">
+                        <div class="product-card__labes">
+                        </div><a class="product-card__image-cover" href="#">
+                          <picture class="image image_cover">
+                            <source type="image/webp" data-srcset="./img/bvrly8qknw2xhq.webp"/><img class="lazyload" data-src="./img/konteyner_108kh82_500ml_prozrachnyy_pp_1000_100_ 7.jpg" alt="image"/>
+                          </picture></a>
+                      </div>
+                      <div class="product-card__content">
+                        <div class="product-card__content-top"> <a class="product-card__title" href="#" title="тест"> Банка 0,5л D-122 прозрачная ПП</a><span class="product-card__info">Минимальный заказ: 100 шт.</span></div>
+                        <button class="button button_style-1 cart-button"><span class="button__inner"> <span>В корзину</span></span><span class="button__inner"><span>В корзинe</span></span></button>
+                      </div>
+                    </div>
+                  </div>
+                  <!--slide-->
+                  <div class="swiper-slide">
+                    <div class="product-card" data-custom-interaction="data-custom-interaction">
+                      <div class="product-card__image">
+                        <div class="product-card__labes">
+                          <div class="product-card__label product-card__label_type-popular">Популярное</div>
+                        </div><a class="product-card__image-cover" href="#">
+                          <picture class="image image_cover">
+                            <source type="image/webp" data-srcset="./img/bvrly8qknw2xhq.webp"/><img class="lazyload" data-src="./img/konteyner_108kh82_500ml_prozrachnyy_pp_1000_100_ 7.jpg" alt="image"/>
+                          </picture></a>
+                      </div>
+                      <div class="product-card__content">
+                        <div class="product-card__content-top"> <a class="product-card__title" href="#" title="тест"> Банка 0,5л</a><span class="product-card__info">Минимальный заказ: 100 шт.</span></div>
+                        <button class="button button_style-1 cart-button"><span class="button__inner"> <span>В корзину</span></span><span class="button__inner"><span>В корзинe</span></span></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
       <footer class="footer">
         <div class="container footer__container">
           <div class="footer__top">
+            <!-- 1 - только главная-->
+            <!-- 2 - все остальные страницы кроме главной и страницы контактов-->
             <ul class="footer__nav">
               <li class="footer__nav-item"> <a class="footer__nav-link" href="tel:74732502040">
                   <svg class="icon">
@@ -251,6 +409,7 @@
                     <use xlink:href="./img/icons/icons.svg#envelope"></use>
                   </svg>gk@uplastgroup.ru</a></li>
             </ul>
+            <!--то что ниже - не меняется в зависимости от страницы-->
             <div class="socials footer__socials">
               <ul class="socials__list">
                 <li class="socials__item"> <a class="socials__link" href="#">Facebook
@@ -300,7 +459,7 @@
       <div class="helper__container">
         <!--section-->
         <div class="helper__section"><span class="helper__section-title">Страницы:</span>
-          <div class="helper__section-content"><a class="helper__section-button" href="index.html">Главная</a><a class="helper__section-button" href="katalog.html">Каталог</a><a class="helper__section-button" href="katalog-vydacha.html">Каталог-выдача</a><a class="helper__section-button" href="kartochka-tovara.html">Карточка товара</a><a class="helper__section-button" href="kontakty.html">Контакты</a><a class="helper__section-button" href="korzina.html">Корзина</a><a class="helper__section-button" href="oformlenie-zakaza.html">Оформление заказа</a></div>
+          <div class="helper__section-content"><a class="helper__section-button" href="index.html">Главная</a><a class="helper__section-button" href="katalog.html">Каталог</a><a class="helper__section-button" href="katalog-vydacha.html">Каталог-выдача</a><a class="helper__section-button" href="kartochka-tovara.html">Карточка товара</a><a class="helper__section-button" href="kontakty.html">Контакты</a><a class="helper__section-button" href="korzina.html">Корзина</a><a class="helper__section-button" href="korzina-empty.html">Корзина пустая</a><a class="helper__section-button" href="oformlenie-zakaza.html">Оформление заказа</a><a class="helper__section-button" href="oformlenie-zakaza-final.html">Оформление заказа финал</a><a class="helper__section-button" href="o-kompanii.html">О компании</a><a class="helper__section-button" href="postavshhikam.html">Поставщикам</a><a class="helper__section-button" href="konkursnye-zakupki.html">Конкурсные закупки</a><a class="helper__section-button" href="components.html">Компоненты</a></div>
         </div>
       </div>
     </div>

@@ -25,7 +25,10 @@
   --color-body-scrollbar: #525459;
   --color-scrollbar: #696C73;
   --color-scrollbar-thumb: #9FA1AA;
-  --gradient-home-screen: linear-gradient(180deg, rgba(66, 67, 70, 0) 0%, #424346 85.42%);
+  --modal-shadow: 0px 10px 20px rgba(25, 28, 35, 0.15);
+  --home-screen-image-mask: rgba(66, 67, 70, 0.6);
+  --home-screen-mask: rgba(34, 34, 34, 0.44);
+  --home-screen-gradient: linear-gradient(180deg, rgba(66, 67, 70, 0) 0%, #424346 100%);
   --color-button-1: #fff;
   --color-button-1-bg: #077BE7;
   --color-button-1-hover-bg: #3BADFF;
@@ -38,9 +41,9 @@
   --color-slider-control-bg-focus: #3B3F47;
   --color-slider-control-focus: #9FA1AA;
   --color-bg-1: #525459;
-  --color-light:    #fff;
-  --color-grayish:  #DBDBDB;
-  --color-muted:    #8c8c8c;
+  --color-light: #fff;
+  --color-grayish: #DBDBDB;
+  --color-muted: #8c8c8c;
   --color-cart-count-bg: #FF3B3B;
   --color-select: #DCDCDC;
   --color-select-active: #fff;
@@ -49,7 +52,6 @@
   --color-select-disabled: #9FA1AA;
   --color-tippy: #DCDCDC;
   --color-tippy-background: #696C73;
-  --color-close: #DCDCDC;
   --color-close-hover: #fff;
   --color-btn-1: #fff;
   --color-btn-1-bg: #077BE7;
@@ -63,11 +65,14 @@
   --color-pagination-link-bg-hover: #696C73;
   --color-pagination-link-active: #fff;
   --color-pagination-link-bg-active: #077BE7;
+  --color-input-bg-error: #C44748;
+  --color-input-bg-succes: #0BA360;
+  --color-input-message: #FF4A4A;
   --gradient-label-new: linear-gradient(90deg, #005BEA 0%, #00C6FB 100%);
   --gradient-label-popular: linear-gradient(90deg, #ED6944 0%, #F1CB17 100%);
   --gradient-label-stock: linear-gradient(90deg, #B12A5B 0%, #CF556C 44.96%, #FF867A 100%);
   --gradient-label-sale: linear-gradient(90deg, #0BA360 0%, #3CBA92 100%);
   --color-text-stock: #F16296;
-  --gradient-text-stock: linear-gradient(90deg, #F16296 0%, #CF556C 44.96%, #FF867A 100%); }
-
+  --gradient-text-stock: linear-gradient(90deg, #F16296 0%, #CF556C 44.96%, #FF867A 100%);
+}
 /*# sourceMappingURL=maps/theme.css.map */

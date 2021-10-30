@@ -31,22 +31,26 @@ const LoaderSVG = `
     </circle>
   </svg>`
 
-
 import 'lazysizes';
 import {gsap} from "gsap";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import {ScrollToPlugin} from "gsap/ScrollToPlugin";
 gsap.registerPlugin(ScrollToPlugin);
 gsap.defaults({
-  ease: "power2.inOut", 
+  ease: "power2.inOut",
   duration: 1
 });
-import { disablePageScroll, enablePageScroll, getPageScrollBarWidth } from 'scroll-lock';
+import {disablePageScroll, enablePageScroll} from 'scroll-lock';
 import Inputmask from "inputmask";
+import autosize from 'autosize';
 import SwipeListener from 'swipe-listener';
-import Swiper, {Navigation, Pagination, Lazy, Autoplay} from 'swiper/core';
-Swiper.use([Navigation, Pagination, Lazy, Autoplay]);
+import Swiper, {Navigation, Pagination, Autoplay, Scrollbar, FreeMode} from 'swiper';
+import 'swiper/css';
+import 'swiper/css/free-mode';
+
+
 import SlimSelect from 'slim-select';
 import tippy, {followCursor} from 'tippy.js';
+const validate = require("validate.js");
 
 //animations
 gsap.registerEffect({
@@ -56,11 +60,6 @@ gsap.registerEffect({
       onStart: () => {
         $element.forEach($this => {
           $this.classList.add('d-block');
-        })
-      },
-      onComplete: () => {
-        $element.forEach($this => {
-          gsap.set($this, {clearProps: "all"});
         })
       },
       onReverseComplete: () => {
@@ -73,26 +72,33 @@ gsap.registerEffect({
   },
   extendTimeline: true
 });
-
-function mobile() {
-  if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
-    return true;
-  } else {
-    return false;
-  }
-}
+gsap.registerEffect({
+  name: "slide",
+  effect: ($element, config) => {
+    return gsap.fromTo($element, {css: {'height':config.height}}, {css: {'height':'auto'}, duration: config.duration || animation_duration_1 / 1000, 
+      onComplete: () => {
+        $element.forEach($this => {
+          gsap.set($this, {clearProps: "all"});
+        })
+      },  
+      onReverseComplete: () => {
+        $element.forEach($this => {
+          gsap.set($this, {clearProps: "all"});
+        })
+      }
+    })
+  },
+  extendTimeline: true
+});
 
 document.addEventListener("DOMContentLoaded", function () {
-  //set scrollbar width
-  document.documentElement.style.setProperty('--scrollbar-width', `${getPageScrollBarWidth()}px`);
-
   CustomInteractionEvents.init();
-  Nav.init();
   Location.init();
   Search.init();
   Modal.init();
+  Validation.init();
 
-  //
+  //tippy
   tippy('[data-tippy-content]', {
     followCursor: true,
     touch: false,
@@ -101,183 +107,429 @@ document.addEventListener("DOMContentLoaded", function () {
     placement: 'bottom'
   });
 
+  //mask
+  Inputmask({
+    mask: "+7 (999) 999-99-99",
+    showMaskOnHover: false,
+    clearIncomplete: false
+  }).mask('[data-validate="phone"]');
+
+  //textarea
+  autosize(document.querySelectorAll('.input textarea'));
+
+  inputs();
+  calculator();
+  form_toggle();
+  collapse();
+
   InstancesManager.add(HomeBanner, '.home-banner');
   InstancesManager.add(TabSlider, '.tab-slider');
   InstancesManager.add(AdvantagesSlider, '.advantages-slider');
   InstancesManager.add(Partners, '.section-partners');
-  InstancesManager.add(Map, '.contacts__map');
+  //InstancesManager.add(Map, '.contacts__map');
   InstancesManager.add(Select, '.select select');
   InstancesManager.add(Card3d, '[data-3d="parent"]');
   InstancesManager.add(ProductSlider, '.product-slider');
+  InstancesManager.add(SliderConstructor, '.slider-constructor');
+  InstancesManager.add(MapVector, '.map-vector');
+  InstancesManager.add(HistoryList, '.history-list');
   InstancesManager.init();
 });
 
+function mobile() {
+  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function inputs() {
+
+  let events = (event) => {
+    let $input = event.target.parentNode,
+        $input_element = event.target,
+        input_value = $input_element.value,
+        input_empty = validate.single(input_value, {presence: {allowEmpty: false}}) !== undefined;
+
+    if(!$input.classList.contains('input')) return;
+
+    if(event.type=='focus') {
+      $input.classList.add('input_focused');
+    } 
+    
+    else if(event.type=='input' || event.type=='change') {
+      if(!input_empty) {
+        $input.classList.add('input_filled');
+      } else {
+        $input.classList.remove('input_filled');
+      }
+    }
+
+    else if(event.type=='blur') {
+      $input.classList.remove('input_focused');
+      if(input_empty) {
+        $input.classList.remove('input_filled');
+        $input_element.value = '';
+      }
+    } 
+  }
+
+  document.addEventListener('focus', events, true);
+  document.addEventListener('input', events, true);
+  document.addEventListener('change', events, true);
+  document.addEventListener('blur', events, true);
+}
+
+function form_toggle() {
+  let _attr_ = 'data-form-toggle';
+
+  let change_inputs = (event) => {
+    let $target = event.target;
+
+    if ($target.getAttribute('type') == 'checkbox' || $target.getAttribute('type') == 'radio') {
+      let data = {};
+      data.name = $target.getAttribute('name');
+      data.value = $target.value;
+      data.checked = $target.checked
+
+      check_element_state(data);
+    }
+  }
+
+  let check_element_state = (data) => {
+    let $elements = document.querySelectorAll(`[${_attr_}]`);
+
+    $elements.forEach($element => {
+      let arr = $element.getAttribute(_attr_).split('|'),
+          name = arr[0],
+          value = arr[1];
+
+      if (data.name == name && data.value == value) {
+        $element.classList.remove('d-none');
+      } else if (data.name == name) {
+        $element.classList.add('d-none');
+      }
+    })
+  }
+
+  document.addEventListener('change', change_inputs);
+}
+
+function input_number_test($input) {
+  $input.value = $input.value.replace(/[^\d.]/g, '');
+}
+
+function calculator() {
+  let _button_ = '.product-calculator__button',
+      _input_ = '.product-calculator__input',
+      _input_count_ = '.product-calculator__input-count',
+      _minus_ = '.product-calculator__button_minus',
+      _plus_ = '.product-calculator__button_plus';
+
+  let calculator_events = (event) => {
+    let $target = event.target.closest(`${_input_}, ${_input_count_}, ${_button_}`);
+
+    if ($target) {
+      let $calculator = {};
+          $calculator.$parent = $target.parentNode;
+          $calculator.$input = $calculator.$parent.querySelector(_input_);
+          $calculator.$input_count = $calculator.$parent.querySelector(_input_count_);
+          $calculator.$minus = $calculator.$parent.querySelector(_minus_);
+          $calculator.$plus = $calculator.$parent.querySelector(_plus_);
+          $calculator.count = parseInt($calculator.$input.getAttribute('data-count'));
+
+      if ($target == $calculator.$minus || $target == $calculator.$plus) {
+        buttons_click_event($target, $calculator, event);
+      } else if ($target == $calculator.$input && (event.type == 'input' || event.type == 'change')) {
+        input_number_test($target);
+        input_min_test($target, $calculator, event);
+        count_change($calculator.$input_count, $calculator, event);
+      } else if ($target == $calculator.$input_count && (event.type == 'input' || event.type == 'change')) {
+        input_number_test($target);
+        count_change_event($target, $calculator, event);
+      }
+    }
+  }
+
+  let input_min_test = ($target, $calculator, event) => {
+    $target.value = Math.max(1, $target.value);
+  }
+
+  let count_change_event = ($target, $calculator, event) => {
+    
+    let change = () => {
+      let val = Math.ceil($target.value / $calculator.count);
+      $calculator.$input.value = val;
+      $calculator.$input.dispatchEvent(new Event("change", {bubbles: true}));
+    }
+
+    if ($target.timeout) clearTimeout($target.timeout);
+
+    if (event.type == 'change') {
+      change();
+    } else {
+      $target.timeout = setTimeout(() => {
+        change();
+      }, 500)
+    }
+  }
+
+  let count_change = ($target, $calculator, event) => {
+    $target.value = parseInt($calculator.$input.value) * $calculator.count;
+  }
+
+  let buttons_click_event = ($target, $calculator, event) => {
+    if ($target == $calculator.$minus) $calculator.$input.value = parseInt($calculator.$input.value) - 1;
+    else if ($target == $calculator.$plus) $calculator.$input.value = parseInt($calculator.$input.value) + 1;
+    $calculator.$input.dispatchEvent(new Event("change", {bubbles: true}));
+  }
+
+  document.addEventListener('input', calculator_events);
+  document.addEventListener('change', calculator_events);
+  document.addEventListener('click', calculator_events);
+}
+
+function collapse() {
+  let _toggle_ = '[data-collapse="toggle"]',
+      _parent_ = '[data-collapse="parent"]',
+      _content_ = '[data-collapse="content"]',
+      _inner_ = '[data-collapse="inner"]';
+
+  let check = () => {
+    let $parents = document.querySelectorAll(_parent_);
+
+    $parents.forEach($parent => {
+
+      let $content = $parent.querySelector(_content_),
+          $inner = $parent.querySelector(_inner_),
+          $toggle = $parent.querySelector(_toggle_);
+
+      let h1 = $inner.getBoundingClientRect().height;
+
+      let $test = document.createElement('div');
+      $test.style.cssText = `position:absolute;height:${getComputedStyle($content).getPropertyValue('--height')};`;
+      $content.insertAdjacentElement('afterbegin', $test);
+
+      let h2 = $test.getBoundingClientRect().height;
+
+      $test.remove();
+
+      if (h1 <= h2) {
+        $parent.classList.remove('active');
+        $toggle.classList.remove('d-block');
+      } else {
+        $parent.classList.add('active');
+        if (!$toggle.classList.contains('d-block')) {
+          gsap.effects.fadeIn($toggle, {duration: animation_duration_2 / 1000});
+          gsap.effects.slide($toggle, {height: 0, duration: animation_duration_2 / 1000});
+        }
+      }
+
+    })
+  }
+
+  check();
+  window.addEventListener('resize', check);
+
+  document.addEventListener('click', function(event) {
+    let $toggle = event.target.closest(_toggle_);
+
+    if (!$toggle) return;
+
+    let $parent = $toggle.closest(_parent_),
+        $content = $parent.querySelector(_content_),
+        h = getComputedStyle($content).getPropertyValue('--height');
+
+    let state = () => {
+      return $content.classList.contains('active');
+    }
+
+    if (state()) {
+      gsap.effects.slide($content, {height: h}).reverse(0);
+      $content.classList.remove('active');
+      $toggle.classList.remove('active');
+    } else {
+      gsap.effects.slide($content, {height: h});
+      $content.classList.add('active');
+      $toggle.classList.add('active');
+    }
+  })
+}
 
 const CustomInteractionEvents = Object.create({
   targets: {
-    value: '[data-custom-interaction], a, button, label, .scrollbar-thumb, .ss-single-selected, .ss-option'
+    value: '[data-custom-interaction], a, button, label, .input, .scrollbar-thumb, .ss-single-selected, .ss-option'
   },
   touchEndDelay: {
     value: 100
-  }, 
+  },
   init() {
     this.events = (event) => {
       let $targets = [];
-      $targets[0] = event.target!==document?event.target.closest(this.targets.value):null;
-      let $element = $targets[0], i = 0;
-  
-      while($targets[0]) {
+      $targets[0] = event.target !== document ? event.target.closest(this.targets.value) : null;
+      let $element = $targets[0],
+        i = 0;
+
+      while ($targets[0]) {
         $element = $element.parentNode;
-        if($element!==document) {
-          if($element.matches(this.targets.value)) {
+        if ($element !== document) {
+          if ($element.matches(this.targets.value)) {
             i++;
             $targets[i] = $element;
           }
-        } 
-        else {
+        } else {
           break;
         }
       }
-  
+
       //touchstart
-      if(event.type=='touchstart') {
+      if (event.type == 'touchstart') {
         this.touched = true;
-        if(this.timeout) clearTimeout(this.timeout);
-        if($targets[0]) {
-          for(let $target of $targets) $target.setAttribute('data-touch', '');
+        if (this.timeout) clearTimeout(this.timeout);
+        if ($targets[0]) {
+          for (let $target of $targets) $target.setAttribute('data-touch', '');
         }
-      } 
+      }
       //touchend
-      else if(event.type=='touchend' || (event.type=='contextmenu' && this.touched)) {
-        this.timeout = setTimeout(() => {this.touched = false}, 500);
-        if($targets[0]) {
-          setTimeout(()=>{
-            for(let $target of $targets) {
+      else if (event.type == 'touchend' || (event.type == 'contextmenu' && this.touched)) {
+        this.timeout = setTimeout(() => {
+          this.touched = false
+        }, 500);
+        if ($targets[0]) {
+          setTimeout(() => {
+            for (let $target of $targets) {
               $target.removeAttribute('data-touch');
             }
           }, this.touchEndDelay.value)
         }
-      } 
+      }
       //mouseenter
-      if(event.type=='mouseenter' && !this.touched && $targets[0] && $targets[0]==event.target) {
+      if (event.type == 'mouseenter' && !this.touched && $targets[0] && $targets[0] == event.target) {
         $targets[0].setAttribute('data-hover', '');
       }
       //mouseleave
-      else if(event.type=='mouseleave' && !this.touched && $targets[0] && $targets[0]==event.target) {
+      else if (event.type == 'mouseleave' && !this.touched && $targets[0] && $targets[0] == event.target) {
         $targets[0].removeAttribute('data-click');
         $targets[0].removeAttribute('data-hover');
       }
       //mousedown
-      if(event.type=='mousedown' && !this.touched && $targets[0]) {
+      if (event.type == 'mousedown' && !this.touched && $targets[0]) {
         $targets[0].setAttribute('data-click', '');
-      } 
+      }
       //mouseup
-      else if(event.type=='mouseup' && !this.touched  && $targets[0]) {
+      else if (event.type == 'mouseup' && !this.touched && $targets[0]) {
         $targets[0].removeAttribute('data-click');
       }
     }
-    document.addEventListener('touchstart',  this.events);
-    document.addEventListener('touchend',    this.events);
-    document.addEventListener('mouseenter',  this.events, true);
-    document.addEventListener('mouseleave',  this.events, true);
-    document.addEventListener('mousedown',   this.events);
-    document.addEventListener('mouseup',     this.events);
+    document.addEventListener('touchstart', this.events);
+    document.addEventListener('touchend', this.events);
+    document.addEventListener('mouseenter', this.events, true);
+    document.addEventListener('mouseleave', this.events, true);
+    document.addEventListener('mousedown', this.events);
+    document.addEventListener('mouseup', this.events);
     document.addEventListener('contextmenu', this.events);
   }
 })
 
-
-const Nav = {
-  init: function() {
-    this.$element = document.querySelector('.mobile-nav');
-    this.$element_container = document.querySelector('.mobile-nav__container');
-    this.$open = document.querySelector('[data-action="open_nav"]');
-    this.$close = document.querySelector('[data-action="close_nav"]');
-
-    document.addEventListener('click', (event) => {
-      let $target = event.target.closest('.mobile-nav__container, [data-action="open_nav"]');
-      if(!$target && this.state) this.hide();
-    })
-
-    this.$open.addEventListener('click', () => {
-      if(!this.state) this.show();
-    })
-
-    this.$close.addEventListener('click', () => {
-      if(this.state) this.hide();
-    })
-
-    this.show = () => {
-      this.state = true;
-      this.$element.classList.add('mobile-nav_visible');
-    }
-
-    this.hide = () => {
-      this.state = false;
-      this.$element.classList.remove('mobile-nav_visible');
-    }
-  }
-}
-
 const Search = {
-  init: function() {
-    this.$position = document.querySelector('.header__search');
-    this.$element = document.querySelector('.search-element');
-    this.$input = document.querySelector('.search-element__input');
-    this.$input_element = document.querySelector('.search-element__input-element');
+  init: function () {
+    if (typeof mse2FormConfig == 'undefined') return;
 
-    this.$input_element.addEventListener('focus', () => {
-      this.show();
-    })
+    let $position = document.querySelector('.header__search');
+
+    let $element = document.querySelector('.search-element'),
+        $form = $element.querySelector('.search-element__form'),
+        $input = $element.querySelector('.search-element__input'),
+        $resaults = $element.querySelector('.search-element__resaults');
+
+    let key = $form.getAttribute('data-key'),
+        config = mse2FormConfig[key],
+        actionURL = mse2Config['actionUrl'],
+        data = {
+          action: 'search',
+          key: key,
+          pageId: config.pageId
+        };
+
+    let animation = gsap.timeline({paused:true})
+      .fadeIn($resaults)
 
     document.addEventListener('click', (event) => {
       let $target = event.target.closest('.search-element');
-      if(!$target && this.state) this.hide();
+      if (!$target && $input.value) {
+        $input.value = '';
+        $input.dispatchEvent(new Event("input"));
+      }
     })
 
-    this.show = () => {
-      this.state = true;
-      this.$input.classList.add('search-element__input_focus');
-    }
-
-    this.hide = () => {
-      this.state = false;
-      this.$input.classList.remove('search-element__input_focus');
-      this.$input_element.value = '';
-    }
-
     this.setPosition = () => {
-      let w = this.$position.getBoundingClientRect().width,
-          y = this.$position.getBoundingClientRect().y + window.pageYOffset,
-          x = this.$position.getBoundingClientRect().x;
+      if ($element.parentNode == $position && window.innerWidth < breakpoints.lg) {
+        $header.insertAdjacentElement('afterend', $element);
+        $element.classList.add('scrollbar');
+      } else if($element.parentNode !== $position && window.innerWidth >= breakpoints.lg) {
+        $position.insertAdjacentElement('afterbegin', $element);
+        $element.classList.remove('scrollbar');
+      }
+    }
 
-      this.$element.style.width = `${w}px`;
-      this.$element.style.top = `${y}px`;
-      this.$element.style.left = `${x}px`;
+    this.show_resaults = () => {
+      $form.classList.add('search-element__form_has-resaults');
+      animation.play();
+    }
+
+    this.hide_resaults = () => {
+      $form.classList.remove('search-element__form_has-resaults');
+      animation.reverse().eventCallback('onReverseComplete', () => {
+        $resaults.innerHTML = '';
+      });
+    }
+
+    this.search = (event) => {
+      if(event.target.value.length >= config.minQuery) {
+
+        data[config['queryVar']] = event.target.value;
+
+        $.post(actionURL, data, (response) => {
+          if (event.target.value.length < config.minQuery) return;
+          
+          if(response.data.results.length) {
+            $resaults.innerHTML = '';
+            for(let resault of response.data.results) {
+              $resaults.insertAdjacentHTML('beforeend', resault.label);
+            }
+          } else {
+            $resaults.innerHTML = '<span class="search-element__no-resaults">Результатов не найдено</span>';
+          }
+          
+          this.show_resaults();
+        }, 'json');
+
+      } else {
+        this.hide_resaults();
+      }
     }
 
     this.setPosition();
     window.addEventListener('resize', this.setPosition);
 
-
-    this.$position.classList.add('header__search_disabled');
-    this.$element.style.display = 'block';
+    $input.addEventListener('input', this.search);
   }
 }
 
 const Location = {
-  init: function() {
+  init: function () {
     this.$trigger = document.querySelector('[data-action="open_location"]');
     this.$element = document.querySelector('.location-element');
 
     this.$trigger.addEventListener('click', () => {
-      if(!this.state) this.show();
+      if (!this.state) this.show();
       else this.hide();
     })
 
     document.addEventListener('click', (event) => {
       let $target = event.target.closest('[data-action="open_location"], .location-element');
-      if(!$target && this.state) this.hide();
+      if (!$target && this.state) this.hide();
     })
 
     this.show = () => {
@@ -292,8 +544,8 @@ const Location = {
 
     this.setPosition = () => {
       let h = this.$trigger.getBoundingClientRect().height,
-          y = this.$trigger.getBoundingClientRect().y + window.pageYOffset,
-          x = this.$trigger.getBoundingClientRect().x;
+        y = this.$trigger.getBoundingClientRect().y + window.pageYOffset,
+        x = this.$trigger.getBoundingClientRect().x;
 
       this.$element.style.top = `${y + h + 8}px`;
       this.$element.style.left = `${x}px`;
@@ -307,16 +559,16 @@ const Location = {
 const InstancesManager = {
   instances: [],
 
-  add: function(clss, blocks) {
+  add: function (clss, blocks) {
     let $blocks = document.querySelectorAll(blocks);
-    if($blocks.length) {
+    if ($blocks.length) {
       $blocks.forEach($block => {
         this.instances.push(new clss($block));
       });
     }
   },
 
-  init: function() {
+  init: function () {
     this.instances.forEach(func => {
       func.init();
     })
@@ -334,11 +586,11 @@ class HomeBanner {
     this.$pagination_button = this.$parent.querySelectorAll('.home-banner__pagination-button');
     this.$pagination_button_loader = this.$parent.querySelectorAll('.home-banner__pagination-button-loader');
 
-    this.getNext = ()=> {
-      return this.index==this.$front_items.length-1?0:this.index+1;
+    this.getNext = () => {
+      return this.index == this.$front_items.length - 1 ? 0 : this.index + 1;
     }
-    this.getPrev = ()=> {
-      return this.index==0?this.$front_items.length-1:this.index-1;
+    this.getPrev = () => {
+      return this.index == 0 ? this.$front_items.length - 1 : this.index - 1;
     }
 
     this.animationsEnter = [];
@@ -353,27 +605,72 @@ class HomeBanner {
     this.$front_items.forEach(($this, index) => {
       let $front_image = this.$front_items[index].querySelector('.image');
 
-      this.animations_back[index] = gsap.timeline({paused:true})
-        .fromTo(this.$back_items[index], {autoAlpha:0}, {autoAlpha:1, duration:0.5})
-        .fromTo(this.$back_items[index], {scale:1.1}, {scale:1, duration:1, ease:'power2.out'}, '-=0.5')
+      this.animations_back[index] = gsap.timeline({
+          paused: true
+        })
+        .fromTo(this.$back_items[index], {
+          autoAlpha: 0
+        }, {
+          autoAlpha: 1,
+          duration: 0.5
+        })
+        .fromTo(this.$back_items[index], {
+          scale: 1.1
+        }, {
+          scale: 1,
+          duration: 1,
+          ease: 'power2.out'
+        }, '-=0.5')
 
-      this.animations_front[index] = gsap.timeline({paused:true})
-        .fromTo(this.$front_items[index], {autoAlpha:0}, {autoAlpha:1, duration:0.5})
-        .fromTo($front_image, {scale:1.1}, {scale:1, duration:1, ease:'power2.out'}, '-=0.5')
+      this.animations_front[index] = gsap.timeline({
+          paused: true
+        })
+        .fromTo(this.$front_items[index], {
+          autoAlpha: 0
+        }, {
+          autoAlpha: 1,
+          duration: 0.5
+        })
+        .fromTo($front_image, {
+          scale: 1.1
+        }, {
+          scale: 1,
+          duration: 1,
+          ease: 'power2.out'
+        }, '-=0.5')
 
-      this.animations_front_hide[index] = gsap.timeline({paused:true})
-        .fromTo(this.$front_items[index], {autoAlpha:1}, {immediateRender:false, autoAlpha:0, duration:0.5, ease:'power2.out'})
+      this.animations_front_hide[index] = gsap.timeline({
+          paused: true
+        })
+        .fromTo(this.$front_items[index], {
+          autoAlpha: 1
+        }, {
+          immediateRender: false,
+          autoAlpha: 0,
+          duration: 0.5,
+          ease: 'power2.out'
+        })
 
-      this.animations_loader[index] = gsap.timeline({paused:true})
-        .fromTo(this.$pagination_button_loader[index], {scaleX:0, xPercent:-50}, {scaleX:1, xPercent:0, ease:'none', duration:this.interval})
+      this.animations_loader[index] = gsap.timeline({
+          paused: true
+        })
+        .fromTo(this.$pagination_button_loader[index], {
+          scaleX: 0,
+          xPercent: -50
+        }, {
+          scaleX: 1,
+          xPercent: 0,
+          ease: 'none',
+          duration: this.interval
+        })
     })
 
     this.change = (index) => {
-      if(this.in_animation) return;
+      if (this.in_animation) return;
 
       this.in_animation = true;
 
-      if(this.index!==undefined) {
+      if (this.index !== undefined) {
         this.$back_items[this.index].style.zIndex = 0;
         this.$front_items[this.index].style.zIndex = 0;
         this.animations_loader[this.index].pause();
@@ -386,10 +683,10 @@ class HomeBanner {
 
       this.animations_front[index].play(0);
 
-      this.animations_back[index].play(0).eventCallback('onComplete', ()=> {
+      this.animations_back[index].play(0).eventCallback('onComplete', () => {
         this.animations_back[index].pause();
-        
-        if(this.index!==undefined) {
+
+        if (this.index !== undefined) {
           this.animations_back[this.index].progress(0);
         }
 
@@ -397,15 +694,15 @@ class HomeBanner {
         this.index = index;
       });
 
-      if(!Dev) {
-        this.animations_loader[index].play(0).eventCallback('onComplete', ()=> {
+      if (!Dev) {
+        this.animations_loader[index].play(0).eventCallback('onComplete', () => {
           this.change(this.getNext());
         });
       } else {
         this.animations_loader[index].progress(1);
       }
-      
-      
+
+
       this.$pagination_button[index].classList.add('active');
     }
 
@@ -413,7 +710,7 @@ class HomeBanner {
 
 
     this.$pagination_button.forEach(($this, index) => {
-      $this.addEventListener('click', ()=> {
+      $this.addEventListener('click', () => {
         this.change(index);
       })
     })
@@ -421,9 +718,9 @@ class HomeBanner {
     this.swipes = SwipeListener(this.$parent);
     this.$parent.addEventListener('swipe', (event) => {
       let dir = event.detail.directions;
-      if(dir.left) {
+      if (dir.left) {
         this.change(this.getNext());
-      } else if(dir.right) {
+      } else if (dir.right) {
         this.change(this.getPrev());
       }
     });
@@ -448,22 +745,25 @@ class Tabs {
       this.index = index;
 
       //
-      if(this.$slider) {
-        gsap.to(this.$slider, {xPercent:100*index, duration:0.3})
+      if (this.$slider) {
+        gsap.to(this.$slider, {
+          xPercent: 100 * index,
+          duration: 0.3
+        })
       }
     }
 
     this.$toggle.forEach(($this, index) => {
       this.animations[index]
-      if($this.classList.contains('active')) {
+      if ($this.classList.contains('active')) {
         this.index = index;
-      } 
+      }
       $this.addEventListener('click', () => {
         this.change(index)
       })
     })
 
-    if(!this.index) {
+    if (!this.index) {
       this.index = 0;
     }
 
@@ -484,23 +784,25 @@ class TabSlider {
 
     this.$slider_trigger.style.width = `${100/this.$buttons.length}%`;
 
-    this.tabChange = (index)=> {
+    this.tabChange = (index) => {
       this.$buttons[this.index].classList.remove('active');
       this.$buttons[index].classList.add('active');
       this.index = index;
     }
 
     this.$buttons.forEach(($this, index) => {
-      if($this.classList.contains('active')) {
+      if ($this.classList.contains('active')) {
         this.index = index;
       }
       $this.addEventListener('click', () => {
         this.slider.slideTo(index);
       })
     })
-    if(!this.index) this.index = 0;
+    if (!this.index) this.index = 0;
 
-    gsap.set(this.$slider_trigger, {xPercent:100*this.index})
+    gsap.set(this.$slider_trigger, {
+      xPercent: 100 * this.index
+    })
 
     this.slider = new Swiper(this.$slider, {
       initialSlide: this.index,
@@ -508,24 +810,34 @@ class TabSlider {
       longSwipesRatio: 0.1,
       slidesPerView: 1,
       autoHeight: true,
-      speed: this.speed*1000
+      speed: this.speed * 1000
     });
 
-    this.slider.on('slideChangeTransitionStart', (swiper)=>{
+    this.slider.on('slideChangeTransitionStart', (swiper) => {
       this.tabChange(swiper.realIndex);
-      gsap.to(this.$slider_trigger, {xPercent:100*swiper.realIndex, ease:'power1.inOut', duration:this.speed});
+      gsap.to(this.$slider_trigger, {
+        xPercent: 100 * swiper.realIndex,
+        ease: 'power1.inOut',
+        duration: this.speed
+      });
     });
-    this.slider.on('touchStart', (swiper)=>{
+    this.slider.on('touchStart', (swiper) => {
       this.drag = true;
     });
-    this.slider.on('touchEnd', (swiper)=>{
+    this.slider.on('touchEnd', (swiper) => {
       this.drag = false;
-      gsap.to(this.$slider_trigger, {xPercent:100*this.index, ease:'power1.inOut', duration:this.speed});
+      gsap.to(this.$slider_trigger, {
+        xPercent: 100 * this.index,
+        ease: 'power1.inOut',
+        duration: this.speed
+      });
     });
-    this.slider.on('setTranslate', (swiper)=>{
-      if(this.drag) {
-        let val = -swiper.translate/((swiper.virtualSize-swiper.size)/(Math.round(swiper.virtualSize/swiper.size)-1));
-        gsap.set(this.$slider_trigger, {xPercent:100*val})
+    this.slider.on('setTranslate', (swiper) => {
+      if (this.drag) {
+        let val = -swiper.translate / ((swiper.virtualSize - swiper.size) / (Math.round(swiper.virtualSize / swiper.size) - 1));
+        gsap.set(this.$slider_trigger, {
+          xPercent: 100 * val
+        })
       }
     });
   }
@@ -547,7 +859,7 @@ class AdvantagesSlider {
     this.speed = 0.15;
 
 
-    
+
     this.sliderEvent = () => {
       this.change();
     }
@@ -556,7 +868,7 @@ class AdvantagesSlider {
     this.slideEvents = [];
     this.$slides.forEach(($slide, index) => {
       this.slideEvents[index] = () => {
-        if(!CustomInteractionEvents.touched) {
+        if (!CustomInteractionEvents.touched) {
           this.change(index);
         }
       }
@@ -566,11 +878,11 @@ class AdvantagesSlider {
 
 
     this.change = (index) => {
-      if(this.index!==undefined) {
+      if (this.index !== undefined) {
         this.$items[this.index].classList.remove('active');
         this.$slides[this.index].classList.remove('active');
       }
-      if(index!==undefined) {
+      if (index !== undefined) {
         this.$slides.forEach($slide => {
           $slide.classList.add('hidden');
         });
@@ -611,26 +923,26 @@ class Partners {
           loadPrevNextAmount: $slides.length * 2
         }
       });
-      
+
       let render = () => {
         let scroll_size = slider.virtualSize / 3,
-            progress_start = scroll_size * -1,
-            progress_end = scroll_size * -2,
-            scroll_step = scroll_size / this.speed[index],
-            progress = slider.translate - scroll_step,
-            translate = progress >= progress_end ? progress : progress_start;
-  
+          progress_start = scroll_size * -1,
+          progress_end = scroll_size * -2,
+          scroll_step = scroll_size / this.speed[index],
+          progress = slider.translate - scroll_step,
+          translate = progress >= progress_end ? progress : progress_start;
+
         slider.setTranslate(translate);
-        
+
         requestAnimationFrame(render);
       }
-  
+
       render();
     })
 
-    
 
-    
+
+
   }
 }
 
@@ -642,9 +954,9 @@ class Map {
   init() {
     this.apiKey = 'c8264039-ceec-4c63-8f99-6858d416bca0';
 
-    let loadMap = ()=> {
-      if(typeof ymaps === 'undefined') {
-        let callback = ()=> {
+    let loadMap = () => {
+      if (typeof ymaps === 'undefined') {
+        let callback = () => {
           ymaps.ready(createMap);
         }
         let script = document.createElement("script");
@@ -656,8 +968,8 @@ class Map {
         createMap();
       }
     }
-    
-    let createMap = ()=> {
+
+    let createMap = () => {
       this.map = new ymaps.Map(this.$parent, {
         center: [57.035109, 65.704738],
         controls: ['zoomControl'],
@@ -667,7 +979,11 @@ class Map {
       this.placemarks = [];
       this.$map = this.map.container._element;
       this.$map.classList.add('contacts-block__map-element');
-      gsap.fromTo(this.$map, {autoAlpha:0}, {autoAlpha:1})
+      gsap.fromTo(this.$map, {
+        autoAlpha: 0
+      }, {
+        autoAlpha: 1
+      })
 
       let placemark = new ymaps.Placemark(this.map.getCenter(), {
         balloonContent: 'пгт. Стрелица ул. Солнечная 39'
@@ -707,7 +1023,7 @@ class Select {
     this.select.slim.list.classList.add('scrollbar'); */
 
     let $arrow = this.select.slim.container.querySelector('.ss-arrow span'),
-        $scroll = document.createElement('div');
+      $scroll = document.createElement('div');
 
     //add custom arrow
     $arrow.insertAdjacentHTML('afterbegin', '<svg class="icon"><use xlink:href="./img/icons/icons.svg#select-arrow"></use></svg>');
@@ -727,36 +1043,58 @@ class Card3d {
     this.$back = this.$block.querySelectorAll('[data-3d="back"]');
     this.$forward = this.$block.querySelectorAll('[data-3d="forward"]');
 
-    this.event = (event)=> {
-      if(CustomInteractionEvents.touched || window.innerWidth < breakpoints.lg) return;
-      
-      if(event.type=='mousemove') {
-        if(this.backanimation) this.backanimation.pause();
+    this.event = (event) => {
+      if (CustomInteractionEvents.touched || window.innerWidth < breakpoints.lg) return;
+
+      if (event.type == 'mousemove') {
+        if (this.backanimation) this.backanimation.pause();
 
         let x = this.$block.getBoundingClientRect().x - event.clientX,
-            y = this.$block.getBoundingClientRect().y - event.clientY,
-            w = this.$block.getBoundingClientRect().width/2,
-            h = this.$block.getBoundingClientRect().height/2,
-            xValue = -(1+x/w),
-            yValue = 1+y/h,
-            xr = xValue*3,
-            yr = yValue*3,
-            xm = xValue*3,
-            ym = -yValue*3;
+          y = this.$block.getBoundingClientRect().y - event.clientY,
+          w = this.$block.getBoundingClientRect().width / 2,
+          h = this.$block.getBoundingClientRect().height / 2,
+          xValue = -(1 + x / w),
+          yValue = 1 + y / h,
+          xr = xValue * 3,
+          yr = yValue * 3,
+          xm = xValue * 3,
+          ym = -yValue * 3;
 
-        if(this.animation) this.animation.pause();
-        this.animation = gsap.timeline({defaults:{ease:'power2.out', duration:0.5}})
-          .to(this.$back, {rotationY:xr, rotationX:yr})
-          .to(this.$forward, {x:xm, y:ym}, `-=${0.5}`)
+        if (this.animation) this.animation.pause();
+        this.animation = gsap.timeline({
+            defaults: {
+              ease: 'power2.out',
+              duration: 0.5
+            }
+          })
+          .to(this.$back, {
+            rotationY: xr,
+            rotationX: yr
+          })
+          .to(this.$forward, {
+            x: xm,
+            y: ym
+          }, `-=${0.5}`)
       } else {
-        if(this.animation) this.animation.pause();
-        this.backanimation = gsap.timeline({defaults:{ease:'power2.out', duration:0.5}})
-          .to(this.$back, {rotationY:0, rotationX:0})
-          .to(this.$forward, {x:0, y:0}, `-=${0.5}`)
+        if (this.animation) this.animation.pause();
+        this.backanimation = gsap.timeline({
+            defaults: {
+              ease: 'power2.out',
+              duration: 0.5
+            }
+          })
+          .to(this.$back, {
+            rotationY: 0,
+            rotationX: 0
+          })
+          .to(this.$forward, {
+            x: 0,
+            y: 0
+          }, `-=${0.5}`)
       }
     }
 
-    this.$block.addEventListener('mousemove',  this.event);
+    this.$block.addEventListener('mousemove', this.event);
     this.$block.addEventListener('mouseleave', this.event);
   }
 }
@@ -767,20 +1105,20 @@ class ProductSlider {
   }
 
   init() {
-    this.$slider = this.$parent.querySelector('.swiper-container');
+    this.$slider = this.$parent.querySelector('.swiper');
     this.$pagination = this.$parent.querySelector('.product-slider__pagination');
     this.$pagination_element = this.$parent.querySelector('.swiper-pagination');
 
     this.$miniatures = this.$parent.querySelector('.product-slider__miniatures');
     this.$miniature = this.$parent.querySelectorAll('.product-slider__miniature');
 
+    let enabled = this.$miniature.length > 1 ? true : false;
+
     this.slider = new Swiper(this.$slider, {
+      modules: [Pagination],
       touchStartPreventDefault: false,
       speed: animation_duration_3,
-      lazy: {
-        loadOnTransitionStart: true,
-        loadPrevNext: true
-      },
+      enabled: enabled,
       pagination: {
         el: this.$pagination_element,
         clickable: true,
@@ -788,10 +1126,10 @@ class ProductSlider {
       },
     });
 
-    if(this.$miniature.length>1) {
+    if (this.$miniature.length > 1) {
 
       this.$miniature[0].classList.add('is-active');
-      this.slider.on('slideChange', (event)=> {
+      this.slider.on('slideChange', (event) => {
         this.$miniature.forEach($this => {
           $this.classList.remove('is-active')
         })
@@ -799,23 +1137,172 @@ class ProductSlider {
       })
 
       this.$miniature.forEach(($this, index) => {
-        $this.addEventListener('mouseenter', ()=> {
+        $this.addEventListener('mouseenter', () => {
           this.slider.slideTo(index);
         })
-        $this.addEventListener('click', ()=> {
+        $this.addEventListener('click', () => {
           this.slider.slideTo(index);
         })
       })
 
       gsap.effects.fadeIn([this.$miniatures, this.$pagination]);
-      
+
     }
 
   }
 }
 
+class SliderConstructor {
+  constructor($parent) {
+    this.$parent = $parent;
+  }
+
+  init() {
+    this.$slider = this.$parent.querySelector('.swiper');
+    this.$pagination = this.$parent.querySelector('.swiper-pagination');
+    this.$prev = this.$parent.querySelector('.swiper-button-prev');
+    this.$next = this.$parent.querySelector('.swiper-button-next');
+
+    let slides_count = this.$parent.getAttribute('data-slides') || 1,
+        slides_sm_count = this.$parent.getAttribute('data-sm-slides') || slides_count,
+        slides_md_count = this.$parent.getAttribute('data-md-slides') || slides_sm_count,
+        slides_lg_count = this.$parent.getAttribute('data-lg-slides') || slides_md_count,
+        slides_xl_count = this.$parent.getAttribute('data-xl-slides') || slides_lg_count,
+        slides_xxl_count = this.$parent.getAttribute('data-xxl-slides') || slides_xl_count;
+
+    this.swiper = new Swiper(this.$slider, {
+      modules: [Pagination, Navigation],
+      touchStartPreventDefault: false,
+      slidesPerView: slides_count,
+      speed: animation_duration_3,
+      pagination: {
+        el: this.$pagination,
+        clickable: true,
+        bulletElement: 'button'
+      },
+      navigation: {
+        prevEl: this.$prev,
+        nextEl: this.$next
+      },
+      breakpoints: {
+        [breakpoints.xxl]: {
+          slidesPerView: slides_xxl_count
+        },
+        [breakpoints.xl]: {
+          slidesPerView: slides_xl_count
+        },
+        [breakpoints.lg]: {
+          slidesPerView: slides_lg_count
+        },
+        [breakpoints.md]: {
+          slidesPerView: slides_md_count
+        },
+        [breakpoints.sm]: {
+          slidesPerView: slides_sm_count
+        }
+      }
+    });
+
+  }
+}
+
+class HistoryList {
+  constructor($parent) {
+    this.$parent = $parent;
+  }
+
+  init() {
+    this.x_position = 0;
+    this.x_value = 0;
+
+    let initSlider = () => {
+      this.instance = {
+        x_position: 0,
+        x_value: 0
+      };
+
+      this.instance.slider = new Swiper(this.$parent, {
+        modules: [Scrollbar, FreeMode],
+        touchStartPreventDefault: false,
+        slidesPerView: "auto",
+        freeMode: true,
+        speed: animation_duration_3
+      });
+
+      if (!mobile()) {
+        document.addEventListener('mousemove', mousemove);
+        this.instance.requestAnimationFrame = requestAnimationFrame(checkPosition);
+      }      
+    }
+
+    let destroySlider = () => {
+      this.instance.slider.destroy();
+      document.removeEventListener('mousemove', mousemove);
+      if (this.instance.requestAnimationFrame) {
+        cancelAnimationFrame(this.instance.requestAnimationFrame);
+      }
+      delete this.instance;
+    }
+
+    let mousemove = (event) => {
+      let w = this.$parent.getBoundingClientRect().width,
+          x = this.$parent.getBoundingClientRect().left,
+          val1 = (event.clientX - x) / w;
+      
+      this.instance.x_value = Math.min(1, Math.max(0, val1));
+    }
+
+    let checkPosition = () => {
+
+      if(window.innerWidth >= breakpoints.lg) {
+
+        this.instance.x_position += (this.instance.x_value - this.instance.x_position) * 0.1;
+      
+        //scroll
+        this.instance.slider.setProgress(this.instance.x_position, 0);
+
+      }
+    
+      this.instance.requestAnimationFrame = requestAnimationFrame(checkPosition);
+    }
+
+    let checkStatus = () => {
+      if (!this.instance && window.innerWidth >= breakpoints.lg) {
+        initSlider();
+      } else if (this.instance && window.innerWidth < breakpoints.lg) {
+        destroySlider();
+      }
+    }
+
+    checkStatus();
+    window.addEventListener('resize', checkStatus);
+  }
+}
+
+class MapVector {
+  constructor($parent) {
+    this.$parent = $parent;
+  }
+
+  init() {
+    this.$slider = this.$parent.querySelector('.swiper');
+    this.$scrollbar = this.$parent.querySelector('.swiper-scrollbar');
+
+    this.slider = new Swiper(this.$slider, {
+      modules: [Scrollbar, FreeMode],
+      touchStartPreventDefault: false,
+      slidesPerView: "auto",
+      freeMode: true,
+      speed: animation_duration_3,
+      scrollbar: {
+        el: this.$scrollbar,
+      }
+    });
+  }
+}
+
 const Modal = {
-  init: function() {
+  init: function () {
 
     document.addEventListener('click', (event) => {
       let $open = event.target.closest('[data-action="open_modal"]'),
@@ -828,12 +1315,14 @@ const Modal = {
         this.close();
       }
     })
-    
+
     this.open = ($target) => {
       if ($target == this.$active) return;
 
       document.dispatchEvent(new CustomEvent("modal_open", {
-        detail:{ target: $target}
+        detail: {
+          target: $target
+        }
       }));
 
       this.animation = gsap.timeline()
@@ -850,7 +1339,7 @@ const Modal = {
 
       this.animation.reverse().eventCallback('onReverseComplete', () => {
         enablePageScroll();
-        if(callback) callback();
+        if (callback) callback();
       })
 
       delete this.$active;
@@ -858,9 +1347,123 @@ const Modal = {
   }
 }
 
+window.Validation = {
+  init: function () {
+    this.constraints = {
+      phone: {
+        presence: {
+          allowEmpty: false,
+          message: '^Введите ваш номер телефона'
+        },
+        format: {
+          pattern: /^\+[0-9]\s\([0-9]{3}\)\s[0-9]{3}-[0-9]{2}-[0-9]{2}$/,
+          message: '^Введите корректный номер телефона'
+        }
+      },
+      email: {
+        presence: {
+          allowEmpty: false,
+          message: '^Введите ваш email-адрес'
+        },
+        email: {
+          message: '^Введите корректный email-адрес'
+        }
+      },
+      empty: {
+        presence: {
+          allowEmpty: false,
+          message: '^Заполните это поле'
+        }
+      }
+    };
+
+    document.addEventListener('input', (event) => {
+      if (event.target.parentNode.classList.contains('error') || 
+          event.target.parentNode.classList.contains('success')) {
+        this.validate_input(event.target);
+      }
+    })
+
+  },
+
+  validate: function($form) {
+    let $inputs = $form.querySelectorAll('input, textarea'),
+        flag = 0;
+
+    $inputs.forEach(($input) => {
+      if (!this.validate_input($input)) flag++;
+    })
+
+    if (!flag) return true;
+    else return false;
+  },
+
+  validate_input: function ($input) {
+    let $parent = $input.parentNode,
+        required = $input.getAttribute('data-required') !== null,
+        type = $input.getAttribute('data-validate'),
+        resault;
+
+    if(type && (required || validate.single($input.value, this.constraints.empty))) {
+      resault = validate.single($input.value, this.constraints[type]);
+    } else if (required) {
+      resault = validate.single($input.value, this.constraints.empty);
+    }
+    
+    //если есть ошибки
+    if (resault) {
+      if ($parent.classList.contains('success')) {
+        $parent.classList.remove('success');
+      }
+      if (!$parent.classList.contains('error')) {
+        $parent.classList.add('error');
+        $parent.parentNode.insertAdjacentHTML('beforeend', `<span class="input-message">${resault[0]}</span>`);
+        gsap.effects.fadeIn($parent.parentNode.querySelector('.input-message'));
+      } else {
+        $parent.parentNode.querySelector('.input-message').textContent = `${resault[0]}`;
+      }
+      return false;
+    }
+
+    //если нет ошибок
+    else {
+      if ($parent.classList.contains('error')) {
+        $parent.classList.remove('error');
+        $parent.classList.add('success');
+        gsap.effects.fadeIn($parent.parentNode.querySelector('.input-message')).reverse(1).eventCallback('onReverseComplete', () => {
+          $parent.parentNode.querySelector('.input-message').remove();
+        });
+      }
+      return true;
+    }
+
+  },
+
+
+  reset_hints: function ($form) {
+    let $inputs = $form.querySelectorAll('input, textarea');
+    $inputs.forEach(($input) => {
+      let $parent = $input.parentNode;
+
+      if ($parent.classList.contains('error')) {
+        $parent.classList.remove('error');
+        gsap.effects.fadeIn($parent.parentNode.querySelector('.input-message')).reverse(1).eventCallback('onReverseComplete', () => {
+          $parent.parentNode.querySelector('.input-message').remove();
+        });
+      }
+
+      if ($parent.classList.contains('success')) {
+        $parent.classList.remove('success');
+      }
+
+    })
+
+  }
+}
+
 const ButtonLoader = {
-  add: function($button) {
-    if($button.classList.contains('button_disabled')) return;
+  add: function ($button) {
+    if ($button.classList.contains('button_disabled')) return;
 
     $button.classList.add('button_disabled');
 
@@ -868,74 +1471,89 @@ const ButtonLoader = {
     setTimeout(() => {
       $button.classList.add('button_in-load');
     }, 0);
-    
+
   },
 
-  remove: function($button) {
+  remove: function ($button) {
     $button.classList.remove('button_in-load');
     setTimeout(() => {
       let $loader = $button.querySelector('.loader');
-      if($loader) $loader.remove();
+      if ($loader) $loader.remove();
       $button.classList.remove('button_disabled');
     }, animation_duration_1);
   }
 }
 
-//cart buttons
-if(typeof(miniShop2) != 'undefined') {
 
-  miniShop2.Callbacks.Cart.add.before = function() {
-    let $button = miniShop2.sendData.$form[0].querySelector('.cart-button');
-    if($button) {
-      ButtonLoader.add($button);
-    }
-  };
+document.addEventListener('miniShop2_callback', function (event) {
+  let detail = event.detail;
+
+  //cart buttons
+  if(detail.type == 'before' && detail.action == 'cart/add') {
+    let $button = detail.$form.querySelector('[type="submit"]');
+    ButtonLoader.add($button);
+  }
+  if(detail.type == 'after' && detail.action == 'cart/add' && detail.response.success) {
+    let $button = detail.$form.querySelector('[type="submit"]');
+    ButtonLoader.remove($button);
+    $button.classList.add('cart-button_in-cart');
+  }
+
+  //order
+  if(detail.type == 'before' && detail.action == 'order/submit') {
+    let $button = detail.$form.querySelector('[type="submit"]');
+    ButtonLoader.add($button);
+  }
+  if(detail.type == 'after' && detail.action == 'order/submit' && detail.response.success) {
+    let $button = detail.$form.querySelector('[type="submit"]');
+    ButtonLoader.remove($button);
+  }
+
+  //cart element
+  if(detail.type == 'after' && detail.action == 'cart/remove' && detail.response.success) {
+    console.log(detail)
+    let $element = detail.$form.closest('.cart-item');
+    $element.remove();
+  }
   
-  miniShop2.Callbacks.Cart.add.response.success = function() {
-    let $button = miniShop2.sendData.$form[0].querySelector('.cart-button');
-
-    if($button) {
-      ButtonLoader.remove($button);
-      $button.classList.add('cart-button_in-cart');
-    }
-  };
-
-}
-
-document.addEventListener('mse2_load_pagination', function() {
-  let py = +getComputedStyle(document.documentElement).getPropertyValue('--grid-gutter-x').replace(/[^\d.-]/g, ''),
-      $top = document.querySelector('.breadcrumbs') ? document.querySelector('.breadcrumbs') : document.querySelector('.catalog'),
-      y = $top.getBoundingClientRect().y + window.pageYOffset;
-
-  gsap.to(window, {scrollTo: y - py, duration: animation_duration_3 / 1000});
 })
 
-document.addEventListener('mse2_before_load', function() {
+document.addEventListener('after_change_resaults_page', function () {
+  let py = +getComputedStyle(document.documentElement).getPropertyValue('--grid-gutter-x').replace(/[^\d.-]/g, ''),
+    $top = document.querySelector('.breadcrumbs') ? document.querySelector('.breadcrumbs') : document.querySelector('.catalog'),
+    y = $top.getBoundingClientRect().y + window.pageYOffset;
+
+  gsap.to(window, {
+    scrollTo: y - py,
+    duration: animation_duration_3 / 1000
+  });
+})
+
+document.addEventListener('before_load_filter_resaults', function () {
   let $filter_button = document.querySelector('.filter__show-button .button');
 
-  if($filter_button) {
+  if ($filter_button) {
     ButtonLoader.add($filter_button);
   }
 })
 
-document.addEventListener('mse2_after_load', function() {
+document.addEventListener('after_load_filter_resaults', function () {
   let $filter_button_inner = document.querySelector('.filter__show-button'),
-      $filter_button = document.querySelector('.filter__show-button .button');
+    $filter_button = document.querySelector('.filter__show-button .button');
 
-  if($filter_button_inner && !$filter_button_inner.classList.contains('d-block')) {
+  if ($filter_button_inner && !$filter_button_inner.classList.contains('d-block')) {
     gsap.effects.fadeIn($filter_button_inner);
   }
 
-  if($filter_button) {
+  if ($filter_button) {
     ButtonLoader.remove($filter_button);
   }
 })
 
-document.addEventListener('modal_open', function(event) {
+document.addEventListener('modal_open', function (event) {
   let $filter_button_inner = event.detail.target.querySelector('.filter__show-button');
 
-  if($filter_button_inner) {
+  if ($filter_button_inner) {
     $filter_button_inner.classList.remove('d-block');
   }
 })
-

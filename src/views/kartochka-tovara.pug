@@ -14,34 +14,34 @@ block content
       
       //картинки
       .product-slider.product__slider
-        .swiper-container 
+        .swiper 
           .swiper-wrapper
             //large
             .swiper-slide
-              .image.image_contain 
-                img(data-src="./img/78f88893213e19bf8649cec8eba83be1 1.jpg", alt="image").swiper-lazy
+              .image.image_cover 
+                img(data-src="./img/78f88893213e19bf8649cec8eba83be1 1.jpg", alt="image").lazyload
             //large
             .swiper-slide
-              .image.image_contain 
-                img(data-src="./img/konteyner_108kh82_500ml_prozrachnyy_pp_1000_100_ 7.jpg", alt="image").swiper-lazy
+              .image.image_cover
+                img(data-src="./img/konteyner_108kh82_500ml_prozrachnyy_pp_1000_100_ 7.jpg", alt="image").lazyload
             //large
             .swiper-slide
-              .image.image_contain 
-                img(data-src="./img/78f88893213e19bf8649cec8eba83be1 1.jpg", alt="image").swiper-lazy
+              .image.image_cover
+                img(data-src="./img/78f88893213e19bf8649cec8eba83be1 1.jpg", alt="image").lazyload
 
         .product-slider__miniatures
           .product-slider__miniatures-items
             //small
             .product-slider__miniature
-              .image.image_contain 
+              .image.image_cover
                 img(data-src="./img/78f88893213e19bf8649cec8eba83be1 1.jpg", alt="image").lazyload
             //small
             .product-slider__miniature
-              .image.image_contain 
+              .image.image_cover
                 img(data-src="./img/konteyner_108kh82_500ml_prozrachnyy_pp_1000_100_ 7.jpg", alt="image").lazyload
             //small
             .product-slider__miniature
-              .image.image_contain 
+              .image.image_cover
                 img(data-src="./img/78f88893213e19bf8649cec8eba83be1 1.jpg", alt="image").lazyload
 
         .product-slider__pagination 
@@ -55,8 +55,16 @@ block content
           .product-stock__text Покупая пластиковые тарелки, соусники даём в подарок!
 
         //текст описание
-        .product__description 
-          p Прямоугольные контейнеры для упаковки полуфабрикатов и готовых изделий,  удобны для транспортировки и хранения широкого ассортимента продукции.  Ровная поверхность крышки идеально подходит для наклеивания этикетки.
+        .product__description(data-collapse='parent')
+          .product__description-text(data-collapse='content')
+            div(data-collapse='inner')
+              p Лоток под запайку — удобный и практичный вид упаковки, имеющий большие преимущества перед другими видами фасовки. практичный вид упаковки, имеющий большие преимущества перед другими видами фасовки. практичный вид упаковки, имеющий большие преимущества перед другими видами фасовки. практичный вид упаковки, имеющий большие преимущества перед другими видами фасовки.          
+          button(type='button' data-collapse='toggle').collapse-button.product__collapse-button
+            span Полное описание
+            span Свернуть
+            svg.icon 
+              use(xlink:href="./img/icons/icons.svg#select-arrow")
+
 
         .product__content-grid
           //артикул
@@ -145,4 +153,38 @@ block content
                     use(xlink:href="./img/icons/icons.svg#check")
 
 
+  section.section.section-border
+    .container 
+      .section-border__head
+        h3 Похожие товары
+      .products-slider.slider-constructor(data-slides='2' data-md-slides='3' data-lg-slides='4' data-xl-slides='5' data-xxl-slides='6')
+        .swiper
+          .swiper-wrapper 
+            //slide
+            .swiper-slide 
+              +product-card(1)
+            //slide
+            .swiper-slide 
+              +product-card(2)
+            //slide
+            .swiper-slide 
+              +product-card(3)
+            //slide
+            .swiper-slide 
+              +product-card(4)
+            //slide
+            .swiper-slide 
+              +product-card(5)
+            //slide
+            .swiper-slide 
+              +product-card(6)
+            //slide
+            .swiper-slide 
+              +product-card(3)
 
+        .swiper-button.swiper-button-prev(data-custom-interaction)
+          svg.icon
+            use(xlink:href='./img/icons/icons.svg#arrow-left')
+        .swiper-button.swiper-button-next(data-custom-interaction)
+          svg.icon
+            use(xlink:href='./img/icons/icons.svg#arrow-right')

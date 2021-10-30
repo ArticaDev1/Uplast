@@ -1,3 +1,75 @@
+.input {
+  position: relative;
+  background-color: var(--color-background-3);
+  border-radius: 10px;
+  transition: background-color var(--trs-1);
+  
+  input, textarea {
+    font-size: 16px;
+    line-height: 20px;
+    padding: 17px 20px;
+    width: 100%;
+    border-radius: inherit;
+    &:-webkit-autofill {
+      -webkit-text-fill-color: var(--color-text-1);
+    }
+    &[data-required] ~ span {
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+
+  span {
+    pointer-events: none;
+    color: var(--color-text-4);
+    transition: opacity var(--trs-1), color var(--trs-1);
+    font-size: 16px;
+    line-height: 20px;
+    position: absolute;
+    top: 17px;
+    left: 20px;
+    z-index: 2;
+    &::after {
+      content: '*';
+      transition: opacity var(--trs-1);
+      opacity: 0;
+    }
+  }
+
+  textarea {
+    min-height: 108px;
+  }
+
+  &.error {
+    background-color: var(--color-input-bg-error) !important;
+    span {
+      color: inherit;
+    }
+  }
+  &.success {
+    background-color: var(--color-input-bg-succes) !important;
+  }
+
+  &[data-touch], &[data-hover], &_filled, &_focused {
+    background-color: var(--color-background-4);
+  }
+
+  &_focused, &_filled {
+    span {
+      opacity: 0;
+    }
+  }
+}
+
+.input-message {
+  display: none;
+  font-size: 12px;
+  margin-top: 4px;
+  padding-left: 20px;
+  color: var(--color-input-message);
+}
+
 .select {
   --text-size: var(--form-el-text-size);
   --line-height: var(--form-el-line-height);
@@ -131,6 +203,11 @@
     --py: var(--form-el-small-py);
     --px: var(--form-el-small-px);
     --radius: var(--form-el-small-radius);
+  }
+  span {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
   .icon {
     width: 14px;
@@ -307,11 +384,6 @@
       transition: opacity var(--trs-1);
     }
   }
-  &_transparent {
-    span {
-      background: linear-gradient(220.55deg, rgba(196, 196, 196, 0) 9.19%, rgba(196, 196, 196, 0.83) 38.13%, rgba(196, 196, 196, 0) 90.21%);
-    }
-  }
   &[data-touch], &[data-hover] {
     span {
       &::after {
@@ -337,9 +409,6 @@
     border-radius: 50%;
     border: 3px solid transparent;
     transition: border-color var(--trs-1);
-  }
-  &_transparent {
-    background: linear-gradient(220.55deg, rgba(196, 196, 196, 0) 9.19%, rgba(196, 196, 196, 0.83) 38.13%, rgba(196, 196, 196, 0) 90.21%);
   }
   &.checked {
     cursor: default;
@@ -434,6 +503,54 @@
   }
 }
 
+.tab-check-element {
+  display: block;
+  cursor: default;
+  position: relative;
+  input {
+    display: none;
+    &:checked + span {
+      background-color: var(--color-background-2);
+    }
+    &:disabled + span {
+      cursor: default;
+      color: var(--color-text-4) !important;
+      background-color: transparent !important;
+    }
+  }
+
+  span {
+    display: block;
+    cursor: pointer;
+    border: 2px solid var(--color-background-2);
+    padding: calc(var(--form-el-py) - 2px) calc(var(--form-el-px) - 2px);
+    border-radius: var(--form-el-radius);
+    font-size: var(--form-el-text-size);
+    line-height: var(--form-el-line-height);
+    transition: background-color var(--trs-1), color var(--trs-1);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
+  &_small {
+    span {
+      padding: calc(var(--form-el-small-py) - 2px) calc(var(--form-el-small-px) - 2px);
+      border-radius: var(--form-el-small-radius);
+      font-size: var(--form-el-small-text-size);
+      line-height: var(--form-el-small-line-height);
+    }
+  }
+
+  &[data-touch], &[data-hover] {
+    span {
+      background-color: var(--color-background-1);
+    }
+  }
+}
+
+
+
 .product-calculator {
   --size: 40px;
   --px: 5px;
@@ -442,10 +559,19 @@
   justify-content: space-between;
   background-color: var(--color-background-2);
   border-radius: calc(var(--size) / 2);
-  &__input {
-    flex: 1 1 auto;
+  font-size: 16px;
+  line-height: 20px;
+  input {
+    line-height: 20px;
     text-align: center;
     color: var(--color-text-2);
+    height: var(--size);
+    &[name="count"] {
+      background-color: black;
+    }
+  }
+  &__count-input {
+    flex: 1 1 auto;
   }
   &__button {
     height: var(--size);
@@ -469,4 +595,92 @@
       color: var(--color-text-2);
     }
   }
+}
+
+.icon-checkbox {
+  border-radius: 27px;
+  position: relative;
+  display: block;
+  color: #fff;
+  input {
+    display: none;
+    &:checked + span {
+      background-color: var(--color-background-2);
+      &::before {
+        background-color: var(--color-background-5);
+      }
+      &::after {
+        opacity: 1;
+        background-color: var(--color-background-6);
+      }
+    }
+  }
+  span {
+    display: flex;
+    align-items: center;
+    height: 54px;
+    border-radius: 27px;
+    border: 2px solid var(--color-background-2);
+    padding: 0 26px 0 52px;
+    transition: background-color var(--trs-1);
+    position: relative;
+    &::before {
+      content: '';
+      display: block;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      position: absolute;
+      left: 16px;
+      top: 14px;
+      background-color: var(--color-background-2);
+      transition: background-color var(--trs-1);
+    }
+    &::after {
+      content: '';
+      display: block;
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      left: 22px;
+      top: 20px;
+      border-radius: 50%;
+      background-color: var(--color-background-5);
+      transition: opacity var(--trs-1), visibility var(--trs-1);
+      opacity: 0;
+    }
+  }
+
+  .icon {
+    display: block;
+    margin-right: 12px;
+    &_style-1 {
+      width: 26px;
+      height: 19px;
+    }
+    &_style-2 {
+      width: 18px;
+      height: 23px;
+    }
+    &_style-3 {
+      width: 16px;
+      height: 23px;
+    }
+    &_style-4 {
+      width: 22px;
+      height: 22px;
+    }
+  }
+
+  &[data-touch], &[data-hover] {
+    span {
+      &::after {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.form-grid {
+  --bs-gutter-x: 14px;
 }

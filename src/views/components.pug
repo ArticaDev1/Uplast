@@ -1,0 +1,86 @@
+extends layout/layout
+block variables
+  -var footer_type = 2
+  -var title = sitename+' - Компоненты'
+
+block content
+
+  section.section
+    .container 
+      .d-flex.flex-wrap.row-gap-40 
+
+        .d-flex.flex-wrap.column-gap-20.row-gap-15.w-100.col-12.align-items-center
+          button.button.button_large.button_style-1
+            span.button__inner
+              span Текст кнопки
+          button.button.button_style-1
+            span.button__inner
+              span Текст кнопки
+
+        .d-flex.flex-wrap.column-gap-20.row-gap-15.w-100.col-12.align-items-center
+          +checkbox('текст чекбокса', 'checked')
+          +checkbox('текст чекбокса', '')
+          +checkbox('текст чекбокса', 'disabled')
+
+        .d-flex.flex-wrap.column-gap-20.row-gap-15.w-100.col-12.align-items-center
+          +color-checkbox('#8b00ff', 'checked', 'Это фиолетовый цвет')
+          +color-checkbox('#8b00ff', '', 'Это фиолетовый цвет')
+          +color-checkbox('#8b00ff', 'disabled', 'Это фиолетовый цвет')
+
+        .d-flex.flex-wrap.column-gap-20.row-gap-15.w-100.col-12.align-items-center
+          +color-link('#8b00ff', 'checked', 'Это фиолетовый цвет')
+          +color-link('#8b00ff', '', 'Это фиолетовый цвет')
+          +color-link('#8b00ff', 'disabled', 'Это фиолетовый цвет')
+
+        .d-flex.flex-wrap.column-gap-20.row-gap-15.w-100.col-12.align-items-center
+          +detail-checkbox('текст чекбокса', 'checked')
+          +detail-checkbox('текст чекбокса', '')
+          +detail-checkbox('текст чекбокса', 'disabled', 'Нет в наличии')
+
+        .d-flex.flex-wrap.column-gap-20.row-gap-15.w-100.col-12.align-items-center
+          +detail-link('текст чекбокса', 'checked')
+          +detail-link('текст чекбокса', '')
+          +detail-link('текст чекбокса', 'disabled', 'Нет в наличии')
+
+        .d-flex.flex-wrap.column-gap-20.row-gap-15.w-100.col-12.align-items-center
+          a(href="#").label-button.label-button_small
+            span Текст кнопки
+            svg.icon 
+              use(xlink:href="./img/icons/icons.svg#catalog")
+          a(href="#").label-button
+            span Текст кнопки
+            svg.icon 
+              use(xlink:href="./img/icons/icons.svg#catalog")
+
+        .d-flex.flex-wrap.column-gap-20.row-gap-15.w-100.col-12.align-items-center
+          a(href="javascript:void(0);").catalog-label.catalog-label_small 
+            span Текст кнопки
+            svg.icon 
+              use(xlink:href="./img/icons/icons.svg#close-button")
+          a(href="javascript:void(0);").catalog-label
+            span Текст кнопки
+            svg.icon 
+              use(xlink:href="./img/icons/icons.svg#close-button")
+
+        .d-flex.flex-wrap.column-gap-20.row-gap-15.w-100.col-12.align-items-center
+          +tab-check-element('Текст кнопки', {
+            state: 'checked'
+          })
+          +tab-check-element('Текст кнопки')
+          +tab-check-element('Текст кнопки', {
+            state: 'disabled',
+            tippy: 'Не активно'
+          })
+          
+          +tab-check-element('Текст кнопки', {
+            state: 'checked',
+            size: 'small'
+          })
+          +tab-check-element('Текст кнопки', {
+            size: 'small'
+          })
+          +tab-check-element('Текст кнопки', {
+            state: 'disabled',
+            tippy: 'Не активно',
+            size: 'small'
+          })

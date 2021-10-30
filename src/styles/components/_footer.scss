@@ -1,8 +1,9 @@
 .footer {
-  --py: 25px;
+  --gx: 100px;
+  --gy: 25px;
   flex-shrink: 0;
   position: relative;
-  padding-top: calc(var(--indent-1) - var(--py));
+  padding-top: var(--angle-border-size);
   &:before, &:after {
     content: '';
     display: block;
@@ -11,39 +12,39 @@
     background-color: var(--color-background-3);
   }
   &:before {
-    height: calc(var(--indent-1) - var(--py));
+    height: var(--angle-border-size);
     clip-path: polygon(0 0, 0% 100%, 100% 100%);
     top: 0;
   }
   &::after {
-    top: calc(var(--indent-1) - var(--py));
-    height: calc(100% - (var(--indent-1) - var(--py)));
+    top: var(--angle-border-size);
+    height: calc(100% - var(--angle-border-size));
   }
   &__container {
-    padding-top: var(--py);
-    padding-bottom: var(--py);
+    padding-top: 25px;
+    padding-bottom: 25px;
     position: relative;
     z-index: 2;
   }
   &__top {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    gap: 20px var(--gx);
   }
   &__socials {
-    flex: 1 0 auto;
+    flex: 0 0 auto;
     display: flex;
     justify-content: flex-end;
+    &:first-child {
+      flex: 1 0 auto;
+    }
   }
   &__nav {
     display: flex;
-    flex: 1 0 auto;
-  }
-  &__nav-item {
-    display: block;
-    &:not(:last-child) {
-      margin-right: 100px;
-    }
+    align-items: center;
+    flex-wrap: wrap;
+    flex: 1 1 auto;
+    gap: var(--gy) var(--gx);
   }
   &__nav-link {
     display: flex;
@@ -58,20 +59,50 @@
   &__bottom {
     margin-top: 40px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    gap: var(--gy) var(--gx);
   }
   &__copyright {
     color: var(--color-text-6);
   }
   @include media-breakpoint-down(xxl) {
-    &__nav-item {
-      &:not(:last-child) {
-        margin-right: 80px;
-      }
+    --gx: 80px;
+  }
+  @include media-breakpoint-down(lg) {
+    &__container {
+      padding-top: 30px;
+    }
+    &__bottom {
+      margin-top: 50px;
+    }
+    &__nav {
+      flex-direction: column;
+      align-items: flex-start;
     }
   }
-  @include media-breakpoint-down(xl) {
-    display: none;
+  @include media-breakpoint-down(sm) {
+    text-align: center;
+    &__container {
+      padding-top: 45px;
+    }
+    &__top {
+      flex-direction: column;
+      align-items: center;
+      gap: 60px 0;
+    }
+    &__bottom {
+      margin-top: 25px;
+      flex-direction: column;
+      gap: 20px 0;
+    }
+    &__nav {
+      order: 2;
+      gap: 15px 0;
+    }
+    &__copyright {
+      order: 2;
+    }
   }
 }

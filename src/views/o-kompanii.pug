@@ -1,0 +1,210 @@
+extends layout/layout
+block variables
+  -var footer_type = 2
+  -var title = sitename+' - О компании'
+
+block content
+
+  section.section.screen-section.about-company-head
+    .screen-section__background.image.image_cover 
+      img(src="./img/o-kompanii/NY5A3446 1.jpg", alt="image").lazyload
+      img(src="./img/o-kompanii/NY5A3446 2.png", alt="image").lazyload
+
+    .container.about-company-head__container 
+      h1.about-company-head__title О компании
+      .screen-section__description.about-company-head__description
+        p.h6 Мы специализируемся на производстве упаковки из пищевого полипропилена и ПЭТ, различных видов пакетов из полиэтилена низкого и высокого давления, а также на комплексном снабжении упаковочными материалами розничных торговых сетей, предприятий пищевой промышленности и HoReCa.
+
+  section.section.d-sm-none
+    .container
+      .row 
+        .col-10.offset-1
+          p.h6 Мы специализируемся на производстве упаковки из пищевого полипропилена и ПЭТ, различных видов пакетов из полиэтилена низкого и высокого давления, а также на комплексном снабжении упаковочными материалами розничных торговых сетей, предприятий пищевой промышленности и HoReCa.
+
+  section.section
+    .container
+      .row.align-items-center 
+        .col-11.col-lg-5
+          .image.image_cover.image-content.image-size-side.image-align-screen(style="--image-size:66%;")
+            img(data-src="./img/o-kompanii/kdnnce.jpg", alt="image").lazyload
+        .col-11.offset-1.col-sm-7.offset-sm-5.col-lg-5.offset-lg-1.mt-40.mt-md-50.mt-lg-0
+          h5.color-normal Производственный комплекс Юпласт – это современное высокотехнологичное оборудование лучших европейских производителей.
+
+  section.section
+    .container
+      .row.align-items-center 
+        .col-11.offset-1.col-md-10.offset-md-2.col-lg-6.offset-lg-1.order-lg-2
+          .image.image_cover.image-content.image-size-side(style="--image-size:58%;")
+            img(data-src="./img/o-kompanii/dds.jpg", alt="image").lazyload
+        .col-11.offset-1.col-sm-7.offset-sm-5.col-lg-5.offset-lg-0.mt-40.mt-md-50.mt-lg-0
+          .h5.color-normal 15 000 м2 складских площадей класса «А».<br> В совокупности с использованием собственного транспорта компания на сегодняшний день предлагает лучший сервис по оперативной доставке товара.
+
+  section.section
+    .container 
+      h2.text-center.text-md-start.mb-40.mb-md-50.mb-lg-0 География поставок
+      .map-vector
+        .swiper
+          .swiper-wrapper 
+            .swiper-slide.map-vector__slide
+              object(type="image/svg+xml" data="./img/o-kompanii/map.svg").map-vector__image
+        .swiper-scrollbar
+      
+      .row.mt-70.mt-md-50.mt-lg-70.row-gap-60.row-gap-md-0
+        .col-12.col-md-4.text-center 
+          span.h1.d-block.mb-10.mb-md-20.color-white 3 000 
+          p.h5.color-normal наименований
+            br.d-lg-none
+            | продукции
+        .col-12.col-md-4.text-center
+          span.h1.d-block.mb-10.mb-md-20.color-white 5 000 
+          p.h5.color-normal организаций 
+            br.d-lg-none
+            | доверяют нам
+        .col-12.col-md-4.text-center
+          span.h1.d-block.mb-10.mb-md-20.color-white 6 
+          p.h5.color-normal региональных  
+            br.d-lg-none
+            | представительств
+
+  section.section
+    .container 
+      .row.align-items-center
+        .col-12.col-lg-5
+          .image.image_cover.image-content.image-align-screen.image-size-wide.image-size-lg-side(style="--image-sm-size:45%;")
+            img(data-src="./img/o-kompanii/ld.jpg", alt="image").lazyload
+        .col-11.offset-1.mt-40.col-md-7.offset-md-5.mt-md-50.col-lg-6.offset-lg-1.mt-lg-0
+          h5.color-normal Производственный комплекс Юпласт – это современное высокотехнологичное оборудование лучших европейских производителей.
+      
+      .row.row-gap-60.row-gap-md-50.row-gap-xl-70.justify-content-center.mt-70 
+        //item
+        .col-12.col-md-5.col-xl-4.text-center.text-md-start
+          .d-flex.column-gap-15.mb-10.mb-md-20.justify-content-center.align-items-center.justify-content-md-start
+            .h1.mb-0 21
+          .h5.color-normal изделий в месяц
+        //item
+        .col-12.col-md-5.col-xl-4.text-center.text-md-start
+          .d-flex.column-gap-15.mb-10.mb-md-20.justify-content-center.align-items-center.justify-content-md-start
+            | Более
+            .h1.mb-0 140 
+            | миллионов
+          .h5.color-normal изделий в месяц
+        //item
+        .col-12.col-md-5.col-xl-4.text-center.text-md-start
+          .d-flex.column-gap-15.mb-10.mb-md-20.justify-content-center.align-items-center.justify-content-md-start
+            | Более
+            .h1.mb-0 100
+          .h5.color-normal единиц 
+            br.d-md-none 
+            | оборудования
+        //item
+        .col-12.col-md-5.col-xl-4.text-center.text-md-start
+          .d-flex.column-gap-15.mb-10.mb-md-20.justify-content-center.align-items-center.justify-content-md-start
+            | Более
+            .h1.mb-0 140 
+            | миллионов
+          .h5.color-normal изделий в месяц
+        //item
+        .col-12.col-md-5.col-xl-4.text-center.text-md-start
+          .d-flex.column-gap-15.mb-10.mb-md-20.justify-content-center.align-items-center.justify-content-md-start
+            .h1.mb-0 7 000 м²
+          .h5.color-normal производственных 
+            br.d-md-none 
+            | площадей
+        //item
+        .col-12.col-md-5.col-xl-4.text-center.text-md-start
+          .d-flex.column-gap-15.mb-10.mb-md-20.justify-content-center.align-items-center.justify-content-md-start
+            | Более
+            .h1.mb-0 7 000 м²
+            | тонн
+          .h5.color-normal переработанного
+            br.d-md-none 
+            | сырья в год
+
+  section.section
+    .container 
+      .row.row-gap-40.align-items-center
+        .col-12.col-sm-10.offset-sm-1.col-md-6.offset-md-0.col-xl-4.offset-xl-1
+          .image.image_cover.image-content(style="--image-size:142%;")
+            img(data-src="./img/o-kompanii/sass.jpg", alt="image").lazyload
+        .col-11.offset-1.col-md-5.offset-md-1
+          .h5.color-normal Высокое качество производимой продукции подтверждает Сертификат менеджмента пищевой безопасности ISO 22000.
+
+  section.section
+    .container
+      h2.mb-70 История
+      .swiper.history-list
+        .swiper-wrapper.history-list__container
+          //item
+          .swiper-slide.history-list__item
+            .row.gx-lg-0
+              .col-10.offset-2.col-md-9.offset-md-3.col-lg-12.offset-lg-0
+                h6.h1.history-list__item-title.mb-10.mb-md-20 2000  
+                .history-list__item-description.h5
+                  p Основание компании 
+          //item
+          .swiper-slide.history-list__item
+            .row.gx-lg-0
+              .col-10.offset-2.col-md-9.offset-md-3.col-lg-12.offset-lg-0
+                h6.h1.history-list__item-title.mb-10.mb-md-20 2006
+                .history-list__item-description.h5
+                  p Открыт филиал в г. Белгород
+          //item
+          .swiper-slide.history-list__item
+            .row.gx-lg-0
+              .col-10.offset-2.col-md-9.offset-md-3.col-lg-12.offset-lg-0
+                h6.h1.history-list__item-title.mb-10.mb-md-20 2007
+                .history-list__item-description.h5
+                  p Осуществлён запуск производства пакетов из ПНД (пакеты типа «майка», фасовочные пакеты и вкладыши, пакеты для мусора)
+                  p Открыт филиал в г. Курск
+          //item
+          .swiper-slide.history-list__item
+            .row.gx-lg-0
+              .col-10.offset-2.col-md-9.offset-md-3.col-lg-12.offset-lg-0
+                h6.h1.history-list__item-title.mb-10.mb-md-20 2008
+                .history-list__item-description.h5
+                  p Открыто представительство в г. Липецк
+          //item
+          .swiper-slide.history-list__item
+            .row.gx-lg-0
+              .col-10.offset-2.col-md-9.offset-md-3.col-lg-12.offset-lg-0
+                h6.h1.history-list__item-title.mb-10.mb-md-20 2011
+                .history-list__item-description.h5
+                  p Сдан в эксплуатацию складской логистический комплекс класса «А» 
+                  p Открыт филиал в г. Орёл
+          //item
+          .swiper-slide.history-list__item
+            .row.gx-lg-0
+              .col-10.offset-2.col-md-9.offset-md-3.col-lg-12.offset-lg-0
+                h6.h1.history-list__item-title.mb-10.mb-md-20 2013
+                .history-list__item-description.h5
+                  p Осуществлён запуск производства одноразовых стаканов и контейнеров из пищевого полипропилена 
+                  p Открыт филиал в г. Волгоград
+          //item
+          .swiper-slide.history-list__item
+            .row.gx-lg-0
+              .col-10.offset-2.col-md-9.offset-md-3.col-lg-12.offset-lg-0
+                h6.h1.history-list__item-title.mb-10.mb-md-20 2015
+                .history-list__item-description.h5
+                  p Расширение производства ассортиментной линейки по пакетам фасовочным «Рулон на втулке»
+          //item
+          .swiper-slide.history-list__item
+            .row.gx-lg-0
+              .col-10.offset-2.col-md-9.offset-md-3.col-lg-12.offset-lg-0
+                h6.h1.history-list__item-title.mb-10.mb-md-20 2017
+                .history-list__item-description.h5
+                  p Расширение производства ассортиментной линейки контейнеров из пищевого полипропилена
+          //item
+          .swiper-slide.history-list__item
+            .row.gx-lg-0
+              .col-10.offset-2.col-md-9.offset-md-3.col-lg-12.offset-lg-0
+                h6.h1.history-list__item-title.mb-10.mb-md-20 2020
+                .history-list__item-description.h5
+                  p Осуществлён запуск производства лотков под запайку из пищевого полипропилена
+
+
+  section.section.company-mission-text
+    .container
+      h2.company-mission-text__title Миссия компании
+      .row 
+        .col-11.offset-1.col-md-9.offset-md-3.col-xl-6.offset-xl-6
+          h3 Предвидение и максимальное удовлетворение потребностей Клиентов на рынке современной упаковки.

@@ -1,0 +1,15 @@
+extends layout/layout
+block variables
+  -var footer_type = 2
+  -var title = sitename+' - Корзина'
+
+block content
+  section.section.cart 
+    .container
+      
+      //заменяет собой блок cart__container, убираем заголовок страницы
+      .cart__empty
+        h1.cart__empty-text В корзине пока пусто
+        a(href="#").button.button_style-1.button_large
+          span.button__inner 
+            span Перейти в каталог 

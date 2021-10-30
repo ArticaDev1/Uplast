@@ -1,9 +1,28 @@
-//search start
+#search.search-element(data-custom-interaction)
+  .search-element__container
+  
+    .container
 
-.search-element
-  .search-element__input(data-custom-interaction)
-    input(type="text" placeholder="Поиск").search-element__input-element
-    svg.icon
-      use(xlink:href="./img/icons/icons.svg#magnifier")
+      .search-element__input-inner
 
-//search end
+        .search-element__form(data-custom-interaction)
+          input(type="text" placeholder="Поиск").search-element__input
+          svg.icon
+            use(xlink:href="./img/icons/icons.svg#magnifier")
+        
+        button.search-element__close(data-action='close_modal' aria-label="Закрыть поиск") Отмена
+          
+      .search-element__resaults 
+        a(href="#").search-element__resault-link 
+          span Лотки под запайку 
+          svg.icon
+            use(xlink:href="./img/icons/icons.svg#arrow")
+        a(href="#").search-element__resault-link 
+          span Лотки под запайку 
+          svg.icon
+            use(xlink:href="./img/icons/icons.svg#arrow")
+        a(href="#").search-element__resault-link 
+          span Лотки под запайку 
+          svg.icon
+            use(xlink:href="./img/icons/icons.svg#arrow")
+        

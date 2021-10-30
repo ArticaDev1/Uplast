@@ -11,8 +11,103 @@ block content
     .container
       .section__head
         h1.h2 Оформление заказа
-      .cart__container 
-        .cart__content 
+
+      form(action="").cart__container 
+        .cart__order 
+
+          .cart-form.cart__cart-form
+            h3.cart-form__title Ваши данные
+            .form-grid.row.cart-form__inputs
+              .form-grid__element.col-md-6 
+                .input
+                  input(type="text" data-required)
+                  span ФИО
+              .form-grid__element.col-md-6
+                .input
+                  input(type="text" data-required)
+                  span Город
+              .form-grid__element.col-md-6
+                .input
+                  input(type="text" name='phone' data-required data-validate='phone')
+                  span Телефон
+              .form-grid__element.col-md-6
+                .input
+                  input(type="text" data-required data-validate='email')
+                  span Email
+              .form-grid__element.col-12
+                .input
+                  input(type="text" data-required)
+                  span Компания
+              .form-grid__element.col-12
+                .input
+                  textarea
+                  span Комментарий
+
+          .cart-form.cart__cart-form
+            h3.cart-form__title Способ оплаты
+
+            .form-grid.row.cart-form__inputs
+
+              .form-grid__element
+
+                .form-grid.row.cart-form__radio-elements 
+                  .form-grid__element.col-auto
+                    label.icon-checkbox
+                      input(type="radio" name='test1' checked='checked')
+                      span 
+                        svg.icon.icon_style-1
+                          use(xlink:href="./img/icons/icons.svg#card")
+                        | Оплата по счёту
+                  .form-grid__element.col-auto
+                    label.icon-checkbox
+                      input(type="radio" name='test1')
+                      span 
+                        svg.icon.icon_style-2 
+                          use(xlink:href="./img/icons/icons.svg#rub")
+                        | Наличными при получении
+
+              .form-grid__element
+                .input
+                  input(type="text" data-required)
+                  span Реквизиты
+
+          .cart-form.cart__cart-form
+            h3.cart-form__title Способ получения
+            .form-grid.row.cart-form__radio-elements 
+              .form-grid__element.col-auto
+                label.icon-checkbox
+                  input(type="radio" name='test2' checked='checked')
+                  span 
+                    svg.icon.icon_style-3
+                      use(xlink:href="./img/icons/icons.svg#placemark")
+                    | Самывывоз с нашего склада
+              .form-grid__element.col-auto
+                label.icon-checkbox
+                  input(type="radio" name='test2')
+                  span 
+                    svg.icon.icon_style-4 
+                      use(xlink:href="./img/icons/icons.svg#delivery")
+                    | Курьерская доставка
 
         .cart__aside
+
+          .cart-total
+            .cart-total__top 
+              .cart-total__title.text-muted Итог
+              .cart-total__count 
+                span.h2 3
+                span.text-muted позиции
+              .cart-total__weight 
+                | Общий вес: 
+                span 40 кг
+            .cart-total__bottom 
+              button.button.button_style-1.button_large.cart-total__button 
+                span.button__inner
+                  span Отправить заявку
+
+              span.text-muted.text-small.text-center.text-md-start
+                | Нажимая на кнопку, вы соглашаетесь с 
+                a(href="#").link Политикой конфиденциальности
+                | , а также 
+                a(href="#").link Пользовательским соглашением
 

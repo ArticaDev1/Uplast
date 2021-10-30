@@ -2,6 +2,18 @@
   color: var(--color-text-4);
 }
 
+.color-normal {
+  color: var(--color-text-1);
+}
+
+.color-white {
+  color: #fff;
+}
+
 .text-small {
   font-size: 14px;
+}
+
+.mb-indent-3 {
+  margin-bottom: var(--indent-3) !important;
 }

@@ -4,23 +4,75 @@
     grid-template-columns: repeat(12, 1fr);
     column-gap: var(--grid-gutter-x);
   }
+  &__order {
+    grid-column: span 8;
+  }
   &__content {
     grid-column: span 8;
   }
   &__aside {
     grid-column: span 4;
   }
-  @include media-breakpoint-down(xl) {
-    &__container {
-
+  &__cart-form {
+    &:not(:last-child) {
+      margin-bottom: 25px;
     }
+  }
+  &__item {
+    &:not(:last-child) {
+      margin-bottom: 25px;
+    }
+  }
+  &__empty {
+    padding-top: 150px;
+    text-align: center;
+    &-text {
+      display: block;
+      margin-bottom: 25px;
+    }
+  }
+  &__final {
+    padding-top: 120px;
+    &-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 360px;
+      margin: 0 auto;
+    }
+    &-icon {
+      width: 212px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+    &-title {
+      margin-bottom: 40px;
+    }
+  }
+  @include media-breakpoint-down(xxl) {
+    &__empty {
+      padding-top: 100px;
+    }
+    &__final {
+      padding-top: 40px;
+      &-icon {
+        width: 180px;
+      }
+    }
+  }
+  @include media-breakpoint-down(xl) {
     &__aside {
       grid-column: span 12;
-      margin-bottom: 25px;
     }
     &__content {
       order: 2;
       grid-column: span 12;
+      margin-top: 25px;
+    }
+    &__order {
+      grid-column: span 12;
+      margin-bottom: 25px;
     }
   }
 }
@@ -32,13 +84,13 @@
     margin-bottom: 75px;
   }
   &__top {
-    padding: 20px 30px;
+    padding: 20px 30px 22px 30px;
     border-width: 0 0 2px 0;
     border-style: solid;
     border-color: var(--color-background-2);
   }
   &__bottom {
-    padding: 20px 30px;
+    padding: 20px 30px 30px 30px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -51,6 +103,11 @@
     }
   }
   &__count {
+    span {
+      &:first-child {
+        margin-right: 10px;
+      }
+    }
     &:not(:last-child) {
       margin-bottom: 20px;
     }
@@ -73,6 +130,7 @@
       min-height: initial;
       padding: 35px 30px 30px 30px;
       align-items: flex-start;
+      justify-content: flex-start;
     }
     &__button {
       width: initial;
@@ -88,7 +146,7 @@
       padding-left: 30px;
     }
   }
-  @include media-breakpoint-down(lg) {
+  @include media-breakpoint-down(md) {
     &__top {
       padding: 20px 30px 25px 30px;
     }
@@ -108,12 +166,14 @@
 }
 
 .cart-item {
-  &:not(:last-child) {
-    margin-bottom: 25px;
+  .info-table {
+    td {
+      width: auto;
+    }
   }
   &__container {
     display: grid;
-    grid-template-columns: 200px 1fr 1fr;
+    grid-template-columns: 200px 1fr auto;
     background-color: var(--color-background-1);
     border-radius: 10px;
     column-gap: 70px;
@@ -122,13 +182,13 @@
   &__image {
     display: block;
     grid-row: 1/3;
-    height: 200px;
-    background-color: #fff;
-    border-radius: 10px 0 0 10px;
+    height: 100%;
+    min-height: 200px;
     overflow: hidden;
     .image {
       height: 100%;
       width: 100%;
+      border-radius: 10px 0 0 10px;
     }
   }
   &__title {
@@ -142,7 +202,8 @@
     align-self: flex-end;
   }
   &__count {
-    padding: 0 30px 30px calc(100% - 200px);
+    width: 200px;
+    padding: 0 30px 30px 0;
     align-self: flex-end;
     &-title {
       display: block;
@@ -150,21 +211,24 @@
     }
   }
   &__remove {
-    width: 40px;
-    height: 40px;
-    padding: 10px;
     position: absolute;
     right: 5px;
     top: 5px;
-    color: var(--color-text-4);
-    transition: color var(--trs-1);
-    .icon {
+    button {
       display: block;
-      width: 100%;
-      height: 100%;
-    }
-    &[data-touch], &[data-hover] {
-      color: var(--color-1);
+      width: 40px;
+      height: 40px;
+      padding: 10px;
+      color: var(--color-text-4);
+      transition: color var(--trs-1);
+      .icon {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      &[data-touch], &[data-hover] {
+        color: var(--color-1);
+      }
     }
   }
   @include media-breakpoint-down(xxl) {
@@ -174,7 +238,7 @@
   }
   @include media-breakpoint-down(xl) {
     &__container {
-      grid-template-columns: 208px 1fr 1fr;
+      grid-template-columns: 208px 1fr auto;
     }
   }
   @include media-breakpoint-down(lg) {
@@ -192,8 +256,11 @@
     }
     &__image {
       grid-row: 1/2;
+      min-height: initial;
       height: 104px;
-      border-radius: 10px;
+      .image {
+        border-radius: 10px;
+      }
     }
     &__title {
       grid-column: 2/3;
@@ -206,6 +273,7 @@
     }
     &__count {
       grid-column: 1/3;
+      width: auto;
       padding: 0 calc((100% - 150px) / 2) 30px calc((100% - 150px) / 2);
     }
     &__count-title {
@@ -215,6 +283,24 @@
       bottom: 30px;
       right: 30px;
       top: initial;
+    }
+  }
+}
+
+.cart-form {
+  border-radius: 10px;
+  background-color: var(--color-background-1);
+  padding: 20px 30px 30px 30px;
+  &__inputs {
+    row-gap: 30px;
+  }
+  &__radio-elements {
+    row-gap: 14px;
+  }
+  @include media-breakpoint-down(sm) {
+    padding: 20px 20px 30px 20px;
+    &__title {
+      margin-bottom: 30px;
     }
   }
 }

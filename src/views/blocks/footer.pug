@@ -2,8 +2,10 @@ footer.footer
   .container.footer__container
     .footer__top
 
+      // 1 - только главная
+      // 2 - все остальные страницы кроме главной и страницы контактов
       
-      if footer_type == 1
+      if footer_type == 1 
         ul.footer__nav 
           li.footer__nav-item 
             a(href="#").footer__nav-link Политика конфиденциальности 
@@ -11,7 +13,8 @@ footer.footer
             a(href="#").footer__nav-link Пользовательское соглашение
           li.footer__nav-item 
             a(href="#").footer__nav-link Сообщить о коррупции
-      else if footer_type == 2
+      
+      else if footer_type == 2 
         ul.footer__nav
           li.footer__nav-item 
             a(href="tel:74732502040").footer__nav-link 
@@ -24,7 +27,7 @@ footer.footer
                 use(xlink:href="./img/icons/icons.svg#envelope")
               | gk@uplastgroup.ru
 
-
+      //то что ниже - не меняется в зависимости от страницы
       .socials.footer__socials 
         ul.socials__list 
           li.socials__item 

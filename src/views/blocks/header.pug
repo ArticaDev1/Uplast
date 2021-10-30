@@ -1,7 +1,7 @@
 // header start
 header.header
   .container.header__container
-    button.header__open-nav(data-action="open_nav" aria-label="open nav")
+    a(href="#mobile-nav" data-action="open_modal").header__open-nav
       svg.icon
         use(xlink:href="./img/icons/icons.svg#burger")
     
@@ -10,8 +10,14 @@ header.header
         use(xlink:href="./img/icons/icons.svg#logo")
 
     .header__search
+      include ../blocks/search
+      
     
     .header__items 
+
+      a(href="#search" data-action='open_modal').header__button.d-lg-none
+        svg.icon
+          use(xlink:href="./img/icons/icons.svg#magnifier")
 
       button(data-action="open_location" aria-label="open location").header__button.header__location-button
         svg.icon
@@ -22,7 +28,7 @@ header.header
         svg.icon
           use(xlink:href="./img/icons/icons.svg#phone")
 
-      a(href="#").header__button.header__cart-button
+      a(href="#" data-tippy-content="Корзина пустая").header__button.header__cart-button
         svg.icon
           use(xlink:href="./img/icons/icons.svg#cart")
         span 99

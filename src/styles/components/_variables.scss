@@ -16,12 +16,22 @@ $container-max-widths: (
 );
 
 $spacers: (
+  grid: var(--grid-gutter-x),
   0: 0px,
-  1: 20px,
-  2: 25px,
-  3: 35px,
-  4: 40px
-) !default;
+  10: 10px,
+  15: 15px,
+  20: 20px,
+  25: 25px,
+  30: 30px,
+  40: 40px,
+  50: 50px,
+  60: 60px,
+  70: 70px
+);
+
+$grid-gutter-width: var(--grid-gutter-x);
+$container-padding-x: var(--container-gutter-x);
+$card-group-margin: $grid-gutter-width;
 
 $out: cubic-bezier(.23,.74,.35,1);
 $in: cubic-bezier(.65,.0,.77,.26);
