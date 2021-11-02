@@ -9,7 +9,9 @@ img {
   &.lazyloaded {
     opacity: 1;
     visibility: visible;
-    transition: opacity var(--trs-3), visibility var(--trs-3);
+    transition-duration: var(--animation-duration-2);
+    transition-timing-function: var(--transition-timing-function-1);
+    transition-property: opacity, visibility;
   }
 }
 
@@ -17,7 +19,7 @@ img {
 .image {
   display: block;
   position: relative;
-  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
   img {
     width: 100%;
     height: auto;

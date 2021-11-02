@@ -1,0 +1,55 @@
+extends layout/layout
+block variables
+  -var footer_type = 2
+  -var title = sitename+' - Карьера'
+
+block content
+
+  section.section.screen-section.karera-head
+    .screen-section__background.karera-head__background.image.image_cover 
+      img(data-src="./img/karera/NY5A9605 3.png", alt="image").lazyload
+      img(data-src="./img/karera/NY5A9605 2.jpg", alt="image").lazyload
+    .container.screen-section__container.karera-head__container 
+      h1.karera-head__title Карьера
+      .screen-section__description.karera-head__description.h6
+        p Наш коллектив - это команда профессионалов, готовых решать сложные задачи, реализуя намеченную цель.
+
+  section.section
+    .container
+      .row.align-items-center.row-gap-40.row-gap-md-50
+        .col-11.col-lg-5
+          .image.image_cover.image-content.image-size-side.image-align-screen(style="--image-size:66%;")
+            img(data-src="./img/karera/llsl.jpg", alt="image").lazyload
+        .col-11.offset-1.col-sm-7.offset-sm-5.col-lg-6.offset-lg-1.h5.color-normal
+          p Мы ценим в своих работниках стремление к достижению намеченной цели, умение работать в команде, готовность брать на себя ответственность и желание совершенствовать свои профессиональные знания и опыт.
+
+  section.section
+    .container
+      .row.align-items-center.row-gap-40.row-gap-md-50
+        .col-11.offset-1.col-md-10.offset-md-2.col-lg-5.offset-lg-1.order-lg-2
+          .image.image_cover.image-content.image-size-side(style="--image-size:58%;")
+            img(data-src="./img/karera/dsdd.jpg", alt="image").lazyload
+        .col-11.offset-1.col-sm-7.offset-sm-5.col-lg-6.offset-lg-0.h5.color-normal
+          p Уделяем особое внимание обучению персонала, помогаем на пути профессионального роста. Помимо стандартных программ обучения, которые проходят сотрудники при вступлении в должность, ГК Юпласт предлагает индивидуальные программы развития с учётом сильных сторон сотрудников.
+          p Для производственного персонала есть возможность приступить к работе без опыта. Мы проводим обучение с нуля с присвоением профессии и последующим повышением разряда.
+
+  section.section
+    .container.d-grid.grid-auto-rows.column-gap-grid.row-gap-20.grid-columns-1.grid-columns-lg-2
+      .content-box.d-flex.flex-column.justify-content-between.head-hunter-box 
+        h3.mb-45.mb-md-55 Смотрите все вакансии<br> на HeadHunter
+        .d-flex.justify-content-md-end
+          a(href="https://voronezh.hh.ru/employer/574595" target="_blank").button.button_large.head-hunter-box__button
+            span.button__inner
+              span Список вакансий
+              img(src="./img/icons/e1e16693ea0e402d07fea905ad34f6f2.png", alt="icon").icon
+      .content-box.d-flex.flex-column.justify-content-between 
+        h3.mb-40.mb-md-55 Не нашли интересующую Вас вакансию?
+        .d-sm-flex.column-gap-sm-grid.justify-content-sm-end.align-items-sm-center.justify-content-sm-between
+          .h6.mb-20.mb-sm-0.color-normal Направьте своё резюме на адрес<br> электронной почты: sp-hr@uplastgroup.ru
+          .flex-shrink-0
+            a(href="mailto:sp-hr@uplastgroup.ru").button.button_style-2.button_large
+              span.button__inner
+                span Написать
+                svg.icon 
+                  use(xlink:href="./img/icons/icons.svg#envelope")
+

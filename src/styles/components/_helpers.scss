@@ -17,3 +17,7 @@
 .mb-indent-3 {
   margin-bottom: var(--indent-3) !important;
 }
+
+.grid-auto-rows {
+  grid-auto-rows: 1fr;
+}

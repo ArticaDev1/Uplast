@@ -132,7 +132,7 @@
   @include media-breakpoint-down(lg) {
     &__container {
       width: 100%;
-      overflow: scroll;
+      overflow-y: scroll;
     }
     &__link {
       padding: 0;

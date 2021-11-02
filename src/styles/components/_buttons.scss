@@ -62,6 +62,7 @@
     --height: 60px;
     --font-size: 18px;
     --icon-size: 20px;
+    --gap: 16px;
   }
 
   &_small {
@@ -75,6 +76,18 @@
     --background-color: var(--color-btn-1-bg);
     --background-color-hover: var(--color-btn-1-bg-hover);
     --color: var(--color-btn-1);
+  }
+
+  &_style-2 {
+    --background-color: var(--color-btn-2-bg);
+    --background-color-hover: var(--color-btn-2-bg-hover);
+    --color: var(--color-btn-2);
+  }
+
+  &_style-3 {
+    --background-color: var(--color-btn-3-bg);
+    --background-color-hover: var(--color-btn-3-bg-hover);
+    --color: var(--color-btn-3);
   }
 
   &_in-load {
@@ -144,5 +157,34 @@
   }
   &[data-touch], &[data-hover] {
     color: var(--color-text-2);
+  }
+}
+
+.rectangle-button {
+  height: 80px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 35px;
+  border-radius: 10px;
+  gap: 20px;
+  background-color: var(--color-background-2);
+  transition: background-color var(--trs-1), color var(--trs-1);
+  .icon {
+    flex-shrink: 0;
+    --size: 20px;
+    width: var(--size);
+    height: var(--size);
+  }
+  &[data-touch], &[data-hover] {
+    background-color: var(--color-background-5);
+    color: var(--color-text-2);
+  }
+  @include media-breakpoint-down(lg) {
+    padding: 0 30px;
+    height: 66px;
+    .icon {
+      --size: 13px;
+    }
   }
 }

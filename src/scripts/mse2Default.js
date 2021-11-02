@@ -1057,7 +1057,6 @@ var mSearch2 = {
 mSearch2.Form = {
 	initialized: false,
 	initialize: function (selector) {
-		console.log('initialize')
 		if (this.initialized || typeof (mse2FormConfig) == 'undefined') {
 			return false;
 		}
@@ -1218,6 +1217,7 @@ mSearch2.Hash = {
 };
 
 mSearch2.startParams = mSearch2.Hash.get();
+
 
 function test_catalog_head(count) {
 	let $parent_wrapper = $('.catalog-controls'),

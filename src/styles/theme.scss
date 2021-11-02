@@ -85,6 +85,14 @@
   --color-btn-1-bg: #077BE7;
   --color-btn-1-bg-hover: #3BADFF;
 
+  --color-btn-2: #fff;
+  --color-btn-2-bg: #696C73;
+  --color-btn-2-bg-hover: #9FA1AA;
+
+  --color-btn-3: #077BE7;
+  --color-btn-3-bg: #F4F4F4;
+  --color-btn-3-bg-hover: #fff;
+
   --color-btn-in-cart-bg: #3CBA92;
   --color-btn-in-cart-bg-hover: #0BA360;
 
@@ -101,7 +109,7 @@
   --color-input-bg-error: #C44748;
   --color-input-bg-succes: #0BA360;
   --color-input-message: #FF4A4A;
-
+  --gradient-input-bg-succes: linear-gradient(90deg, #0BA360 0%, #3CBA92 100%);
 
   //labels
   --gradient-label-new: linear-gradient(90deg, #005BEA 0%, #00C6FB 100%);

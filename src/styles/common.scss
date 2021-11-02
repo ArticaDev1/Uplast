@@ -63,10 +63,19 @@ $utilities: map-merge(
         6: repeat(6, 1fr)
       )
     ),
+    "width": (
+      property: width,
+      class: w,
+      responsive: true,
+      values: (
+        100: 100%,
+        auto: auto
+      )
+    ),
   )
 );
 
-$utilities: map-get-multiple($utilities, ("display", "order", "flex", "flex-direction", "flex-wrap", "justify-content", "align-items", "margin-top", "margin-bottom", "margin-start", "margin-end", "padding-top", "padding-bottom", "padding-start", "padding-end", "font-weight", "text-align", "gap", "column-gap", "row-gap", "grid-columns", "image-size", "image-align"));
+$utilities: map-get-multiple($utilities, ("display", "order", "flex", "flex-shrink", "flex-direction", "flex-wrap", "justify-content", "align-items", "margin-top", "margin-bottom", "margin-start", "margin-end", "padding-top", "padding-bottom", "padding-start", "padding-end", "font-weight", "text-align", "gap", "width", "column-gap", "row-gap", "grid-columns", "image-size", "image-align"));
 
 
 

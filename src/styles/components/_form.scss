@@ -70,6 +70,93 @@
   color: var(--color-input-message);
 }
 
+.input-file {
+  input {
+    display: none;
+    &[data-required] {
+      & + .input-file-button {
+        span {
+          &::after {
+            content: '*';
+          }
+        }
+      }
+    }
+  }
+  &-button {
+    --height: 54px;
+    padding: calc(17px - var(--border)) calc(26px - var(--border));
+    font-size: 16px;
+    border-radius: calc(var(--height) / 2);
+    border-style: solid;
+    border-width: var(--border);
+    display: flex;
+    gap: 16px;
+    color: #fff;
+    position: relative;
+    .icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 2;
+    }
+    span {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      position: relative;
+      z-index: 2;
+    }
+    &.selected {
+      span {
+        &::after {
+          content: '' !important;
+        }
+      }
+    }
+    &_style-1 {
+      --border: 0px;
+      background-color: var(--color-background-2);
+      transition: background-color var(--trs-1);
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        top: 0;
+        left: 0;
+        background: var(--gradient-input-bg-succes);
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--trs-1);
+      }
+      &[data-touch], &[data-hover] {
+        background-color: var(--color-background-5);
+      }
+      &.selected {
+        &::before {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
+    &_style-2 {
+      --border: 2px;
+      border-color: var(--color-background-2);
+      transition: border-color var(--trs-1);
+      &[data-touch], &[data-hover] {
+        border-color: var(--color-background-5);
+      }
+      &.selected {
+        border-color: var(--color-input-bg-succes);
+      }
+    }
+  }
+}
+
 .select {
   --text-size: var(--form-el-text-size);
   --line-height: var(--form-el-line-height);

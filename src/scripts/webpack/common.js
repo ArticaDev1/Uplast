@@ -1,4 +1,4 @@
-const Dev = true;
+const Dev = window.location.host == 'localhost:9000' ? true : false;
 
 const breakpoints = {
   sm: 576,
@@ -96,6 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
   Location.init();
   Search.init();
   Modal.init();
+  ScrollAnchors.init();
   Validation.init();
 
   //tippy
@@ -152,27 +153,44 @@ function inputs() {
         input_value = $input_element.value,
         input_empty = validate.single(input_value, {presence: {allowEmpty: false}}) !== undefined;
 
-    if(!$input.classList.contains('input')) return;
-
-    if(event.type=='focus') {
-      $input.classList.add('input_focused');
+    //input
+    if ($input.classList.contains('input')) {
+      if(event.type=='focus') {
+        $input.classList.add('input_focused');
+      } 
+      
+      else if(event.type=='input' || event.type=='change') {
+        if(!input_empty) {
+          $input.classList.add('input_filled');
+        } else {
+          $input.classList.remove('input_filled');
+        }
+      }
+  
+      else if(event.type=='blur') {
+        $input.classList.remove('input_focused');
+        if(input_empty) {
+          $input.classList.remove('input_filled');
+          $input_element.value = '';
+        }
+      } 
     } 
     
-    else if(event.type=='input' || event.type=='change') {
-      if(!input_empty) {
-        $input.classList.add('input_filled');
+    //input file
+    else if ($input.classList.contains('input-file') && event.type=='change') {
+      let $text = $input.querySelector('[data-text]'),
+          $button = $input.querySelector('.input-file-button'),
+          text = $text.getAttribute('data-text').split('|');
+
+      if (event.target.files.length) {
+        $button.classList.add('selected');
+        $text.textContent = text[1];
       } else {
-        $input.classList.remove('input_filled');
+        $button.classList.remove('selected');
+        $text.textContent = text[0];
       }
     }
-
-    else if(event.type=='blur') {
-      $input.classList.remove('input_focused');
-      if(input_empty) {
-        $input.classList.remove('input_filled');
-        $input_element.value = '';
-      }
-    } 
+    
   }
 
   document.addEventListener('focus', events, true);
@@ -1347,9 +1365,57 @@ const Modal = {
   }
 }
 
+const ScrollAnchors = {
+  init: function() {
+    let _scroll_ = '[data-action="scroll_to_anchor"]';
+
+    let click_event = (event) => {
+      let $link = event.target.closest(`${_scroll_}`);
+
+      if (!$link) return;
+
+      event.preventDefault();
+
+      let attr = $link.getAttribute('href'),
+          $target = document.querySelector(`${attr}`);
+
+      if (!$target) return;
+
+      scroll_event($target, $link);
+    }
+
+    let scroll_event = ($target, $link) => {
+      let ty = $target.getBoundingClientRect().top + window.pageYOffset,
+          gap = parseInt(getComputedStyle(document.documentElement)
+            .getPropertyValue('--scroll-to-content-gap')
+            .replace(/[^\d.-]/g, '')),
+          y = ty - gap;
+        
+      window.dispatchEvent(new CustomEvent("scroll_to_anchor_start", {
+        detail:{
+          $target: $target,
+          $link: $link
+        }
+      }));
+
+      gsap.to(window, {scrollTo: y, duration: animation_duration_3 / 1000, onComplete: () => {
+        window.dispatchEvent(new CustomEvent("scroll_to_anchor_end"));
+      }});
+    }
+
+    document.addEventListener('click', click_event);
+  }
+}
+
 window.Validation = {
   init: function () {
     this.constraints = {
+      file: {
+        presence: {
+          allowEmpty: false,
+          message: '^Загрузите файл'
+        },
+      },
       phone: {
         presence: {
           allowEmpty: false,
@@ -1556,4 +1622,12 @@ document.addEventListener('modal_open', function (event) {
   if ($filter_button_inner) {
     $filter_button_inner.classList.remove('d-block');
   }
+})
+
+document.addEventListener('submit', function(event) {
+  if (!Dev) return;
+
+  event.preventDefault();
+  Validation.validate(event.target);
+
 })
