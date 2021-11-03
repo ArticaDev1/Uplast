@@ -94,6 +94,7 @@
 }
 
 :root {
+  --textarea-height: 108px;
   --form-el-py: 17px;
   --form-el-px: 20px;
   --form-el-line-height: 20px;
@@ -7897,25 +7898,64 @@ ul:not([class]) li::before, ul.list li::before {
 /*========== Form ==========*/
 .input {
   position: relative;
-  background-color: var(--color-background-3);
-  border-radius: 10px;
-  transition: background-color var(--trs-1);
+  --height: 54px;
+  --line-height: 20px;
+  --font-size: 16px;
+  --radius: 10px;
 }
 .input input, .input textarea {
-  font-size: 16px;
-  line-height: 20px;
-  padding: 17px 20px;
+  font-size: --font-size;
+  line-height: var(--line-height);
+  padding: calc((var(--height) - var(--line-height)) / 2) 20px;
   width: 100%;
-  border-radius: inherit;
+  border-radius: var(--radius);
+  position: relative;
+  z-index: 2;
 }
 .input input:-webkit-autofill, .input textarea:-webkit-autofill {
   -webkit-text-fill-color: var(--color-text-1);
 }
-.input input[data-required] ~ span::after, .input textarea[data-required] ~ span::after {
+.input input[required] ~ .input-element span::after, .input textarea[required] ~ .input-element span::after {
   opacity: 1;
 }
-.input span {
+.input input[data-touch] ~ .input-element, .input input[data-hover] ~ .input-element, .input input.filled ~ .input-element, .input input:focus ~ .input-element, .input textarea[data-touch] ~ .input-element, .input textarea[data-hover] ~ .input-element, .input textarea.filled ~ .input-element, .input textarea:focus ~ .input-element {
+  background-color: var(--color-background-4);
+}
+.input input:focus ~ .input-element span, .input input.filled ~ .input-element span, .input textarea:focus ~ .input-element span, .input textarea.filled ~ .input-element span {
+  opacity: 0;
+}
+.input input.error ~ .input-element, .input textarea.error ~ .input-element {
+  background-color: var(--color-input-bg-error);
+}
+.input input.error ~ .input-element span, .input textarea.error ~ .input-element span {
+  color: inherit;
+}
+.input input.success ~ .input-element, .input textarea.success ~ .input-element {
+  background-color: var(--color-input-bg-succes);
+}
+.input input[disabled], .input textarea[disabled] {
+  cursor: default;
+}
+.input input[disabled] ~ .input-element, .input textarea[disabled] ~ .input-element {
+  background-color: var(--color-background-4) !important;
+}
+.input input[disabled] ~ .input-element span, .input textarea[disabled] ~ .input-element span {
+  color: var(--color-text-6);
+}
+.input textarea {
+  min-height: var(--textarea-height);
+}
+.input-element {
   pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-background-3);
+  border-radius: var(--radius);
+  transition: background-color var(--trs-1);
+}
+.input-element span {
   color: var(--color-text-4);
   transition: opacity var(--trs-1), color var(--trs-1);
   font-size: 16px;
@@ -7923,29 +7963,10 @@ ul:not([class]) li::before, ul.list li::before {
   position: absolute;
   top: 17px;
   left: 20px;
-  z-index: 2;
 }
-.input span::after {
+.input-element span::after {
   content: "*";
   transition: opacity var(--trs-1);
-  opacity: 0;
-}
-.input textarea {
-  min-height: 108px;
-}
-.input.error {
-  background-color: var(--color-input-bg-error) !important;
-}
-.input.error span {
-  color: inherit;
-}
-.input.success {
-  background-color: var(--color-input-bg-succes) !important;
-}
-.input[data-touch], .input[data-hover], .input_filled, .input_focused {
-  background-color: var(--color-background-4);
-}
-.input_focused span, .input_filled span {
   opacity: 0;
 }
 
@@ -7960,10 +7981,39 @@ ul:not([class]) li::before, ul.list li::before {
 .input-file input {
   display: none;
 }
-.input-file input[data-required] + .input-file-button span::after {
+.input-file input[required] ~ .input-file-element span:after {
   content: "*";
 }
-.input-file-button {
+.input-file input.selected ~ .input-file-element span:after {
+  content: "" !important;
+}
+.input-file input.selected:not([disabled]) ~ .input-file-element {
+  color: #fff;
+}
+.input-file input.selected:not([disabled]) ~ .input-file-element_style-1::before {
+  opacity: 1;
+  visibility: visible;
+}
+.input-file input.selected:not([disabled]) ~ .input-file-element_style-2 {
+  border-color: var(--color-input-bg-succes);
+}
+.input-file input.error ~ .input-file-element_style-1 {
+  background-color: var(--color-input-bg-error);
+}
+.input-file input.error ~ .input-file-element_style-2 {
+  border-color: var(--color-input-bg-error);
+}
+.input-file input[disabled] ~ .input-file-element {
+  cursor: default;
+  color: var(--color-text-4);
+}
+.input-file input[disabled] ~ .input-file-element_style-1 {
+  background-color: var(--color-background-4);
+}
+.input-file input[disabled] ~ .input-file-element_style-2 {
+  border-color: var(--color-background-4);
+}
+.input-file-element {
   --height: 54px;
   padding: calc(17px - var(--border)) calc(26px - var(--border));
   font-size: 16px;
@@ -7972,32 +8022,28 @@ ul:not([class]) li::before, ul.list li::before {
   border-width: var(--border);
   display: flex;
   gap: 16px;
-  color: #fff;
   position: relative;
+  transition: background-color var(--trs-1), border-color var(--trs-1), color var(--trs-1);
 }
-.input-file-button .icon {
+.input-file-element .icon {
   width: 20px;
   height: 20px;
   flex-shrink: 0;
   position: relative;
   z-index: 2;
 }
-.input-file-button span {
+.input-file-element span {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   position: relative;
   z-index: 2;
 }
-.input-file-button.selected span::after {
-  content: "" !important;
-}
-.input-file-button_style-1 {
+.input-file-element_style-1 {
   --border: 0px;
   background-color: var(--color-background-2);
-  transition: background-color var(--trs-1);
 }
-.input-file-button_style-1::before {
+.input-file-element_style-1::before {
   content: "";
   display: block;
   position: absolute;
@@ -8011,23 +8057,15 @@ ul:not([class]) li::before, ul.list li::before {
   visibility: hidden;
   transition: var(--trs-1);
 }
-.input-file-button_style-1[data-touch], .input-file-button_style-1[data-hover] {
+.input-file-element_style-1[data-touch], .input-file-element_style-1[data-hover] {
   background-color: var(--color-background-5);
 }
-.input-file-button_style-1.selected::before {
-  opacity: 1;
-  visibility: visible;
-}
-.input-file-button_style-2 {
+.input-file-element_style-2 {
   --border: 2px;
   border-color: var(--color-background-2);
-  transition: border-color var(--trs-1);
 }
-.input-file-button_style-2[data-touch], .input-file-button_style-2[data-hover] {
+.input-file-element_style-2[data-touch], .input-file-element_style-2[data-hover] {
   border-color: var(--color-background-5);
-}
-.input-file-button_style-2.selected {
-  border-color: var(--color-input-bg-succes);
 }
 
 .select {

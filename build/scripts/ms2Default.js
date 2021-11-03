@@ -553,37 +553,38 @@
       miniShop2.send(data, miniShop2.Order.callbacks.clean, miniShop2.Callbacks.Order.clean);
     },
     submit: function () {
-      if (Validation.validate(miniShop2.sendData.$form[0])) {
-        if (miniShop2.ajaxProgress) {
-          //noinspection JSUnresolvedFunction
-          miniShop2.$doc.ajaxComplete(function () {
-            miniShop2.ajaxProgress = false;
-            miniShop2.$doc.unbind('ajaxComplete');
-            miniShop2.Order.submit();
-          });
-          return false;
-        }
+      let $form = miniShop2.sendData.$form[0];
+      if (!Validation.check_prevalidation($form)) return;
 
-        var callbacks = miniShop2.Order.callbacks;
-
-        callbacks.submit.response.success = function (response) {
-          if (response.data['redirect']) {
-            document.location.href = response.data['redirect'];
-          } else if (response.data['msorder']) {
-            document.location.href = document.location.origin + document.location.pathname +
-              (document.location.search ? document.location.search + '&' : '?') +
-              'msorder=' + response.data['msorder'];
-          } else {
-            location.reload();
-          }
-        };
-
-        callbacks.submit.response.error = function (response) {
-          console.log('error', response);
-        };
-
-        return miniShop2.send(miniShop2.sendData.formData, miniShop2.Order.callbacks.submit, miniShop2.Callbacks.Order.submit);
+      if (miniShop2.ajaxProgress) {
+        //noinspection JSUnresolvedFunction
+        miniShop2.$doc.ajaxComplete(function () {
+          miniShop2.ajaxProgress = false;
+          miniShop2.$doc.unbind('ajaxComplete');
+          miniShop2.Order.submit();
+        });
+        return false;
       }
+
+      var callbacks = miniShop2.Order.callbacks;
+
+      callbacks.submit.response.success = function (response) {
+        if (response.data['redirect']) {
+          document.location.href = response.data['redirect'];
+        } else if (response.data['msorder']) {
+          document.location.href = document.location.origin + document.location.pathname +
+            (document.location.search ? document.location.search + '&' : '?') +
+            'msorder=' + response.data['msorder'];
+        } else {
+          location.reload();
+        }
+      };
+
+      callbacks.submit.response.error = function (response) {
+        console.log('error', response);
+      };
+
+      return miniShop2.send(miniShop2.sendData.formData, miniShop2.Order.callbacks.submit, miniShop2.Callbacks.Order.submit);
     },
     getrequired: function (value) {
       var callbacks = miniShop2.Order.callbacks;
@@ -593,15 +594,15 @@
         let $form = document.querySelector(miniShop2.Order.order);
         Validation.reset_hints($form);
         
-        $(miniShop2.Order.order).find('[name]').removeAttr('data-required');
+        $(miniShop2.Order.order).find('[name]').removeAttr('required');
         var requires = response.data['requires'];
         for (var i = 0, length = requires.length; i < length; i++) {
-          $(miniShop2.Order.order).find('[name=' + requires[i] + ']').attr('data-required', '');
+          $(miniShop2.Order.order).find('[name=' + requires[i] + ']').attr('required', '');
         }
       };
       
       callbacks.getrequired.response.error = function () {
-        $(miniShop2.Order.order).find('[name]').removeAttr('data-required');
+        $(miniShop2.Order.order).find('[name]').removeAttr('required');
       };
 
       var data = {

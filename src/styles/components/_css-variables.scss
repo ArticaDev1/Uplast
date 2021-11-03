@@ -83,8 +83,10 @@
   --select-max-height: calc( var(--select-py) * 2 + ( var(--select-item-lh) + var(--select-item-py) * 2) * 12 );
 }
 
-//form elements sizing
 :root {
+  //textarea
+  --textarea-height: 108px;
+
   --form-el-py: 17px;
   --form-el-px: 20px;
   --form-el-line-height: 20px;

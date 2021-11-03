@@ -262,44 +262,56 @@
               <div class="col-xl-8">
                 <div class="content-box">
                   <h3 class="content-box__title">Ваши данные</h3>
-                  <form>
+                  <form novalidate data-validation>
                     <div class="form-grid row row-gap-30 row-gap-xl-25 mb-30 mb-xl-25">
                       <div class="form-grid__element col-md-6">
                         <div class="input">
-                          <input type="text" data-required><span>ФИО</span>
+                          <input type="text" required disabled>
+                          <div class="input-element"><span>ФИО</span></div>
                         </div>
                       </div>
                       <div class="form-grid__element col-md-6">
                         <div class="input">
-                          <input type="text" data-required><span>Город</span>
+                          <input type="text" required>
+                          <div class="input-element"><span>Город</span></div>
                         </div>
                       </div>
                       <div class="form-grid__element col-md-6">
                         <div class="input">
-                          <input type="text" data-required><span>Компания</span>
+                          <input type="text" required>
+                          <div class="input-element"><span>Компания</span></div>
                         </div>
                       </div>
                       <div class="form-grid__element col-md-6">
                         <div class="input">
-                          <input type="text" data-required><span>Вид продукции</span>
+                          <input type="text" required>
+                          <div class="input-element"><span>Вид продукции</span></div>
                         </div>
                       </div>
                       <div class="form-grid__element col-md-6">
                         <div class="input">
-                          <input type="text" data-required data-validate="phone"><span>Телефон</span>
+                          <input type="text" name="phone" data-validate="phone">
+                          <div class="input-element"><span>Телефон</span></div>
                         </div>
                       </div>
                       <div class="form-grid__element col-md-6">
                         <div class="input">
-                          <input type="text" data-required data-validate="email"><span>Email</span>
+                          <input type="text" name="email" required data-validate="email">
+                          <div class="input-element"><span>Email</span></div>
+                        </div>
+                      </div>
+                      <div class="form-grid__element col-md-12">
+                        <div class="input">
+                          <textarea required></textarea>
+                          <div class="input-element"><span>текст</span></div>
                         </div>
                       </div>
                     </div>
                     <div class="form-grid row row-gap-15 mb-40 mb-md-50 mb-xl-70">
                       <div class="form-grid__element col-auto">
                         <div class="input-file">
-                          <input type="file" id="ldlsldlsd" data-required data-validate="file">
-                          <label class="input-file-button input-file-button_style-1" for="ldlsldlsd">
+                          <input type="file" id="ldlsldlsd" required data-validate="file">
+                          <label class="input-file-element input-file-element_style-1" for="ldlsldlsd">
                             <svg class="icon">
                               <use xlink:href="./img/icons/icons.svg#clip"></use>
                             </svg><span data-text="Прикрепить КП|КП прикреплено">Прикрепить КП</span>
@@ -308,8 +320,8 @@
                       </div>
                       <div class="form-grid__element col-auto">
                         <div class="input-file">
-                          <input type="file" id="kdj" data-required data-validate="file">
-                          <label class="input-file-button input-file-button_style-1" for="kdj">
+                          <input type="file" id="kdj" required disabled data-validate="file">
+                          <label class="input-file-element input-file-element_style-1" for="kdj">
                             <svg class="icon">
                               <use xlink:href="./img/icons/icons.svg#clip"></use>
                             </svg><span data-text="Прикрепить сертификат|Cертификат прикреплен">Прикрепить сертификат</span>
@@ -318,8 +330,8 @@
                       </div>
                       <div class="form-grid__element col-auto">
                         <div class="input-file">
-                          <input type="file" id="idk">
-                          <label class="input-file-button input-file-button_style-2" for="idk">
+                          <input type="file" id="idk" disabled>
+                          <label class="input-file-element input-file-element_style-2" for="idk">
                             <svg class="icon">
                               <use xlink:href="./img/icons/icons.svg#clip"></use>
                             </svg><span data-text="Другие файлы|Другие файлы прикреплены">Другие файлы</span>

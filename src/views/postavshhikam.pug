@@ -85,54 +85,66 @@ block content
         .col-xl-8 
           .content-box
             h3.content-box__title Ваши данные
-            form
+            form(novalidate data-validation)
               .form-grid.row.row-gap-30.row-gap-xl-25.mb-30.mb-xl-25
                 .form-grid__element.col-md-6  
                   .input
-                    input(type="text" data-required)
-                    span ФИО
+                    input(type="text" required disabled)
+                    .input-element
+                      span ФИО
                 .form-grid__element.col-md-6  
                   .input
-                    input(type="text" data-required)
-                    span Город
+                    input(type="text" required)
+                    .input-element
+                      span Город
                 .form-grid__element.col-md-6  
                   .input
-                    input(type="text" data-required)
-                    span Компания
+                    input(type="text" required)
+                    .input-element
+                      span Компания
                 .form-grid__element.col-md-6  
                   .input
-                    input(type="text" data-required)
-                    span Вид продукции
+                    input(type="text" required)
+                    .input-element
+                      span Вид продукции
                 .form-grid__element.col-md-6
                   .input
-                    input(type="text" data-required data-validate='phone')
-                    span Телефон
+                    input(type="text" name='phone' data-validate='phone')
+                    .input-element
+                      span Телефон
                 .form-grid__element.col-md-6
                   .input
-                    input(type="text" data-required data-validate='email')
-                    span Email
+                    input(type="text" name='email' required data-validate='email')
+                    .input-element
+                      span Email
+                
+                .form-grid__element.col-md-12
+                  .input
+                    textarea(required)
+                    .input-element
+                      span текст
 
               .form-grid.row.row-gap-15.mb-40.mb-md-50.mb-xl-70
                 .form-grid__element.col-auto
                   .input-file
-                    input(type="file" id='ldlsldlsd' data-required data-validate='file')
-                    label(for='ldlsldlsd').input-file-button.input-file-button_style-1
+                    input(type="file" id='ldlsldlsd' required data-validate='file')
+                    label(for='ldlsldlsd').input-file-element.input-file-element_style-1
                       svg.icon
                         use(xlink:href="./img/icons/icons.svg#clip")
                       span(data-text='Прикрепить КП|КП прикреплено') Прикрепить КП
                 
                 .form-grid__element.col-auto
                   .input-file
-                    input(type="file" id='kdj' data-required data-validate='file')
-                    label(for='kdj').input-file-button.input-file-button_style-1
+                    input(type="file" id='kdj' required disabled data-validate='file')
+                    label(for='kdj').input-file-element.input-file-element_style-1
                       svg.icon
                         use(xlink:href="./img/icons/icons.svg#clip")
                       span(data-text='Прикрепить сертификат|Cертификат прикреплен') Прикрепить сертификат
 
                 .form-grid__element.col-auto
                   .input-file
-                    input(type="file" id='idk')
-                    label(for='idk').input-file-button.input-file-button_style-2
+                    input(type="file" id='idk' disabled)
+                    label(for='idk').input-file-element.input-file-element_style-2
                       svg.icon
                         use(xlink:href="./img/icons/icons.svg#clip")
                       span(data-text='Другие файлы|Другие файлы прикреплены') Другие файлы

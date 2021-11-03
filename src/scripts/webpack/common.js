@@ -98,6 +98,8 @@ document.addEventListener("DOMContentLoaded", function () {
   Modal.init();
   ScrollAnchors.init();
   Validation.init();
+  Input.init();
+  InputFile.init();
 
   //tippy
   tippy('[data-tippy-content]', {
@@ -118,7 +120,6 @@ document.addEventListener("DOMContentLoaded", function () {
   //textarea
   autosize(document.querySelectorAll('.input textarea'));
 
-  inputs();
   calculator();
   form_toggle();
   collapse();
@@ -145,58 +146,84 @@ function mobile() {
   }
 }
 
-function inputs() {
+const Input = {
+  init: function() {
+    this._class = 'input';
+    this._class_filled = 'filled';
+    
+    let events = (event) => {
+      let $input = event.target,
+          $parent = $input.closest(`.${this._class}`);
 
-  let events = (event) => {
-    let $input = event.target.parentNode,
-        $input_element = event.target,
-        input_value = $input_element.value,
-        input_empty = validate.single(input_value, {presence: {allowEmpty: false}}) !== undefined;
-
-    //input
-    if ($input.classList.contains('input')) {
-      if(event.type=='focus') {
-        $input.classList.add('input_focused');
-      } 
-      
-      else if(event.type=='input' || event.type=='change') {
+      if (!$parent) return;
+         
+      let input_empty = validate.single($input.value, {presence: {allowEmpty: false}}) !== undefined;
+        
+      if(event.type=='input' || event.type=='change') {
         if(!input_empty) {
-          $input.classList.add('input_filled');
+          $input.classList.add(this._class_filled);
         } else {
-          $input.classList.remove('input_filled');
+          $input.classList.remove(this._class_filled);
         }
       }
-  
+    
       else if(event.type=='blur') {
-        $input.classList.remove('input_focused');
         if(input_empty) {
-          $input.classList.remove('input_filled');
-          $input_element.value = '';
+          $input.classList.remove(this._class_filled);
+          $input.value = '';
         }
       } 
-    } 
-    
-    //input file
-    else if ($input.classList.contains('input-file') && event.type=='change') {
-      let $text = $input.querySelector('[data-text]'),
-          $button = $input.querySelector('.input-file-button'),
-          text = $text.getAttribute('data-text').split('|');
+    }
 
-      if (event.target.files.length) {
-        $button.classList.add('selected');
+    document.addEventListener('input', events, true);
+    document.addEventListener('blur', events, true);
+  },
+  reset: function($input) {
+    $input.value = '';
+
+    $input.classList.remove(this._class_filled);
+    if($input.tagName=='TEXTAREA') {
+      $input.style.height = 'initial';
+    }
+  }
+}
+
+const InputFile = {
+  init: function() {
+    this._class = 'input-file';
+    this._class_selected = 'selected';
+    this._attr_text = 'data-text';
+    
+    let events = (event) => {
+      let $input = event.target,
+          $parent = event.target.closest(`.${this._class}`);
+
+      if (!$parent) return;
+      
+      let $text = $parent.querySelector(`[${this._attr_text}]`),
+          text = $text.getAttribute(this._attr_text).split('|');
+
+      if ($input.files.length) {
+        $input.classList.add(this._class_selected);
         $text.textContent = text[1];
       } else {
-        $button.classList.remove('selected');
+        $input.classList.remove(this._class_selected);
         $text.textContent = text[0];
       }
     }
-    
-  }
 
-  document.addEventListener('focus', events, true);
-  document.addEventListener('input', events, true);
-  document.addEventListener('change', events, true);
-  document.addEventListener('blur', events, true);
+    document.addEventListener('change', events);
+  },
+  reset: function($input) {
+    let $parent = $input.parentNode.closest(`.${this._class}`),
+        $text = $parent.querySelector(`[${this._attr_text}]`),
+        text = $text.getAttribute(this._attr_text).split('|');
+
+    $input.value = '';
+
+    $input.classList.remove(this._class_selected);
+    $text.textContent = text[0];
+  }
 }
 
 function form_toggle() {
@@ -377,7 +404,7 @@ function collapse() {
 
 const CustomInteractionEvents = Object.create({
   targets: {
-    value: '[data-custom-interaction], a, button, label, .input, .scrollbar-thumb, .ss-single-selected, .ss-option'
+    value: '[data-custom-interaction], a, button, label, .input input, .input textarea, .scrollbar-thumb, .ss-single-selected, .ss-option'
   },
   touchEndDelay: {
     value: 100
@@ -1407,8 +1434,38 @@ const ScrollAnchors = {
   }
 }
 
+const Form = {
+  _elements: 'input, textarea, select',
+  disable: function($form) {
+    let $elements = $form.querySelectorAll(this._elements);
+    $elements.forEach(($element) => {
+      $element.setAttribute('disabled', '');
+    })
+  },
+  enable: function($form) {
+    let $elements = $form.querySelectorAll(this._elements);
+    $elements.forEach(($element) => {
+      $element.removeAttribute('disabled');
+    })
+  },
+  reset: function ($form) {
+    if ($form.getAttribute('data-validation')!==null) $form.setAttribute('data-validation', '');
+
+    let $elements = $form.querySelectorAll(this._elements);
+
+    $elements.forEach(($element) => {
+      if ($element.closest(`.${Input._class}`)) {
+        Input.reset($element);
+      } else if ($element.closest(`.${InputFile._class}`)) {
+        InputFile.reset($element);
+      }
+    })
+  }
+}
+
 window.Validation = {
   init: function () {
+    this._form_elements = 'input, textarea, select';
     this.constraints = {
       file: {
         presence: {
@@ -1444,16 +1501,37 @@ window.Validation = {
     };
 
     document.addEventListener('input', (event) => {
-      if (event.target.parentNode.classList.contains('error') || 
-          event.target.parentNode.classList.contains('success')) {
+      if (event.target.classList.contains('error') || 
+          event.target.classList.contains('success')) {
         this.validate_input(event.target);
+      }
+    })
+
+    document.addEventListener('submit', (event) => {
+      let $form = event.target,
+          prevalidation = $form.getAttribute('data-validation');
+    
+      if (!event.isTrusted || prevalidation===null) return;
+
+      event.preventDefault();
+    
+      if (this.validate($form)) {
+        $form.setAttribute('data-validation', 'true');
+        $form.dispatchEvent(new Event("submit", {bubbles: true}));
       }
     })
 
   },
 
+  check_prevalidation: function($form) {
+    let validation = $form.getAttribute('data-validation');
+
+    if (validation===null || validation==='true') return true; 
+    else return false;
+  },
+
   validate: function($form) {
-    let $inputs = $form.querySelectorAll('input, textarea'),
+    let $inputs = $form.querySelectorAll(this._form_elements),
         flag = 0;
 
     $inputs.forEach(($input) => {
@@ -1465,12 +1543,15 @@ window.Validation = {
   },
 
   validate_input: function ($input) {
-    let $parent = $input.parentNode,
-        required = $input.getAttribute('data-required') !== null,
+    let required = $input.getAttribute('required') !== null,
         type = $input.getAttribute('data-validate'),
+        disabled = $input.getAttribute('disabled') !== null,
+        empty = validate.single($input.value, {presence: {allowEmpty: false}}) !== undefined,
         resault;
 
-    if(type && (required || validate.single($input.value, this.constraints.empty))) {
+    if (disabled) return;
+
+    if(type && (required || !empty)) {
       resault = validate.single($input.value, this.constraints[type]);
     } else if (required) {
       resault = validate.single($input.value, this.constraints.empty);
@@ -1478,26 +1559,26 @@ window.Validation = {
     
     //если есть ошибки
     if (resault) {
-      if ($parent.classList.contains('success')) {
-        $parent.classList.remove('success');
+      if ($input.classList.contains('success')) {
+        $input.classList.remove('success');
       }
-      if (!$parent.classList.contains('error')) {
-        $parent.classList.add('error');
-        $parent.parentNode.insertAdjacentHTML('beforeend', `<span class="input-message">${resault[0]}</span>`);
-        gsap.effects.fadeIn($parent.parentNode.querySelector('.input-message'));
+      if (!$input.classList.contains('error')) {
+        $input.classList.add('error');
+        $input.parentNode.parentNode.insertAdjacentHTML('beforeend', `<span class="input-message">${resault[0]}</span>`);
+        gsap.effects.fadeIn($input.parentNode.parentNode.querySelector('.input-message'));
       } else {
-        $parent.parentNode.querySelector('.input-message').textContent = `${resault[0]}`;
+        $input.parentNode.parentNode.querySelector('.input-message').textContent = `${resault[0]}`;
       }
       return false;
     }
 
     //если нет ошибок
     else {
-      if ($parent.classList.contains('error')) {
-        $parent.classList.remove('error');
-        $parent.classList.add('success');
-        gsap.effects.fadeIn($parent.parentNode.querySelector('.input-message')).reverse(1).eventCallback('onReverseComplete', () => {
-          $parent.parentNode.querySelector('.input-message').remove();
+      if ($input.classList.contains('error')) {
+        $input.classList.remove('error');
+        $input.classList.add('success');
+        gsap.effects.fadeIn($input.parentNode.parentNode.querySelector('.input-message')).reverse(1).eventCallback('onReverseComplete', () => {
+          $input.parentNode.parentNode.querySelector('.input-message').remove();
         });
       }
       return true;
@@ -1505,21 +1586,18 @@ window.Validation = {
 
   },
 
-
   reset_hints: function ($form) {
-    let $inputs = $form.querySelectorAll('input, textarea');
+    let $inputs = $form.querySelectorAll(this._form_elements);
     $inputs.forEach(($input) => {
-      let $parent = $input.parentNode;
-
-      if ($parent.classList.contains('error')) {
-        $parent.classList.remove('error');
-        gsap.effects.fadeIn($parent.parentNode.querySelector('.input-message')).reverse(1).eventCallback('onReverseComplete', () => {
-          $parent.parentNode.querySelector('.input-message').remove();
+      if ($input.classList.contains('error')) {
+        $input.classList.remove('error');
+        gsap.effects.fadeIn($input.parentNode.parentNode.querySelector('.input-message')).reverse(1).eventCallback('onReverseComplete', () => {
+          $input.parentNode.parentNode.querySelector('.input-message').remove();
         });
       }
 
-      if ($parent.classList.contains('success')) {
-        $parent.classList.remove('success');
+      if ($input.classList.contains('success')) {
+        $input.classList.remove('success');
       }
 
     })
@@ -1550,6 +1628,24 @@ const ButtonLoader = {
   }
 }
 
+//ajax form events
+document.addEventListener('ajaxForm:beforeSubmit', function (event) {
+  let $button = event.target.querySelector('[type="submit"]');
+  ButtonLoader.add($button);
+  Form.disable(event.target);
+})
+document.addEventListener('ajaxForm:afterSubmit', function (event) {
+  let $button = event.target.querySelector('[type="submit"]');
+  ButtonLoader.remove($button);
+  Form.enable(event.target);
+})
+document.addEventListener('ajaxForm:success', function (event) {
+  Form.reset(event.target);
+  Validation.reset_hints(event.target);
+})
+
+
+
 
 document.addEventListener('miniShop2_callback', function (event) {
   let detail = event.detail;
@@ -1568,10 +1664,12 @@ document.addEventListener('miniShop2_callback', function (event) {
   //order
   if(detail.type == 'before' && detail.action == 'order/submit') {
     let $button = detail.$form.querySelector('[type="submit"]');
+    Form.disable(detail.$form);
     ButtonLoader.add($button);
   }
   if(detail.type == 'after' && detail.action == 'order/submit' && detail.response.success) {
     let $button = detail.$form.querySelector('[type="submit"]');
+    Form.enable(detail.$form);
     ButtonLoader.remove($button);
   }
 
@@ -1622,12 +1720,4 @@ document.addEventListener('modal_open', function (event) {
   if ($filter_button_inner) {
     $filter_button_inner.classList.remove('d-block');
   }
-})
-
-document.addEventListener('submit', function(event) {
-  if (!Dev) return;
-
-  event.preventDefault();
-  Validation.validate(event.target);
-
 })
