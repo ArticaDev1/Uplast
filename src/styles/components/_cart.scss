@@ -13,16 +13,6 @@
   &__aside {
     grid-column: span 4;
   }
-  &__cart-form {
-    &:not(:last-child) {
-      margin-bottom: 25px;
-    }
-  }
-  &__item {
-    &:not(:last-child) {
-      margin-bottom: 25px;
-    }
-  }
   &__empty {
     padding-top: 150px;
     text-align: center;
@@ -68,11 +58,9 @@
     &__content {
       order: 2;
       grid-column: span 12;
-      margin-top: 25px;
     }
     &__order {
       grid-column: span 12;
-      margin-bottom: 25px;
     }
   }
 }
@@ -286,24 +274,6 @@
       bottom: 30px;
       right: 30px;
       top: initial;
-    }
-  }
-}
-
-.cart-form {
-  border-radius: 10px;
-  background-color: var(--color-background-1);
-  padding: 20px 30px 30px 30px;
-  &__inputs {
-    row-gap: 30px;
-  }
-  &__radio-elements {
-    row-gap: 14px;
-  }
-  @include media-breakpoint-down(sm) {
-    padding: 20px 20px 30px 20px;
-    &__title {
-      margin-bottom: 30px;
     }
   }
 }

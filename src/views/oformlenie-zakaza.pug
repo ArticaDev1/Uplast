@@ -14,10 +14,10 @@ block content
 
       form(action="" novalidate data-validation).cart__container 
         .cart__order 
-
-          .cart-form.cart__cart-form
-            h3.cart-form__title Ваши данные
-            .form-grid.row.cart-form__inputs
+        
+          .content-box.mb-25
+            h3 Ваши данные
+            .form-grid.row.row-gap-20
               .form-grid__element.col-md-6  
                 .input
                   input(type="text" required)
@@ -49,14 +49,11 @@ block content
                   .input-element
                     span Комментарий
 
-          .cart-form.cart__cart-form
-            h3.cart-form__title Способ оплаты
-
-            .form-grid.row.cart-form__inputs
-
+          .content-box.mb-25
+            h3 Способ оплаты
+            .form-grid.row.row-gap-20
               .form-grid__element
-
-                .form-grid.row.cart-form__radio-elements 
+                .form-grid.row.row-gap-15
                   .form-grid__element.col-auto
                     label.icon-checkbox
                       input(type="radio" name='test1' checked='checked')
@@ -71,16 +68,15 @@ block content
                         svg.icon.icon_style-2 
                           use(xlink:href="./img/icons/icons.svg#rub")
                         | Наличными при получении
-
               .form-grid__element
                 .input
                   input(type="text" required)
                   .input-element
                     span Реквизиты
 
-          .cart-form.cart__cart-form
-            h3.cart-form__title Способ получения
-            .form-grid.row.cart-form__radio-elements 
+          .content-box
+            h3 Способ получения
+            .form-grid.row.row-gap-15
               .form-grid__element.col-auto
                 label.icon-checkbox
                   input(type="radio" name='test2' checked='checked')

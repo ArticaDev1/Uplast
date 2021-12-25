@@ -9,47 +9,30 @@ block content
 
   section.section.product.product-v2
     .container.product__container
+
       //head
       .section__head.product__head
-        h1.h2 Пакет типа «майка» заказная
-      //картинки
-      .product-slider.product__slider
-        .swiper 
-          .swiper-wrapper
-            //large
-            .swiper-slide
-              .image.image_cover 
-                img(data-src="./img/paket.svg", alt="image").lazyload
-
-        .product-slider__miniatures
-          .product-slider__miniatures-items
-            //small
-            .product-slider__miniature
-              .image.image_cover
-                img(data-src="./img/paket.svg", alt="image").lazyload
-
-        .product-slider__pagination 
-          .swiper-pagination
+        h1.h2 Пакет-вкладыш
 
       .product__content.product-v2__content
         //заказ
         form(novalidate data-validation).content-box.order-box-constructor
           .order-box-constructor__content 
             .mb-40
-              .mb-30
+              .mb-30 
                 .form-element.mb-20
                   .select.select_small
                     select
                       option(value='1' selected) Размер
                       option(value='2') ??????
                       option(value='3') ??????
-                .form-element.mb-20 
+                .form-element.mb-20
                   .select.select_small
                     select
                       option(value='1' selected) Толщина
                       option(value='2') ??????
                       option(value='3') ??????
-                .form-element.mb-20
+                .form-element
                   span.form-element-label Цвет пакета: 
                     span(data-form-element-value)
                   .form-elements-group
@@ -64,23 +47,16 @@ block content
                     +color-checkbox({
                       type: 'radio',
                       name: name,
-                      color: '#fff',
-                      tippy: 'Белый',
-                      value: 'Белый'
+                      color: '#000',
+                      tippy: 'Черный',
+                      value: 'Черный'
                     })
                     +color-checkbox({
                       type: 'radio',
                       name: name,
-                      color: '#BDB76B',
-                      tippy: 'Бежевый',
-                      value: 'Бежевый'
-                    })
-                    +color-checkbox({
-                      type: 'radio',
-                      name: name,
-                      color: '#26A7E7',
-                      tippy: 'Синий',
-                      value: 'Синий'
+                      color: '#E49B0F',
+                      tippy: 'Оранжевый',
+                      value: 'Оранжевый'
                     })
                     +color-checkbox({
                       type: 'radio',
@@ -88,61 +64,6 @@ block content
                       color: '#26A356',
                       tippy: 'Зеленый',
                       value: 'Зеленый'
-                    })
-                    +color-checkbox({
-                      type: 'radio',
-                      name: name,
-                      color: '#000',
-                      tippy: 'Черный',
-                      value: 'Черный'
-                    })
-                .form-element.mb-20
-                  span.form-element-label Цвет рисунка: 
-                    span(data-form-element-value)
-                  .form-elements-group
-                    -var name = Math.round(Math.random() * 1000);
-                    +color-checkbox({
-                      type: 'radio',
-                      name: name,
-                      color: 'linear-gradient(220.55deg, rgba(196, 196, 196, 0) 9.19%, rgba(196, 196, 196, 0.83) 38.13%, rgba(196, 196, 196, 0) 90.21%)',
-                      tippy: 'Прозрачный',
-                      value: 'Прозрачный'
-                    })
-                    +color-checkbox({
-                      type: 'radio',
-                      name: name,
-                      color: '#fff',
-                      tippy: 'Белый',
-                      value: 'Белый'
-                    })
-                    +color-checkbox({
-                      type: 'radio',
-                      name: name,
-                      color: '#26A7E7',
-                      tippy: 'Синий',
-                      value: 'Синий'
-                    })
-                    +color-checkbox({
-                      type: 'radio',
-                      name: name,
-                      color: '#FF0000',
-                      tippy: 'Красный',
-                      value: 'Красный'
-                    })
-                    
-                    +color-checkbox({
-                      type: 'radio',
-                      name: name,
-                      color: '#E49B0F',
-                      tippy: 'Жёлтый',
-                      value: 'Жёлтый'
-                    })
-                    +color-checkbox({
-                      type: 'radio',
-                      name: name,
-                      color: '#000',
-                      tippy: 'Черный',
-                      value: 'Черный'
                     })
                 
               .form-element
@@ -152,7 +73,6 @@ block content
                     span Количество
 
             span.alert-message Если вы уже добавили товары в Корзину, их надо будет оформить дополнительно
-
 
           .order-box-constructor__form 
             h3 Ваши данные
@@ -172,7 +92,7 @@ block content
                   input(type="text" required data-validate='phone')
                   .input-element
                     span Телефон
-              .form-element.mb-20 
+              .form-element.mb-30 
                 .input
                   textarea
                   .input-element

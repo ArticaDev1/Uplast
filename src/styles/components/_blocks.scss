@@ -2848,15 +2848,13 @@
   }
   @include media-breakpoint-down(lg) {
     &__title {
-      margin-bottom: 25px;
+      margin-bottom: 30px;
     }
   }
   @include media-breakpoint-down(sm) {
     --pe: 20px;
     --ps: 20px;
-    &__title {
-      margin-bottom: 30px;
-    }
+    align-items: stretch;
   }
 }
 

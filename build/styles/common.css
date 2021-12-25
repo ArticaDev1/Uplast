@@ -12512,16 +12512,13 @@ ol:not([class]) li:before, ol.list li:before {
 }
 @media (max-width: 1023.98px) {
   .content-box__title {
-    margin-bottom: 25px;
+    margin-bottom: 30px;
   }
 }
 @media (max-width: 575.98px) {
   .content-box {
     --pe: 20px;
     --ps: 20px;
-  }
-  .content-box__title {
-    margin-bottom: 30px;
   }
 }
 
@@ -12691,12 +12688,6 @@ ol:not([class]) li:before, ol.list li:before {
 .cart__aside {
   grid-column: span 4;
 }
-.cart__cart-form:not(:last-child) {
-  margin-bottom: 25px;
-}
-.cart__item:not(:last-child) {
-  margin-bottom: 25px;
-}
 .cart__empty {
   padding-top: 150px;
   text-align: center;
@@ -12742,11 +12733,9 @@ ol:not([class]) li:before, ol.list li:before {
   .cart__content {
     order: 2;
     grid-column: span 12;
-    margin-top: 25px;
   }
   .cart__order {
     grid-column: span 12;
-    margin-bottom: 25px;
   }
 }
 
@@ -12955,26 +12944,6 @@ ol:not([class]) li:before, ol.list li:before {
     bottom: 30px;
     right: 30px;
     top: initial;
-  }
-}
-
-.cart-form {
-  border-radius: 10px;
-  background-color: var(--color-background-1);
-  padding: 20px 30px 30px 30px;
-}
-.cart-form__inputs {
-  row-gap: 30px;
-}
-.cart-form__radio-elements {
-  row-gap: 14px;
-}
-@media (max-width: 575.98px) {
-  .cart-form {
-    padding: 20px 20px 30px 20px;
-  }
-  .cart-form__title {
-    margin-bottom: 30px;
   }
 }
 
