@@ -12519,6 +12519,7 @@ ol:not([class]) li:before, ol.list li:before {
   .content-box {
     --pe: 20px;
     --ps: 20px;
+    align-items: stretch;
   }
 }
 

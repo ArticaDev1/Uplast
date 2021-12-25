@@ -1785,6 +1785,8 @@ const Modal = {
         if (callback) callback();
       })
     }
+
+    this.open(document.querySelector("#success-modal-2"));
   }
 }
 
