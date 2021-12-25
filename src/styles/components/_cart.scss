@@ -38,6 +38,7 @@
     }
     &-title {
       margin-bottom: 40px;
+      margin-top: 0 !important;
     }
   }
   @include media-breakpoint-down(xxl) {
