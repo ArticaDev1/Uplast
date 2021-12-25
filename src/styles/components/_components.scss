@@ -271,7 +271,7 @@ img {
       }
     }
     &-disabled {
-      opacity: 0.5;
+      opacity: 0;
       cursor: default;
     }
   }
@@ -753,6 +753,12 @@ img {
   --px: var(--form-el-px);
   --radius: var(--form-el-radius);
   --pr: 44px;
+
+  --bg-select: var(--color-background-1);
+  --bg-select-hover: var(--color-background-1);
+  --color-select: var(--color-text-1);
+  --color-select-hover: var(--color-select);
+
   &_small {
     --text-size: var(--form-el-small-text-size);
     --line-height: var(--form-el-small-line-height);
@@ -763,13 +769,13 @@ img {
   }
   min-width: 120px;
   position: relative;
-  z-index: 2;
   select, .ss-single-selected {
     padding: var(--py) var(--pr) var(--py) var(--px);
     border-radius: var(--radius);
     font-size: var(--text-size);
     line-height: var(--line-height);
-    background-color: var(--color-background-1);
+    background-color: var(--bg-select);
+    color: var(--color-select);
     cursor: pointer;
     user-select: none;
   }
@@ -783,9 +789,10 @@ img {
     overflow: hidden;
     text-overflow: ellipsis;
     position: relative;
-    transition: background-color var(--trs-1);
+    transition: background-color var(--trs-1), color var(--trs-1);
     &[data-touch], &[data-hover], &.ss-open-below {
-      background-color: var(--color-background-2);
+      background-color: var(--bg-select-hover);
+      color: var(--color-select-hover);
     }
   }
 
@@ -815,8 +822,9 @@ img {
   }
   .ss-content {
     position: absolute;
+    z-index: 2;
     background-color: var(--color-background-1);
-    border-radius: var(--select-list-radius);
+    border-radius: var(--radius);
     box-shadow: var(--modal-shadow);
     width: 260px;
     top: calc(100% + 12px);

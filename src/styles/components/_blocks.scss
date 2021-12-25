@@ -2968,6 +2968,11 @@
   .color-checkbox {
     --size: 34px;
   }
+  .select {
+    --bg-select: var(--color-background-2);
+    --bg-select-hover: var(--color-background-5);
+    --color-select-hover: var(--color-text-2);
+  }
   &__content {
     flex: 1 1 43%;
     position: relative;

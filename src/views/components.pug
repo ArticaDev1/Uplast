@@ -23,9 +23,22 @@ block content
           +checkbox('текст чекбокса', 'disabled')
 
         .d-flex.flex-wrap.column-gap-20.row-gap-15.w-100.col-12.align-items-center
-          +color-checkbox('#8b00ff', 'checked', 'Это фиолетовый цвет')
-          +color-checkbox('#8b00ff', '', 'Это фиолетовый цвет')
-          +color-checkbox('#8b00ff', 'disabled', 'Это фиолетовый цвет')
+          +color-checkbox({
+            checked: true,
+            type: 'checkbox',
+            color: '#fff',
+            tippy: 'Белый'
+          })
+          +color-checkbox({
+            type: 'checkbox',
+            color: 'linear-gradient(220.55deg, rgba(196, 196, 196, 0) 9.19%, rgba(196, 196, 196, 0.83) 38.13%, rgba(196, 196, 196, 0) 90.21%)',
+            tippy: 'Прозрачный'
+          })
+          +color-checkbox({
+            type: 'checkbox',
+            color: '#fff',
+            tippy: 'Белый'
+          })
 
         .d-flex.flex-wrap.column-gap-20.row-gap-15.w-100.col-12.align-items-center
           +color-link('#8b00ff', 'checked', 'Это фиолетовый цвет')
@@ -33,9 +46,23 @@ block content
           +color-link('#8b00ff', 'disabled', 'Это фиолетовый цвет')
 
         .d-flex.flex-wrap.column-gap-20.row-gap-15.w-100.col-12.align-items-center
-          +detail-checkbox('текст чекбокса', 'checked')
-          +detail-checkbox('текст чекбокса', '')
-          +detail-checkbox('текст чекбокса', 'disabled', 'Нет в наличии')
+          +detail-checkbox({
+            type: 'checkbox',
+            name: name,
+            value: '23 мм',
+            checked: true
+          })
+          +detail-checkbox({
+            type: 'checkbox',
+            name: name,
+            value: '35 мм'
+          })
+          +detail-checkbox({
+            type: 'checkbox',
+            name: name,
+            value: '35 мм',
+            disabled: true
+          })
 
         .d-flex.flex-wrap.column-gap-20.row-gap-15.w-100.col-12.align-items-center
           +detail-link('текст чекбокса', 'checked')

@@ -1,0 +1,234 @@
+extends layout/layout
+block variables
+  -var footer_type = 2
+  -var title = sitename+' - Каталог-выдача'
+  -var breadcrumbs_links = ['Каталог', 'Контейнеры', 'Соусники ПП']
+
+block content
+  include blocks/breadcrumbs
+
+  section.section.product.product-v2
+    .container.product__container
+      //head
+      .section__head.product__head
+        h1.h2 Пакет типа «майка» заказная
+      //картинки
+      .product-slider.product__slider
+        .swiper 
+          .swiper-wrapper
+            //large
+            .swiper-slide
+              .image.image_cover 
+                img(data-src="./img/paket.svg", alt="image").lazyload
+
+        .product-slider__miniatures
+          .product-slider__miniatures-items
+            //small
+            .product-slider__miniature
+              .image.image_cover
+                img(data-src="./img/paket.svg", alt="image").lazyload
+
+        .product-slider__pagination 
+          .swiper-pagination
+
+      .product__content.product-v2__content
+        //заказ
+        form(novalidate data-validation).content-box.order-box-constructor
+          .order-box-constructor__content 
+            .mb-40
+              .form-element.mb-15
+                .select.select_small
+                  select
+                    option(value='1' selected) Размер
+                    option(value='2') ??????
+                    option(value='3') ??????
+              .form-element.mb-15 
+                .select.select_small
+                  select
+                    option(value='1' selected) Толщина
+                    option(value='2') ??????
+                    option(value='3') ??????
+
+              .form-element.mb-15 
+                span.form-element-label Цвет пакета: 
+                  span(data-form-element-value)
+                .form-elements-group
+                  -var name = Math.round(Math.random() * 1000);
+                  +color-checkbox({
+                    type: 'radio',
+                    name: name,
+                    color: 'linear-gradient(220.55deg, rgba(196, 196, 196, 0) 9.19%, rgba(196, 196, 196, 0.83) 38.13%, rgba(196, 196, 196, 0) 90.21%)',
+                    tippy: 'Прозрачный',
+                    value: 'Прозрачный'
+                  })
+                  +color-checkbox({
+                    type: 'radio',
+                    name: name,
+                    color: '#fff',
+                    tippy: 'Белый',
+                    value: 'Белый'
+                  })
+                  +color-checkbox({
+                    type: 'radio',
+                    name: name,
+                    color: '#BDB76B',
+                    tippy: 'Бежевый',
+                    value: 'Бежевый'
+                  })
+                  +color-checkbox({
+                    type: 'radio',
+                    name: name,
+                    color: '#26A7E7',
+                    tippy: 'Синий',
+                    value: 'Синий'
+                  })
+                  +color-checkbox({
+                    type: 'radio',
+                    name: name,
+                    color: '#26A356',
+                    tippy: 'Зеленый',
+                    value: 'Зеленый'
+                  })
+                  +color-checkbox({
+                    type: 'radio',
+                    name: name,
+                    color: '#000',
+                    tippy: 'Черный',
+                    value: 'Черный'
+                  })
+              
+              .form-element.mb-30 
+                span.form-element-label Цвет рисунка: 
+                  span(data-form-element-value)
+                .form-elements-group
+                  -var name = Math.round(Math.random() * 1000);
+                  +color-checkbox({
+                    type: 'radio',
+                    name: name,
+                    color: 'linear-gradient(220.55deg, rgba(196, 196, 196, 0) 9.19%, rgba(196, 196, 196, 0.83) 38.13%, rgba(196, 196, 196, 0) 90.21%)',
+                    tippy: 'Прозрачный',
+                    value: 'Прозрачный'
+                  })
+                  +color-checkbox({
+                    type: 'radio',
+                    name: name,
+                    color: '#fff',
+                    tippy: 'Белый',
+                    value: 'Белый'
+                  })
+                  +color-checkbox({
+                    type: 'radio',
+                    name: name,
+                    color: '#26A7E7',
+                    tippy: 'Синий',
+                    value: 'Синий'
+                  })
+                  +color-checkbox({
+                    type: 'radio',
+                    name: name,
+                    color: '#FF0000',
+                    tippy: 'Красный',
+                    value: 'Красный'
+                  })
+                  
+                  +color-checkbox({
+                    type: 'radio',
+                    name: name,
+                    color: '#E49B0F',
+                    tippy: 'Жёлтый',
+                    value: 'Жёлтый'
+                  })
+                  +color-checkbox({
+                    type: 'radio',
+                    name: name,
+                    color: '#000',
+                    tippy: 'Черный',
+                    value: 'Черный'
+                  })
+              
+              .form-element
+                .input
+                  input(type="text")
+                  .input-element
+                    span Количество
+
+            span.alert-message Если вы уже добавили товары в Корзину, их надо будет оформить дополнительно
+
+
+          .order-box-constructor__form 
+            h3 Ваши данные
+            .mb-40
+              .form-element.mb-30
+                .input
+                  input(type="text" required)
+                  .input-element
+                    span ФИО
+              .form-element.mb-30
+                .input
+                  input(type="text" required data-validate='email')
+                  .input-element
+                    span Email
+              .form-element.mb-30
+                .input
+                  input(type="text" required data-validate='phone')
+                  .input-element
+                    span Телефон
+              .form-element.mb-30
+                .input
+                  input(type="text" required)
+                  .input-element
+                    span Город
+              .form-element.mb-30 
+                .input
+                  textarea
+                  .input-element
+                    span Комментарий
+            
+            button.button.button_large.button_style-1.w-100.mb-15
+              span.button__inner
+                span Отправить запрос
+
+            .text-small.text-muted.text-center.text-md-start Нажимая на кнопку, вы соглашаетесь с 
+              a(href="#").link Политикой конфиденциальности
+              |, а также 
+              a(href="#").link Пользовательским соглашением
+
+          
+
+
+
+  section.section.section-border
+    .container 
+      .section-border__head
+        h3 Похожие товары
+      .products-slider.slider-constructor(data-slides='2' data-md-slides='3' data-lg-slides='4' data-xl-slides='5' data-xxl-slides='6')
+        .swiper
+          .swiper-wrapper 
+            //slide
+            .swiper-slide 
+              +product-card(1)
+            //slide
+            .swiper-slide 
+              +product-card(2)
+            //slide
+            .swiper-slide 
+              +product-card(3)
+            //slide
+            .swiper-slide 
+              +product-card(4)
+            //slide
+            .swiper-slide 
+              +product-card(5)
+            //slide
+            .swiper-slide 
+              +product-card(6)
+            //slide
+            .swiper-slide 
+              +product-card(3)
+
+        .swiper-button.swiper-button-prev(data-custom-interaction)
+          svg.icon
+            use(xlink:href='./img/icons/icons.svg#arrow-left')
+        .swiper-button.swiper-button-next(data-custom-interaction)
+          svg.icon
+            use(xlink:href='./img/icons/icons.svg#arrow-right')
