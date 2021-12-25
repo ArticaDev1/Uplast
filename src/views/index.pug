@@ -4,8 +4,11 @@ block variables
   -var title = sitename+' - Современная упаковка для вашего бизнеса'
 
 block content
-  section.section.home-banner.screen
-    .home-banner__back-items
+  section.section.home-banner.screen-section
+    button.home-banner__navigation.home-banner__navigation_prev
+    button.home-banner__navigation.home-banner__navigation_next
+
+    .screen-section__background.home-banner__back-items
       //item
       .home-banner__back-item.image.image_cover 
         img(data-src="./img/slider_home/1_1.jpg", alt="image").lazyload
@@ -14,20 +17,14 @@ block content
         img(data-src="./img/slider_home/2_1.jpg", alt="image").lazyload
       //item
       .home-banner__back-item.image.image_cover 
-        img(data-src="./img/slider_home/3_1.jpg", alt="image").lazyload
+        img(data-src="./img/slider_home/4_1.jpg", alt="image").lazyload
       //item
       .home-banner__back-item.image.image_cover 
-        img(data-src="./img/slider_home/4_1.jpg", alt="image").lazyload
-
-    .home-banner__mask
+        img(data-src="./img/slider_home/3_1.jpg", alt="image").lazyload
+    
 
     .home-banner__front-items
-      //item
-      .home-banner__front-item
-        .image.image_cover 
-          img(data-src="./img/slider_home/1_2.png", alt="image").lazyload
-        .home-banner__front-item-text 
-          span Торт для съёмки  предоставлен ТМ «Тортьяна» 
+      
 
       //item
       .home-banner__front-item
@@ -41,9 +38,15 @@ block content
       .home-banner__front-item
         .image.image_cover 
           img(data-src="./img/slider_home/4_2.png", alt="image").lazyload
+      //item
+      .home-banner__front-item
+        .image.image_cover 
+          img(data-src="./img/slider_home/1_2.png", alt="image").lazyload
+        .home-banner__front-item-text 
+          span Торт для съёмки  предоставлен ТМ «Тортьяна» 
 
-    .home-banner__content.container
-      h2.h1.home-banner__text Современная упаковка<br> для вашего бизнеса
+    .home-banner__container.screen-section__container.container
+      h1.home-banner__text Современная упаковка<br> для вашего бизнеса
       h6.home-banner__text От технологии<br> до совершенного продукта
       
     .home-banner__pagination.container
@@ -62,17 +65,23 @@ block content
 
   include blocks/promotions
 
-  section.section.small-catalogue.swiper.tab-slider
+  section.section.small-catalogue.tab-slider
     .container 
-      .section__head.small-catalogue__head
-        h2.small-catalogue__title Каталог
-        .toggle-head
-          button.toggle-head__button.tab-slider__button Готовые решения
-          button.toggle-head__button.tab-slider__button.active По типу товара
-          .toggle-head__slider
-          .toggle-head__bg
 
-      .small-catalogue__container.swiper-container
+      .section__head.row.align-items-center.mb-indent-3
+        
+        h2.col-md-5.col-lg-6.mb-md-0.text-center.text-md-start Каталог
+
+        .col-md-7.col-lg-6
+          .toggle-head
+            button.toggle-head__button.tab-slider__button Готовые решения
+            button.toggle-head__button.tab-slider__button.active По типу товара
+            .toggle-head__slider
+            .toggle-head__bg
+
+      
+
+      .swiper
         .swiper-wrapper
           //content
           .swiper-slide.toggle-content__block.small-catalogue__block
@@ -153,82 +162,55 @@ block content
                 h4.small-catalogue-block__title Хозяйственные товары
 
   section.section.advantages-slider
-    .section__head.advantages-slider__head
-      .container 
-        h2 Наши преимущества
-    .advantages-slider__container
-      .advantages-slider__slider
-        .swiper-container
-          .swiper-wrapper
-            mixin slide(index)
-              .swiper-slide.advantages-slider__slide
-                .image.image_cover
-                  img(data-src=`./img/advantages_slider/${index}.jpg`, alt="image").lazyload
-            +slide(1)
-            +slide(2)
-            +slide(3)
-            +slide(4)
-            +slide(5)
-            +slide(6)
-            +slide(7)
-            +slide(8)
-            +slide(9)
-      .advantages-slider__text.container
-        //item
-        .advantages-slider__item
-          .advantages-slider__item-container
-            svg.icon 
-              use(xlink:href="./img/icons/icons.svg#schedule")
-            p Постоянные инвестиции в новейшее оборудование, гарантирующее качество продукции и инновационный подход в процессе производства.
-        //item
-        .advantages-slider__item
-          .advantages-slider__item-container
-            svg.icon 
-              use(xlink:href="./img/icons/icons.svg#mountains")
-            p Сырьё от ведущих мировых производителей Sibur, Sabic, Borealis, Нижнекамскнефтехим.
-        //item
-        .advantages-slider__item
-          .advantages-slider__item-container
-            svg.icon 
-              use(xlink:href="./img/icons/icons.svg#loupe")
-            p Контроль качества на всех этапах производства.
-        //item
-        .advantages-slider__item
-          .advantages-slider__item-container
-            svg.icon 
-              use(xlink:href="./img/icons/icons.svg#earth")
-            p Оборудование лучших мировых производителей: современные высокопроизводительные термоформовочные машины ILLIG, Gabler; высокотехнологичные экструзионные линий KUHNE, Reifenhauser, SML, Erema.
-        //item
-        .advantages-slider__item
-          .advantages-slider__item-container
-            svg.icon 
-              use(xlink:href="./img/icons/icons.svg#roll")
-            p Уникальное производство из высокобарьерных материалов.
-        //item
-        .advantages-slider__item
-          .advantages-slider__item-container
-            svg.icon 
-              use(xlink:href="./img/icons/icons.svg#star")
-            p Запатентованные конструктивно-технологические решения, воплощённые в индивидуальном дизайне и геометрии изделий.
-        //item
-        .advantages-slider__item
-          .advantages-slider__item-container
-            svg.icon 
-              use(xlink:href="./img/icons/icons.svg#recycling")
-            p Технология рециклинга.
-        //item
-        .advantages-slider__item
-          .advantages-slider__item-container
-            svg.icon 
-              use(xlink:href="./img/icons/icons.svg#handshake")
-            p Ответственность. Гибкость. Прозрачность.
-        //item
-        .advantages-slider__item
-          .advantages-slider__item-container
-            svg.icon 
-              use(xlink:href="./img/icons/icons.svg#boxes")
-            p Широкий ассортимент, комплексные поставки, более 3000 наименований всегда в наличии.
+    h2.advantages-slider__title.container.text-center.text-md-start Наши преимущества
+    
+    .advantages-slider__slider
 
+      .swiper
+        .swiper-wrapper
+          mixin slide(index)
+            .swiper-slide
+              .image.image_cover
+                img(data-src=`./img/advantages_slider/${index}.jpg`, alt="image").lazyload
+          +slide(1)
+          +slide(2)
+          +slide(3)
+          +slide(4)
+          +slide(5)
+          +slide(6)
+          +slide(7)
+          +slide(8)
+          +slide(9)
+      
+      button.swiper-button.swiper-button-prev
+        svg.icon
+          use(xlink:href='./img/icons/icons.svg#arrow-left')
+      button.swiper-button.swiper-button-next
+        svg.icon
+          use(xlink:href='./img/icons/icons.svg#arrow-right')
+
+    .advantages-slider__container.container
+      //items
+      .advantages-slider__items
+        mixin item(icon, text)
+          //item
+          .advantages-slider__item
+            svg.icon 
+              use(xlink:href=`./img/icons/icons.svg#${icon}`)
+            p #{text}
+        
+        +item('schedule', 'Постоянные инвестиции в новейшее оборудование, гарантирующее качество продукции и инновационный подход в процессе производства.')
+        +item('mountains', 'Сырьё от ведущих мировых производителей Sibur, Sabic, Borealis, Нижнекамскнефтехим.')
+        +item('loupe', 'Контроль качества на всех этапах производства.')
+        +item('earth', 'Оборудование лучших мировых производителей: современные высокопроизводительные термоформовочные машины ILLIG, Gabler; высокотехнологичные экструзионные линий KUHNE, Reifenhauser, SML, Erema.')
+        +item('roll', 'Уникальное производство из высокобарьерных материалов.')
+        +item('star', 'Запатентованные конструктивно-технологические решения, воплощённые в индивидуальном дизайне и геометрии изделий.')
+        +item('recycling', 'Технология рециклинга.')
+        +item('handshake', 'Ответственность. Гибкость. Прозрачность.')
+        +item('boxes', 'Широкий ассортимент, комплексные поставки, более 3000 наименований всегда в наличии.')
+
+      //pagination
+      .swiper-pagination
 
   section.section.section-partners
 
@@ -242,7 +224,7 @@ block content
         h2 Наши партнеры
       .section-partners__container
         .section-partners__slider
-          .swiper-container
+          .swiper
             .swiper-wrapper 
               +slide(1)
               +slide(2)
@@ -253,7 +235,7 @@ block content
               +slide(7)
               +slide(8)
         .section-partners__slider
-          .swiper-container
+          .swiper
             .swiper-wrapper 
               +slide(9)
               +slide(10)
@@ -264,7 +246,7 @@ block content
               +slide(15)
               +slide(16)
         .section-partners__slider
-          .swiper-container
+          .swiper
             .swiper-wrapper 
               +slide(17)
               +slide(18)

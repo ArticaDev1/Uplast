@@ -1,5 +1,6 @@
 .search-element {
   --search-height: 50px;
+  position: relative;
   &__form {
     position: relative;
     z-index: 2;
@@ -57,16 +58,11 @@
   }
 
   &__no-resaults {
+    display: block;
     color: var(--color-text-4);
   }
 
   @include media-breakpoint-up(lg) {
-    .container {
-      padding: 0;
-    }
-    &__container {
-      position: relative;
-    }
     &__close {
       display: none;
     }
@@ -110,17 +106,20 @@
 
   @include media-breakpoint-down(lg) {
     display: none;
-    background-color: var(--color-background-1);
     position: fixed;
-    width: var(--screen-width);
-    height: 100%;
+    width: var(--window-width);
+    height: var(--window-height);
+    top: 0;
+    left: 0;
     z-index: 1001;
-    overflow: scroll;
+    overflow-y: scroll;
+    background-color: var(--color-background-1);
     &::before {
-      top: calc(var(--search-height) - var(--overscroll-size) + var(--indent-3) * 2);
+      top: var(--modal-head-height);
     }
     &__resaults {
       font-size: var(--line-links-font-size);
+      width: var(--content-width);
     }
     &__resault-link {
       padding: var(--line-links-py) 0;
@@ -134,19 +133,20 @@
         border-bottom: 1px solid var(--color-background-2);
       }
     }
-    &__input-inner {
+    &__input-container {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: var(--content-width);
+      height: var(--modal-head-height);
+      background-color: var(--color-background-4);
+      z-index: 2;
+      padding: 0 var(--content-gutter);
       display: flex;
       align-items: center;
-      flex: 0 0 auto;
-      padding: var(--indent-3) 0 calc(var(--indent-3) - var(--overscroll-size)) 0;
-      position: sticky;
-      top: 0;
-      margin-top: calc(var(--overscroll-size) * -1);
-      background-color: var(--color-background-1);
     }
     &__resaults {
-      padding-top: var(--overscroll-size);
-      padding-bottom: calc(var(--indent-3) - var(--overscroll-size));
+      padding: calc(var(--modal-head-height) + 25px) var(--content-gutter) var(--indent-3) var(--content-gutter);
     }
     &__close {
       flex: 0 0 auto;

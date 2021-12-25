@@ -41,9 +41,6 @@ var AjaxForm = {
 
         },
         success: function (response, status, xhr, form) {
-          //не понятно зачем это
-          response.form = form;
-          $(document).trigger('af_complete', response);
 
           form[0].dispatchEvent(new CustomEvent("ajaxForm:afterSubmit", {
             bubbles: true,

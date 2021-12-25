@@ -2,20 +2,12 @@
   --font-size: 20px;
   --line-height: 24px;
   position: fixed;
-  height: 100%;
-  width: var(--screen-width);
+  height: var(--window-height);
+  width: var(--window-width);
   top: 0;
   left: 0;
   z-index: 1001;
   display: none;
-  &__overlay {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-color: var(--color-overlay);
-  }
   &_visible {
     opacity: 1;
     visibility: visible;
@@ -30,17 +22,20 @@
     background-color: var(--color-background-1);
     position: relative;
     z-index: 2;
-    transition: transform var(--trs-1);
+  }
+  &__scroll-container {
+    height: 100%;
+    overflow-y: scroll;
   }
   &__head {
-    position: sticky;
+    position: fixed;
     z-index: 2;
     top: 0;
-    margin-top: calc(var(--overscroll-size) * -1);
-    height: var(--indent-3);
+    width: calc(100% - var(--scrollbar-width));
   }
+
   &__content {
-    padding-bottom: calc(var(--indent-3) - var(--overscroll-size));
+    padding: var(--indent-3) 0;
   }
   &__item {
     &:not(:last-child) {
@@ -112,16 +107,12 @@
     }
   }
   @include media-breakpoint-up(lg) {
+    background-color: var(--color-overlay);
     &__container {
       animation: var(--trs-1) mobile-nav-slide forwards paused;
       .d-block & {
         animation-play-state: running;
       }
-    }
-    &__content {
-      .container {
-        padding: 0;
-      } 
     }
     &__categories-link {
       &[data-touch], &[data-hover] {
@@ -129,10 +120,16 @@
       }
     }
   }
+
   @include media-breakpoint-down(lg) {
+    background-color: var(--color-background-1);
     &__container {
       width: 100%;
-      overflow-y: scroll;
+      background-color: transparent;
+    }
+    &__content {
+      width: var(--content-width);
+      padding: var(--indent-3) var(--content-gutter);
     }
     &__link {
       padding: 0;
@@ -147,20 +144,20 @@
   @include media-breakpoint-down(sm) {
     &__head {
       background-color: var(--color-background-4);
-      height: 100px;
+      height: var(--modal-head-height);
       display: flex;
     }
     &__logo {
       width: 170px;
       margin: auto;
     }
-    &__container {
+    &__scroll-container {
       &::before {
-        top: 100px;
+        top: var(--modal-head-height);
       }
     }
     &__content {
-      padding: 25px 0 calc(var(--indent-3) - var(--overscroll-size)) 0;
+      padding: calc(var(--modal-head-height) + 25px) var(--content-gutter) var(--indent-3) var(--content-gutter);
     }
   }
 }

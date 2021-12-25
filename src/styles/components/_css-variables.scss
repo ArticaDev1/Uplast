@@ -1,5 +1,5 @@
 :root {
-  --content-gutter: ((var(--content-width) - var(--container-width) + var(--container-gutter-x) * 2) / 2);
+  --content-gutter: calc((var(--content-width) - var(--container-width) + var(--container-gutter-x) * 2) / 2);
   --container-gutter-x: 24px;
   --grid-gutter-x: 24px;
 
@@ -8,19 +8,30 @@
   
   //screen
   --screen-min-width: 360px;
-  --screen-height: var(--page-height-property, 100vh);
-  --screen-width: max(var(--screen-min-width), 100vw);
-  --content-width: var(--screen-width);
+  --window-safe-height: var(--window-safe-height-property, 100vh);
+  --window-height: var(--window-height-property, 100vh);
+  --window-width: max(var(--screen-min-width), 100vw);
   --screen-max-height: 60vw;
+
+  //content-width
+  --content-width: var(--window-width);
+
+  //header
+  --header-height: 102px;
+
+  
+  //modal head height
+  --modal-head-height: 110px;
+  @include media-breakpoint-down(sm) {
+    --modal-head-height: 100px;
+  }
+
 
   --scroll-to-content-gap: 40px;
   
   @include media-breakpoint-down(lg) {
-    --screen-max-height: calc(var(--screen-width) * 1.25);
-  }
-  @include media-breakpoint-down(sm) {
-    --content-width: calc(var(--screen-width) - var(--scrollbar-width));
-    --screen-max-height: calc(var(--screen-width) * 2);
+    --header-height: 84px;
+    --screen-max-height: calc(var(--window-width) * 1.25);
   }
 
   @include media-breakpoint-up(xxl) {
@@ -33,6 +44,7 @@
     --container-width: #{map-get($container-max-widths, lg)};
   }
   @include media-breakpoint-down(lg) {
+    --content-width: calc(var(--window-width) - var(--scrollbar-width));
     --container-width: #{map-get($container-max-widths, md)};
   }
   @include media-breakpoint-down(md) {
@@ -43,6 +55,8 @@
   @include media-breakpoint-down(sm) {
     --container-width: var(--content-width);
     --scroll-to-content-gap: 30px;
+    --screen-max-height: calc(var(--window-width) * 2);
+    --header-height: 80px;
   }
 }
 
@@ -72,6 +86,8 @@
     --indent-3: 40px;
   }
 }
+
+
 
 //select dropdown
 :root {
@@ -131,7 +147,7 @@
 //product card
 :root {
   --pc-row-count: 6;
-  --pc-image-size: calc((var(--content-width) - var(--container-gutter-x) * 2 - var(--grid-gutter-x) * (var(--pc-row-count) - 1)) / var(--pc-row-count));
+  --pc-image-size: calc((var(--container-width) - var(--container-gutter-x) * 2 - var(--grid-gutter-x) * (var(--pc-row-count) - 1)) / var(--pc-row-count));
   --pc-padding-top: 10px;
   --pc-padding-bottom: 20px;
   --pc-padding-x: 10px;
@@ -161,11 +177,16 @@
 
 //
 :root {
+  --angle-top-margin: 120px;
+  --angle-top-gutter: 220px;
   --angle-border-size: 170px;
   @include media-breakpoint-down(lg) {
+    --angle-top-gutter: 110px;
     --angle-border-size: 80px;
   }
   @include media-breakpoint-down(sm) {
+    --angle-top-margin: 100px;
+    --angle-top-gutter: 90px;
     --angle-border-size: 50px;
   }
 }

@@ -12,7 +12,7 @@ block content
       .section__head
         h1.h2 Оформление заказа
 
-      form(action="").cart__container 
+      form(action="" novalidate data-validation).cart__container 
         .cart__order 
 
           .cart-form.cart__cart-form
@@ -20,28 +20,34 @@ block content
             .form-grid.row.cart-form__inputs
               .form-grid__element.col-md-6  
                 .input
-                  input(type="text" data-required)
-                  span ФИО
+                  input(type="text" required)
+                  .input-element
+                    span ФИО
               .form-grid__element.col-md-6
                 .input
-                  input(type="text" data-required)
-                  span Город
+                  input(type="text" required)
+                  .input-element
+                    span Город
               .form-grid__element.col-md-6
                 .input
-                  input(type="text" name='phone' data-required data-validate='phone')
-                  span Телефон
+                  input(type="text" name='phone' required data-validate='phone')
+                  .input-element
+                    span Телефон
               .form-grid__element.col-md-6
                 .input
-                  input(type="text" data-required data-validate='email')
-                  span Email
+                  input(type="text" required data-validate='email')
+                  .input-element
+                    span Email
               .form-grid__element.col-12
                 .input
-                  input(type="text" data-required)
-                  span Компания
+                  input(type="text" required)
+                  .input-element
+                    span Компания
               .form-grid__element.col-12
                 .input
                   textarea
-                  span Комментарий
+                  .input-element
+                    span Комментарий
 
           .cart-form.cart__cart-form
             h3.cart-form__title Способ оплаты
@@ -68,8 +74,9 @@ block content
 
               .form-grid__element
                 .input
-                  input(type="text" data-required)
-                  span Реквизиты
+                  input(type="text" required)
+                  .input-element
+                    span Реквизиты
 
           .cart-form.cart__cart-form
             h3.cart-form__title Способ получения

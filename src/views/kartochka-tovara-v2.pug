@@ -1,0 +1,277 @@
+extends layout/layout
+block variables
+  -var footer_type = 2
+  -var title = sitename+' - Каталог-выдача'
+  -var breadcrumbs_links = ['Каталог', 'Контейнеры', 'Соусники ПП']
+
+block content
+  include blocks/breadcrumbs
+
+  section.section.product.product-v2
+    .container.product__container
+      //head
+      .section__head.product__head
+        h1.h2 Соусник с крышкой 80 мл прозрачный пп 960/80
+      //картинки
+      .product-slider.product__slider
+        .swiper 
+          .swiper-wrapper
+            //large
+            .swiper-slide
+              .image.image_cover 
+                img(data-src="./img/78f88893213e19bf8649cec8eba83be1 1.jpg", alt="image").lazyload
+            //large
+            .swiper-slide
+              .image.image_cover
+                img(data-src="./img/konteyner_108kh82_500ml_prozrachnyy_pp_1000_100_ 7.jpg", alt="image").lazyload
+            //large
+            .swiper-slide
+              .image.image_cover
+                img(data-src="./img/78f88893213e19bf8649cec8eba83be1 1.jpg", alt="image").lazyload
+
+        .product-slider__miniatures
+          .product-slider__miniatures-items
+            //small
+            .product-slider__miniature
+              .image.image_cover
+                img(data-src="./img/78f88893213e19bf8649cec8eba83be1 1.jpg", alt="image").lazyload
+            //small
+            .product-slider__miniature
+              .image.image_cover
+                img(data-src="./img/konteyner_108kh82_500ml_prozrachnyy_pp_1000_100_ 7.jpg", alt="image").lazyload
+            //small
+            .product-slider__miniature
+              .image.image_cover
+                img(data-src="./img/78f88893213e19bf8649cec8eba83be1 1.jpg", alt="image").lazyload
+
+        .product-slider__pagination 
+          .swiper-pagination
+
+      .product__content.product-v2__content
+
+        //скидка
+        .product-stock.product__stock
+          .product-stock__label Акция
+          .product-stock__text Покупая пластиковые тарелки, соусники даём в подарок!
+
+        //текст описание
+        .product__description(data-collapse='parent')
+          .product__description-text(data-collapse='content')
+            div(data-collapse='inner')
+              p Лоток под запайку — удобный и практичный вид упаковки, имеющий большие преимущества перед другими видами фасовки. практичный вид упаковки, имеющий большие преимущества перед другими видами фасовки. практичный вид упаковки, имеющий большие преимущества перед другими видами фасовки. практичный вид упаковки, имеющий большие преимущества перед другими видами фасовки.          
+          button(type='button' data-collapse='toggle').collapse-button.product__collapse-button
+            span Полное описание
+            span Свернуть
+            svg.icon 
+              use(xlink:href="./img/icons/icons.svg#select-arrow")
+
+        //характеристики
+        .product-v2__specifications.row.mb-40.mb-lg-30
+          .col-md-6.mb-10.mb-md-0
+            table.info-table 
+              tr 
+                td 
+                  span Цвет
+                td 
+                  span Стандартное исполнение, прозрачный 
+              tr 
+                td 
+                  span Объем
+                td 
+                  span 80 мл
+              tr 
+                td 
+                  span Высота
+                td 
+                  span 34 мм
+              tr 
+                td 
+                  span Упаковка
+                td 
+                  span 1040 шт
+          .col-md-6
+            table.info-table 
+              tr 
+                td 
+                  span Диаметр по крышке
+                td 
+                  span 71 мм
+              tr 
+                td 
+                  span Область применения
+                td 
+                  span Упаковка, хранение, транспортировка пищевых продуктов
+              tr 
+                td 
+                  span Минимальная партия
+                td 
+                  span 80 шт
+        
+        //заказ
+        form(novalidate data-validation).content-box.order-box-constructor
+          .order-box-constructor__content 
+            .mb-40
+              .form-element.mb-15 
+                span.form-element-label Глубина
+                .form-elements-group
+                  -var name = Math.round(Math.random() * 1000);
+                  +detail-checkbox({
+                    type: 'radio',
+                    name: name,
+                    value: '23 мм'
+                  })
+                  +detail-checkbox({
+                    type: 'radio',
+                    name: name,
+                    value: '35 мм'
+                  })
+                  +detail-checkbox({
+                    type: 'radio',
+                    name: name,
+                    value: '47 мм'
+                  })
+                  +detail-checkbox({
+                    type: 'radio',
+                    name: name,
+                    value: '55 мм'
+                  })
+              
+              .form-element.mb-15 
+                span.form-element-label Салфетка: 
+                  span(data-form-element-checked)
+                .form-elements-group 
+                  +radio-slide()
+
+              .form-element.mb-15 
+                span.form-element-label Ламинация PE: 
+                  span(data-form-element-checked)
+                .form-elements-group 
+                  +radio-slide()
+
+              .form-element.mb-30 
+                span.form-element-label Цвет: 
+                  span(data-form-element-value)
+                .form-elements-group
+                  -var name = Math.round(Math.random() * 1000);
+                  +color-checkbox({
+                    type: 'radio',
+                    name: name,
+                    color: 'linear-gradient(220.55deg, rgba(196, 196, 196, 0) 9.19%, rgba(196, 196, 196, 0.83) 38.13%, rgba(196, 196, 196, 0) 90.21%)',
+                    tippy: 'Прозрачный',
+                    value: 'Прозрачный'
+                  })
+                  +color-checkbox({
+                    type: 'radio',
+                    name: name,
+                    color: '#fff',
+                    tippy: 'Белый',
+                    value: 'Белый'
+                  })
+                  +color-checkbox({
+                    type: 'radio',
+                    name: name,
+                    color: '#51FF4E',
+                    tippy: 'Зеленый',
+                    value: 'Зеленый'
+                  })
+                  +color-checkbox({
+                    type: 'radio',
+                    name: name,
+                    color: '#FFDC23',
+                    tippy: 'Желтый',
+                    value: 'Желтый'
+                  })
+                  +color-checkbox({
+                    type: 'radio',
+                    name: name,
+                    color: 'linear-gradient(50deg, rgba(255,255,255,1) 0%, rgba(2,0,36,1) 100%)',
+                    tippy: 'Натуральный',
+                    value: 'Натуральный'
+                  })
+              
+              .form-element
+                .input
+                  input(type="text")
+                  .input-element
+                    span Количество
+
+            span.alert-message Если вы уже добавили товары в Корзину, их надо будет оформить дополнительно
+
+
+          .order-box-constructor__form 
+            h3 Ваши данные
+            .mb-40
+              .form-element.mb-30
+                .input
+                  input(type="text" required)
+                  .input-element
+                    span ФИО
+              .form-element.mb-30
+                .input
+                  input(type="text" required data-validate='email')
+                  .input-element
+                    span Email
+              .form-element.mb-30
+                .input
+                  input(type="text" required data-validate='phone')
+                  .input-element
+                    span Телефон
+              .form-element.mb-30
+                .input
+                  input(type="text" required)
+                  .input-element
+                    span Город
+              .form-element.mb-30 
+                .input
+                  textarea
+                  .input-element
+                    span Комментарий
+            
+            button.button.button_large.button_style-1.w-100.mb-15
+              span.button__inner
+                span Отправить запрос
+
+            .text-small.text-muted.text-center.text-md-start Нажимая на кнопку, вы соглашаетесь с 
+              a(href="#").link Политикой конфиденциальности
+              |, а также 
+              a(href="#").link Пользовательским соглашением
+
+          
+
+
+
+  section.section.section-border
+    .container 
+      .section-border__head
+        h3 Похожие товары
+      .products-slider.slider-constructor(data-slides='2' data-md-slides='3' data-lg-slides='4' data-xl-slides='5' data-xxl-slides='6')
+        .swiper
+          .swiper-wrapper 
+            //slide
+            .swiper-slide 
+              +product-card(1)
+            //slide
+            .swiper-slide 
+              +product-card(2)
+            //slide
+            .swiper-slide 
+              +product-card(3)
+            //slide
+            .swiper-slide 
+              +product-card(4)
+            //slide
+            .swiper-slide 
+              +product-card(5)
+            //slide
+            .swiper-slide 
+              +product-card(6)
+            //slide
+            .swiper-slide 
+              +product-card(3)
+
+        .swiper-button.swiper-button-prev(data-custom-interaction)
+          svg.icon
+            use(xlink:href='./img/icons/icons.svg#arrow-left')
+        .swiper-button.swiper-button-next(data-custom-interaction)
+          svg.icon
+            use(xlink:href='./img/icons/icons.svg#arrow-right')

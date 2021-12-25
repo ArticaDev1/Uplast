@@ -16,8 +16,8 @@ var mSearch2 = {
 		filter_title: '.filter_title',
 		filter_wrapper: '.filter__box',
 
-		pagination: '.mse2_pagination',
-		pagination_link: '.mse2_pagination a',
+		pagination: '#mse2_pagination',
+		pagination_link: '#mse2_pagination a',
 
 		sort: '#mse2_sort',
 		sort_link: '#mse2_sort a',
@@ -239,6 +239,7 @@ var mSearch2 = {
 				break;
 
 			default:
+				console.log()
 				$(document).on('click', this.options.pagination_link, function () {
 					if (!$(this).hasClass(mSearch2.options.active_class)) {
 						$(mSearch2.options.pagination).removeClass(mSearch2.options.active_class);
@@ -512,8 +513,12 @@ var mSearch2 = {
 			mSearch2.loading = false;
 			mSearch2.afterLoad();
 			if (response['success']) {
+
 				mSearch2.Message.success(response['message']);
 				mSearch2.pagination.html(response['data']['pagination']);
+
+
+
 				if (append) {
 					mSearch2.results.append(response['data']['results']);
 				} else {
@@ -899,11 +904,10 @@ var mSearch2 = {
 	},
 
 	setTotal: function (total) {
-		let count = !total ? 0 : total,
-			declention = this.total_text.data('declension').split('|');
+		if (!this.total_text.length) return;
 
-		//set total
-		this.total.text(count);
+		let count = !total ? 0 : total,
+				declention = this.total_text.data('declension').split('|');
 
 		//set text
 		let test = count % 100;

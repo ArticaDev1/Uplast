@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <title>Юпласт — Каталог-выдача</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="format-detection" content="telephone=no">
+    <!--color-->
+    <meta name="theme-color" content="#424346">
+    <!--favicons-->
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/favicons/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicons/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./img/favicons/apple-touch-icon.png">
+    <!--open graph-->
+    <meta property="og:title" content="От технологии до совершенного продукта">
+    <meta property="og:site_name" content="Юпласт">
+    <meta property="og:url" content="https://articadev1.github.io/Uplast/build/">
+    <meta property="og:description" content="Современная упаковка для вашего бизнеса">
+    <meta property="og:image" content="https://articadev1.github.io/Uplast/build/img/favicons/apple-touch-icon-1024x1024.png">
+    <!--fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+    <!--styles-->
+    <link rel="stylesheet" href="./styles/theme.css">
+    <link rel="stylesheet" href="./styles/common.css">
+  </head>
+  <body>
+    <script src="./scripts/test-device.js"></script>
+    <div class="wrapper">
+      <!-- header start-->
+      <header class="header">
+        <div class="container header__container"><a class="header__open-nav" href="#mobile-nav" data-action="open_modal">
+            <svg class="icon">
+              <use xlink:href="./img/icons/icons.svg#burger"></use>
+            </svg></a><a class="logo header__logo" href="./">
+            <svg class="icon logo__image" viewBox="0 0 213 43">
+              <use xlink:href="./img/icons/icons.svg#logo"></use>
+            </svg></a>
+          <div class="header__search">
+            <div class="search-element" id="search" data-modal-content>
+              <div class="search-element__input-container">
+                <div class="search-element__form" data-custom-interaction>
+                  <input class="search-element__input" type="text" placeholder="Поиск">
+                  <svg class="icon">
+                    <use xlink:href="./img/icons/icons.svg#magnifier"></use>
+                  </svg>
+                </div>
+                <button class="search-element__close" data-action="close_modal" aria-label="Закрыть поиск">Отмена</button>
+              </div>
+              <div class="search-element__resaults">
+                <div class="search-element__resaults-container"><a class="search-element__resault-link" href="#"> <span>Лотки под запайку </span>
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/icons.svg#arrow"></use>
+                    </svg></a><a class="search-element__resault-link" href="#"> <span>Лотки под запайку </span>
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/icons.svg#arrow"></use>
+                    </svg></a><a class="search-element__resault-link" href="#"> <span>Лотки под запайку </span>
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/icons.svg#arrow"></use>
+                    </svg></a><a class="search-element__resault-link" href="#"> <span>Лотки под запайку </span>
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/icons.svg#arrow"></use>
+                    </svg></a><a class="search-element__resault-link" href="#"> <span>Лотки под запайку </span>
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/icons.svg#arrow"></use>
+                    </svg></a><a class="search-element__resault-link" href="#"> <span>Лотки под запайку </span>
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/icons.svg#arrow"></use>
+                    </svg></a><a class="search-element__resault-link" href="#"> <span>Лотки под запайку </span>
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/icons.svg#arrow"></use>
+                    </svg></a><a class="search-element__resault-link" href="#"> <span>Лотки под запайку </span>
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/icons.svg#arrow"></use>
+                    </svg></a><a class="search-element__resault-link" href="#"> <span>Лотки под запайку </span>
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/icons.svg#arrow"></use>
+                    </svg></a></div>
+              </div>
+            </div>
+          </div>
+          <div class="header__items"> <a class="header__button d-lg-none" href="#search" data-action="open_modal">
+              <svg class="icon">
+                <use xlink:href="./img/icons/icons.svg#magnifier"></use>
+              </svg></a>
+            <div class="header__location"><a class="header__button header__location-button" href="#location" data-action="open_modal">
+                <svg class="icon">
+                  <use xlink:href="./img/icons/icons.svg#placemark"></use>
+                </svg><span>Воронеж</span></a>
+              <div class="location-element" id="location" data-modal-content>
+                <div class="location-element__head">
+                  <div class="location-element__head-title">
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/icons.svg#placemark"></use>
+                    </svg><span>Выберите город</span>
+                  </div>
+                  <button class="close-button location-element__close-button" data-action="close_modal" aria-label="Закрыть модальное окно">
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/icons.svg#close-button"></use>
+                    </svg>
+                  </button>
+                </div>
+                <div class="location-element__container scrollbar">
+                  <ul class="location-element__list">
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Москва </a></li>
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Санкт-Петербург</a></li>
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Абакан</a></li>
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Азов</a></li>
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Александров</a></li>
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Алексин</a></li>
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Алексин</a></li>
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Алексин</a></li>
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Алексин</a></li>
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Алексин</a></li>
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Алексин</a></li>
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Алексин</a></li>
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Алексин</a></li>
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Алексин</a></li>
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Алексин</a></li>
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Алексин</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div><a class="header__button header__phone-button" href="#content-modal" data-action="open_modal" data-tippy-content="Заказать звонок">
+              <svg class="icon">
+                <use xlink:href="./img/icons/icons.svg#phone"></use>
+              </svg></a><a class="header__button header__cart-button" href="#" data-tippy-content="Корзина пустая">
+              <svg class="icon">
+                <use xlink:href="./img/icons/icons.svg#cart"></use>
+              </svg><span>99</span></a>
+          </div>
+        </div>
+      </header><a class="nav-burger" href="#mobile-nav" data-action="open_modal">
+        <svg class="icon">
+          <use xlink:href="./img/icons/icons.svg#burger"> </use>
+        </svg></a>
+      <!-- header end-->
+      <nav class="mobile-nav" id="mobile-nav">
+        <div class="mobile-nav__container" data-modal-content>
+          <div class="scrollbar mobile-nav__scroll-container">
+            <div class="mobile-nav__head"><a class="logo mobile-nav__logo" href="#">
+                <svg class="icon logo__image" viewBox="0 0 213 43">
+                  <use xlink:href="./img/icons/icons.svg#logo"></use>
+                </svg></a>
+              <button class="close-button mobile-nav__close-button" data-action="close_modal" aria-label="Закрыть меню">
+                <svg class="icon">
+                  <use xlink:href="./img/icons/icons.svg#close-button"></use>
+                </svg>
+              </button>
+            </div>
+            <div class="mobile-nav__content">
+              <ul class="mobile-nav__list">
+                <li class="mobile-nav__item"> <a class="mobile-nav__link" href="katalog.html">Каталог товаров</a>
+                  <ul class="mobile-nav__categories-list">
+                    <!--li.mobile-nav__categories-item 
+                    a(href="#").mobile-nav__categories-link
+                      svg.icon.mobile-nav__categories-link-icon.mobile-nav__categories-link-icon_1
+                        use(xlink:href="./img/icons/icons.svg#lotok-pod-zapajku")
+                      span Лоток под запайку
+                    -->
+                    <!--li.mobile-nav__categories-item 
+                    a(href="#").mobile-nav__categories-link
+                      svg.icon.mobile-nav__categories-link-icon.mobile-nav__categories-link-icon_2
+                        use(xlink:href="./img/icons/icons.svg#kontejnery")
+                      span Контейнеры
+                    -->
+                    <!--li.mobile-nav__categories-item 
+                    a(href="#").mobile-nav__categories-link
+                      svg.icon.mobile-nav__categories-link-icon.mobile-nav__categories-link-icon_3
+                        use(xlink:href="./img/icons/icons.svg#tortniczy")
+                      span Тортницы
+                    -->
+                    <!--li.mobile-nav__categories-item 
+                    a(href="#").mobile-nav__categories-link
+                      svg.icon.mobile-nav__categories-link-icon.mobile-nav__categories-link-icon_4
+                        use(xlink:href="./img/icons/icons.svg#pakety")
+                      span Пакеты
+                    -->
+                    <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
+                        <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_5">
+                          <use xlink:href="./img/icons/icons.svg#odnorazovaya-posuda"></use>
+                        </svg><span>Одноразовая посуда</span></a></li>
+                    <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
+                        <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_6">
+                          <use xlink:href="./img/icons/icons.svg#plyonka"></use>
+                        </svg><span>Плёнка</span></a></li>
+                    <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
+                        <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_7">
+                          <use xlink:href="./img/icons/icons.svg#yomkosti-iz-vps"></use>
+                        </svg><span>Ёмкости из ВПС</span></a></li>
+                    <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
+                        <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_8">
+                          <use xlink:href="./img/icons/icons.svg#bumazhnaya-upakovka"></use>
+                        </svg><span>Бумажная упаковка</span></a></li>
+                    <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
+                        <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_9">
+                          <use xlink:href="./img/icons/icons.svg#vyodra-banki-yomkosti"></use>
+                        </svg><span>Вёдра, банки, ёмкости</span></a></li>
+                    <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
+                        <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_10">
+                          <use xlink:href="./img/icons/icons.svg#khozyajstvennye-tovary"></use>
+                        </svg><span>Хозяйственные товары</span></a></li>
+                  </ul>
+                </li>
+                <!--li.mobile-nav__item a(href="#").mobile-nav__link О компании
+                -->
+                <!--li.mobile-nav__item a(href="#").mobile-nav__link Карьера
+                -->
+                <!--li.mobile-nav__item a(href="#").mobile-nav__link Поставщикам
+                -->
+                <!--li.mobile-nav__item a(href="#").mobile-nav__link Клиентам
+                -->
+                <li class="mobile-nav__item"> <a class="mobile-nav__link" href="#">Контакты</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <main class="main">
+        <div class="breadcrumbs">
+          <div class="container breadcrumbs__container">
+            <ul class="breadcrumbs__list">
+              <li class="breadcrumbs__item"> <a class="breadcrumbs__link" href="#">
+                  <svg class="icon">
+                    <use xlink:href="./img/icons/icons.svg#caret-left"></use>
+                  </svg><span>Каталог</span></a>
+                <svg class="icon">
+                  <use xlink:href="./img/icons/icons.svg#caret-right"></use>
+                </svg>
+              </li>
+              <li class="breadcrumbs__item"> <a class="breadcrumbs__link" href="#">
+                  <svg class="icon">
+                    <use xlink:href="./img/icons/icons.svg#caret-left"></use>
+                  </svg><span>Контейнеры</span></a>
+                <svg class="icon">
+                  <use xlink:href="./img/icons/icons.svg#caret-right"></use>
+                </svg>
+              </li>
+              <li class="breadcrumbs__item"> <a class="breadcrumbs__link" href="#">
+                  <svg class="icon">
+                    <use xlink:href="./img/icons/icons.svg#caret-left"></use>
+                  </svg><span>Соусники ПП</span></a>
+                <svg class="icon">
+                  <use xlink:href="./img/icons/icons.svg#caret-right"></use>
+                </svg>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <section class="section product product-v2">
+          <div class="container product__container">
+            <!--head-->
+            <div class="section__head product__head">
+              <h1 class="h2">Соусник с крышкой 80 мл прозрачный пп 960/80</h1>
+            </div>
+            <!--картинки-->
+            <div class="product-slider product__slider">
+              <div class="swiper">
+                <div class="swiper-wrapper">
+                  <!--large-->
+                  <div class="swiper-slide">
+                    <div class="image image_cover"> <img class="lazyload" data-src="./img/78f88893213e19bf8649cec8eba83be1 1.jpg" alt="image"></div>
+                  </div>
+                  <!--large-->
+                  <div class="swiper-slide">
+                    <div class="image image_cover"><img class="lazyload" data-src="./img/konteyner_108kh82_500ml_prozrachnyy_pp_1000_100_ 7.jpg" alt="image"></div>
+                  </div>
+                  <!--large-->
+                  <div class="swiper-slide">
+                    <div class="image image_cover"><img class="lazyload" data-src="./img/78f88893213e19bf8649cec8eba83be1 1.jpg" alt="image"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="product-slider__miniatures">
+                <div class="product-slider__miniatures-items">
+                  <!--small-->
+                  <div class="product-slider__miniature">
+                    <div class="image image_cover"><img class="lazyload" data-src="./img/78f88893213e19bf8649cec8eba83be1 1.jpg" alt="image"></div>
+                  </div>
+                  <!--small-->
+                  <div class="product-slider__miniature">
+                    <div class="image image_cover"><img class="lazyload" data-src="./img/konteyner_108kh82_500ml_prozrachnyy_pp_1000_100_ 7.jpg" alt="image"></div>
+                  </div>
+                  <!--small-->
+                  <div class="product-slider__miniature">
+                    <div class="image image_cover"><img class="lazyload" data-src="./img/78f88893213e19bf8649cec8eba83be1 1.jpg" alt="image"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="product-slider__pagination">
+                <div class="swiper-pagination"></div>
+              </div>
+            </div>
+            <div class="product__content product-v2__content">
+              <!--скидка-->
+              <div class="product-stock product__stock">
+                <div class="product-stock__label">Акция</div>
+                <div class="product-stock__text">Покупая пластиковые тарелки, соусники даём в подарок!</div>
+              </div>
+              <!--текст описание-->
+              <div class="product__description" data-collapse="parent">
+                <div class="product__description-text" data-collapse="content">
+                  <div data-collapse="inner">
+                    <p>Лоток под запайку — удобный и практичный вид упаковки, имеющий большие преимущества перед другими видами фасовки. практичный вид упаковки, имеющий большие преимущества перед другими видами фасовки. практичный вид упаковки, имеющий большие преимущества перед другими видами фасовки. практичный вид упаковки, имеющий большие преимущества перед другими видами фасовки. </p>
+                  </div>
+                </div>
+                <button class="collapse-button product__collapse-button" type="button" data-collapse="toggle"><span>Полное описание</span><span>Свернуть</span>
+                  <svg class="icon">
+                    <use xlink:href="./img/icons/icons.svg#select-arrow"></use>
+                  </svg>
+                </button>
+              </div>
+              <!--характеристики-->
+              <div class="product-v2__specifications row mb-40 mb-lg-30">
+                <div class="col-md-6 mb-10 mb-md-0">
+                  <table class="info-table">
+                    <tr>
+                      <td> <span>Цвет</span></td>
+                      <td> <span>Стандартное исполнение, прозрачный </span></td>
+                    </tr>
+                    <tr>
+                      <td> <span>Объем</span></td>
+                      <td> <span>80 мл</span></td>
+                    </tr>
+                    <tr>
+                      <td> <span>Высота</span></td>
+                      <td> <span>34 мм</span></td>
+                    </tr>
+                    <tr>
+                      <td> <span>Упаковка</span></td>
+                      <td> <span>1040 шт</span></td>
+                    </tr>
+                  </table>
+                </div>
+                <div class="col-md-6">
+                  <table class="info-table">
+                    <tr>
+                      <td> <span>Диаметр по крышке</span></td>
+                      <td> <span>71 мм</span></td>
+                    </tr>
+                    <tr>
+                      <td> <span>Область применения</span></td>
+                      <td> <span>Упаковка, хранение, транспортировка пищевых продуктов</span></td>
+                    </tr>
+                    <tr>
+                      <td> <span>Минимальная партия</span></td>
+                      <td> <span>80 шт</span></td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+              <!--заказ-->
+              <form class="content-box order-box-constructor" novalidate data-validation>
+                <div class="order-box-constructor__content">
+                  <div class="mb-40">
+                    <div class="form-element mb-15"> <span class="form-element-label">Глубина</span>
+                      <div class="form-elements-group">
+                        <label class="detail-checkbox">
+                          <input type="radio" name="275" value="23 мм"/><span> 23 мм</span>
+                        </label>
+                        <label class="detail-checkbox">
+                          <input type="radio" name="275" value="35 мм"/><span> 35 мм</span>
+                        </label>
+                        <label class="detail-checkbox">
+                          <input type="radio" name="275" value="47 мм"/><span> 47 мм</span>
+                        </label>
+                        <label class="detail-checkbox">
+                          <input type="radio" name="275" value="55 мм"/><span> 55 мм</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-element mb-15"> <span class="form-element-label">Салфетка: <span data-form-element-checked></span></span>
+                      <div class="form-elements-group">
+                        <label class="radio-slide">
+                          <input type="checkbox"/><span></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-element mb-15"> <span class="form-element-label">Ламинация PE: <span data-form-element-checked></span></span>
+                      <div class="form-elements-group">
+                        <label class="radio-slide">
+                          <input type="checkbox"/><span></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-element mb-30"> <span class="form-element-label">Цвет: <span data-form-element-value></span></span>
+                      <div class="form-elements-group">
+                        <label class="color-checkbox">
+                          <input type="radio" name="815" value="Прозрачный"/><span style="background:linear-gradient(220.55deg, rgba(196, 196, 196, 0) 9.19%, rgba(196, 196, 196, 0.83) 38.13%, rgba(196, 196, 196, 0) 90.21%);" data-tippy-content="Прозрачный"></span>
+                        </label>
+                        <label class="color-checkbox">
+                          <input type="radio" name="815" value="Белый"/><span style="background:#fff;" data-tippy-content="Белый"></span>
+                        </label>
+                        <label class="color-checkbox">
+                          <input type="radio" name="815" value="Зеленый"/><span style="background:#51FF4E;" data-tippy-content="Зеленый"></span>
+                        </label>
+                        <label class="color-checkbox">
+                          <input type="radio" name="815" value="Желтый"/><span style="background:#FFDC23;" data-tippy-content="Желтый"></span>
+                        </label>
+                        <label class="color-checkbox">
+                          <input type="radio" name="815" value="Натуральный"/><span style="background:linear-gradient(50deg, rgba(255,255,255,1) 0%, rgba(2,0,36,1) 100%);" data-tippy-content="Натуральный"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-element">
+                      <div class="input">
+                        <input type="text">
+                        <div class="input-element"><span>Количество</span></div>
+                      </div>
+                    </div>
+                  </div><span class="alert-message">Если вы уже добавили товары в Корзину, их надо будет оформить дополнительно</span>
+                </div>
+                <div class="order-box-constructor__form">
+                  <h3>Ваши данные</h3>
+                  <div class="mb-40">
+                    <div class="form-element mb-30">
+                      <div class="input">
+                        <input type="text" required>
+                        <div class="input-element"><span>ФИО</span></div>
+                      </div>
+                    </div>
+                    <div class="form-element mb-30">
+                      <div class="input">
+                        <input type="text" required data-validate="email">
+                        <div class="input-element"><span>Email</span></div>
+                      </div>
+                    </div>
+                    <div class="form-element mb-30">
+                      <div class="input">
+                        <input type="text" required data-validate="phone">
+                        <div class="input-element"><span>Телефон</span></div>
+                      </div>
+                    </div>
+                    <div class="form-element mb-30">
+                      <div class="input">
+                        <input type="text" required>
+                        <div class="input-element"><span>Город</span></div>
+                      </div>
+                    </div>
+                    <div class="form-element mb-30">
+                      <div class="input">
+                        <textarea></textarea>
+                        <div class="input-element"><span>Комментарий</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="button button_large button_style-1 w-100 mb-15"><span class="button__inner"><span>Отправить запрос</span></span></button>
+                  <div class="text-small text-muted text-center text-md-start">Нажимая на кнопку, вы соглашаетесь с <a class="link" href="#">Политикой конфиденциальности</a>, а также <a class="link" href="#">Пользовательским соглашением</a></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+        <section class="section section-border">
+          <div class="container">
+            <div class="section-border__head">
+              <h3>Похожие товары</h3>
+            </div>
+            <div class="products-slider slider-constructor" data-slides="2" data-md-slides="3" data-lg-slides="4" data-xl-slides="5" data-xxl-slides="6">
+              <div class="swiper">
+                <div class="swiper-wrapper">
+                  <!--slide-->
+                  <div class="swiper-slide">
+                    <div class="product-card" data-custom-interaction="data-custom-interaction">
+                      <div class="product-card__image">
+                        <div class="product-card__labes">
+                        </div><a class="product-card__image-cover" href="#">
+                          <picture class="image image_cover">
+                            <source type="image/webp" data-srcset="./img/bvrly8qknw2xhq.webp"/><img class="lazyload" data-src="./img/konteyner_108kh82_500ml_prozrachnyy_pp_1000_100_ 7.jpg" alt="image"/>
+                          </picture></a>
+                      </div>
+                      <div class="product-card__content">
+                        <div class="product-card__content-top"> <a class="product-card__title" href="#" title="тест"> Банка 0,5л D-122 прозрачная ПП</a><span class="product-card__info">Минимальный заказ: 100 шт.</span></div>
+                        <button class="button button_style-1 cart-button"><span class="button__inner"> <span>В корзину</span></span><span class="button__inner"><span>В корзинe</span></span></button>
+                      </div>
+                    </div>
+                  </div>
+                  <!--slide-->
+                  <div class="swiper-slide">
+                    <div class="product-card" data-custom-interaction="data-custom-interaction">
+                      <div class="product-card__image">
+                        <div class="product-card__labes">
+                          <div class="product-card__label product-card__label_type-new">Новинка</div>
+                        </div><a class="product-card__image-cover" href="#">
+                          <picture class="image image_cover">
+                            <source type="image/webp" data-srcset="./img/bvrly8qknw2xhq.webp"/><img class="lazyload" data-src="./img/konteyner_108kh82_500ml_prozrachnyy_pp_1000_100_ 7.jpg" alt="image"/>
+                          </picture></a>
+                      </div>
+                      <div class="product-card__content">
+                        <div class="product-card__content-top"> <a class="product-card__title" href="#" title="тест"> Банка 0,5л D-122 прозрачная ПП</a><span class="product-card__info">Минимальный заказ: 100 шт.</span></div>
+                        <button class="button button_style-1 cart-button cart-button_in-cart"><span class="button__inner"> <span>В корзину</span></span><span class="button__inner"><span>В корзинe</span></span></button>
+                      </div>
+                    </div>
+                  </div>
+                  <!--slide-->
+                  <div class="swiper-slide">
+                    <div class="product-card" data-custom-interaction="data-custom-interaction">
+                      <div class="product-card__image">
+                        <div class="product-card__labes">
+                          <div class="product-card__label product-card__label_type-popular">Популярное</div>
+                        </div><a class="product-card__image-cover" href="#">
+                          <picture class="image image_cover">
+                            <source type="image/webp" data-srcset="./img/bvrly8qknw2xhq.webp"/><img class="lazyload" data-src="./img/konteyner_108kh82_500ml_prozrachnyy_pp_1000_100_ 7.jpg" alt="image"/>
+                          </picture></a>
+                      </div>
+                      <div class="product-card__content">
+                        <div class="product-card__content-top"> <a class="product-card__title" href="#" title="тест"> Банка 0,5л</a><span class="product-card__info">Минимальный заказ: 100 шт.</span></div>
+                        <button class="button button_style-1 cart-button"><span class="button__inner"> <span>В корзину</span></span><span class="button__inner"><span>В корзинe</span></span></button>
+                      </div>
+                    </div>
+                  </div>
+                  <!--slide-->
+                  <div class="swiper-slide">
+                    <div class="product-card" data-custom-interaction="data-custom-interaction">
+                      <div class="product-card__image">
+                        <div class="product-card__labes">
+                          <div class="product-card__label product-card__label_type-stock">Акция</div>
+                        </div><a class="product-card__image-cover" href="#">
+                          <picture class="image image_cover">
+                            <source type="image/webp" data-srcset="./img/bvrly8qknw2xhq.webp"/><img class="lazyload" data-src="./img/konteyner_108kh82_500ml_prozrachnyy_pp_1000_100_ 7.jpg" alt="image"/>
+                          </picture></a>
+                      </div>
+                      <div class="product-card__content">
+                        <div class="product-card__content-top"> <a class="product-card__title" href="#" title="тест"> Банка 0,5л D-122 прозрачная ПП</a><span class="product-card__info">Минимальный заказ: 100 шт.</span></div>
+                        <button class="button button_style-1 cart-button"><span class="button__inner"> <span>В корзину</span></span><span class="button__inner"><span>В корзинe</span></span></button>
+                      </div>
+                    </div>
+                  </div>
+                  <!--slide-->
+                  <div class="swiper-slide">
+                    <div class="product-card" data-custom-interaction="data-custom-interaction">
+                      <div class="product-card__image">
+                        <div class="product-card__labes">
+                          <div class="product-card__label product-card__label_type-stock">Акция</div>
+                          <div class="product-card__label product-card__label_type-sale">Распродажа</div>
+                        </div><a class="product-card__image-cover" href="#">
+                          <picture class="image image_cover">
+                            <source type="image/webp" data-srcset="./img/bvrly8qknw2xhq.webp"/><img class="lazyload" data-src="./img/konteyner_108kh82_500ml_prozrachnyy_pp_1000_100_ 7.jpg" alt="image"/>
+                          </picture></a>
+                      </div>
+                      <div class="product-card__content">
+                        <div class="product-card__content-top"> <a class="product-card__title" href="#" title="тест"> Банка Оченьдлинноесловокотороенепомещается в строке по какой-то причине</a><span class="product-card__info">Минимальный заказ: 100 шт.</span></div>
+                        <button class="button button_style-1 cart-button"><span class="button__inner"> <span>В корзину</span></span><span class="button__inner"><span>В корзинe</span></span></button>
+                      </div>
+                    </div>
+                  </div>
+                  <!--slide-->
+                  <div class="swiper-slide">
+                    <div class="product-card" data-custom-interaction="data-custom-interaction">
+                      <div class="product-card__image">
+                        <div class="product-card__labes">
+                        </div><a class="product-card__image-cover" href="#">
+                          <picture class="image image_cover">
+                            <source type="image/webp" data-srcset="./img/bvrly8qknw2xhq.webp"/><img class="lazyload" data-src="./img/konteyner_108kh82_500ml_prozrachnyy_pp_1000_100_ 7.jpg" alt="image"/>
+                          </picture></a>
+                      </div>
+                      <div class="product-card__content">
+                        <div class="product-card__content-top"> <a class="product-card__title" href="#" title="тест"> Банка 0,5л D-122 прозрачная ПП</a><span class="product-card__info">Минимальный заказ: 100 шт.</span></div>
+                        <button class="button button_style-1 cart-button"><span class="button__inner"> <span>В корзину</span></span><span class="button__inner"><span>В корзинe</span></span></button>
+                      </div>
+                    </div>
+                  </div>
+                  <!--slide-->
+                  <div class="swiper-slide">
+                    <div class="product-card" data-custom-interaction="data-custom-interaction">
+                      <div class="product-card__image">
+                        <div class="product-card__labes">
+                          <div class="product-card__label product-card__label_type-popular">Популярное</div>
+                        </div><a class="product-card__image-cover" href="#">
+                          <picture class="image image_cover">
+                            <source type="image/webp" data-srcset="./img/bvrly8qknw2xhq.webp"/><img class="lazyload" data-src="./img/konteyner_108kh82_500ml_prozrachnyy_pp_1000_100_ 7.jpg" alt="image"/>
+                          </picture></a>
+                      </div>
+                      <div class="product-card__content">
+                        <div class="product-card__content-top"> <a class="product-card__title" href="#" title="тест"> Банка 0,5л</a><span class="product-card__info">Минимальный заказ: 100 шт.</span></div>
+                        <button class="button button_style-1 cart-button"><span class="button__inner"> <span>В корзину</span></span><span class="button__inner"><span>В корзинe</span></span></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-button swiper-button-prev" data-custom-interaction>
+                <svg class="icon">
+                  <use xlink:href="./img/icons/icons.svg#arrow-left"></use>
+                </svg>
+              </div>
+              <div class="swiper-button swiper-button-next" data-custom-interaction>
+                <svg class="icon">
+                  <use xlink:href="./img/icons/icons.svg#arrow-right"></use>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <div class="container footer__container">
+          <div class="footer__top">
+            <!-- 1 - только главная-->
+            <!-- 2 - все остальные страницы кроме главной и страницы контактов-->
+            <ul class="footer__nav">
+              <li class="footer__nav-item"> <a class="footer__nav-link" href="tel:74732502040">
+                  <svg class="icon">
+                    <use xlink:href="./img/icons/icons.svg#phone"></use>
+                  </svg>+7 (47-32) 50-20-40</a></li>
+              <li class="footer__nav-item"> <a class="footer__nav-link" href="mailto:gk@uplastgroup.ru">
+                  <svg class="icon">
+                    <use xlink:href="./img/icons/icons.svg#envelope"></use>
+                  </svg>gk@uplastgroup.ru</a></li>
+            </ul>
+            <!--то что ниже - не меняется в зависимости от страницы-->
+            <div class="socials footer__socials">
+              <ul class="socials__list">
+                <li class="socials__item"> <a class="socials__link" href="#">Facebook
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/socials.svg#facebook"></use>
+                    </svg></a></li>
+                <li class="socials__item"> <a class="socials__link" href="#">LinkedIn
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/socials.svg#linkedin"></use>
+                    </svg></a></li>
+                <li class="socials__item"> <a class="socials__link" href="#">Instagram
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/socials.svg#instagram"></use>
+                    </svg></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="footer__bottom"><span class="footer__copyright">© 2021, ГК ЮПЛАСТ. Все права защищены.</span>
+            <div class="dev-label"><span>Разработка сайта — </span><a href="https://artica.art/" rel="noopener" target="_blank"><span>artica.art</span>
+                <svg viewBox="0 0 74 15" fill="currentColor">
+                  <path d="M42.4491 5.10225L40.8535 5.1062L40.8776 14.8511L42.4733 14.8471L42.4491 5.10225Z"></path>
+                  <path d="M50.682 5.03761C49.369 5.04084 48.1351 5.55516 47.2089 6.48638C46.2828 7.41714 45.7741 8.65304 45.7774 9.96661C45.7806 11.2797 46.2954 12.5131 47.2261 13.4397C48.1569 14.3659 49.3933 14.8741 50.7064 14.8708C52.1361 14.8673 53.4864 14.2431 54.4207 13.1563L53.2439 12.46C52.568 13.1482 51.6669 13.5284 50.703 13.5308C48.7308 13.5357 47.1227 11.935 47.1178 9.96329C47.113 7.99107 48.7131 6.38296 50.6853 6.37809C51.6492 6.37569 52.5522 6.75101 53.2315 7.43634L54.4048 6.73414C53.4652 5.65157 52.1118 5.03407 50.682 5.03761Z"></path>
+                  <path d="M55.834 14.5723L57.7509 14.5675L64.3502 3.4162L64.3897 3.34947L64.4291 3.416L71.0839 14.5345L73.0004 14.5298L64.3817 0.128906L55.834 14.5723Z"></path>
+                  <path d="M23.5886 10.4929L23.6509 10.4795C24.9142 10.2056 25.828 9.07077 25.8248 7.78085C25.8211 6.26224 24.5829 5.02971 23.0643 5.03346L16.9043 5.04871L17.7668 6.44424L23.1013 6.43103C23.8469 6.42919 24.4546 7.04476 24.4565 7.80361C24.4584 8.56245 23.8537 9.18103 23.1081 9.18287L22.8312 9.18356L21.9292 9.18578L21.9327 10.5905L21.9328 10.626L24.4161 14.775L26.1488 14.7707L23.6213 10.5476L23.5886 10.4929Z"></path>
+                  <path d="M29.002 5.01844L29.0056 6.48886L32.3811 6.4805L32.427 6.48038L32.4271 6.52621L32.4474 14.7548L34.0426 14.7509L34.0222 6.52226L34.0221 6.47643L34.0684 6.47632L37.444 6.46798L37.4403 4.99756L29.002 5.01844Z"></path>
+                  <path d="M0.46875 14.7092L2.38521 14.7045L8.98495 3.55316L9.02448 3.48643L9.06338 3.55296L15.7182 14.6715L17.6347 14.6668L9.01651 0.265869L0.46875 14.7092Z"></path>
+                </svg></a></div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <div class="modal success-modal scrollbar" id="success-modal">
+      <div class="modal__wrapper">
+        <div class="modal-block success-modal__block" data-modal-content>
+          <div class="modal-block__container">
+            <h2 class="h1">Спасибо!</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal content-modal scrollbar" id="content-modal">
+      <div class="modal__wrapper content-modal__wrapper">
+        <div class="modal-block content-modal__block" data-modal-content>
+          <button class="close-button modal__close" data-action="close_modal" aria-label="Закрыть модальное окно">
+            <svg class="icon">
+              <use xlink:href="./img/icons/icons.svg#close-button"></use>
+            </svg>
+          </button>
+          <div class="content-modal__block-inner">
+            <h2 class="text-center mb-40 mb-md-70 mb-lg-60">Отправьте коммерческое предложение</h2>
+            <form novalidate data-validation>
+              <div class="form-grid row row-gap-30 row-gap-xl-25 mb-30 mb-xl-25">
+                <div class="form-grid__element col-md-6">
+                  <div class="input">
+                    <input type="text" required disabled>
+                    <div class="input-element"><span>ФИО</span></div>
+                  </div>
+                </div>
+                <div class="form-grid__element col-md-6">
+                  <div class="input">
+                    <input type="text" required>
+                    <div class="input-element"><span>Город</span></div>
+                  </div>
+                </div>
+                <div class="form-grid__element col-md-6">
+                  <div class="input">
+                    <input type="text" required>
+                    <div class="input-element"><span>Компания</span></div>
+                  </div>
+                </div>
+                <div class="form-grid__element col-md-6">
+                  <div class="input">
+                    <input type="text" required>
+                    <div class="input-element"><span>Вид продукции</span></div>
+                  </div>
+                </div>
+                <div class="form-grid__element col-md-6">
+                  <div class="input">
+                    <input type="text" name="phone" data-validate="phone">
+                    <div class="input-element"><span>Телефон</span></div>
+                  </div>
+                </div>
+                <div class="form-grid__element col-md-6">
+                  <div class="input">
+                    <input type="text" name="email" required data-validate="email">
+                    <div class="input-element"><span>Email</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-grid row row-gap-15 mb-40 mb-md-50 mb-xl-70">
+                <div class="form-grid__element col-auto">
+                  <div class="input-file">
+                    <input type="file" id="ldlsldlsd" required data-validate="file">
+                    <label class="input-file-element input-file-element_style-1" for="ldlsldlsd">
+                      <svg class="icon">
+                        <use xlink:href="./img/icons/icons.svg#clip"></use>
+                      </svg><span data-text="Прикрепить КП|КП прикреплено">Прикрепить КП</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="form-grid__element col-auto">
+                  <div class="input-file">
+                    <input type="file" id="kdj" required disabled data-validate="file">
+                    <label class="input-file-element input-file-element_style-1" for="kdj">
+                      <svg class="icon">
+                        <use xlink:href="./img/icons/icons.svg#clip"></use>
+                      </svg><span data-text="Прикрепить сертификат|Cертификат прикреплен">Прикрепить сертификат</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="form-grid__element col-auto">
+                  <div class="input-file">
+                    <input type="file" id="idk" disabled>
+                    <label class="input-file-element input-file-element_style-2" for="idk">
+                      <svg class="icon">
+                        <use xlink:href="./img/icons/icons.svg#clip"></use>
+                      </svg><span data-text="Другие файлы|Другие файлы прикреплены">Другие файлы</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="d-sm-flex flex-sm-column align-items-sm-center">
+                <button class="button button_style-1 button_large mb-10 mb-lg-15 w-100 w-sm-auto"><span class="button__inner"><span>Отправить заявку</span></span></button>
+                <div class="text-center text-small text-muted">Нажимая на кнопку, вы соглашаетесь с <a class="link" href="#">Политикой конфиденциальности</a>, <br class="d-none d-lg-block">а также <a class="link" href="#">Пользовательским соглашением</a></div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!--webpack-->
+    <script src="./scripts/common.js"></script>
+    <!--preview only-->
+    <link rel="stylesheet" href="./styles/helper.css">
+    <div class="helper"><a class="helper__trigger" href="javascript:void(0);">
+        <svg class="icon" viewBox="0 0 100 100" fill="currentColor">
+          <path d="M94,39.7h-4c-3.2,0-5.9-2.8-5.9-6.1c0-1.7,0.7-3.2,2-4.3l2.6-2.5c2.5-2.5,2.5-6.6,0-9.1L82.8,12c-1.1-1.1-2.8-1.8-4.6-1.8      c-1.7,0-3.4,0.7-4.6,1.8l-2.5,2.4c-1.2,1.3-2.7,2-4.4,2c-3.3,0-6.1-2.7-6.1-5.9v-4C60.6,3,57.8,0,54.2,0h-7.9C42.8,0,40,3,40,6.5v4      c0,3.2-2.8,5.9-6.1,5.9c-1.7,0-3.2-0.7-4.3-1.9L27,12c-1.1-1.2-2.8-1.8-4.6-1.8c-1.7,0-3.4,0.7-4.6,1.8L12,17.7      c-2.5,2.5-2.5,6.6,0,9.1l2.5,2.4c1.3,1.2,2,2.7,2,4.4c0,3.3-2.7,6.1-5.9,6.1h-4C3,39.7,0,42.5,0,46v4v4c0,3.5,3,6.3,6.6,6.3h4      c3.2,0,5.9,2.8,5.9,6.1c0,1.7-0.7,3.2-2,4.4L12,73.2c-2.5,2.5-2.5,6.6,0,9.1l5.8,5.8c1.1,1.2,2.8,1.8,4.6,1.8c1.7,0,3.4-0.7,4.6-1.8      l2.5-2.5c1.1-1.2,2.7-1.9,4.3-1.9c3.3,0,6.1,2.7,6.1,5.9v4c0,3.5,2.8,6.5,6.4,6.5h7.9c3.5,0,6.4-3,6.4-6.5v-4c0-3.2,2.8-5.9,6.1-5.9      c1.7,0,3.2,0.7,4.4,2l2.5,2.4c1.2,1.1,2.8,1.8,4.6,1.8s3.4-0.7,4.6-1.8l5.8-5.8c2.5-2.5,2.5-6.6,0-9.1L86,70.7c-1.3-1.1-2-2.7-2-4.3      c0-3.3,2.7-6.1,5.9-6.1h4c3.5,0,6.1-2.8,6.1-6.3v-4v-4C100.1,42.5,97.5,39.7,94,39.7z M71.1,50L71.1,50c0,11.5-9.3,20.8-20.9,20.8      S29.4,61.5,29.4,50l0,0l0,0c0-11.5,9.3-20.8,20.9-20.8S71.1,38.5,71.1,50L71.1,50z"></path>
+        </svg></a>
+      <div class="helper__container">
+        <!--section-->
+        <div class="helper__section"><span class="helper__section-title">Страницы:</span>
+          <div class="helper__section-content"><a class="helper__section-button" href="index.html">Главная</a><a class="helper__section-button" href="katalog.html">Каталог</a><a class="helper__section-button" href="katalog-vydacha.html">Каталог-выдача</a><a class="helper__section-button" href="kartochka-tovara.html">Карточка товара</a><a class="helper__section-button" href="kartochka-tovara-v2.html">Карточка товара (v2)</a><a class="helper__section-button" href="kontakty.html">Контакты</a><a class="helper__section-button" href="korzina.html">Корзина</a><a class="helper__section-button" href="korzina-empty.html">Корзина пустая</a><a class="helper__section-button" href="oformlenie-zakaza.html">Оформление заказа</a><a class="helper__section-button" href="oformlenie-zakaza-final.html">Оформление заказа финал</a><a class="helper__section-button" href="o-kompanii.html">О компании</a><a class="helper__section-button" href="postavshhikam.html">Поставщикам</a><a class="helper__section-button" href="konkursnye-zakupki.html">Конкурсные закупки</a><a class="helper__section-button" href="karera.html">Карьера</a><a class="helper__section-button" href="k1.html">Условия заказа</a><a class="helper__section-button" href="components.html">Компоненты</a></div>
+        </div>
+      </div>
+    </div>
+    <script src="./scripts/helper.js"></script>
+  </body>
+</html>

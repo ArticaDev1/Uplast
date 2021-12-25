@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Юпласт — Каталог</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="format-detection" content="telephone=no">
     <!--color-->
     <meta name="theme-color" content="#424346">
@@ -38,29 +38,45 @@
               <use xlink:href="./img/icons/icons.svg#logo"></use>
             </svg></a>
           <div class="header__search">
-            <div class="search-element" id="search" data-custom-interaction>
-              <div class="search-element__container">
-                <div class="container">
-                  <div class="search-element__input-inner">
-                    <div class="search-element__form" data-custom-interaction>
-                      <input class="search-element__input" type="text" placeholder="Поиск">
-                      <svg class="icon">
-                        <use xlink:href="./img/icons/icons.svg#magnifier"></use>
-                      </svg>
-                    </div>
-                    <button class="search-element__close" data-action="close_modal" aria-label="Закрыть поиск">Отмена</button>
-                  </div>
-                  <div class="search-element__resaults"> <a class="search-element__resault-link" href="#"> <span>Лотки под запайку </span>
-                      <svg class="icon">
-                        <use xlink:href="./img/icons/icons.svg#arrow"></use>
-                      </svg></a><a class="search-element__resault-link" href="#"> <span>Лотки под запайку </span>
-                      <svg class="icon">
-                        <use xlink:href="./img/icons/icons.svg#arrow"></use>
-                      </svg></a><a class="search-element__resault-link" href="#"> <span>Лотки под запайку </span>
-                      <svg class="icon">
-                        <use xlink:href="./img/icons/icons.svg#arrow"></use>
-                      </svg></a></div>
+            <div class="search-element" id="search" data-modal-content>
+              <div class="search-element__input-container">
+                <div class="search-element__form" data-custom-interaction>
+                  <input class="search-element__input" type="text" placeholder="Поиск">
+                  <svg class="icon">
+                    <use xlink:href="./img/icons/icons.svg#magnifier"></use>
+                  </svg>
                 </div>
+                <button class="search-element__close" data-action="close_modal" aria-label="Закрыть поиск">Отмена</button>
+              </div>
+              <div class="search-element__resaults">
+                <div class="search-element__resaults-container"><a class="search-element__resault-link" href="#"> <span>Лотки под запайку </span>
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/icons.svg#arrow"></use>
+                    </svg></a><a class="search-element__resault-link" href="#"> <span>Лотки под запайку </span>
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/icons.svg#arrow"></use>
+                    </svg></a><a class="search-element__resault-link" href="#"> <span>Лотки под запайку </span>
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/icons.svg#arrow"></use>
+                    </svg></a><a class="search-element__resault-link" href="#"> <span>Лотки под запайку </span>
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/icons.svg#arrow"></use>
+                    </svg></a><a class="search-element__resault-link" href="#"> <span>Лотки под запайку </span>
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/icons.svg#arrow"></use>
+                    </svg></a><a class="search-element__resault-link" href="#"> <span>Лотки под запайку </span>
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/icons.svg#arrow"></use>
+                    </svg></a><a class="search-element__resault-link" href="#"> <span>Лотки под запайку </span>
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/icons.svg#arrow"></use>
+                    </svg></a><a class="search-element__resault-link" href="#"> <span>Лотки под запайку </span>
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/icons.svg#arrow"></use>
+                    </svg></a><a class="search-element__resault-link" href="#"> <span>Лотки под запайку </span>
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/icons.svg#arrow"></use>
+                    </svg></a></div>
               </div>
             </div>
           </div>
@@ -68,11 +84,45 @@
               <svg class="icon">
                 <use xlink:href="./img/icons/icons.svg#magnifier"></use>
               </svg></a>
-            <button class="header__button header__location-button" data-action="open_location" aria-label="open location">
-              <svg class="icon">
-                <use xlink:href="./img/icons/icons.svg#placemark"></use>
-              </svg><span>Воронеж</span>
-            </button><a class="header__button header__phone-button" href="javascript:void(0);" data-tippy-content="Заказать звонок">
+            <div class="header__location"><a class="header__button header__location-button" href="#location" data-action="open_modal">
+                <svg class="icon">
+                  <use xlink:href="./img/icons/icons.svg#placemark"></use>
+                </svg><span>Воронеж</span></a>
+              <div class="location-element" id="location" data-modal-content>
+                <div class="location-element__head">
+                  <div class="location-element__head-title">
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/icons.svg#placemark"></use>
+                    </svg><span>Выберите город</span>
+                  </div>
+                  <button class="close-button location-element__close-button" data-action="close_modal" aria-label="Закрыть модальное окно">
+                    <svg class="icon">
+                      <use xlink:href="./img/icons/icons.svg#close-button"></use>
+                    </svg>
+                  </button>
+                </div>
+                <div class="location-element__container scrollbar">
+                  <ul class="location-element__list">
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Москва </a></li>
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Санкт-Петербург</a></li>
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Абакан</a></li>
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Азов</a></li>
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Александров</a></li>
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Алексин</a></li>
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Алексин</a></li>
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Алексин</a></li>
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Алексин</a></li>
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Алексин</a></li>
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Алексин</a></li>
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Алексин</a></li>
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Алексин</a></li>
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Алексин</a></li>
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Алексин</a></li>
+                    <li class="location-element__item"> <a class="location-element__link" href="#">Алексин</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div><a class="header__button header__phone-button" href="#content-modal" data-action="open_modal" data-tippy-content="Заказать звонок">
               <svg class="icon">
                 <use xlink:href="./img/icons/icons.svg#phone"></use>
               </svg></a><a class="header__button header__cart-button" href="#" data-tippy-content="Корзина пустая">
@@ -81,42 +131,52 @@
               </svg><span>99</span></a>
           </div>
         </div>
-      </header>
+      </header><a class="nav-burger" href="#mobile-nav" data-action="open_modal">
+        <svg class="icon">
+          <use xlink:href="./img/icons/icons.svg#burger"> </use>
+        </svg></a>
       <!-- header end-->
-      <!--nav start-->
       <nav class="mobile-nav" id="mobile-nav">
-        <div class="mobile-nav__container scrollbar" data-scroll-lock-scrollable>
-          <div class="mobile-nav__head"> <a class="logo mobile-nav__logo" href="#">
-              <svg class="icon logo__image" viewBox="0 0 213 43">
-                <use xlink:href="./img/icons/icons.svg#logo"></use>
-              </svg></a>
-            <button class="close-button mobile-nav__close-button" data-action="close_modal" aria-label="Закрыть меню">
-              <svg class="icon">
-                <use xlink:href="./img/icons/icons.svg#close-button"></use>
-              </svg>
-            </button>
-          </div>
-          <div class="mobile-nav__content">
-            <div class="container">
+        <div class="mobile-nav__container" data-modal-content>
+          <div class="scrollbar mobile-nav__scroll-container">
+            <div class="mobile-nav__head"><a class="logo mobile-nav__logo" href="#">
+                <svg class="icon logo__image" viewBox="0 0 213 43">
+                  <use xlink:href="./img/icons/icons.svg#logo"></use>
+                </svg></a>
+              <button class="close-button mobile-nav__close-button" data-action="close_modal" aria-label="Закрыть меню">
+                <svg class="icon">
+                  <use xlink:href="./img/icons/icons.svg#close-button"></use>
+                </svg>
+              </button>
+            </div>
+            <div class="mobile-nav__content">
               <ul class="mobile-nav__list">
                 <li class="mobile-nav__item"> <a class="mobile-nav__link" href="katalog.html">Каталог товаров</a>
                   <ul class="mobile-nav__categories-list">
-                    <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
-                        <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_1">
-                          <use xlink:href="./img/icons/icons.svg#lotok-pod-zapajku"></use>
-                        </svg><span>Лоток под запайку</span></a></li>
-                    <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
-                        <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_2">
-                          <use xlink:href="./img/icons/icons.svg#kontejnery"></use>
-                        </svg><span>Контейнеры</span></a></li>
-                    <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
-                        <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_3">
-                          <use xlink:href="./img/icons/icons.svg#tortniczy"></use>
-                        </svg><span>Тортницы</span></a></li>
-                    <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
-                        <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_4">
-                          <use xlink:href="./img/icons/icons.svg#pakety"></use>
-                        </svg><span>Пакеты</span></a></li>
+                    <!--li.mobile-nav__categories-item 
+                    a(href="#").mobile-nav__categories-link
+                      svg.icon.mobile-nav__categories-link-icon.mobile-nav__categories-link-icon_1
+                        use(xlink:href="./img/icons/icons.svg#lotok-pod-zapajku")
+                      span Лоток под запайку
+                    -->
+                    <!--li.mobile-nav__categories-item 
+                    a(href="#").mobile-nav__categories-link
+                      svg.icon.mobile-nav__categories-link-icon.mobile-nav__categories-link-icon_2
+                        use(xlink:href="./img/icons/icons.svg#kontejnery")
+                      span Контейнеры
+                    -->
+                    <!--li.mobile-nav__categories-item 
+                    a(href="#").mobile-nav__categories-link
+                      svg.icon.mobile-nav__categories-link-icon.mobile-nav__categories-link-icon_3
+                        use(xlink:href="./img/icons/icons.svg#tortniczy")
+                      span Тортницы
+                    -->
+                    <!--li.mobile-nav__categories-item 
+                    a(href="#").mobile-nav__categories-link
+                      svg.icon.mobile-nav__categories-link-icon.mobile-nav__categories-link-icon_4
+                        use(xlink:href="./img/icons/icons.svg#pakety")
+                      span Пакеты
+                    -->
                     <li class="mobile-nav__categories-item"> <a class="mobile-nav__categories-link" href="#">
                         <svg class="icon mobile-nav__categories-link-icon mobile-nav__categories-link-icon_5">
                           <use xlink:href="./img/icons/icons.svg#odnorazovaya-posuda"></use>
@@ -143,45 +203,20 @@
                         </svg><span>Хозяйственные товары</span></a></li>
                   </ul>
                 </li>
-                <li class="mobile-nav__item"> <a class="mobile-nav__link" href="#">О компании</a></li>
-                <li class="mobile-nav__item"> <a class="mobile-nav__link" href="#">Карьера</a></li>
-                <li class="mobile-nav__item"> <a class="mobile-nav__link" href="#">Поставщикам</a></li>
-                <li class="mobile-nav__item"> <a class="mobile-nav__link" href="#">Клиентам</a></li>
+                <!--li.mobile-nav__item a(href="#").mobile-nav__link О компании
+                -->
+                <!--li.mobile-nav__item a(href="#").mobile-nav__link Карьера
+                -->
+                <!--li.mobile-nav__item a(href="#").mobile-nav__link Поставщикам
+                -->
+                <!--li.mobile-nav__item a(href="#").mobile-nav__link Клиентам
+                -->
                 <li class="mobile-nav__item"> <a class="mobile-nav__link" href="#">Контакты</a></li>
               </ul>
             </div>
           </div>
         </div>
-        <div class="mobile-nav__overlay" data-action="close_modal"></div>
       </nav>
-      <!--nav end-->
-      <!--location start-->
-      <div class="location-element">
-        <div class="location-element__container scrollbar">
-          <ul class="location-element__list">
-            <li class="location-element__item"> <a class="location-element__link" href="#">Москва </a></li>
-            <li class="location-element__item"> <a class="location-element__link" href="#">Санкт-Петербург</a></li>
-            <li class="location-element__item"> <a class="location-element__link" href="#">Абакан</a></li>
-            <li class="location-element__item"> <a class="location-element__link" href="#">Азов</a></li>
-            <li class="location-element__item"> <a class="location-element__link" href="#">Александров</a></li>
-            <li class="location-element__item"> <a class="location-element__link" href="#">Алексин</a></li>
-            <li class="location-element__item"> <a class="location-element__link" href="#">Альметьевск</a></li>
-            <li class="location-element__item"> <a class="location-element__link" href="#">Анапа</a></li>
-            <li class="location-element__item"> <a class="location-element__link" href="#">Ангарск</a></li>
-            <li class="location-element__item"> <a class="location-element__link" href="#">Анжеро-Судженск</a></li>
-            <li class="location-element__item"> <a class="location-element__link" href="#">Апатиты</a></li>
-            <li class="location-element__item"> <a class="location-element__link" href="#">Арзамас</a></li>
-            <li class="location-element__item"> <a class="location-element__link" href="#">Армавир</a></li>
-            <li class="location-element__item"> <a class="location-element__link" href="#">Анапа</a></li>
-            <li class="location-element__item"> <a class="location-element__link" href="#">Ангарск</a></li>
-            <li class="location-element__item"> <a class="location-element__link" href="#">Анжеро-Судженск</a></li>
-            <li class="location-element__item"> <a class="location-element__link" href="#">Апатиты</a></li>
-            <li class="location-element__item"> <a class="location-element__link" href="#">Арзамас</a></li>
-            <li class="location-element__item"> <a class="location-element__link" href="#">Армавир</a></li>
-          </ul>
-        </div>
-      </div>
-      <!--location end-->
       <main class="main">
         <section class="section catalog-categories-section">
           <div class="container">
@@ -327,43 +362,53 @@
           </div>
         </section>
         <section class="section promotions-section">
-          <div class="container promotions-section__container">
-            <!--block--><a class="promotions-block" href="#" data-3d="parent">
-              <div class="promotions-block__back promotions-block__back_style-1" data-3d="back"></div>
-              <div class="promotions-block__container" data-3d="back">
-                <svg class="icon promotions-block__small-icon">
-                  <use xlink:href="./img/icons/icons.svg#percent"></use>
-                </svg>
-                <h3 class="promotions-block__title">Акции</h3>
+          <div class="container">
+            <div class="row promotions-section__container">
+              <div class="col-10 col-sm-6 col-lg-3">
+                <!--block--><a class="promotions-block" href="#" data-3d="parent">
+                  <div class="promotions-block__back promotions-block__back_style-1" data-3d="back"></div>
+                  <div class="promotions-block__container" data-3d="back">
+                    <svg class="icon promotions-block__small-icon">
+                      <use xlink:href="./img/icons/icons.svg#percent"></use>
+                    </svg>
+                    <h3 class="promotions-block__title">Акции</h3>
+                  </div>
+                  <div class="promotions-block__large-icon" data-3d="forward"><img class="icon" src="./img/icons/package1.svg" alt="icon"><img class="icon" src="./img/icons/package1_2.svg" alt="icon"></div></a>
               </div>
-              <div class="promotions-block__large-icon" data-3d="forward"><img class="icon" src="./img/icons/package1.svg" alt="icon"><img class="icon" src="./img/icons/package1_2.svg" alt="icon"></div></a>
-            <!--block--><a class="promotions-block" href="#" data-3d="parent">
-              <div class="promotions-block__back promotions-block__back_style-2" data-3d="back"></div>
-              <div class="promotions-block__container" data-3d="back">
-                <svg class="icon promotions-block__small-icon">
-                  <use xlink:href="./img/icons/icons.svg#plus"></use>
-                </svg>
-                <h3 class="promotions-block__title">Новинки</h3>
+              <div class="col-10 col-sm-6 col-lg-3">
+                <!--block--><a class="promotions-block" href="#" data-3d="parent">
+                  <div class="promotions-block__back promotions-block__back_style-2" data-3d="back"></div>
+                  <div class="promotions-block__container" data-3d="back">
+                    <svg class="icon promotions-block__small-icon">
+                      <use xlink:href="./img/icons/icons.svg#plus"></use>
+                    </svg>
+                    <h3 class="promotions-block__title">Новинки</h3>
+                  </div>
+                  <div class="promotions-block__large-icon" data-3d="forward"><img class="icon" src="./img/icons/package2.svg" alt="icon"><img class="icon" src="./img/icons/package2_2.svg" alt="icon"></div></a>
               </div>
-              <div class="promotions-block__large-icon" data-3d="forward"><img class="icon" src="./img/icons/package2.svg" alt="icon"><img class="icon" src="./img/icons/package2_2.svg" alt="icon"></div></a>
-            <!--block--><a class="promotions-block" href="#" data-3d="parent">
-              <div class="promotions-block__back promotions-block__back_style-3" data-3d="back"></div>
-              <div class="promotions-block__container" data-3d="back">
-                <svg class="icon promotions-block__small-icon">
-                  <use xlink:href="./img/icons/icons.svg#fire"></use>
-                </svg>
-                <h3 class="promotions-block__title">Популярное</h3>
+              <div class="col-10 col-sm-6 col-lg-3">
+                <!--block--><a class="promotions-block" href="#" data-3d="parent">
+                  <div class="promotions-block__back promotions-block__back_style-3" data-3d="back"></div>
+                  <div class="promotions-block__container" data-3d="back">
+                    <svg class="icon promotions-block__small-icon">
+                      <use xlink:href="./img/icons/icons.svg#fire"></use>
+                    </svg>
+                    <h3 class="promotions-block__title">Популярное</h3>
+                  </div>
+                  <div class="promotions-block__large-icon" data-3d="forward"><img class="icon" src="./img/icons/package3.svg" alt="icon"><img class="icon" src="./img/icons/package3_2.svg" alt="icon"></div></a>
               </div>
-              <div class="promotions-block__large-icon" data-3d="forward"><img class="icon" src="./img/icons/package3.svg" alt="icon"><img class="icon" src="./img/icons/package3_2.svg" alt="icon"></div></a>
-            <!--block--><a class="promotions-block" href="#" data-3d="parent">
-              <div class="promotions-block__back promotions-block__back_style-4" data-3d="back"></div>
-              <div class="promotions-block__container" data-3d="back">
-                <svg class="icon promotions-block__small-icon">
-                  <use xlink:href="./img/icons/icons.svg#clock"></use>
-                </svg>
-                <h3 class="promotions-block__title">Распродажа</h3>
-              </div>
-              <div class="promotions-block__large-icon" data-3d="forward"><img class="icon" src="./img/icons/package4.svg" alt="icon"><img class="icon" src="./img/icons/package4_2.svg" alt="icon"></div></a>
+              <!--block-->
+              <!--a(href="#" data-3d="parent").promotions-block
+              .promotions-block__back.promotions-block__back_style-4(data-3d="back")
+              .promotions-block__container(data-3d="back")
+                svg.icon.promotions-block__small-icon
+                  use(xlink:href="./img/icons/icons.svg#clock")
+                h3.promotions-block__title Распродажа
+              .promotions-block__large-icon(data-3d="forward")
+                  img(src="./img/icons/package4.svg", alt="icon").icon
+                  img(src="./img/icons/package4_2.svg", alt="icon").icon
+              -->
+            </div>
           </div>
         </section>
       </main>
@@ -414,6 +459,105 @@
         </div>
       </footer>
     </div>
+    <div class="modal success-modal scrollbar" id="success-modal">
+      <div class="modal__wrapper">
+        <div class="modal-block success-modal__block" data-modal-content>
+          <div class="modal-block__container">
+            <h2 class="h1">Спасибо!</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal content-modal scrollbar" id="content-modal">
+      <div class="modal__wrapper content-modal__wrapper">
+        <div class="modal-block content-modal__block" data-modal-content>
+          <button class="close-button modal__close" data-action="close_modal" aria-label="Закрыть модальное окно">
+            <svg class="icon">
+              <use xlink:href="./img/icons/icons.svg#close-button"></use>
+            </svg>
+          </button>
+          <div class="content-modal__block-inner">
+            <h2 class="text-center mb-40 mb-md-70 mb-lg-60">Отправьте коммерческое предложение</h2>
+            <form novalidate data-validation>
+              <div class="form-grid row row-gap-30 row-gap-xl-25 mb-30 mb-xl-25">
+                <div class="form-grid__element col-md-6">
+                  <div class="input">
+                    <input type="text" required disabled>
+                    <div class="input-element"><span>ФИО</span></div>
+                  </div>
+                </div>
+                <div class="form-grid__element col-md-6">
+                  <div class="input">
+                    <input type="text" required>
+                    <div class="input-element"><span>Город</span></div>
+                  </div>
+                </div>
+                <div class="form-grid__element col-md-6">
+                  <div class="input">
+                    <input type="text" required>
+                    <div class="input-element"><span>Компания</span></div>
+                  </div>
+                </div>
+                <div class="form-grid__element col-md-6">
+                  <div class="input">
+                    <input type="text" required>
+                    <div class="input-element"><span>Вид продукции</span></div>
+                  </div>
+                </div>
+                <div class="form-grid__element col-md-6">
+                  <div class="input">
+                    <input type="text" name="phone" data-validate="phone">
+                    <div class="input-element"><span>Телефон</span></div>
+                  </div>
+                </div>
+                <div class="form-grid__element col-md-6">
+                  <div class="input">
+                    <input type="text" name="email" required data-validate="email">
+                    <div class="input-element"><span>Email</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-grid row row-gap-15 mb-40 mb-md-50 mb-xl-70">
+                <div class="form-grid__element col-auto">
+                  <div class="input-file">
+                    <input type="file" id="ldlsldlsd" required data-validate="file">
+                    <label class="input-file-element input-file-element_style-1" for="ldlsldlsd">
+                      <svg class="icon">
+                        <use xlink:href="./img/icons/icons.svg#clip"></use>
+                      </svg><span data-text="Прикрепить КП|КП прикреплено">Прикрепить КП</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="form-grid__element col-auto">
+                  <div class="input-file">
+                    <input type="file" id="kdj" required disabled data-validate="file">
+                    <label class="input-file-element input-file-element_style-1" for="kdj">
+                      <svg class="icon">
+                        <use xlink:href="./img/icons/icons.svg#clip"></use>
+                      </svg><span data-text="Прикрепить сертификат|Cертификат прикреплен">Прикрепить сертификат</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="form-grid__element col-auto">
+                  <div class="input-file">
+                    <input type="file" id="idk" disabled>
+                    <label class="input-file-element input-file-element_style-2" for="idk">
+                      <svg class="icon">
+                        <use xlink:href="./img/icons/icons.svg#clip"></use>
+                      </svg><span data-text="Другие файлы|Другие файлы прикреплены">Другие файлы</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="d-sm-flex flex-sm-column align-items-sm-center">
+                <button class="button button_style-1 button_large mb-10 mb-lg-15 w-100 w-sm-auto"><span class="button__inner"><span>Отправить заявку</span></span></button>
+                <div class="text-center text-small text-muted">Нажимая на кнопку, вы соглашаетесь с <a class="link" href="#">Политикой конфиденциальности</a>, <br class="d-none d-lg-block">а также <a class="link" href="#">Пользовательским соглашением</a></div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
     <!--jquery-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!--webpack-->
@@ -422,17 +566,12 @@
     <link rel="stylesheet" href="./styles/helper.css">
     <div class="helper"><a class="helper__trigger" href="javascript:void(0);">
         <svg class="icon" viewBox="0 0 100 100" fill="currentColor">
-          <g transform="translate(50 50)">
-            <g>
-              <animatetransform attributeName="transform" type="rotate" values="0;51.42857142857143" keyTimes="0;1" dur="0.6s" repeatCount="indefinite"></animatetransform>
-              <path d="M31.448370387032774 -10 L46.448370387032774 -10 L46.448370387032774 10 L31.448370387032774 10 A33 33 0 0 1 27.42605304607143 18.352428022310185 L27.42605304607143 18.352428022310185 L36.77840007395243 30.079900259330632 L21.141770424591833 42.5496962965053 L11.789423396710829 30.82222405948486 A33 33 0 0 1 2.7513583718916075 32.885103422513694 L2.7513583718916075 32.885103422513694 L-0.5864556374531071 47.509022105241044 L-20.085013881089584 43.05860342611476 L-16.74719987174487 28.434684743387407 A33 33 0 0 1 -23.995165273805295 22.654625211703866 L-23.995165273805295 22.654625211703866 L-37.50969829234158 29.16288129846724 L-46.18737307469275 11.143503940418853 L-32.67284005615647 4.635247853655478 A33 33 0 0 1 -32.67284005615647 -4.63524785365547 L-32.67284005615647 -4.63524785365547 L-46.18737307469276 -11.143503940418839 L-37.50969829234159 -29.162881298467227 L-23.995165273805302 -22.654625211703856 A33 33 0 0 1 -16.747199871744876 -28.434684743387404 L-16.747199871744876 -28.434684743387404 L-20.085013881089594 -43.05860342611476 L-0.5864556374531196 -47.509022105241044 L2.751358371891599 -32.885103422513694 A33 33 0 0 1 11.78942339671082 -30.82222405948486 L11.78942339671082 -30.82222405948486 L21.141770424591822 -42.54969629650531 L36.778400073952426 -30.079900259330635 L27.426053046071427 -18.35242802231019 A33 33 0 0 1 31.448370387032774 -10.000000000000009 M0 -20A20 20 0 1 0 0 20 A20 20 0 1 0 0 -20"></path>
-            </g>
-          </g>
+          <path d="M94,39.7h-4c-3.2,0-5.9-2.8-5.9-6.1c0-1.7,0.7-3.2,2-4.3l2.6-2.5c2.5-2.5,2.5-6.6,0-9.1L82.8,12c-1.1-1.1-2.8-1.8-4.6-1.8      c-1.7,0-3.4,0.7-4.6,1.8l-2.5,2.4c-1.2,1.3-2.7,2-4.4,2c-3.3,0-6.1-2.7-6.1-5.9v-4C60.6,3,57.8,0,54.2,0h-7.9C42.8,0,40,3,40,6.5v4      c0,3.2-2.8,5.9-6.1,5.9c-1.7,0-3.2-0.7-4.3-1.9L27,12c-1.1-1.2-2.8-1.8-4.6-1.8c-1.7,0-3.4,0.7-4.6,1.8L12,17.7      c-2.5,2.5-2.5,6.6,0,9.1l2.5,2.4c1.3,1.2,2,2.7,2,4.4c0,3.3-2.7,6.1-5.9,6.1h-4C3,39.7,0,42.5,0,46v4v4c0,3.5,3,6.3,6.6,6.3h4      c3.2,0,5.9,2.8,5.9,6.1c0,1.7-0.7,3.2-2,4.4L12,73.2c-2.5,2.5-2.5,6.6,0,9.1l5.8,5.8c1.1,1.2,2.8,1.8,4.6,1.8c1.7,0,3.4-0.7,4.6-1.8      l2.5-2.5c1.1-1.2,2.7-1.9,4.3-1.9c3.3,0,6.1,2.7,6.1,5.9v4c0,3.5,2.8,6.5,6.4,6.5h7.9c3.5,0,6.4-3,6.4-6.5v-4c0-3.2,2.8-5.9,6.1-5.9      c1.7,0,3.2,0.7,4.4,2l2.5,2.4c1.2,1.1,2.8,1.8,4.6,1.8s3.4-0.7,4.6-1.8l5.8-5.8c2.5-2.5,2.5-6.6,0-9.1L86,70.7c-1.3-1.1-2-2.7-2-4.3      c0-3.3,2.7-6.1,5.9-6.1h4c3.5,0,6.1-2.8,6.1-6.3v-4v-4C100.1,42.5,97.5,39.7,94,39.7z M71.1,50L71.1,50c0,11.5-9.3,20.8-20.9,20.8      S29.4,61.5,29.4,50l0,0l0,0c0-11.5,9.3-20.8,20.9-20.8S71.1,38.5,71.1,50L71.1,50z"></path>
         </svg></a>
       <div class="helper__container">
         <!--section-->
         <div class="helper__section"><span class="helper__section-title">Страницы:</span>
-          <div class="helper__section-content"><a class="helper__section-button" href="index.html">Главная</a><a class="helper__section-button" href="katalog.html">Каталог</a><a class="helper__section-button" href="katalog-vydacha.html">Каталог-выдача</a><a class="helper__section-button" href="kartochka-tovara.html">Карточка товара</a><a class="helper__section-button" href="kontakty.html">Контакты</a><a class="helper__section-button" href="korzina.html">Корзина</a><a class="helper__section-button" href="korzina-empty.html">Корзина пустая</a><a class="helper__section-button" href="oformlenie-zakaza.html">Оформление заказа</a><a class="helper__section-button" href="oformlenie-zakaza-final.html">Оформление заказа финал</a><a class="helper__section-button" href="o-kompanii.html">О компании</a><a class="helper__section-button" href="postavshhikam.html">Поставщикам</a><a class="helper__section-button" href="konkursnye-zakupki.html">Конкурсные закупки</a><a class="helper__section-button" href="karera.html">Карьера</a><a class="helper__section-button" href="klientam.html">Клиентам</a><a class="helper__section-button" href="components.html">Компоненты</a></div>
+          <div class="helper__section-content"><a class="helper__section-button" href="index.html">Главная</a><a class="helper__section-button" href="katalog.html">Каталог</a><a class="helper__section-button" href="katalog-vydacha.html">Каталог-выдача</a><a class="helper__section-button" href="kartochka-tovara.html">Карточка товара</a><a class="helper__section-button" href="kartochka-tovara-v2.html">Карточка товара (v2)</a><a class="helper__section-button" href="kontakty.html">Контакты</a><a class="helper__section-button" href="korzina.html">Корзина</a><a class="helper__section-button" href="korzina-empty.html">Корзина пустая</a><a class="helper__section-button" href="oformlenie-zakaza.html">Оформление заказа</a><a class="helper__section-button" href="oformlenie-zakaza-final.html">Оформление заказа финал</a><a class="helper__section-button" href="o-kompanii.html">О компании</a><a class="helper__section-button" href="postavshhikam.html">Поставщикам</a><a class="helper__section-button" href="konkursnye-zakupki.html">Конкурсные закупки</a><a class="helper__section-button" href="karera.html">Карьера</a><a class="helper__section-button" href="k1.html">Условия заказа</a><a class="helper__section-button" href="components.html">Компоненты</a></div>
         </div>
       </div>
     </div>

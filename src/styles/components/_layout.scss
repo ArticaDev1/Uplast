@@ -1,7 +1,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  min-height: var(--screen-height);
+  min-height: var(--window-safe-height);
   width: var(--content-width);
   overflow: hidden;
   position: relative;
@@ -20,9 +20,11 @@
 }
 
 .section {
-  margin-bottom: var(--indent-1);
+  &:not(:last-child) {
+    margin-bottom: var(--indent-1);
+  }
   &:last-child {
-    margin-bottom: calc(var(--indent-1) / 2);
+    margin-bottom: var(--angle-top-margin);
   }
   &__head {
     margin-bottom: 40px;
@@ -40,7 +42,7 @@
 }
 
 .section-border {
-  margin-top: calc((var(--indent-1) - var(--indent-3)) * -1);
+  margin-top: calc((var(--indent-1) - max(var(--indent-3), 50px)) * -1);
   &__head {
     margin-bottom: 30px;
   }
@@ -90,10 +92,12 @@
   }
   &::before {
     top: 0;
+    margin-bottom: calc(var(--overscroll-size) * -1);
     background: linear-gradient(0deg, var(--overscroll-bg-2) 0%, var(--overscroll-bg-1) 100%);
   }
   &::after {
     bottom: 0;
+    margin-top: calc(var(--overscroll-size) * -1);
     background: linear-gradient(0deg, var(--overscroll-bg-1) 0%, var(--overscroll-bg-2) 100%);
   }
 }

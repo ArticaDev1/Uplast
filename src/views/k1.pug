@@ -1,0 +1,95 @@
+extends layout/layout
+block variables
+  -var footer_type = 2
+  -var title = sitename+' - Условия заказа'
+
+block content
+
+  section.section
+    .container 
+      
+      .d-flex.flex-wrap.column-gap-10.row-gap-15.mb-40.mb-md-50
+        //active если текущая страница, и менять href на javascript:void(0);
+        +tab-link('Условия заказа', {
+          size: 'small'
+        })
+        +tab-link('Система скидок', {
+          size: 'small'
+        })
+        +tab-link('Доставка', {
+          size: 'small',
+          state: 'active'
+        })
+        +tab-link('Оплата', {
+          size: 'small'
+        })
+        +tab-link('Возврат', {
+          size: 'small'
+        })
+
+      h1.mb-25 Доставка
+
+      .mb-25
+        .point-text.mb-10
+          svg.icon 
+            use(xlink:href="./img/icons/icons.svg#point")
+          | ближайший филиал
+
+        .select.select_small
+          select.cf_select_city
+            option(value='1' selected) Воронеж
+            option(value='2') Москва
+            option(value='3') Белгород
+
+      .row 
+        .col-12.col-xl-10
+          .klientam-content-box
+            .content-box.klientam-content-box__info
+              //Первый блок с динамикой - начало
+
+              .klientam-content-box__timetable
+                h5.mb-20.mb-xl-30 Приём заказов:
+                .timetable-element
+                  .timetable-element__days
+                    .timetable-element__day Пн
+                    .timetable-element__day
+                    .timetable-element__day
+                    .timetable-element__day
+                    .timetable-element__day Пт
+                    .timetable-element__day Сб
+                    .timetable-element__day Вс
+                    
+                  .timetable-element__line
+                    span(style='width:71.43%;')
+                  
+                  .timetable-element__description
+                    span(style='width:71.43%;') 8:30 - 17:30
+                    span Выходные
+
+              p При размещении заказа до 17:00 в будние дни доставка осуществляется в течение 48 часов.
+              p Доставка осуществляется в соответствии с графиком. Подробную информацию уточняйте у менеджеров отдела продаж.
+              p При безналичной оплате, доставка осуществляется на следующий рабочий день после поступления денег, если иное не обусловлено договором.
+
+              //Первый блок с динамикой - конец
+            
+            .klientam-content-box__image.image.image_contain
+              img(data-src="./img/clients/3.svg", alt="image").lazyload
+
+
+      .klientam-content-box__more-info
+        //Второй блок с динамикой - начало
+        .row.mt-40.mt-md-40.row-gap-25.row-gap-md-40
+          .col-xl-6
+            h5 Условия доставки на территории г. Курск:
+            p При заказе от 1500 руб. доставка бесплатна.
+            p При заказе до 1500 руб. доставка по городу составляет 500 руб.
+          .col-xl-6
+            h5 Условия доставки в границах Курской области:
+            p При заказе от 3000 руб.  доставка бесплатна.
+            p При заказе до 3000 руб. доставка по области составит 12 руб. за 1 км.
+          .col-xl-6 
+            h5 Условия доставки за пределы Курской области:
+            p При заказе от 10 000 руб. доставка бесплатна.
+            p При заказе от 5 000 до 10 000 руб. стоимость доставки составит 13 руб. за 1 км.
+        //Второй блок с динамикой - конец
+

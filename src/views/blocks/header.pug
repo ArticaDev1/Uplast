@@ -10,7 +10,7 @@ header.header
         use(xlink:href="./img/icons/icons.svg#logo")
 
     .header__search
-      include ../blocks/search
+      include search
       
     
     .header__items 
@@ -19,12 +19,14 @@ header.header
         svg.icon
           use(xlink:href="./img/icons/icons.svg#magnifier")
 
-      button(data-action="open_location" aria-label="open location").header__button.header__location-button
-        svg.icon
-          use(xlink:href="./img/icons/icons.svg#placemark")
-        span Воронеж
+      .header__location
+        a(href="#location" data-action="open_modal").header__button.header__location-button
+          svg.icon
+            use(xlink:href="./img/icons/icons.svg#placemark")
+          span Воронеж
+        include location
 
-      a(href="javascript:void(0);" data-tippy-content="Заказать звонок").header__button.header__phone-button
+      a(href="#content-modal" data-action="open_modal" data-tippy-content="Заказать звонок").header__button.header__phone-button
         svg.icon
           use(xlink:href="./img/icons/icons.svg#phone")
 
@@ -33,4 +35,7 @@ header.header
           use(xlink:href="./img/icons/icons.svg#cart")
         span 99
 
+a(href="#mobile-nav" data-action="open_modal").nav-burger
+  svg.icon
+    use(xlink:href="./img/icons/icons.svg#burger") 
 // header end

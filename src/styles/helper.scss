@@ -17,18 +17,22 @@ $font2: 'Open Sans', sans-serif;
 .helper {
   font-family: $font1;
   position: fixed;
-  z-index: 10000;
+  z-index: 2000;
   left: 0;
   top: 50%;
   transform: translate(-100%, -50%);
   transition: transform $trs;
   width: 100%;
   max-width: 280px;
+  max-height: 100%;
   color: #000;
+  display: flex;
   &__trigger {
     display: block;
     position: absolute;
     left: calc(100% - 1px);
+    top: 50%;
+    transform: translateY(-50%);
     width: 40px;
     height: 40px;
     border-radius: 0 2px 2px 0;
@@ -47,12 +51,15 @@ $font2: 'Open Sans', sans-serif;
       height: 18px;
       color: inherit;
       transition: transform $trs;
+      animation: 5s linear rotation infinite;
+
     }
     &[data-touch], &[data-hover] {
       color: $color-active;
     }
   }
   &__container {
+    max-height: 100%;
     position: relative;
     z-index: 1;
     padding: 20px 15px;
@@ -63,6 +70,7 @@ $font2: 'Open Sans', sans-serif;
     border-width: 1px 1px 1px 0;
     border-style: solid;
     border-color: $border-color;
+    overflow: auto;
   }
   &__section {
     &:not(:last-child) {
@@ -86,7 +94,7 @@ $font2: 'Open Sans', sans-serif;
       font-weight: 400;
       text-align: center;
       background-color: $color-accent;
-      color: $btn-color;
+      color: $btn-color !important;
       transition: background-color $trs;
       line-height: 32px;
       min-height: 32px;
@@ -111,5 +119,14 @@ $font2: 'Open Sans', sans-serif;
         transform: rotate(180deg);
       }
     }
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

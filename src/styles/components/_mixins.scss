@@ -1,0 +1,4 @@
+@mixin border-radius-fix {
+  //border-radius fix
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}

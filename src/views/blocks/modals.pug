@@ -1,0 +1,88 @@
+.modal.success-modal.scrollbar#success-modal
+  .modal__wrapper
+    .modal-block.success-modal__block(data-modal-content)
+      .modal-block__container
+        h2.h1 Спасибо!
+          
+.modal.content-modal.scrollbar#content-modal
+  .modal__wrapper.content-modal__wrapper
+    
+    
+    .modal-block.content-modal__block(data-modal-content) 
+
+      button.close-button.modal__close(data-action='close_modal' aria-label="Закрыть модальное окно")
+        svg.icon
+          use(xlink:href="./img/icons/icons.svg#close-button")
+
+      .content-modal__block-inner
+      
+        h2.text-center.mb-40.mb-md-70.mb-lg-60 Отправьте коммерческое предложение
+        form(novalidate data-validation)
+          .form-grid.row.row-gap-30.row-gap-xl-25.mb-30.mb-xl-25
+            .form-grid__element.col-md-6  
+              .input
+                input(type="text" required disabled)
+                .input-element
+                  span ФИО
+            .form-grid__element.col-md-6  
+              .input
+                input(type="text" required)
+                .input-element
+                  span Город
+            .form-grid__element.col-md-6  
+              .input
+                input(type="text" required)
+                .input-element
+                  span Компания
+            .form-grid__element.col-md-6  
+              .input
+                input(type="text" required)
+                .input-element
+                  span Вид продукции
+            .form-grid__element.col-md-6
+              .input
+                input(type="text" name='phone' data-validate='phone')
+                .input-element
+                  span Телефон
+            .form-grid__element.col-md-6
+              .input
+                input(type="text" name='email' required data-validate='email')
+                .input-element
+                  span Email
+
+          .form-grid.row.row-gap-15.mb-40.mb-md-50.mb-xl-70
+            .form-grid__element.col-auto
+              .input-file
+                input(type="file" id='ldlsldlsd' required data-validate='file')
+                label(for='ldlsldlsd').input-file-element.input-file-element_style-1
+                  svg.icon
+                    use(xlink:href="./img/icons/icons.svg#clip")
+                  span(data-text='Прикрепить КП|КП прикреплено') Прикрепить КП
+            
+            .form-grid__element.col-auto
+              .input-file
+                input(type="file" id='kdj' required disabled data-validate='file')
+                label(for='kdj').input-file-element.input-file-element_style-1
+                  svg.icon
+                    use(xlink:href="./img/icons/icons.svg#clip")
+                  span(data-text='Прикрепить сертификат|Cертификат прикреплен') Прикрепить сертификат
+
+            .form-grid__element.col-auto
+              .input-file
+                input(type="file" id='idk' disabled)
+                label(for='idk').input-file-element.input-file-element_style-2
+                  svg.icon
+                    use(xlink:href="./img/icons/icons.svg#clip")
+                  span(data-text='Другие файлы|Другие файлы прикреплены') Другие файлы
+
+          .d-sm-flex.flex-sm-column.align-items-sm-center 
+            button.button.button_style-1.button_large.mb-10.mb-lg-15.w-100.w-sm-auto
+              span.button__inner
+                span Отправить заявку
+            
+            .text-center.text-small.text-muted Нажимая на кнопку, вы соглашаетесь с 
+              a(href="#").link Политикой конфиденциальности
+              |, 
+              br.d-none.d-lg-block
+              | а также 
+              a(href="#").link Пользовательским соглашением

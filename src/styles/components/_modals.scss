@@ -1,0 +1,134 @@
+.modal {
+  position: fixed;
+  z-index: 1001;
+  width: var(--window-width);
+  height: var(--window-height);
+  top: 0;
+  left: 0;
+  background-color: var(--color-overlay);
+  display: none;
+  &__close-back {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+  &__wrapper {
+    position: relative;
+    min-height: 100%;
+    width: var(--content-width);
+    display: flex;
+    padding: 60px var(--content-gutter);
+  }
+  @include media-breakpoint-up(lg) {
+    &-block {
+      animation: var(--trs-2) modal_animation forwards paused;
+      will-change: transform;
+    }
+    &.d-block {
+      .modal-block {
+        animation-play-state: running;
+      }
+    }
+  }
+  @include media-breakpoint-down(sm) {
+    &__wrapper {
+      padding: 40px var(--container-gutter-x);
+    }
+  }
+}
+
+.modal-block {
+  position: relative;
+  margin: auto;
+  background-color: var(--color-background-1);
+  border-radius: 10px;
+  max-width: 100%;
+}
+
+.success-modal {
+  &__block {
+    width: 890px;
+    padding: 80px 100px;
+    text-align: center;
+  }
+  &.scrollbar {
+    &::before, &::after {
+      display: none;
+    }
+  }
+  @include media-breakpoint-down(md) {
+    &__block {
+      padding: 80px 50px;
+    }
+  }
+  @include media-breakpoint-down(sm) {
+    &__block {
+      padding: 80px 20px;
+    }
+  }
+}
+
+@keyframes modal_animation {
+  0% {
+    transform: translateY(5%) scale(0.95);
+  }
+  100% {
+    transform: 0;
+  }
+}
+
+.content-modal {
+  &__block {
+    grid-column: 2/12;
+    margin: 0;
+    padding: 80px 148px;
+    display: flex;
+  }
+  &__block-inner {
+    width: 100%;
+    margin: auto;
+  }
+  @include media-breakpoint-up(lg) {
+    &.scrollbar {
+      &::before, &::after {
+        display: none;
+      }
+    }
+    &__wrapper {
+      display: grid;
+      justify-content: center;
+      align-items: center;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--grid-gutter-x);
+    }
+  }
+  @include media-breakpoint-down(xxl) {
+    &__block {
+      padding: 80px 132px;
+    }
+  }
+  @include media-breakpoint-down(xl) {
+    &__block {
+      grid-column: 1/13;
+      padding: 80px 30px;
+    }
+  }
+  @include media-breakpoint-down(lg) {
+    background-color: var(--color-background-1);
+    overflow-y: scroll;
+    &__wrapper {
+      padding: 0;
+    }
+    &__block {
+      background-color: transparent;
+      padding: 90px var(--content-gutter);
+    }
+  }
+  @include media-breakpoint-down(sm) {
+    &__block {
+      padding: 50px var(--content-gutter);
+    }
+  }
+}

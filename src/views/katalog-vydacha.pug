@@ -48,12 +48,11 @@ block content
       .catalog__container
         .catalog__filter 
 
-          #categories-modal.modal.catalog-modal.catalog__filter-element
+          #categories-modal.catalog-modal.catalog__filter-element(data-modal-content)
             .catalog-modal__wrapper.scrollbar(data-scroll-lock-scrollable)
-              .catalog-modal__close
-                button.close-button(data-action='close_modal' aria-label="Закрыть модальное окно")
-                  svg.icon
-                    use(xlink:href="./img/icons/icons.svg#close-button")
+              button.close-button.catalog-modal__close(data-action='close_modal' aria-label="Закрыть модальное окно")
+                svg.icon
+                  use(xlink:href="./img/icons/icons.svg#close-button")
               .catalog-modal__inner
                 .container.catalog-modal__container
                   .catalog-modal__content 
@@ -63,18 +62,20 @@ block content
                       li.catalog-categories-list__item
                         a(href="#").catalog-categories-list__link Контейнеры ПЭТ
                       li.catalog-categories-list__item
-                        a(href="#").catalog-categories-list__link Контейнеры ПП
+                        a(href="#").catalog-categories-list__link.active Контейнеры ПП
                       li.catalog-categories-list__item 
                         a(href="#").catalog-categories-list__link Контейнеры БОПС 
 
 
-          #filter-modal.filter.catalog-modal.catalog__filter-element
-            .catalog-modal__wrapper.scrollbar(data-scroll-lock-scrollable) 
-              .catalog-modal__close
-                button.close-button(data-action='close_modal' aria-label="Закрыть модальное окно")
-                  svg.icon
-                    use(xlink:href="./img/icons/icons.svg#close-button")
+          #filter-modal.filter.catalog-modal.catalog__filter-element(data-modal-content)
+            .catalog-modal__wrapper.scrollbar(data-scroll-lock-scrollable)
+              button.close-button.catalog-modal__close(data-action='close_modal' aria-label="Закрыть модальное окно")
+                svg.icon
+                  use(xlink:href="./img/icons/icons.svg#close-button")
               .catalog-modal__inner
+
+                
+
                 .container.catalog-modal__container
                   h6.catalog__filter-title.filter__title Фильтры
                   .filter__container
@@ -124,21 +125,6 @@ block content
 
                     //
                     .filter__box 
-                      h5.filter__box-title Готовые решения
-                      .filter__box-items.scrollbar
-                        .filter__box-item 
-                          +checkbox('Сетевой ритейл')
-                        .filter__box-item 
-                          +checkbox('HoReCa')
-                        .filter__box-item 
-                          +checkbox('Хлебобулочное и кондитерское производство')
-                        .filter__box-item 
-                          +checkbox('Мясоперерабатывающее производство')
-                        .filter__box-item 
-                          +checkbox('Сетевой ритейл')
-
-                    //
-                    .filter__box 
                       h5.filter__box-title Предложения
                       .filter__box-items.scrollbar
                         .filter__box-item 
@@ -149,12 +135,13 @@ block content
                           +checkbox('Новинки')
                         .filter__box-item 
                           +checkbox('Распродажа')
-                        
-                .catalog-modal__button.filter__show-button
+
+                .catalog-modal__button.filter__show-button.d-block.d-block
                   .container 
                     button.button.button_large.button_style-1(data-action='close_modal' aria-label="Закрыть модальное окно")
                       span.button__inner
-                        span Показать 89 товаров
+                        span Показать 89 товаров     
+                
         
         .catalog__items#mse2_results
           +product-card(1)
@@ -173,5 +160,5 @@ block content
           +product-card(4)
           +product-card(5)
 
-        .catalog__pagination
+        .catalog__pagination#mse2_pagination
           include blocks/pagination

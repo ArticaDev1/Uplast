@@ -1,38 +1,37 @@
-//nav start
 nav#mobile-nav.mobile-nav
-  .mobile-nav__container.scrollbar(data-scroll-lock-scrollable)
-    .mobile-nav__head 
-      a(href="#").logo.mobile-nav__logo
-        svg(viewBox="0 0 213 43").icon.logo__image
-          use(xlink:href="./img/icons/icons.svg#logo")
+  .mobile-nav__container(data-modal-content)
+    .scrollbar.mobile-nav__scroll-container
+      .mobile-nav__head
+        a(href="#").logo.mobile-nav__logo
+          svg(viewBox="0 0 213 43").icon.logo__image
+            use(xlink:href="./img/icons/icons.svg#logo")
 
-      button.close-button.mobile-nav__close-button(data-action="close_modal" aria-label="Закрыть меню")
-        svg.icon
-          use(xlink:href="./img/icons/icons.svg#close-button")
-
-    .mobile-nav__content
-      .container
+        button.close-button.mobile-nav__close-button(data-action="close_modal" aria-label="Закрыть меню")
+          svg.icon
+            use(xlink:href="./img/icons/icons.svg#close-button")
+      
+      .mobile-nav__content
         ul.mobile-nav__list 
           li.mobile-nav__item 
             a(href="katalog.html").mobile-nav__link Каталог товаров
 
             ul.mobile-nav__categories-list 
-              li.mobile-nav__categories-item 
+              //li.mobile-nav__categories-item 
                 a(href="#").mobile-nav__categories-link
                   svg.icon.mobile-nav__categories-link-icon.mobile-nav__categories-link-icon_1
                     use(xlink:href="./img/icons/icons.svg#lotok-pod-zapajku")
                   span Лоток под запайку
-              li.mobile-nav__categories-item 
+              //li.mobile-nav__categories-item 
                 a(href="#").mobile-nav__categories-link
                   svg.icon.mobile-nav__categories-link-icon.mobile-nav__categories-link-icon_2
                     use(xlink:href="./img/icons/icons.svg#kontejnery")
                   span Контейнеры
-              li.mobile-nav__categories-item 
+              //li.mobile-nav__categories-item 
                 a(href="#").mobile-nav__categories-link
                   svg.icon.mobile-nav__categories-link-icon.mobile-nav__categories-link-icon_3
                     use(xlink:href="./img/icons/icons.svg#tortniczy")
                   span Тортницы
-              li.mobile-nav__categories-item 
+              //li.mobile-nav__categories-item 
                 a(href="#").mobile-nav__categories-link
                   svg.icon.mobile-nav__categories-link-icon.mobile-nav__categories-link-icon_4
                     use(xlink:href="./img/icons/icons.svg#pakety")
@@ -69,15 +68,13 @@ nav#mobile-nav.mobile-nav
                   span Хозяйственные товары
 
           
-          li.mobile-nav__item 
+          //li.mobile-nav__item 
             a(href="#").mobile-nav__link О компании
-          li.mobile-nav__item 
+          //li.mobile-nav__item 
             a(href="#").mobile-nav__link Карьера
-          li.mobile-nav__item 
+          //li.mobile-nav__item 
             a(href="#").mobile-nav__link Поставщикам
-          li.mobile-nav__item 
+          //li.mobile-nav__item 
             a(href="#").mobile-nav__link Клиентам
           li.mobile-nav__item 
             a(href="#").mobile-nav__link Контакты
-  .mobile-nav__overlay(data-action="close_modal")
-//nav end

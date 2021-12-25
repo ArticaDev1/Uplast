@@ -3,19 +3,32 @@ mixin checkbox(title, state)
     input(type="checkbox" checked=state=='checked'?true:false disabled=state=='disabled'?true:false)
     span !{title}
 
-mixin color-checkbox(color, state, tippy)
+mixin color-checkbox(params)
   label.color-checkbox
-    input(type="checkbox" checked=state=='checked'?true:false disabled=state=='disabled'?true:false)
-    span(style=`background:${color};` data-tippy-content=tippy?tippy:false)
+    input(
+      type=params.type?params.type:'checkbox'
+      name=params.name?params.name:false
+      value=params.value?params.value:false
+      checked=params.checked?true:false 
+      disabled=params.disabled?true:false)
+    span(
+      style=`background:${params.color};` 
+      data-tippy-content=params.tippy?params.tippy:false)
 
 mixin color-link(color, state, tippy)
   a(href=state?'javascript:void(0);':'#' class=state style=`background:${color};` data-tippy-content=tippy?tippy:false).color-link
 
-mixin detail-checkbox(title, state, tippy)
+mixin detail-checkbox(params)
   label.detail-checkbox
-    input(type="checkbox" checked=state=='checked'?true:false disabled=state=='disabled'?true:false)
-    span(data-tippy-content=tippy?tippy:false) 
-      | !{title}
+    input(
+      type=params.type?params.type:'checkbox'
+      name=params.name?params.name:false
+      value=params.value?params.value:false
+      checked=params.checked?true:false 
+      disabled=params.disabled?true:false)
+    span(
+      data-tippy-content=params.tippy?params.tippy:false) 
+      | !{params.value}
 
 mixin detail-link(title, state, tippy)
   a(href=state?'javascript:void(0);':'#' class=state data-tippy-content=tippy?tippy:false).detail-link 
@@ -27,6 +40,17 @@ mixin tab-check-element(title, params = {})
       checked=params.state=='checked'?true:false 
       disabled=params.state=='disabled'?true:false)
     span=title
+
+mixin tab-link(title, params = {})
+  a.tab-link(href='javascript:void(0);' class=`${params.size=='small'?'tab-link_small':''} ${params.state=='active'?'active':''}`)
+    span=title
+
+mixin radio-slide(params = {})
+  label.radio-slide
+    input(type="checkbox" 
+      checked=params.state=='checked'?true:false
+      disabled=params.state=='disabled'?true:false)
+    span
 
 
 

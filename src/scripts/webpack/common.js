@@ -1,4 +1,6 @@
 const Dev = window.location.host == 'localhost:9000' ? true : false;
+const path_to_assets = '/assets/components/project/uplast-main/build/';
+const YandexApiKey = 'c8264039-ceec-4c63-8f99-6858d416bca0';
 
 const breakpoints = {
   sm: 576,
@@ -39,14 +41,13 @@ gsap.defaults({
   ease: "power2.inOut",
   duration: 1
 });
-import {disablePageScroll, enablePageScroll} from 'scroll-lock';
+
 import Inputmask from "inputmask";
 import autosize from 'autosize';
 import SwipeListener from 'swipe-listener';
-import Swiper, {Navigation, Pagination, Autoplay, Scrollbar, FreeMode} from 'swiper';
+import Swiper, {Navigation, Pagination, Lazy, Scrollbar, FreeMode} from 'swiper';
 import 'swiper/css';
 import 'swiper/css/free-mode';
-
 
 import SlimSelect from 'slim-select';
 import tippy, {followCursor} from 'tippy.js';
@@ -95,6 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
   CustomInteractionEvents.init();
   Location.init();
   Search.init();
+  Burger.init();
   Modal.init();
   ScrollAnchors.init();
   Validation.init();
@@ -123,20 +125,65 @@ document.addEventListener("DOMContentLoaded", function () {
   calculator();
   form_toggle();
   collapse();
+  getDelivery();
 
   InstancesManager.add(HomeBanner, '.home-banner');
   InstancesManager.add(TabSlider, '.tab-slider');
-  InstancesManager.add(AdvantagesSlider, '.advantages-slider');
+  InstancesManager.add(AdvantagesSliderManager, '.advantages-slider');
   InstancesManager.add(Partners, '.section-partners');
-  //InstancesManager.add(Map, '.contacts__map');
   InstancesManager.add(Select, '.select select');
   InstancesManager.add(Card3d, '[data-3d="parent"]');
   InstancesManager.add(ProductSlider, '.product-slider');
   InstancesManager.add(SliderConstructor, '.slider-constructor');
   InstancesManager.add(MapVector, '.map-vector');
   InstancesManager.add(HistoryList, '.history-list');
+  InstancesManager.add(Counter, '[data-counter]');
+  InstancesManager.add(FormElementChecked, '[data-form-element-checked]');
+  InstancesManager.add(FormElementValue, '[data-form-element-value]');
   InstancesManager.init();
 });
+
+window.addEventListener('load', function() {
+  //грузить карту только после загрузки всей страницы
+  if (!Dev) {
+    InstancesManager.add(ContactsMap, '.contacts-map');
+    InstancesManager.init();
+  }
+})
+
+
+//
+
+async function loadYandexAPI() {
+  if (typeof ymaps !== 'undefined') return;
+
+  await new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    script.type = 'text/javascript';
+    script.onload = function() {
+      ymaps.ready(function() {
+        resolve();
+      })
+    };
+    script.src = `https://api-maps.yandex.ru/2.1/?apikey=${YandexApiKey}&lang=ru_RU`;
+    $body.appendChild(script);
+  })
+}
+
+const Scroll = {
+  disable: function() {
+    Scroll.disabled = true;
+    this.scroll = window.pageYOffset;
+    document.documentElement.classList.add('scroll-locked');
+    $wrapper.style.top = `-${this.scroll}px`;
+  },
+  enable: function() {
+    document.documentElement.classList.remove('scroll-locked');
+    $wrapper.style.top = '0px';
+    window.scrollTo(0, this.scroll);
+    Scroll.disabled = false;
+  }
+}
 
 function mobile() {
   if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -402,6 +449,41 @@ function collapse() {
   })
 }
 
+function getDelivery() {
+  const getData = async (cityId) => {
+    const request_url = 'assets/components/project/app/connector.php';
+    const form_data = new FormData();
+  
+    form_data.append('casePar', 'getDeliveryCity');
+    form_data.append('cityId', cityId);
+  
+    const request_options = {
+      method: 'POST',
+      body: form_data
+    }
+  
+    const response = await fetch(request_url, request_options);
+    const data = await response.json();
+  
+    return data;
+  }
+
+  document.addEventListener('change', (event) => {
+    const $target = event.target.closest('.cf_select_delivery_city');
+    if (!$target) return;
+
+    let $topContainer = document.querySelector('.klientam-content-box__info'),
+        $bottomContainer = document.querySelector('.klientam-content-box__more-info');
+
+    getData($target.value)
+      .then(data => {
+        console.log(data)
+        if (data.deliveryTop) $topContainer.innerHTML = data.deliveryTop;
+        if (data.deliveryBottom) $bottomContainer.innerHTML = data.deliveryBottom;
+      })
+  })
+}
+
 const CustomInteractionEvents = Object.create({
   targets: {
     value: '[data-custom-interaction], a, button, label, .input input, .input textarea, .scrollbar-thumb, .ss-single-selected, .ss-option'
@@ -479,14 +561,28 @@ const CustomInteractionEvents = Object.create({
 
 const Search = {
   init: function () {
-    if (typeof mse2FormConfig == 'undefined') return;
-
     let $position = document.querySelector('.header__search');
 
     let $element = document.querySelector('.search-element'),
         $form = $element.querySelector('.search-element__form'),
         $input = $element.querySelector('.search-element__input'),
-        $resaults = $element.querySelector('.search-element__resaults');
+        $resaults = $element.querySelector('.search-element__resaults'),
+        $resaults_container = $element.querySelector('.search-element__resaults-container');
+
+    this.setPosition = () => {
+      if ($element.parentNode == $position && window.innerWidth < breakpoints.lg) {
+        $header.insertAdjacentElement('afterend', $element);
+        $element.classList.add('scrollbar');
+      } else if($element.parentNode !== $position && window.innerWidth >= breakpoints.lg) {
+        $position.insertAdjacentElement('afterbegin', $element);
+        $element.classList.remove('scrollbar');
+      }
+    }
+    this.setPosition();
+    window.addEventListener('resize', this.setPosition);
+
+
+    if (typeof mse2FormConfig == 'undefined') return;
 
     let key = $form.getAttribute('data-key'),
         config = mse2FormConfig[key],
@@ -508,15 +604,7 @@ const Search = {
       }
     })
 
-    this.setPosition = () => {
-      if ($element.parentNode == $position && window.innerWidth < breakpoints.lg) {
-        $header.insertAdjacentElement('afterend', $element);
-        $element.classList.add('scrollbar');
-      } else if($element.parentNode !== $position && window.innerWidth >= breakpoints.lg) {
-        $position.insertAdjacentElement('afterbegin', $element);
-        $element.classList.remove('scrollbar');
-      }
-    }
+    
 
     this.show_resaults = () => {
       $form.classList.add('search-element__form_has-resaults');
@@ -526,7 +614,7 @@ const Search = {
     this.hide_resaults = () => {
       $form.classList.remove('search-element__form_has-resaults');
       animation.reverse().eventCallback('onReverseComplete', () => {
-        $resaults.innerHTML = '';
+        $resaults_container.innerHTML = '';
       });
     }
 
@@ -539,12 +627,12 @@ const Search = {
           if (event.target.value.length < config.minQuery) return;
           
           if(response.data.results.length) {
-            $resaults.innerHTML = '';
+            $resaults_container.innerHTML = '';
             for(let resault of response.data.results) {
-              $resaults.insertAdjacentHTML('beforeend', resault.label);
+              $resaults_container.insertAdjacentHTML('beforeend', resault.label);
             }
           } else {
-            $resaults.innerHTML = '<span class="search-element__no-resaults">Результатов не найдено</span>';
+            $resaults_container.innerHTML = '<span class="search-element__no-resaults">Результатов не найдено</span>';
           }
           
           this.show_resaults();
@@ -555,8 +643,7 @@ const Search = {
       }
     }
 
-    this.setPosition();
-    window.addEventListener('resize', this.setPosition);
+    
 
     $input.addEventListener('input', this.search);
   }
@@ -564,15 +651,36 @@ const Search = {
 
 const Location = {
   init: function () {
-    this.$trigger = document.querySelector('[data-action="open_location"]');
-    this.$element = document.querySelector('.location-element');
 
-    this.$trigger.addEventListener('click', () => {
+    let $position = document.querySelector('.header__location');
+
+    let $element = document.querySelector('.location-element'),
+        $container = document.querySelector('.location-element__container');
+
+
+    this.setPosition = () => {
+      if ($element.parentNode == $position && window.innerWidth < breakpoints.lg) {
+        $header.insertAdjacentElement('afterend', $element);
+        $element.classList.add('scrollbar');
+        $container.classList.remove('scrollbar');
+      } else if($element.parentNode !== $position && window.innerWidth >= breakpoints.lg) {
+        $position.insertAdjacentElement('beforeend', $element);
+        $element.classList.remove('scrollbar');
+        $container.classList.add('scrollbar');
+      }
+    }
+    this.setPosition();
+    window.addEventListener('resize', this.setPosition);
+
+
+
+
+    /* this.$trigger.addEventListener('click', () => {
       if (!this.state) this.show();
       else this.hide();
-    })
+    }) */
 
-    document.addEventListener('click', (event) => {
+    /* document.addEventListener('click', (event) => {
       let $target = event.target.closest('[data-action="open_location"], .location-element');
       if (!$target && this.state) this.hide();
     })
@@ -597,7 +705,41 @@ const Location = {
     }
 
     this.setPosition();
-    window.addEventListener('resize', this.setPosition);
+    window.addEventListener('resize', this.setPosition); */
+  }
+}
+
+const Burger = {
+  init: function() {
+    this.$element = document.querySelector('.nav-burger');
+    this.$icon = this.$element.querySelector('.icon');
+
+    this.animation = gsap.timeline({paused:true})
+      .fadeIn(this.$element)
+      .eventCallback('onStart', () => {
+        if (window.innerWidth < breakpoints.sm) return;
+
+        let dur = animation_duration_1 / 1000;
+
+        gsap.timeline({defaults: {duration: dur, ease: 'power2.out'}})
+          .fromTo(this.$element, {scale: 0.5}, {scale: 1})
+          .fromTo(this.$icon, {scale: 0.5, autoAlpha: 0}, {scale: 1, autoAlpha: 1}, `-=${dur * 0.75}`)
+      });
+
+    this.checkState = () => {
+      if (Scroll.disabled) return;
+
+      if (!this.state && window.pageYOffset >= window.innerHeight / 2) {
+        this.state = true;
+        this.animation.play();
+      } else if (this.state && window.pageYOffset < window.innerHeight / 2) {
+        this.state = false;
+        this.animation.reverse();
+      }
+    }
+
+    window.addEventListener('scroll', this.checkState);
+    this.checkState();
   }
 }
 
@@ -608,14 +750,19 @@ const InstancesManager = {
     let $blocks = document.querySelectorAll(blocks);
     if ($blocks.length) {
       $blocks.forEach($block => {
-        this.instances.push(new clss($block));
+        this.instances.push({
+          instance: new clss($block)
+        });
       });
     }
   },
 
   init: function () {
-    this.instances.forEach(func => {
-      func.init();
+    this.instances.forEach((obj) => {
+      if (!obj.state) {
+        obj.instance.init();
+        obj.state = true;
+      }
     })
   }
 }
@@ -630,6 +777,8 @@ class HomeBanner {
     this.$front_items = this.$parent.querySelectorAll('.home-banner__front-item');
     this.$pagination_button = this.$parent.querySelectorAll('.home-banner__pagination-button');
     this.$pagination_button_loader = this.$parent.querySelectorAll('.home-banner__pagination-button-loader');
+    this.$prev = this.$parent.querySelector('.home-banner__navigation_prev');
+    this.$next = this.$parent.querySelector('.home-banner__navigation_next');
 
     this.getNext = () => {
       return this.index == this.$front_items.length - 1 ? 0 : this.index + 1;
@@ -650,51 +799,16 @@ class HomeBanner {
     this.$front_items.forEach(($this, index) => {
       let $front_image = this.$front_items[index].querySelector('.image');
 
-      this.animations_back[index] = gsap.timeline({
-          paused: true
-        })
-        .fromTo(this.$back_items[index], {
-          autoAlpha: 0
-        }, {
-          autoAlpha: 1,
-          duration: 0.5
-        })
-        .fromTo(this.$back_items[index], {
-          scale: 1.1
-        }, {
-          scale: 1,
-          duration: 1,
-          ease: 'power2.out'
-        }, '-=0.5')
+      this.animations_back[index] = gsap.timeline({paused: true})
+        .fromTo(this.$back_items[index], {autoAlpha: 0}, {autoAlpha: 1, duration: 0.5})
+        .fromTo(this.$back_items[index], {scale: 1.1}, {scale: 1.01, duration: 1, ease: 'power2.out'}, '-=0.5')
 
-      this.animations_front[index] = gsap.timeline({
-          paused: true
-        })
-        .fromTo(this.$front_items[index], {
-          autoAlpha: 0
-        }, {
-          autoAlpha: 1,
-          duration: 0.5
-        })
-        .fromTo($front_image, {
-          scale: 1.1
-        }, {
-          scale: 1,
-          duration: 1,
-          ease: 'power2.out'
-        }, '-=0.5')
+      this.animations_front[index] = gsap.timeline({paused: true})
+        .fromTo(this.$front_items[index], {autoAlpha: 0}, {autoAlpha: 1, duration: 0.5})
+        .fromTo($front_image, {scale: 1.1}, {scale: 1, duration: 1, ease: 'power2.out'}, '-=0.5')
 
-      this.animations_front_hide[index] = gsap.timeline({
-          paused: true
-        })
-        .fromTo(this.$front_items[index], {
-          autoAlpha: 1
-        }, {
-          immediateRender: false,
-          autoAlpha: 0,
-          duration: 0.5,
-          ease: 'power2.out'
-        })
+      this.animations_front_hide[index] = gsap.timeline({paused: true})
+        .fromTo(this.$front_items[index], {autoAlpha: 1}, {immediateRender: false, autoAlpha: 0, duration: 0.5, ease: 'power2.out'})
 
       this.animations_loader[index] = gsap.timeline({
           paused: true
@@ -749,10 +863,25 @@ class HomeBanner {
 
 
       this.$pagination_button[index].classList.add('active');
+      //
+      this.$pagination_button.forEach(($this, i) => {
+        if (i < index) {
+          $this.classList.add('filled');
+        } else {
+          $this.classList.remove('filled');
+        }
+      })
     }
 
     this.change(0);
 
+    this.$prev.addEventListener('click', () => {
+      this.change(this.getPrev());
+    })
+
+    this.$next.addEventListener('click', () => {
+      this.change(this.getNext());
+    })
 
     this.$pagination_button.forEach(($this, index) => {
       $this.addEventListener('click', () => {
@@ -822,10 +951,9 @@ class TabSlider {
   }
 
   init() {
-    this.$slider = this.$parent.querySelector('.swiper-container');
+    this.$slider = this.$parent.querySelector('.swiper');
     this.$buttons = this.$parent.querySelectorAll('.tab-slider__button');
     this.$slider_trigger = this.$parent.querySelector('.toggle-head__slider');
-    this.speed = 0.3;
 
     this.$slider_trigger.style.width = `${100/this.$buttons.length}%`;
 
@@ -855,7 +983,7 @@ class TabSlider {
       longSwipesRatio: 0.1,
       slidesPerView: 1,
       autoHeight: true,
-      speed: this.speed * 1000
+      speed: animation_duration_2
     });
 
     this.slider.on('slideChangeTransitionStart', (swiper) => {
@@ -863,7 +991,7 @@ class TabSlider {
       gsap.to(this.$slider_trigger, {
         xPercent: 100 * swiper.realIndex,
         ease: 'power1.inOut',
-        duration: this.speed
+        duration: animation_duration_2 / 1000
       });
     });
     this.slider.on('touchStart', (swiper) => {
@@ -874,7 +1002,7 @@ class TabSlider {
       gsap.to(this.$slider_trigger, {
         xPercent: 100 * this.index,
         ease: 'power1.inOut',
-        duration: this.speed
+        duration: animation_duration_2 / 1000
       });
     });
     this.slider.on('setTranslate', (swiper) => {
@@ -888,27 +1016,116 @@ class TabSlider {
   }
 }
 
-class AdvantagesSlider {
+class AdvantagesSliderManager {
   constructor($parent) {
     this.$parent = $parent;
   }
 
   init() {
+    this.instances = [
+      MobileAdvantagesSlider,
+      DesktopAdvantagesSlider
+    ]
+
+    this.initInstance = (instance) => {
+      if (this.activeInstance) {
+        if (this.activeInstance.constructor == instance) return;
+        this.activeInstance.destroy();
+      }
+      this.activeInstance = new instance(this.$parent);
+      this.activeInstance.init();
+    }
+
+    this.checkVersion = () => {
+      if (window.innerWidth < breakpoints.lg) {
+        this.initInstance(this.instances[0]);
+      } else if (window.innerWidth >= breakpoints.lg) {
+        this.initInstance(this.instances[1]);
+      }
+    }
+
+    this.checkVersion();
+    window.addEventListener('resize', this.checkVersion);
+  }
+}
+
+class MobileAdvantagesSlider {
+  constructor($parent) {
+    this.$parent = $parent;
+  }
+
+  init() {
+    this.$slider = this.$parent.querySelector('.swiper');
+    this.$pagination = this.$parent.querySelector('.swiper-pagination');
+    this.$prev = this.$parent.querySelector('.swiper-button-prev');
+    this.$next = this.$parent.querySelector('.swiper-button-next');
+    this.$itemsContainer = this.$parent.querySelector('.advantages-slider__items');
     this.$items = this.$parent.querySelectorAll('.advantages-slider__item');
+
+    this.swiper = new Swiper(this.$slider, {
+      modules: [Pagination, Navigation],
+      touchStartPreventDefault: false,
+      slidesPerView: 1,
+      speed: animation_duration_3,
+      pagination: {
+        el: this.$pagination,
+        clickable: true,
+        bulletElement: 'button'
+      },
+      navigation: {
+        prevEl: this.$prev,
+        nextEl: this.$next
+      }
+    })
+
+    this.checkHeight = () => {
+      let height = this.activeItem.getBoundingClientRect().height;
+      this.$itemsContainer.style.height = `${height}px`;
+    }
+
+    this.changeItem = (index) => {
+      if (this.activeItem) this.activeItem.classList.remove('active');
+      this.activeItem = this.$items[index];
+
+      this.activeItem.classList.add('active');
+      this.checkHeight();
+    }
+
+    this.changeItem(0);
+    this.swiper.on('slideChange', (swiper) => {
+      this.changeItem(swiper.realIndex);
+    })
+    window.addEventListener('resize', this.checkHeight);
+  }
+
+  destroy() {
+    this.swiper.destroy();
+    window.removeEventListener('resize', this.checkHeight);
+    this.$itemsContainer.removeAttribute('style');
+    if (this.activeItem) this.activeItem.classList.remove('active');
+    for(let child in this) delete this[child];
+  }
+}
+
+class DesktopAdvantagesSlider {
+  constructor($parent) {
+    this.$parent = $parent;
+  }
+
+  init() {
+    this.$itemsContainer = this.$parent.querySelector('.advantages-slider__items');
+    this.$items = this.$parent.querySelectorAll('.advantages-slider__item');
+    
     this.$content = this.$parent.querySelectorAll('.advantages-slider__content');
+    this.$slider = this.$parent.querySelector('.swiper');
+    this.$slides = this.$slider.querySelectorAll('.swiper-slide');
 
-
-    this.$slider = this.$parent.querySelector('.swiper-container');
-    this.$slides = this.$parent.querySelectorAll('.advantages-slider__slide');
-
-    this.speed = 0.15;
-
-
-
-    this.sliderEvent = () => {
+    
+    this.mouseleaveEvent = () => {
       this.change();
     }
-    this.$slider.addEventListener('mouseleave', this.sliderEvent);
+
+    this.$slider.addEventListener('mouseleave', this.mouseleaveEvent);
 
     this.slideEvents = [];
     this.$slides.forEach(($slide, index) => {
@@ -942,6 +1159,19 @@ class AdvantagesSlider {
     }
 
   }
+
+  destroy() {
+    this.$slider.removeEventListener('mouseleave', this.mouseleaveEvent);
+    this.$slides.forEach(($slide, index) => {
+      $slide.removeEventListener('mouseenter', this.slideEvents[index]);
+      $slide.removeEventListener('click', this.slideEvents[index]);
+    });
+    if (this.index !== undefined) {
+      this.$items[this.index].classList.remove('active');
+      this.$slides[this.index].classList.remove('active');
+    }
+    for(let child in this) delete this[child];
+  }
 }
 
 class Partners {
@@ -950,14 +1180,15 @@ class Partners {
   }
 
   init() {
-    this.$sliders = this.$parent.querySelectorAll('.swiper-container');
+    this.$sliders = this.$parent.querySelectorAll('.swiper');
     this.sliders = [];
     this.speed = [1800, 2300, 2200];
+    this.sliders = [];
 
     this.$sliders.forEach(($slider, index) => {
       let $slides = $slider.querySelectorAll('.swiper-slide');
-
-      let slider = new Swiper($slider, {
+      this.sliders[index] = new Swiper($slider, {
+        modules: [Lazy],
         slidesPerView: 'auto',
         loop: true,
         loopedSlides: $slides.length,
@@ -968,81 +1199,140 @@ class Partners {
           loadPrevNextAmount: $slides.length * 2
         }
       });
-
-      let render = () => {
-        let scroll_size = slider.virtualSize / 3,
-          progress_start = scroll_size * -1,
-          progress_end = scroll_size * -2,
-          scroll_step = scroll_size / this.speed[index],
-          progress = slider.translate - scroll_step,
-          translate = progress >= progress_end ? progress : progress_start;
-
-        slider.setTranslate(translate);
-
-        requestAnimationFrame(render);
-      }
-
-      render();
     })
 
+    let render = () => {
+
+      if (this.inViewport) {
+
+        this.sliders.forEach((slider, index) => {
+          let scroll_size = slider.virtualSize / 3,
+              progress_start = scroll_size * -1,
+              progress_end = scroll_size * -2,
+              scroll_step = scroll_size / this.speed[index],
+              progress = slider.translate - scroll_step,
+              translate = progress >= progress_end ? progress : progress_start;
+          slider.setTranslate(translate);
+        })
+        
+      }
+
+      requestAnimationFrame(render);
+    }
+
+    render();
 
 
-
+    let observerCallback = (entries) => {
+      if (entries[0].isIntersecting) {
+        this.inViewport = true;
+      } else {
+        this.inViewport = false;
+      }
+    }
+    let observerOptions = {
+      rootMargin: '0px',
+      threshold: 0
+    }
+    let observer = new IntersectionObserver(observerCallback, observerOptions);
+    observer.observe(this.$parent);
   }
 }
 
-class Map {
+class ContactsMap {
   constructor($parent) {
     this.$parent = $parent;
   }
 
   init() {
-    this.apiKey = 'c8264039-ceec-4c63-8f99-6858d416bca0';
+    const path_to_icon =`${!Dev ? path_to_assets : './'}img/icons/map-point.svg`;
+    const $select = document.querySelector('.cf_select_city');
+    const $resaults = document.querySelector('.contacts-content__info-resaults');
 
-    let loadMap = () => {
-      if (typeof ymaps === 'undefined') {
-        let callback = () => {
-          ymaps.ready(createMap);
-        }
-        let script = document.createElement("script");
-        script.type = 'text/javascript';
-        script.onload = callback;
-        script.src = `https://api-maps.yandex.ru/2.1/?apikey=${this.apiKey}&lang=ru_RU`;
-        $body.appendChild(script);
-      } else {
-        createMap();
+    const getCityInfo = async (cityId) => {
+      const request_url = 'assets/components/project/app/connector.php';
+      const form_data = new FormData();
+
+      form_data.append('casePar', 'getCity');
+      form_data.append('cityId', cityId);
+
+      const request_options = {
+        method: 'POST',
+        body: form_data
       }
+
+      const response = await fetch(request_url, request_options);
+      const data = await response.json();
+
+      data.address = `г. ${data.info.name}, ${data.info.address}`;
+
+      return data;
     }
 
-    let createMap = () => {
-      this.map = new ymaps.Map(this.$parent, {
-        center: [57.035109, 65.704738],
-        controls: ['zoomControl'],
-        zoom: 14
-      });
-      this.map.behaviors.disable(['scrollZoom']);
-      this.placemarks = [];
-      this.$map = this.map.container._element;
-      this.$map.classList.add('contacts-block__map-element');
-      gsap.fromTo(this.$map, {
-        autoAlpha: 0
-      }, {
-        autoAlpha: 1
-      })
+    const getСoordinates = async (address) => {
+      const request_url = `https://geocode-maps.yandex.ru/1.x/?apikey=${YandexApiKey}&format=json&geocode=${address}`;
+      
+      const response = await fetch(request_url)
+      const data = await response.json();
+      const coordinates = data.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos.split(' ').reverse();
 
-      let placemark = new ymaps.Placemark(this.map.getCenter(), {
-        balloonContent: 'пгт. Стрелица ул. Солнечная 39'
+      return coordinates;
+    }
+
+    const createMap = async () => {
+      await loadYandexAPI();
+      const cityInfo = await getCityInfo($select.value);
+      const coordinates = await getСoordinates(cityInfo.address);
+
+      this.map = new ymaps.Map(this.$parent, {
+        controls: ['zoomControl'],
+        center: coordinates,
+        zoom: 15
+      });
+
+      this.$map = this.map.container._element;
+      this.$map.classList.add('contacts-map__element');
+
+      setMapPlacemark(cityInfo.address, coordinates);
+
+      this.$parent.classList.add('loaded');
+      gsap.effects.fadeIn(this.$map, {duration: animation_duration_3 / 1000});
+    }
+
+    const setMapPlacemark = (address, coordinates) => {
+      this.map.geoObjects.removeAll();
+
+      let placemark = new ymaps.Placemark(coordinates, {
+        balloonContent: address
       }, {
         iconLayout: 'default#image',
-        iconImageHref: './img/icons/map-point.svg',
+        iconImageHref: path_to_icon,
         iconImageSize: [30, 44],
         iconImageOffset: [-15, -44],
         hideIconOnBalloonOpen: false
       });
+
       this.map.geoObjects.add(placemark);
+      this.map.setCenter(coordinates);
     }
 
-    loadMap();
+    const changeCity = async () => {
+      const cityInfo = await getCityInfo($select.value);
+      $resaults.innerHTML = cityInfo.html;
+
+      if (this.$map) {
+        this.$parent.classList.add('loading');
+        const coordinates = await getСoordinates(cityInfo.address);
+        setMapPlacemark(cityInfo.address, coordinates);
+        this.$parent.classList.remove('loading');
+      }
+    }
+
+    createMap();
+    
+    $select.addEventListener('change', () => {
+      changeCity();
+    })
   }
 }
 
@@ -1059,19 +1349,13 @@ class Select {
       showContent: 'down'
     })
 
-    /* //add custom arrow
-    this.select.slim.container
-      .querySelector('.ss-arrow span')
-      .insertAdjacentHTML('afterbegin', '<svg class="icon"><use xlink:href="./img/icons/icons.svg#select-arrow"></use></svg>');
-    
-    //add custom scroll
-    this.select.slim.list.classList.add('scrollbar'); */
+    let path_to_icon =`${!Dev ? path_to_assets : './'}img/icons/icons.svg#select-arrow`;
 
     let $arrow = this.select.slim.container.querySelector('.ss-arrow span'),
-      $scroll = document.createElement('div');
+        $scroll = document.createElement('div');
 
     //add custom arrow
-    $arrow.insertAdjacentHTML('afterbegin', '<svg class="icon"><use xlink:href="./img/icons/icons.svg#select-arrow"></use></svg>');
+    $arrow.insertAdjacentHTML('afterbegin', `<svg class="icon"><use xlink:href="${path_to_icon}"></use></svg>`);
     //add custom scroll
     $scroll.classList.add('scrollbar');
     this.select.slim.content.insertAdjacentElement('beforeEnd', $scroll);
@@ -1346,48 +1630,160 @@ class MapVector {
   }
 }
 
+class Counter {
+  constructor($element) {
+    this.$element = $element;
+  }
+
+  init() {
+    const val = +this.$element.innerHTML.replace(/\s/g, '');
+
+    this.$element.innerHTML = '0';
+
+    this.animate = () => {
+      
+      const counter = {
+        value: 0
+      };
+
+      this.step = () => {
+        this.$element.innerHTML = Math.floor(counter.value);
+        this.animationFrame = requestAnimationFrame(this.step);
+      }
+
+      this.animation = gsap.to(counter, {value: val, duration: 1, ease:'power2.out', 
+        onStart: () => {
+          this.step();
+        },
+        onComplete: () => {
+          cancelAnimationFrame(this.animationFrame);
+          this.$element.innerHTML = val;
+        }
+      })
+    }
+
+    //observer
+    let observerCallback = (entries) => {
+      if (entries[0].isIntersecting) {
+        this.animate();
+        this.observer.disconnect();
+      }
+    }
+    let observerOptions = {
+      rootMargin: '0px',
+      threshold: 0
+    }
+    this.observer = new IntersectionObserver(observerCallback, observerOptions);
+    this.observer.observe(this.$element);
+  }
+}
+
+class FormElementChecked {
+  constructor($element) {
+    this.$element = $element;
+    this.$parent = this.$element.closest('.form-element');
+    this.$input = this.$parent.querySelector('input');
+  }
+
+  get checked() {
+    return this.$input.checked;
+  }
+
+  check() {
+    if (this.checked) {
+      this.$element.textContent = "Да";
+    } else {
+      this.$element.textContent = "Нет";
+    }
+  }
+
+  init() {
+    this.check();
+    this.$input.addEventListener('change', () => { this.check() });
+  }
+}
+
+class FormElementValue {
+  constructor($element) {
+    this.$element = $element;
+    this.$parent = this.$element.closest('.form-element');
+    this.$inputs = this.$parent.querySelectorAll('input');
+  }
+
+  check($input) {
+    if ($input.checked) {
+      this.$element.textContent = $input.value;
+    }
+  }
+
+  init() {
+    for (const $input of this.$inputs) {
+      this.check($input);
+      $input.addEventListener('change', () => { 
+        this.check($input) 
+      });
+    }
+  }
+}
+
 const Modal = {
   init: function () {
 
     document.addEventListener('click', (event) => {
-      let $open = event.target.closest('[data-action="open_modal"]'),
-          $close = event.target.closest('[data-action="close_modal"]');
+      let _modal_content_ = '[data-modal-content]',
+          _open_button_ = '[data-action="open_modal"]',
+          _close_button_ = '[data-action="close_modal"]';
+
+      let $open = event.target.closest(_open_button_),
+          $close = event.target.closest(_close_button_),
+          outside = !event.target.closest(_modal_content_) && this.$active;
 
       if ($open) {
         event.preventDefault();
-        this.open(document.querySelector(`${$open.getAttribute('href')}`));
-      } else if ($close) {
+        this.open(document.querySelector(`${$open.getAttribute('href')}`), $open);
+      } else if ($close || outside) {
         this.close();
       }
     })
 
-    this.open = ($target) => {
+    this.open = ($target, $trigger) => {
       if ($target == this.$active) return;
 
-      document.dispatchEvent(new CustomEvent("modal_open", {
-        detail: {
-          target: $target
-        }
-      }));
-
-      this.animation = gsap.timeline()
-        .fadeIn($target)
-        .eventCallback('onStart', () => {
-          disablePageScroll();
-        });
-
-      this.$active = $target;
+      let open = ()=> {
+        $target.dispatchEvent(new CustomEvent("Modal:opened", {
+          detail: {
+            $trigger: $trigger
+          }
+        }), true);
+  
+        this.animation = gsap.timeline()
+          .fadeIn($target)
+          .eventCallback('onStart', () => {
+            Scroll.disable();
+          });
+  
+        this.$active = $target;
+      }
+      
+      if(this.$active) this.close( open );
+      else open();
     }
 
     this.close = (callback) => {
       if (!this.$active) return;
 
+      if (this.timeout) {
+        clearTimeout(this.timeout);
+        delete this.timeout;
+      }
+
       this.animation.reverse().eventCallback('onReverseComplete', () => {
-        enablePageScroll();
+        Scroll.enable();
+        
+        this.$active.dispatchEvent(new CustomEvent("Modal:closed"), true);
+        delete this.$active;
         if (callback) callback();
       })
-
-      delete this.$active;
     }
   }
 }
@@ -1639,13 +2035,22 @@ document.addEventListener('ajaxForm:afterSubmit', function (event) {
   ButtonLoader.remove($button);
   Form.enable(event.target);
 })
+
+
 document.addEventListener('ajaxForm:success', function (event) {
   Form.reset(event.target);
   Validation.reset_hints(event.target);
+
+  //modal
+  if(event.detail.response.modal) {
+    document.body.insertAdjacentHTML('beforeend', event.detail.response.modal);
+    let $modal = document.querySelector('#success-modal');
+    Modal.open($modal);
+    Modal.timeout = setTimeout(() => {
+      Modal.close();
+    }, 3000);
+  }
 })
-
-
-
 
 document.addEventListener('miniShop2_callback', function (event) {
   let detail = event.detail;
@@ -1675,7 +2080,6 @@ document.addEventListener('miniShop2_callback', function (event) {
 
   //cart element
   if(detail.type == 'after' && detail.action == 'cart/remove' && detail.response.success) {
-    console.log(detail)
     let $element = detail.$form.closest('.cart-item');
     $element.remove();
   }
@@ -1683,12 +2087,13 @@ document.addEventListener('miniShop2_callback', function (event) {
 })
 
 document.addEventListener('after_change_resaults_page', function () {
+  
   let py = +getComputedStyle(document.documentElement).getPropertyValue('--grid-gutter-x').replace(/[^\d.-]/g, ''),
-    $top = document.querySelector('.breadcrumbs') ? document.querySelector('.breadcrumbs') : document.querySelector('.catalog'),
-    y = $top.getBoundingClientRect().y + window.pageYOffset;
+      $resaults = document.querySelector('#mse2_results'),
+      y = $resaults.getBoundingClientRect().y + window.pageYOffset - py;
 
   gsap.to(window, {
-    scrollTo: y - py,
+    scrollTo: y,
     duration: animation_duration_3 / 1000
   });
 })
@@ -1714,10 +2119,38 @@ document.addEventListener('after_load_filter_resaults', function () {
   }
 })
 
-document.addEventListener('modal_open', function (event) {
-  let $filter_button_inner = event.detail.target.querySelector('.filter__show-button');
-
+document.addEventListener('Modal:opened', function (event) {
+  //filter-button
+  let $filter_button_inner = event.target.querySelector('.filter__show-button');
   if ($filter_button_inner) {
     $filter_button_inner.classList.remove('d-block');
   }
-})
+
+  //коммерческое предложение
+  let value = event.detail.$trigger ? event.detail.$trigger.getAttribute('data-form-value') : null;
+  if (value) {
+    let data = value.split('|'),
+        $input = event.target.querySelector(`[name="${data[0]}"]`);
+    
+    $input.value = data[1];
+    $input.dispatchEvent(new Event("input", {bubbles: true}));
+  }
+  
+}, true);
+
+document.addEventListener('Modal:closed', function (event) {
+  //destroy success modal 
+  if (event.target.closest('#success-modal')) {
+    event.target.remove();
+  }
+
+  //clear form
+  let $form = event.target.querySelector('form');
+  if ($form) {
+    Form.reset($form);
+    Validation.reset_hints($form);
+  }
+
+}, true);
+
+

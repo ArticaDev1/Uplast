@@ -84,3 +84,21 @@ block content
             tippy: 'Не активно',
             size: 'small'
           })
+
+        .d-flex.flex-wrap.column-gap-20.row-gap-15.w-100.col-12.align-items-center
+          +tab-link('Условия заказа', {
+            state: 'active'
+          })
+          +tab-link('Система скидок')
+          +tab-link('Система скидок', {
+            size: 'small'
+          })
+
+        .d-flex.flex-wrap.column-gap-20.row-gap-15.w-100.col-12.align-items-center
+          +radio-slide({
+            state: 'checked'
+          })
+          +radio-slide({
+            state: 'disabled'
+          })
+          +radio-slide()

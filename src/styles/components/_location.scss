@@ -1,21 +1,102 @@
 .location-element {
-  position: absolute;
-  z-index: 1001;
-  background-color: var(--color-background-1);
-  border-radius: var(--select-list-radius);
-  overflow: hidden;
-  width: 220px;
-  box-shadow: var(--modal-shadow);
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity var(--trs-1), visibility var(--trs-1);
-  &_visible {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: all;
+  display: none;
+
+  &__link {
+    &.active {
+      color: var(--color-text-3);
+    }
   }
-  &__container {
+
+  @include media-breakpoint-up(lg) {
+    --overscroll-size: var(--select-py);
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 10px;
+    background-color: var(--color-background-1);
+    border-radius: var(--select-list-radius);
+    overflow: hidden;
+    width: 220px;
+    box-shadow: var(--modal-shadow);
+    &__head {
+      display: none;
+    }
+    &__container {
+      max-height: var(--select-max-height);
+    }
+    &__list {
+      padding: var(--select-py) 0;
+    }
+    &__link {
+      display: block;
+      transition: color var(--trs-1), background-color var(--trs-1);
+      padding: var(--select-item-py) var(--select-item-px);
+      line-height: var(--select-item-lh);
+      &[data-touch], &[data-hover], &.active {
+        background-color: var(--color-background-2);
+      }
+    }
+  }
+
+  @include media-breakpoint-down(lg) {
+    position: fixed;
+    width: var(--window-width);
+    height: var(--window-height);
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    overflow-y: scroll;
+    background-color: var(--color-background-1);
+    &::before {
+      top: var(--modal-head-height);
+    }
+    &__head {
+      position: fixed;
+      display: flex;
+      align-items: center;
+      z-index: 2;
+      top: 0;
+      width: var(--content-width);
+      height: var(--modal-head-height);
+      padding: 0 var(--content-gutter);
+      background-color: var(--color-background-4);
+    }
+    &__head-title {
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--color-text-2);
+      .icon {
+        width: 20px;
+        height: 29px;
+        margin-right: 10px;
+      }
+    }
+    &__container {
+      padding: calc(var(--modal-head-height) + 25px) var(--content-gutter) var(--indent-3) var(--content-gutter);
+    }
+    &__item {
+      &:not(:last-child) {
+        border-bottom: 1px solid var(--color-background-2);
+      }
+    }
+    &__list {
+      margin: calc(var(--line-links-py) * -1) 0;
+    }
+    &__link {
+      display: block;
+      padding: var(--line-links-py) 0;
+      font-size: var(--line-links-font-size);
+    }
+  }
+  @include media-breakpoint-down(sm) {
+    &__head-title {
+      font-size: 16px;
+    }
+  }
+
+
+  /* &__container {
     --overscroll-size: var(--select-py);
     max-height: var(--select-max-height);
     overflow: auto;
@@ -32,5 +113,5 @@
 
   @include media-breakpoint-down(lg) {
     display: none;
-  }
+  } */
 }
