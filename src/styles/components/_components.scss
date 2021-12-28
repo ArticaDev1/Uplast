@@ -241,6 +241,9 @@ img {
         background-color: var(--color-active);
       }
     }
+    &-lock {
+      display: none;
+    }
   }
   &-button {
     --size: 64px;
@@ -310,19 +313,20 @@ img {
 }
 
 .slider-constructor {
+  --grid-width: var(--grid-gutter-x);
   position: relative;
   display: flex;
   flex-direction: column;
   .swiper {
-    width: calc(100% + var(--grid-gutter-x));
-    margin: 0 calc(var(--grid-gutter-x) / -2);
+    width: calc(100% + var(--grid-width));
+    margin: 0 calc(var(--grid-width) / -2);
     pointer-events: none;
   }
   .swiper-wrapper {
     pointer-events: all;
   }
   .swiper-slide {
-    padding: 0 calc(var(--grid-gutter-x) / 2);
+    padding: 0 calc(var(--grid-width) / 2);
   }
   .swiper-button {
     --size: 42px;

@@ -2030,6 +2030,7 @@ document.addEventListener('ajaxForm:beforeSubmit', function (event) {
   ButtonLoader.add($button);
   Form.disable(event.target);
 })
+
 document.addEventListener('ajaxForm:afterSubmit', function (event) {
   let $button = event.target.querySelector('[type="submit"]');
   ButtonLoader.remove($button);
@@ -2040,6 +2041,8 @@ document.addEventListener('ajaxForm:afterSubmit', function (event) {
 document.addEventListener('ajaxForm:success', function (event) {
   Form.reset(event.target);
   Validation.reset_hints(event.target);
+
+  console.log('ajaxForm:success', event)
 
   //modal
   if(event.detail.response.modal) {
