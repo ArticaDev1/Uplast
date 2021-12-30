@@ -553,8 +553,8 @@
       miniShop2.send(data, miniShop2.Order.callbacks.clean, miniShop2.Callbacks.Order.clean);
     },
     submit: function () {
-      let $form = miniShop2.sendData.$form[0];
-      if (!Validation.check_prevalidation($form)) return;
+      const $form = miniShop2.sendData.$form[0];
+      if ($form.getAttribute('data-validation')=='' && !Validation.validate($form)) return;
 
       if (miniShop2.ajaxProgress) {
         //noinspection JSUnresolvedFunction

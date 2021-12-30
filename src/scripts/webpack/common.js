@@ -204,22 +204,18 @@ const Input = {
 
       if (!$parent) return;
          
-      let input_empty = validate.single($input.value, {presence: {allowEmpty: false}}) !== undefined;
+      let empty = validate.single($input.value, {presence: {allowEmpty: false}}) !== undefined;
         
-      if(event.type=='input' || event.type=='change') {
-        if(!input_empty) {
+      if(event.type=='input' || event.type=='change' || event.type=='blur') {
+        if(!empty) {
           $input.classList.add(this._class_filled);
         } else {
           $input.classList.remove(this._class_filled);
+          if (event.type=='blur') {
+            $input.value = '';
+          }
         }
       }
-    
-      else if(event.type=='blur') {
-        if(input_empty) {
-          $input.classList.remove(this._class_filled);
-          $input.value = '';
-        }
-      } 
     }
 
     document.addEventListener('input', events, true);
