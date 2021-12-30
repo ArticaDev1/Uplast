@@ -1,4 +1,4 @@
-const Dev = window.location.host == 'localhost:9000' ? true : false;
+const Dev = window.location.host == 'localhost:9000' || 'articadev1.github.io' ? true : false;
 const path_to_assets = '/assets/components/project/uplast-main/build/';
 const YandexApiKey = 'c8264039-ceec-4c63-8f99-6858d416bca0';
 
@@ -1928,28 +1928,7 @@ window.Validation = {
       }
     })
 
-    /* document.addEventListener('submit', (event) => {
-      let $form = event.target,
-          prevalidation = $form.getAttribute('data-validation');
-    
-      if (!event.isTrusted || prevalidation===null) return;
-
-      event.preventDefault();
-    
-      if (this.validate($form)) {
-        $form.setAttribute('data-validation', 'true');
-        $form.dispatchEvent(new Event("submit", {bubbles: true}));
-      }
-    }) */
-
   },
-
-  /* check_prevalidation: function($form) {
-    let validation = $form.getAttribute('data-validation');
-
-    if (validation===null || validation==='true') return true; 
-    else return false;
-  }, */
 
   validate: function($form) {
     let $inputs = $form.querySelectorAll(this._form_elements),
