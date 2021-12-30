@@ -1,5 +1,5 @@
-const Dev = window.location.host == 'localhost:9000' || 'articadev1.github.io' ? true : false;
-const path_to_assets = '/assets/components/project/uplast-main/build/';
+const Dev = window.location.host == ('localhost:9000' || 'articadev1.github.io') ? true : false;
+const pathToAssets = '/assets/components/project/uplast-main/build';
 const YandexApiKey = 'c8264039-ceec-4c63-8f99-6858d416bca0';
 
 const breakpoints = {
@@ -1257,7 +1257,7 @@ class ContactsMap {
   }
 
   init() {
-    const path_to_icon =`${!Dev ? path_to_assets : './'}img/icons/map-point.svg`;
+    const pathToIcon =`${!Dev ? pathToAssets : '.'}/img/icons/map-point.svg`;
     const $select = document.querySelector('.cf_select_city');
     const $resaults = document.querySelector('.contacts-content__info-resaults');
 
@@ -1318,7 +1318,7 @@ class ContactsMap {
         balloonContent: address
       }, {
         iconLayout: 'default#image',
-        iconImageHref: path_to_icon,
+        iconImageHref: pathToIcon,
         iconImageSize: [30, 44],
         iconImageOffset: [-15, -44],
         hideIconOnBalloonOpen: false
@@ -1361,13 +1361,13 @@ class Select {
       showContent: 'down'
     })
 
-    let path_to_icon =`${!Dev ? path_to_assets : './'}img/icons/icons.svg#select-arrow`;
+    const pathToIcon =`${!Dev ? pathToAssets : '.'}/img/icons/icons.svg#select-arrow`;
 
     let $arrow = this.select.slim.container.querySelector('.ss-arrow span'),
         $scroll = document.createElement('div');
 
     //add custom arrow
-    $arrow.insertAdjacentHTML('afterbegin', `<svg class="icon"><use xlink:href="${path_to_icon}"></use></svg>`);
+    $arrow.insertAdjacentHTML('afterbegin', `<svg class="icon"><use xlink:href="${pathToIcon}"></use></svg>`);
     //add custom scroll
     $scroll.classList.add('scrollbar');
     this.select.slim.content.insertAdjacentElement('beforeEnd', $scroll);
