@@ -592,7 +592,7 @@
       callbacks.getrequired.response.success = function (response) {
 
         let $form = document.querySelector(miniShop2.Order.order);
-        Validation.reset_hints($form);
+        Validation.resetHints($form);
         
         $(miniShop2.Order.order).find('[name]').removeAttr('required');
         var requires = response.data['requires'];
