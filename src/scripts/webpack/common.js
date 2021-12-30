@@ -1851,8 +1851,6 @@ const Form = {
     $form.classList.remove('disabled');
   },
   reset: function ($form) {
-    if ($form.getAttribute('data-validation')!==null) $form.setAttribute('data-validation', '');
-
     let $elements = $form.querySelectorAll(this._elements);
 
     $elements.forEach(($element) => {
@@ -1920,13 +1918,15 @@ window.Validation = {
       }
     })
 
-    document.addEventListener('submit', (event) => {
-      const $form = event.target;
-      if ($form.getAttribute('data-validation')=='' && Dev) {
-        event.preventDefault();
-        this.validate($form);
-      }
-    })
+    if (Dev) {
+      document.addEventListener('submit', (event) => {
+        const $form = event.target;
+        if ($form.getAttribute('data-validation') == '') {
+          event.preventDefault();
+          this.validate($form);
+        }
+      })   
+    }
 
   },
 
