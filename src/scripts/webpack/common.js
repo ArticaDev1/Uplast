@@ -124,6 +124,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   calculator();
   form_toggle();
+  inputNumber();
   collapse();
   getDelivery();
 
@@ -153,7 +154,6 @@ window.addEventListener('load', function() {
 
 
 //
-
 async function loadYandexAPI() {
   if (typeof ymaps !== 'undefined') return;
 
@@ -308,7 +308,7 @@ function form_toggle() {
   document.addEventListener('change', change_inputs);
 }
 
-function input_number_test($input) {
+function inputTestNumber($input) {
   $input.value = $input.value.replace(/[^\d.]/g, '');
 }
 
@@ -334,11 +334,11 @@ function calculator() {
       if ($target == $calculator.$minus || $target == $calculator.$plus) {
         buttons_click_event($target, $calculator, event);
       } else if ($target == $calculator.$input && (event.type == 'input' || event.type == 'change')) {
-        input_number_test($target);
+        inputTestNumber($target);
         input_min_test($target, $calculator, event);
         count_change($calculator.$input_count, $calculator, event);
       } else if ($target == $calculator.$input_count && (event.type == 'input' || event.type == 'change')) {
-        input_number_test($target);
+        inputTestNumber($target);
         count_change_event($target, $calculator, event);
       }
     }
@@ -482,6 +482,18 @@ function getDelivery() {
         if (data.deliveryBottom) $bottomContainer.innerHTML = data.deliveryBottom;
       })
   })
+}
+
+function inputNumber() {
+  const _input_ = '[data-test="number"]';
+
+  const test = (event) => {
+    let $input = event.target.closest(_input_);
+    if ($input) inputTestNumber($input);
+  }
+
+  document.addEventListener('input', test);
+  document.addEventListener('change', test);
 }
 
 const CustomInteractionEvents = Object.create({
@@ -1833,16 +1845,10 @@ const ScrollAnchors = {
 const Form = {
   _elements: 'input, textarea, select',
   disable: function($form) {
-    let $elements = $form.querySelectorAll(this._elements);
-    $elements.forEach(($element) => {
-      $element.setAttribute('disabled', '');
-    })
+    $form.classList.add('disabled');
   },
   enable: function($form) {
-    let $elements = $form.querySelectorAll(this._elements);
-    $elements.forEach(($element) => {
-      $element.removeAttribute('disabled');
-    })
+    $form.classList.remove('disabled');
   },
   reset: function ($form) {
     if ($form.getAttribute('data-validation')!==null) $form.setAttribute('data-validation', '');
@@ -1896,14 +1902,33 @@ window.Validation = {
       }
     };
 
+    //валидация значения минимального заказа
+    this.testMinOrderValue = (value, minValue) => {
+      return validate.single(+value, {
+        numericality: {
+          greaterThanOrEqualTo: +minValue,
+          notValid: 'Введите корректное число',
+          notGreaterThanOrEqualTo: `^Минимальный заказ ${minValue} шт.`,
+        }
+      });
+    }
+
     document.addEventListener('input', (event) => {
       if (event.target.classList.contains('error') || 
           event.target.classList.contains('success')) {
-        this.validate_input(event.target);
+        this.validateInput(event.target);
       }
     })
 
     document.addEventListener('submit', (event) => {
+      const $form = event.target;
+      if ($form.getAttribute('data-validation')=='' && Dev) {
+        event.preventDefault();
+        this.validate($form);
+      }
+    })
+
+    /* document.addEventListener('submit', (event) => {
       let $form = event.target,
           prevalidation = $form.getAttribute('data-validation');
     
@@ -1915,30 +1940,30 @@ window.Validation = {
         $form.setAttribute('data-validation', 'true');
         $form.dispatchEvent(new Event("submit", {bubbles: true}));
       }
-    })
+    }) */
 
   },
 
-  check_prevalidation: function($form) {
+  /* check_prevalidation: function($form) {
     let validation = $form.getAttribute('data-validation');
 
     if (validation===null || validation==='true') return true; 
     else return false;
-  },
+  }, */
 
   validate: function($form) {
     let $inputs = $form.querySelectorAll(this._form_elements),
         flag = 0;
 
     $inputs.forEach(($input) => {
-      if (!this.validate_input($input)) flag++;
+      if (!this.validateInput($input)) flag++;
     })
 
     if (!flag) return true;
     else return false;
   },
 
-  validate_input: function ($input) {
+  validateInput: function ($input) {
     let required = $input.getAttribute('required') !== null,
         type = $input.getAttribute('data-validate'),
         disabled = $input.getAttribute('disabled') !== null,
@@ -1947,7 +1972,10 @@ window.Validation = {
 
     if (disabled) return;
 
-    if(type && (required || !empty)) {
+    if (type == 'minOrder') {
+      const minValue = $input.getAttribute('data-min');
+      resault = this.testMinOrderValue(+$input.value, +minValue);
+    } else if (type && (required || !empty)) {
       resault = validate.single($input.value, this.constraints[type]);
     } else if (required) {
       resault = validate.single($input.value, this.constraints.empty);
@@ -1982,7 +2010,7 @@ window.Validation = {
 
   },
 
-  reset_hints: function ($form) {
+  resetHints: function ($form) {
     let $inputs = $form.querySelectorAll(this._form_elements);
     $inputs.forEach(($input) => {
       if ($input.classList.contains('error')) {
@@ -2040,7 +2068,7 @@ document.addEventListener('ajaxForm:afterSubmit', function (event) {
 
 document.addEventListener('ajaxForm:success', function (event) {
   Form.reset(event.target);
-  Validation.reset_hints(event.target);
+  Validation.resetHints(event.target);
 
   console.log('ajaxForm:success', event)
 
@@ -2051,7 +2079,7 @@ document.addEventListener('ajaxForm:success', function (event) {
     Modal.open($modal);
     Modal.timeout = setTimeout(() => {
       Modal.close();
-    }, 3000);
+    }, 6000);
   }
 })
 
@@ -2151,7 +2179,7 @@ document.addEventListener('Modal:closed', function (event) {
   let $form = event.target.querySelector('form');
   if ($form) {
     Form.reset($form);
-    Validation.reset_hints($form);
+    Validation.resetHints($form);
   }
 
 }, true);

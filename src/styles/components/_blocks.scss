@@ -3005,7 +3005,7 @@
   @include media-breakpoint-down(md) {
     display: block;
     &__content {
-      padding-bottom: 35px;
+      padding: 0 0 35px 0;
       &::after {
         height: 1px;
         width: calc(100% + var(--ps) + var(--pe));

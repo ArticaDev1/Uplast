@@ -280,7 +280,7 @@
               <!--заказ-->
               <form class="content-box order-box-constructor" novalidate data-validation>
                 <div class="order-box-constructor__content">
-                  <div class="mb-40">
+                  <div class="mb-0">
                     <div class="mb-30">
                       <div class="form-element mb-20">
                         <div class="select select_small">
@@ -303,55 +303,56 @@
                       <div class="form-element mb-20"><span class="form-element-label">Цвет пакета: <span data-form-element-value></span></span>
                         <div class="form-elements-group">
                           <label class="color-checkbox">
-                            <input type="radio" name="344" value="Прозрачный"/><span style="background:linear-gradient(220.55deg, rgba(196, 196, 196, 0) 9.19%, rgba(196, 196, 196, 0.83) 38.13%, rgba(196, 196, 196, 0) 90.21%);" data-tippy-content="Прозрачный"></span>
+                            <input type="radio" name="368" value="Прозрачный"/><span style="background:linear-gradient(220.55deg, rgba(196, 196, 196, 0) 9.19%, rgba(196, 196, 196, 0.83) 38.13%, rgba(196, 196, 196, 0) 90.21%);" data-tippy-content="Прозрачный"></span>
                           </label>
                           <label class="color-checkbox">
-                            <input type="radio" name="344" value="Белый"/><span style="background:#fff;" data-tippy-content="Белый"></span>
+                            <input type="radio" name="368" value="Белый"/><span style="background:#fff;" data-tippy-content="Белый"></span>
                           </label>
                           <label class="color-checkbox">
-                            <input type="radio" name="344" value="Бежевый"/><span style="background:#BDB76B;" data-tippy-content="Бежевый"></span>
+                            <input type="radio" name="368" value="Бежевый"/><span style="background:#BDB76B;" data-tippy-content="Бежевый"></span>
                           </label>
                           <label class="color-checkbox">
-                            <input type="radio" name="344" value="Синий"/><span style="background:#26A7E7;" data-tippy-content="Синий"></span>
+                            <input type="radio" name="368" value="Синий"/><span style="background:#26A7E7;" data-tippy-content="Синий"></span>
                           </label>
                           <label class="color-checkbox">
-                            <input type="radio" name="344" value="Зеленый"/><span style="background:#26A356;" data-tippy-content="Зеленый"></span>
+                            <input type="radio" name="368" value="Зеленый"/><span style="background:#26A356;" data-tippy-content="Зеленый"></span>
                           </label>
                           <label class="color-checkbox">
-                            <input type="radio" name="344" value="Черный"/><span style="background:#000;" data-tippy-content="Черный"></span>
+                            <input type="radio" name="368" value="Черный"/><span style="background:#000;" data-tippy-content="Черный"></span>
                           </label>
                         </div>
                       </div>
                       <div class="form-element mb-20"><span class="form-element-label">Цвет рисунка: <span data-form-element-value></span></span>
                         <div class="form-elements-group">
                           <label class="color-checkbox">
-                            <input type="radio" name="39" value="Прозрачный"/><span style="background:linear-gradient(220.55deg, rgba(196, 196, 196, 0) 9.19%, rgba(196, 196, 196, 0.83) 38.13%, rgba(196, 196, 196, 0) 90.21%);" data-tippy-content="Прозрачный"></span>
+                            <input type="radio" name="590" value="Прозрачный"/><span style="background:linear-gradient(220.55deg, rgba(196, 196, 196, 0) 9.19%, rgba(196, 196, 196, 0.83) 38.13%, rgba(196, 196, 196, 0) 90.21%);" data-tippy-content="Прозрачный"></span>
                           </label>
                           <label class="color-checkbox">
-                            <input type="radio" name="39" value="Белый"/><span style="background:#fff;" data-tippy-content="Белый"></span>
+                            <input type="radio" name="590" value="Белый"/><span style="background:#fff;" data-tippy-content="Белый"></span>
                           </label>
                           <label class="color-checkbox">
-                            <input type="radio" name="39" value="Синий"/><span style="background:#26A7E7;" data-tippy-content="Синий"></span>
+                            <input type="radio" name="590" value="Синий"/><span style="background:#26A7E7;" data-tippy-content="Синий"></span>
                           </label>
                           <label class="color-checkbox">
-                            <input type="radio" name="39" value="Красный"/><span style="background:#FF0000;" data-tippy-content="Красный"></span>
+                            <input type="radio" name="590" value="Красный"/><span style="background:#FF0000;" data-tippy-content="Красный"></span>
                           </label>
                           <label class="color-checkbox">
-                            <input type="radio" name="39" value="Жёлтый"/><span style="background:#E49B0F;" data-tippy-content="Жёлтый"></span>
+                            <input type="radio" name="590" value="Жёлтый"/><span style="background:#E49B0F;" data-tippy-content="Жёлтый"></span>
                           </label>
                           <label class="color-checkbox">
-                            <input type="radio" name="39" value="Черный"/><span style="background:#000;" data-tippy-content="Черный"></span>
+                            <input type="radio" name="590" value="Черный"/><span style="background:#000;" data-tippy-content="Черный"></span>
                           </label>
                         </div>
                       </div>
                     </div>
-                    <div class="form-element">
+                    <div class="form-element"><span class="form-element-label">Количество: </span>
                       <div class="input">
-                        <input type="text">
-                        <div class="input-element"><span>Количество</span></div>
+                        <input class="filled" type="text" value="480" data-min="480" data-validate="minOrder" required>
+                        <div class="input-element"></div>
                       </div>
                     </div>
-                  </div><span class="alert-message">Если вы уже добавили товары в Корзину, их надо будет оформить дополнительно</span>
+                  </div>
+                  <!--span.alert-message Если вы уже добавили товары в Корзину, их надо будет оформить дополнительно-->
                 </div>
                 <div class="order-box-constructor__form">
                   <h3 class="content-box__title">Ваши данные</h3>

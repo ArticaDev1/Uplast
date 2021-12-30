@@ -11,9 +11,12 @@ var AjaxForm = {
 
     //submit event
     $(document).off('submit', afConfig['formSelector']).on('submit', afConfig['formSelector'], function (e) {
+      e.preventDefault();
+
+      const $form = e.target;
+      if ($form.getAttribute('data-validation')=='' && !Validation.validate($form)) return;
       
-      let $form = e.target;
-      if (!Validation.check_prevalidation($form)) return;
+      /* if (!Validation.check_prevalidation($form)) return; */
 
       $(this).ajaxSubmit({
         dataType: 'json',

@@ -18,7 +18,7 @@ block content
         //заказ
         form(novalidate data-validation).content-box.order-box-constructor
           .order-box-constructor__content 
-            .mb-40
+            .mb-0
               .mb-30 
                 .form-element.mb-20
                   .select.select_small
@@ -67,12 +67,12 @@ block content
                     })
                 
               .form-element
+                span.form-element-label Количество: 
                 .input
-                  input(type="text")
+                  input(type="text" value="480" data-min="480" data-validate="minOrder" required).filled
                   .input-element
-                    span Количество
 
-            span.alert-message Если вы уже добавили товары в Корзину, их надо будет оформить дополнительно
+            //span.alert-message Если вы уже добавили товары в Корзину, их надо будет оформить дополнительно
 
           .order-box-constructor__form 
             h3 Ваши данные
@@ -106,9 +106,6 @@ block content
               a(href="#").link Политикой конфиденциальности
               |, а также 
               a(href="#").link Пользовательским соглашением
-
-          
-
 
 
   section.section.section-border

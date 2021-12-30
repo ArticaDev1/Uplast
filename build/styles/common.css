@@ -9158,6 +9158,21 @@ img.lazyloaded {
   gap: 8px;
 }
 
+form {
+  transition: opacity var(--trs-2);
+}
+form.disabled {
+  opacity: 0.75;
+  pointer-events: none !important;
+}
+form.disabled * {
+  pointer-events: none !important;
+  -webkit-user-select: none !important;
+     -moz-user-select: none !important;
+      -ms-user-select: none !important;
+          user-select: none !important;
+}
+
 /*========== Typography ==========*/
 body {
   font-family: "Raleway", sans-serif;
@@ -12662,7 +12677,7 @@ ol:not([class]) li:before, ol.list li:before {
     display: block;
   }
   .order-box-constructor__content {
-    padding-bottom: 35px;
+    padding: 0 0 35px 0;
   }
   .order-box-constructor__content::after {
     height: 1px;
