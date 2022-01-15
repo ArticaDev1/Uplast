@@ -139,6 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
   InstancesManager.add(MapVector, '.map-vector');
   InstancesManager.add(HistoryList, '.history-list');
   InstancesManager.add(Counter, '[data-counter]');
+  InstancesManager.add(MapAnimation, '.animated-map');
   InstancesManager.add(FormElementChecked, '[data-form-element-checked]');
   InstancesManager.add(FormElementValue, '[data-form-element-value]');
   InstancesManager.init();
@@ -1684,6 +1685,68 @@ class Counter {
     this.observer = new IntersectionObserver(observerCallback, observerOptions);
     this.observer.observe(this.$element);
   }
+}
+
+class MapAnimation {
+  constructor($element) {
+    this.$element = $element;
+  }
+
+  init() {
+    this.createAnimation();
+    this.createObserver();
+  }
+
+  createAnimation() {
+    const $marks = this.$element.querySelectorAll('.mark');
+    const $lines = this.$element.querySelectorAll('.line');
+    const $center = this.$element.querySelector('.center');
+
+    const duration = 3;
+
+    this.animation = gsap.timeline({ paused: true })
+      .addLabel("start")
+      .fromTo($center, 
+        { autoAlpha: 0 }, 
+        { autoAlpha: 1, duration: 0.5 })
+      
+    $lines.forEach(($line, index) => {
+      const width = $line.getTotalLength();
+
+      gsap.set($line, 
+        { css: { 'stroke-dasharray': width }})
+      
+      const animation = gsap.timeline()
+        .fromTo($line, 
+          { css: { 'stroke-dashoffset': width } },
+          { duration: duration, css: { 'stroke-dashoffset': 0 }})
+
+      this.animation.add(animation, `start+=${0.15 * index}`); 
+    })
+
+    $marks.forEach(($mark) => {
+      const delay = +$mark.getAttribute('data-delay') || 0;
+
+      const animation = gsap.timeline()
+        .fromTo($mark, 
+          { autoAlpha: 0 }, 
+          { autoAlpha: 1, duration: 0.3 })
+
+      this.animation.add(animation, `start+=${delay}`); 
+    })
+
+  }
+
+  createObserver() {
+    this.observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        this.animation.play();
+        this.observer.disconnect();
+      }
+    });
+    this.observer.observe(this.$element);
+  }
+
 }
 
 class FormElementChecked {
